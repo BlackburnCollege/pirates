@@ -41,12 +41,17 @@ import javafx.scene.media.MediaPlayer;
  */
 public class MusicController {
 
-    /**
-     * @return the resources
-     */
-    public ArrayList<Media> getResources() {
-        return resources;
-    }
+    private static final String SOUNDS_LOCATION = "resources/sounds/";
+
+    private MediaPlayer player = null;
+    private boolean autoPlaySongs = true;
+    private float volume = 1f;
+    private final float LOWEST_VOLUME = 0.2f;
+
+    private final HashMap<String, Media> names = new HashMap<>();
+    private final ArrayList<Media> resources = new ArrayList<>();
+
+    private static final MusicController singleton = new MusicController();
 
     /**
      * @return the singleton
@@ -54,30 +59,15 @@ public class MusicController {
     public static MusicController get() {
         return singleton;
     }
-    
-    
 
     private MusicController() {
         //hide the constructor
-    }
-
-    private static final MusicController singleton = new MusicController();
-    private MediaPlayer player = null;
-    private boolean autoPlaySongs = true;
-    private float volume = 1f;
-    
-    
-    
-    private final HashMap<String, Media> names = new HashMap<>();
-    private final ArrayList<Media> resources = new ArrayList<>();
-    
-    {
         try {
-            URI uri = MusicController.class.getResource("/resources").toURI();
+            URI uri = MusicController.class.getResource("/" + SOUNDS_LOCATION).toURI();
             Path myPath;
             if (uri.getScheme().equals("jar")) {
                 FileSystem fileSystem = FileSystems.newFileSystem(uri, Collections.<String, Object>emptyMap());
-                myPath = fileSystem.getPath("/resources");
+                myPath = fileSystem.getPath(SOUNDS_LOCATION);
             } else {
                 myPath = Paths.get(uri);
             }
@@ -86,7 +76,8 @@ public class MusicController {
                 Path path = it.next();
                 String name = path.getFileName().toString();
                 if (name.endsWith(".mp3") && name.startsWith("mus_")) {
-                    Media media = new Media(MusicController.class.getClassLoader().getResource("resources/" + name).toString());
+                    System.out.println(SOUNDS_LOCATION + name);
+                    Media media = new Media(GameGuiMockups.class.getClassLoader().getResource(SOUNDS_LOCATION + name).toString());
                     getResources().add(media);
                     names.put(name, media);
                 }
@@ -96,8 +87,15 @@ public class MusicController {
         }
     }
 
-    public boolean isPlaying() {
+    public final boolean isPlaying() {
         return player.getStatus() == MediaPlayer.Status.PLAYING;
+    }
+
+    /**
+     * @return the resources
+     */
+    public final ArrayList<Media> getResources() {
+        return resources;
     }
 
     private MediaPlayer buildPlayer(Media media) {
@@ -259,15 +257,17 @@ public class MusicController {
             player.setVolume(volume);
         }
     }
-    
-     public void playSound(String name) {
+
+    public void playSound(String name) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 Media media = names.get(name);
+
                 if (media == null) {
                     try {
-                        media = new Media(GameGuiMockups.class.getClassLoader().getResource("resources/" + name).toString());
+                        media = new Media(MusicController.class
+                                .getClassLoader().getResource(SOUNDS_LOCATION + name).toString());
                         names.put(name, media);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -276,12 +276,12 @@ public class MusicController {
                 }
                 MediaPlayer player = new MediaPlayer(media);
                 float vol = getVolume();
-                setVolume(Math.min(vol, 0.2f));
+                setVolume(Math.min(vol, LOWEST_VOLUME));
                 Runnable dispose = new Runnable() {
                     @Override
                     public void run() {
                         player.dispose();
-                        if (getVolume()==0.2f) {
+                        if (getVolume() == LOWEST_VOLUME) {
                             setVolume(vol);
                         }
                     }
