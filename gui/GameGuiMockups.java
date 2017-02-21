@@ -42,7 +42,7 @@ public class GameGuiMockups extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fxmlresources/FXMLDocument.fxml"));
 
         Scene scene = new Scene(root);
 
@@ -52,7 +52,7 @@ public class GameGuiMockups extends Application {
         stage.setTitle("YOU ARE A PIRATE");
         stage.show();
         setMainStage(stage);
-        playMusic();
+        musicController.playSong(Music.LIVING_VOYAGE);
         singleton = this;
     }
 

@@ -16,7 +16,6 @@
  */
 package gui;
 
-import java.awt.Stroke;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
@@ -27,7 +26,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -41,7 +39,9 @@ import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -64,6 +64,10 @@ public class FXMLDocumentController implements Initializable {
     private TextFlow gameControls;
     @FXML
     private TextFlow menuControls;
+    @FXML
+    private StackPane mediaPane;
+    @FXML
+    private MediaView gameMedia;
 
     public Text makeText(String text) {
         Text newText = new Text(text + "\n");
@@ -82,6 +86,7 @@ public class FXMLDocumentController implements Initializable {
         gameImage.setImage(new Image("resources/gameimage.png"));
         gameImage.fitWidthProperty().bind(background.widthProperty().divide(2).subtract(20));
         gameImage.fitHeightProperty().bind(background.heightProperty().subtract(20));
+        gameImage.setVisible(true);
 
         background.setBackground(
                 new Background(
@@ -179,14 +184,14 @@ public class FXMLDocumentController implements Initializable {
         Hyperlink exit = new Hyperlink("Exit");
         exit.setStyle("-fx-text-fill: black; -fx-underline: false");
         exit.setFont(Font.font("Consolas", 24));
-        
-        exit.setOnAction(new EventHandler<ActionEvent>(){
+
+        exit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 GameGuiMockups.getSingleton().getMainStage().close();
-            } 
+            }
         });
-        
+
         menuControls.getChildren().add(makeText(""));
         menuControls.getChildren().add(exit);
 

@@ -160,6 +160,20 @@ public class MusicController {
         playSong(newMedia);
     }
 
+    public void playSong(Music song) {
+        if (!Platform.isFxApplicationThread()) {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    playSong(song);
+                }
+            });
+            return;
+        }
+        Media newMedia = names.get(song.getFileName());
+        playSong(newMedia);
+    }
+
     public void playSongAndYield(Media media) {
         Platform.runLater(new Runnable() {
             @Override
@@ -181,6 +195,22 @@ public class MusicController {
             @Override
             public void run() {
                 playSong(song);
+            }
+        });
+        synchronized (this) {
+            try {
+                this.wait();
+            } catch (InterruptedException ex) {
+            }
+        }
+
+    }
+
+    public void playSongAndYield(Music song) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                playSong(song.getFileName());
             }
         });
         synchronized (this) {
