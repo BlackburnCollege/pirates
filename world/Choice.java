@@ -37,16 +37,20 @@ public class Choice {
 
     /**
      * @param text the text to set
+     * @return 
      */
-    public void setText(String text) {
+    public Choice setText(String text) {
         this.text = text;
+        return this;
     }
 
     /**
      * @param action the action to set
+     * @return 
      */
-    public void setAction(Action action) {
+    public Choice setAction(Action action) {
         this.action = action;
+        return this;
     }
     
     

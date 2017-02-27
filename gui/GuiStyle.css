@@ -1,0 +1,52 @@
+/* 
+    Created on : Feb 26, 2017, 11:34:05 PM
+    Author     : lucas.burdell
+*/
+
+.hyperlink{
+    -fx-border-color: #00000000;
+    -fx-text-fill: #0d72bf;
+    -fx-stroke: black;
+    -fx-stroke-width: 2;
+    
+    -fx-border-style: none;
+    -fx-underline: false;
+}
+.hyperlink:hover{
+    
+    -fx-border-color: #00000000;
+    -fx-text-fill: khaki;
+    -fx-stroke: black;
+    -fx-stroke-width: 2;
+    -fx-border-style: none;
+    -fx-underline: false;
+}
+
+.hyperlink:active{
+    /*
+    -fx-border-color: #00000000;
+    -fx-text-fill: khaki;
+    -fx-border-style: none;
+    -fx-underline: false;
+    */
+    -fx-border-color: #00000000;
+    -fx-text-fill: blue;
+    -fx-border-style: none;
+    -fx-underline: false;
+}
+
+.hyperlink:focused{
+    /*
+    -fx-border-color: #00000000;
+    -fx-border-style: none;
+    -fx-text-fill: khaki;
+    -fx-underline: false;
+    */
+
+    -fx-border-color: #00000000;
+    -fx-text-fill: blue;
+    -fx-border-style: none;
+    -fx-underline: false;
+
+}
+

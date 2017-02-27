@@ -1,5 +1,6 @@
 package world;
 
+import gui.Music;
 import java.util.HashMap;
 
 /**
@@ -13,7 +14,7 @@ public class World {
     private Player player;
     private HashMap<String, Event> events = new HashMap<>();
 
-    private World(String playerName) {
+    public World(String playerName) {
         Player user = new Player(playerName);
         //opening event, after convo, fish puzzle, wolf combat, closing event
         events.put("Opening Event", new Event("As you walk down stairs you are"
@@ -33,7 +34,9 @@ public class World {
         
         
         events.get("Opening Event").addChoice("Hello Person",
-                new Action(events.get("After Conversation"), "Hello Person"));
+                new Action(events.get("After Conversation"), "Hello Person"))
+                .setMusic(Music.LIVING_VOYAGE);
+        
         events.get("Opening Event").addChoice("Wassup dude.", 
                 new Action(events.get("After Conversation"), "Wassup dude"));
         
@@ -46,17 +49,36 @@ public class World {
         
         events.get("Wolf Combat").addChoice("next", 
                 new Action(events.get("Closing Event"), "You finally make it home.",
-                        new Challenge("combat", "wolf combat")));
+                        new Challenge("combat", "wolf combat"))).setMusic(Music.THE_BUILDER);
         
         events.get("Closing Event").addChoice("next", 
                 new Action(events.get("Opening Event"), "Its groundhogs day up in here"));
+        
+        this.currentEvent = events.get("Opening Event");
+        
     }
 
     public Event getEvent(String eventName) {
         return events.get(eventName);
     }
+    
+    
 
     public Player getPlayer() {
         return player;
+    }
+
+    /**
+     * @return the currentEvent
+     */
+    public Event getCurrentEvent() {
+        return currentEvent;
+    }
+
+    /**
+     * @param currentEvent the currentEvent to set
+     */
+    public void setCurrentEvent(Event currentEvent) {
+        this.currentEvent = currentEvent;
     }
 }

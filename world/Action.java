@@ -36,17 +36,27 @@ public class Action {
      * @return the Event
      */
     public Event getDefaultEvent() {
-        return this.events[0];
+        return this.getEvents()[0];
+    }
+    
+    /**
+     * 
+     * @return the default event index
+     */
+    public int getDefaultEventIndex() {
+        return 0;
     }
 
     /**
      * @param event the Event to set
+     * @return 
      */
-    public void addEvent(Event event) {
-        Event[] temp = new Event[this.events.length + 1];
-        System.arraycopy(this.events, 0, temp, 0, events.length);
+    public Action addEvent(Event event) {
+        Event[] temp = new Event[this.getEvents().length + 1];
+        System.arraycopy(this.getEvents(), 0, temp, 0, getEvents().length);
         temp[temp.length - 1] = event;
         this.events = temp;
+        return this;
     }
 
     /**
@@ -58,9 +68,11 @@ public class Action {
 
     /**
      * @param text the text to set
+     * @return 
      */
-    public void setText(String text) {
+    public Action setText(String text) {
         this.text = text;
+        return this;
     }
 
     /**
@@ -80,9 +92,18 @@ public class Action {
 
     /**
      * @param challenge the challenge to set
+     * @return 
      */
-    public void setChallenge(Challenge challenge) {
+    public Action setChallenge(Challenge challenge) {
         this.challenge = challenge;
+        return this;
+    }
+
+    /**
+     * @return the events
+     */
+    public Event[] getEvents() {
+        return events;
     }
     
     

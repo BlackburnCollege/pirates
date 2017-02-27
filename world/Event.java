@@ -6,7 +6,7 @@ package world;
  */
 public class Event {
 
-    private String music;
+    private gui.Music music;
     private String[] sounds;
     private Choice[] choices = new Choice[0];
     private String picture;
@@ -24,7 +24,7 @@ public class Event {
         this.text = text;
     }
 
-    public Event(String text, Choice[] choices, String picture, String music, String[] sounds) {
+    public Event(String text, Choice[] choices, String picture, gui.Music music, String[] sounds) {
         this.text = text;
         this.choices = choices;
         this.picture = picture;
@@ -35,7 +35,7 @@ public class Event {
     /**
      * @return the music
      */
-    public String getMusic() {
+    public gui.Music getMusic() {
         return music;
     }
 
@@ -62,34 +62,40 @@ public class Event {
 
     /**
      * @param music the music to set
+     * @return 
      */
-    public void setMusic(String music) {
+    public Event setMusic(gui.Music music) {
         this.music = music;
+        return this;
     }
 
     /**
      * @param sounds the sounds to set
+     * @return 
      */
-    public void setSounds(String[] sounds) {
-        this.setSounds(sounds);
+    public Event setSounds(String[] sounds) {
+        this.sounds = sounds;
+        return this;
     }
 
     /**
      * @param choices the choices to set
      */
     
-    public void addChoice(String text, Action action){
+    public Event addChoice(String text, Action action){
         Choice[] temp = new Choice[this.choices.length + 1];
         System.arraycopy(this.choices, 0, temp, 0, choices.length);
         temp[temp.length - 1] = new Choice(text, action);
         this.choices = temp;
+        return this;
     }
 
     /**
      * @param picture the picture to set
      */
-    public void setPicture(String picture) {
+    public Event setPicture(String picture) {
         this.picture = picture;
+        return this;
     }
 
     /**
@@ -102,8 +108,9 @@ public class Event {
     /**
      * @param text the text to set
      */
-    public void setText(String text) {
+    public Event setText(String text) {
         this.text = text;
+        return this;
     }
 
 }
