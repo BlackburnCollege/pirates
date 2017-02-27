@@ -26,7 +26,9 @@ public class Player {
      * @param name the name to set
      */
     public void setName(String name) {
-        this.name = name;
+        if (name != null) {
+            this.name = name;
+        }
     }
 
     /**
@@ -40,7 +42,9 @@ public class Player {
      * @param inventory the inventory to set
      */
     public void setInventory(ArrayList<Item> inventory) {
-        this.inventory = inventory;
+        if (inventory != null) {
+            this.inventory = inventory;
+        }
     }
 
     /**
@@ -54,6 +58,8 @@ public class Player {
      * @param currentEvent the currentEvent to set
      */
     public void setCurrentEvent(Event currentEvent) {
-        this.currentEvent = currentEvent;
+        if (currentEvent != null) {
+            this.currentEvent = currentEvent;
+        }
     }
 }

@@ -7,6 +7,14 @@ package world;
 public class Choice {
     private String text;
     private Action action;
+    
+    public Choice() {
+        
+    }
+    
+    public Choice(String text) {
+        this.text = text;
+    }
 
     public Choice(String text, Action action) {
         this.text = text;
@@ -25,6 +33,20 @@ public class Choice {
      */
     public Action getAction() {
         return action;
+    }
+
+    /**
+     * @param text the text to set
+     */
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    /**
+     * @param action the action to set
+     */
+    public void setAction(Action action) {
+        this.action = action;
     }
     
     

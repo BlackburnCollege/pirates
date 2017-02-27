@@ -16,15 +16,22 @@
  */
 package gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -39,6 +46,7 @@ import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.MediaView;
@@ -54,8 +62,7 @@ import javafx.util.Duration;
  */
 public class FXMLDocumentController implements Initializable {
 
-    @FXML
-    private BorderPane background;
+    //private BorderPane background;
     @FXML
     private ImageView gameImage;
     @FXML
@@ -68,6 +75,14 @@ public class FXMLDocumentController implements Initializable {
     private StackPane mediaPane;
     @FXML
     private MediaView gameMedia;
+    @FXML
+    private BorderPane gamePane;
+    @FXML
+    private StackPane mainPane;
+    @FXML
+    private Pane loaderPane;
+    
+    
 
     public Text makeText(String text) {
         Text newText = new Text(text + "\n");
@@ -83,12 +98,33 @@ public class FXMLDocumentController implements Initializable {
                 BorderStrokeStyle.SOLID, new CornerRadii(2),
                 new BorderWidths(10, 10, 10, 10)));
 
+        
+        try {
+            Pane root = (Pane) FXMLLoader.load(getClass().getResource("/combat/FXMLDocument.fxml"));
+            loaderPane.getChildren().add(0, root);
+            root.visibleProperty().addListener(new ChangeListener<Boolean>(){
+                @Override
+                public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                    if (newValue == false) {
+                        loaderPane.getChildren().remove(root);
+                        loaderPane.setDisable(true);
+                    }
+                }
+                
+            });
+            //gamePane.visibleProperty().bind(root.visibleProperty().not());
+            
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
         gameImage.setImage(new Image("resources/gameimage.png"));
-        gameImage.fitWidthProperty().bind(background.widthProperty().divide(2).subtract(20));
-        gameImage.fitHeightProperty().bind(background.heightProperty().subtract(20));
+        gameImage.fitWidthProperty().bind(gamePane.widthProperty().divide(2).subtract(20));
+        gameImage.fitHeightProperty().bind(gamePane.heightProperty().subtract(20));
         gameImage.setVisible(true);
 
-        background.setBackground(
+        gamePane.setBackground(
                 new Background(
                         new BackgroundImage(
                                 new Image("resources/background.jpg"),
@@ -99,7 +135,7 @@ public class FXMLDocumentController implements Initializable {
                         )
                 )
         );
-        background.setBorder(border);
+        gamePane.setBorder(border);
         gameControls.setBackground(new Background(
                 new BackgroundImage(
                         new Image("resources/menu-text-background.jpg"),
@@ -119,8 +155,8 @@ public class FXMLDocumentController implements Initializable {
                 )
         ));
 
-        controlContainer.prefWidthProperty().bind(background.widthProperty().divide(2).subtract(20));
-        controlContainer.prefHeightProperty().bind(background.heightProperty().subtract(20));
+        controlContainer.prefWidthProperty().bind(gamePane.widthProperty().divide(2).subtract(20));
+        controlContainer.prefHeightProperty().bind(gamePane.heightProperty().subtract(20));
 
         gameControls.prefWidthProperty().bind(controlContainer.prefWidthProperty());
         gameControls.setBorder(border);
@@ -194,7 +230,5 @@ public class FXMLDocumentController implements Initializable {
 
         menuControls.getChildren().add(makeText(""));
         menuControls.getChildren().add(exit);
-
     }
-
 }

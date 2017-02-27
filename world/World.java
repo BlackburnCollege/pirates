@@ -20,6 +20,7 @@ public class World {
 
     private World() {
         
+        
     }
 
     public Event getEvent(String eventName) {
