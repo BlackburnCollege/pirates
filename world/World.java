@@ -8,19 +8,48 @@ import java.util.HashMap;
  */
 public class World {
 
-    private static World singletonWorld = new World();
-
-    public static World get() {
-        return singletonWorld;
-    }
+    private Event currentEvent;
 
     private Player player;
-    private Location[] locations = new Location[8];
     private HashMap<String, Event> events = new HashMap<>();
 
-    private World() {
+    private World(String playerName) {
+        Player user = new Player(playerName);
+        //opening event, after convo, fish puzzle, wolf combat, closing event
+        events.put("Opening Event", new Event("As you walk down stairs you are"
+                + "greeted by you wife, Marjory, and you son, " + playerName + 
+                " jr. \"Hello person,\" Marjory says."));
+        
+        events.put("After Conversation", new Event("You walk outside, "
+                + "down to the docks. You get on your boat and go fishing."));
+        
+        events.put("Fishing Puzzle", new Event("This is a fishing puzzle."));
+        
+        events.put("Wolf Combat", new Event("As you walk home the smell of fish"
+                + "attracts a wolf. Kill it. Defend your honor."));
+        
+        events.put("Closing Event", new Event("You have killed the wolf. Yay."));
         
         
+        
+        events.get("Opening Event").addChoice("Hello Person",
+                new Action(events.get("After Conversation"), "Hello Person"));
+        events.get("Opening Event").addChoice("Wassup dude.", 
+                new Action(events.get("After Conversation"), "Wassup dude"));
+        
+        events.get("After Conversation").addChoice("next", 
+                new Action(events.get("Fishing Puzzle"), "time to catch some fish"));
+        
+        events.get("Fishing Puzzle").addChoice("next", 
+                new Action(events.get("Wolf Combat"), "catching fish.",
+                        new Challenge("puzzle", "fish puzzle")));
+        
+        events.get("Wolf Combat").addChoice("next", 
+                new Action(events.get("Closing Event"), "You finally make it home.",
+                        new Challenge("combat", "wolf combat")));
+        
+        events.get("Closing Event").addChoice("next", 
+                new Action(events.get("Opening Event"), "Its groundhogs day up in here"));
     }
 
     public Event getEvent(String eventName) {

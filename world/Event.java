@@ -4,13 +4,11 @@ package world;
  *
  * @author lucas.burdell
  */
-// I will be attempting to use the Builder Java pattern in this class.
-// http://stackoverflow.com/questions/1988016/named-parameter-idiom-in-java
 public class Event {
 
     private String music;
     private String[] sounds;
-    private Choice[] choices;
+    private Choice[] choices = new Choice[0];
     private String picture;
     private String text;
     
@@ -20,6 +18,10 @@ public class Event {
     public Event(String text, Choice[] choices) {
         this.text = text;
         this.choices = choices;
+    }
+    
+    public Event(String text) {
+        this.text = text;
     }
 
     public Event(String text, Choice[] choices, String picture, String music, String[] sounds) {
@@ -75,8 +77,12 @@ public class Event {
     /**
      * @param choices the choices to set
      */
-    public void setChoices(Choice[] choices) {
-        this.setChoices(choices);
+    
+    public void addChoice(String text, Action action){
+        Choice[] temp = new Choice[this.choices.length + 1];
+        System.arraycopy(this.choices, 0, temp, 0, choices.length);
+        temp[temp.length - 1] = new Choice(text, action);
+        this.choices = temp;
     }
 
     /**
