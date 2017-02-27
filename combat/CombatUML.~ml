@@ -132,8 +132,8 @@
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
 <XPD:ATTR name="Left" type="integer">156</XPD:ATTR>
 <XPD:ATTR name="Top" type="integer">288</XPD:ATTR>
-<XPD:ATTR name="Width" type="integer">115</XPD:ATTR>
-<XPD:ATTR name="Height" type="integer">134</XPD:ATTR>
+<XPD:ATTR name="Width" type="integer">86</XPD:ATTR>
+<XPD:ATTR name="Height" type="integer">43</XPD:ATTR>
 <XPD:REF name="Model">10TFQXSXqEqpq+cQnxLIHwAA</XPD:REF>
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="LiesFbCVu0mGqlmwWcWGTwAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="iYfPsVvGhkerU4gWxCOyrQAA">
@@ -459,53 +459,6 @@
 <XPD:REF name="Views[1]">gWoIh3kw2ECv92sVQzO54wAA</XPD:REF>
 <XPD:REF name="Views[2]">LlIPRi9b5Uu1bTvsn1H3vAAA</XPD:REF>
 <XPD:REF name="Views[3]">QCTjsZMrPU65gfUooyBL7AAA</XPD:REF>
-<XPD:ATTR name="#Operations" type="integer">2</XPD:ATTR>
-<XPD:OBJ name="Operations[0]" type="UMLOperation" guid="8LtBEnFkgECqCkDzVOSuVgAA">
-<XPD:ATTR name="Name" type="string">getInsult</XPD:ATTR>
-<XPD:REF name="Owner">10TFQXSXqEqpq+cQnxLIHwAA</XPD:REF>
-<XPD:ATTR name="#Parameters" type="integer">1</XPD:ATTR>
-<XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="oNsmq542eEi7x2yZhnTlUAAA">
-<XPD:ATTR name="DirectionKind" type="UMLParameterDirectionKind">pdkReturn</XPD:ATTR>
-<XPD:ATTR name="TypeExpression" type="string">String</XPD:ATTR>
-<XPD:REF name="BehavioralFeature">8LtBEnFkgECqCkDzVOSuVgAA</XPD:REF>
-</XPD:OBJ>
-</XPD:OBJ>
-<XPD:OBJ name="Operations[1]" type="UMLOperation" guid="qcxzUjcxY06GmXJyyicy+wAA">
-<XPD:ATTR name="Name" type="string">createInsult</XPD:ATTR>
-<XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
-<XPD:REF name="Owner">10TFQXSXqEqpq+cQnxLIHwAA</XPD:REF>
-<XPD:ATTR name="#Parameters" type="integer">1</XPD:ATTR>
-<XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="pJ9I5M4CUUCQOEe3R9kf5QAA">
-<XPD:ATTR name="DirectionKind" type="UMLParameterDirectionKind">pdkReturn</XPD:ATTR>
-<XPD:ATTR name="TypeExpression" type="string">String</XPD:ATTR>
-<XPD:REF name="BehavioralFeature">qcxzUjcxY06GmXJyyicy+wAA</XPD:REF>
-</XPD:OBJ>
-</XPD:OBJ>
-<XPD:ATTR name="#Attributes" type="integer">4</XPD:ATTR>
-<XPD:OBJ name="Attributes[0]" type="UMLAttribute" guid="LwZb2vU8XkelVUkEwHSvXAAA">
-<XPD:ATTR name="Name" type="string">first</XPD:ATTR>
-<XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
-<XPD:ATTR name="TypeExpression" type="string">String[]</XPD:ATTR>
-<XPD:REF name="Owner">10TFQXSXqEqpq+cQnxLIHwAA</XPD:REF>
-</XPD:OBJ>
-<XPD:OBJ name="Attributes[1]" type="UMLAttribute" guid="bpj0KTZxR0etlBeZte364gAA">
-<XPD:ATTR name="Name" type="string">middle</XPD:ATTR>
-<XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
-<XPD:ATTR name="TypeExpression" type="string">String[]</XPD:ATTR>
-<XPD:REF name="Owner">10TFQXSXqEqpq+cQnxLIHwAA</XPD:REF>
-</XPD:OBJ>
-<XPD:OBJ name="Attributes[2]" type="UMLAttribute" guid="/DVK5rE6vUuXe/tj0T/3zAAA">
-<XPD:ATTR name="Name" type="string">last</XPD:ATTR>
-<XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
-<XPD:ATTR name="TypeExpression" type="string">String[]</XPD:ATTR>
-<XPD:REF name="Owner">10TFQXSXqEqpq+cQnxLIHwAA</XPD:REF>
-</XPD:OBJ>
-<XPD:OBJ name="Attributes[3]" type="UMLAttribute" guid="i3myfzenZ02cQmRa9EYJBAAA">
-<XPD:ATTR name="Name" type="string">insult</XPD:ATTR>
-<XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
-<XPD:ATTR name="TypeExpression" type="string">String</XPD:ATTR>
-<XPD:REF name="Owner">10TFQXSXqEqpq+cQnxLIHwAA</XPD:REF>
-</XPD:OBJ>
 </XPD:OBJ>
 <XPD:OBJ name="OwnedElements[5]" type="UMLClass" guid="whg1zPuW8kOZGOWebgsS0gAA">
 <XPD:ATTR name="Name" type="string">Controller</XPD:ATTR>
