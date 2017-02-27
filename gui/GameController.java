@@ -254,13 +254,13 @@ public class GameController implements Initializable {
         menuControls.getChildren().addAll(inventory, makeText(""));
     }
 
-    public void setupExitButton() {
+    private void setupExitButton() {
         Hyperlink exit = makeHyperlink("Exit Game");
         exit.setStyle("-fx-text-fill: black");
         exit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                GuiController.getSingleton().getMainStage().close();
+                GuiLoader.getSingleton().getMainStage().close();
             }
         });
         menuControls.getChildren().add(exit);
@@ -289,7 +289,10 @@ public class GameController implements Initializable {
             }
             
         });
+        
+        addDividerToDisplay();
         addHyperlinkToDisplay(next);
+        
         
         if (action.hasChallenge()) {  
             // TODO: CHALLENGE LOADING
@@ -303,6 +306,10 @@ public class GameController implements Initializable {
         
         
     }
+    
+    private void addDividerToDisplay() {
+        addTextToDisplay("==============");
+    }
 
     private void processGameEvent(Event event) {
         clearDisplay();
@@ -315,7 +322,8 @@ public class GameController implements Initializable {
         }
         gameImage.setImage(picture);
         
-        addTextToDisplay("===============");
+        addDividerToDisplay();
+        
         for (Choice c : event.getChoices()) {
             addChoiceToDisplay(c);
         }
@@ -355,7 +363,7 @@ public class GameController implements Initializable {
             Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
         }
          */
-        // TODO: FIX 
+        
         // SET BORDERS
         Border border = new Border(new BorderStroke(Color.BLACK,
                 BorderStrokeStyle.SOLID, new CornerRadii(2),

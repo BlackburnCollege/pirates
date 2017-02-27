@@ -19,7 +19,7 @@ public class World {
         //opening event, after convo, fish puzzle, wolf combat, closing event
         events.put("Opening Event", new Event("As you walk down stairs you are"
                 + "greeted by you wife, Marjory, and you son, " + playerName + 
-                " jr. \"Hello person,\" Marjory says."));
+                " jr. \"Hello " + playerName + ",\" Marjory says."));
         
         events.put("After Conversation", new Event("You walk outside, "
                 + "down to the docks. You get on your boat and go fishing."));
@@ -29,26 +29,29 @@ public class World {
         events.put("Wolf Combat", new Event("As you walk home the smell of fish"
                 + "attracts a wolf. Kill it. Defend your honor."));
         
-        events.put("Closing Event", new Event("You have killed the wolf. Yay."));
+        events.put("Closing Event", new Event("You made it home!"));
         
         
         
-        events.get("Opening Event").addChoice("Hello Person",
-                new Action(events.get("After Conversation"), "Hello Person"))
-                .setMusic(Music.LIVING_VOYAGE);
-        
-        events.get("Opening Event").addChoice("Wassup dude.", 
-                new Action(events.get("After Conversation"), "Wassup dude"));
+        events.get("Opening Event")
+                .setMusic(Music.LIVING_VOYAGE)
+                .addChoice("Hello Person",
+                new Action(events.get("After Conversation"), "\"Hello Person,\" "
+                        + "you greet your wife. You are a fully operational human being, "
+                        + "and definitely not a robot."))
+                .addChoice("Wassup dude.", 
+                new Action(events.get("After Conversation"), "\"Wassup dude.\" "
+                        + "Really?"));
         
         events.get("After Conversation").addChoice("next", 
-                new Action(events.get("Fishing Puzzle"), "time to catch some fish"));
+                new Action(events.get("Fishing Puzzle"), "You leave to catch some fish."));
         
         events.get("Fishing Puzzle").addChoice("next", 
                 new Action(events.get("Wolf Combat"), "catching fish.",
                         new Challenge("puzzle", "fish puzzle")));
         
         events.get("Wolf Combat").addChoice("next", 
-                new Action(events.get("Closing Event"), "You finally make it home.",
+                new Action(events.get("Closing Event"), "You have killed the wolf. Yay.",
                         new Challenge("combat", "wolf combat"))).setMusic(Music.THE_BUILDER);
         
         events.get("Closing Event").addChoice("next", 

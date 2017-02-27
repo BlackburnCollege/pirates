@@ -28,34 +28,23 @@ import javafx.stage.Stage;
  *
  * @author Lucas Burdell lucas.burdell@blackburn.edu
  */
-public class GuiController extends Application {
+public class GuiLoader extends Application {
 
     private static final String gameTitle = "Treasure and Plunder";
     
     /**
      * @return the singleton
      */
-    public static GuiController getSingleton() {
+    public static GuiLoader getSingleton() {
         return singleton;
     }
 
     private Stage mainStage;
-    private static GuiController singleton;
-
-    private enum FXMLResources {
-        STORY;
-        
-        private final String[] fileNames = {"StoryFXML.fxml"};
-        
-        public String getFileName() {
-            return fileNames[this.ordinal()];
-        }
-        
-    }
+    private static GuiLoader singleton;
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource(FXMLResources.STORY.getFileName()));
+        Parent root = FXMLLoader.load(getClass().getResource("GameFXML.fxml"));
 
         Scene scene = new Scene(root);
         String css = this.getClass().getResource("GuiStyle.css").toExternalForm();
