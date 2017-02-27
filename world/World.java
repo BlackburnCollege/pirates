@@ -18,7 +18,7 @@ public class World {
         Player user = new Player(playerName);
         //opening event, after convo, fish puzzle, wolf combat, closing event
         events.put("Opening Event", new Event("As you walk down stairs you are"
-                + "greeted by you wife, Marjory, and you son, " + playerName + 
+                + " greeted by you wife, Marjory, and you son, " + playerName + 
                 " jr. \"Hello " + playerName + ",\" Marjory says."));
         
         events.put("After Conversation", new Event("You walk outside, "
@@ -27,18 +27,16 @@ public class World {
         events.put("Fishing Puzzle", new Event("This is a fishing puzzle."));
         
         events.put("Wolf Combat", new Event("As you walk home the smell of fish"
-                + "attracts a wolf. Kill it. Defend your honor."));
+                + " attracts a wolf. Kill it. Defend your honor."));
         
         events.put("Closing Event", new Event("You made it home!"));
-        
-        
         
         events.get("Opening Event")
                 .setMusic(Music.LIVING_VOYAGE)
                 .addChoice("Hello Person",
-                new Action(events.get("After Conversation"), "\"Hello Person,\" "
-                        + "you greet your wife. You are a fully operational human being, "
-                        + "and definitely not a robot."))
+                    new Action(events.get("After Conversation"), "\"Hello Person,\" "
+                            + "you greet your wife. You are a fully operational "
+                            + "human being, and definitely not a robot."))
                 .addChoice("Wassup dude.", 
                 new Action(events.get("After Conversation"), "\"Wassup dude.\" "
                         + "Really?"));
