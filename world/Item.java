@@ -39,9 +39,11 @@ public class Item {
 
     /**
      * @param name the name to set
+     * @return 
      */
-    public void setName(String name) {
+    public Item setName(String name) {
         this.name = name;
+        return this;
     }
 
     /**
@@ -53,9 +55,11 @@ public class Item {
 
     /**
      * @param equipped the equipped to set
+     * @return 
      */
-    public void setEquipped(boolean equipped) {
+    public Item setEquipped(boolean equipped) {
         this.equipped = equipped;
+        return this;
     }
 
     /**
@@ -67,9 +71,11 @@ public class Item {
 
     /**
      * @param stacked the stacked to set
+     * @return 
      */
-    public void setStacked(boolean stacked) {
+    public Item setStacked(boolean stacked) {
         this.stacked = stacked;
+        return this;
     }
 
     /**
@@ -81,8 +87,10 @@ public class Item {
 
     /**
      * @param quantity the quantity to set
+     * @return 
      */
-    public void setQuantity(int quantity) {
+    public Item setQuantity(int quantity) {
         this.quantity = quantity;
+        return this;
     }
 }

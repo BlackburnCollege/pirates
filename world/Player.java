@@ -9,12 +9,10 @@ import java.util.ArrayList;
 public class Player {
     private String name;
     private ArrayList<Item> inventory = new ArrayList<>();
-    private Event currentEvent;
     
-    public Player(Event event) {
-        this.currentEvent = event;
+    public Player (String name) {
+        this.name = name;
     }
-    
     /**
      * @return the name
      */
@@ -26,7 +24,9 @@ public class Player {
      * @param name the name to set
      */
     public void setName(String name) {
-        this.name = name;
+        if (name != null) {
+            this.name = name;
+        }
     }
 
     /**
@@ -40,20 +40,9 @@ public class Player {
      * @param inventory the inventory to set
      */
     public void setInventory(ArrayList<Item> inventory) {
-        this.inventory = inventory;
+        if (inventory != null) {
+            this.inventory = inventory;
+        }
     }
 
-    /**
-     * @return the currentEvent
-     */
-    public Event getCurrentEvent() {
-        return currentEvent;
-    }
-
-    /**
-     * @param currentEvent the currentEvent to set
-     */
-    public void setCurrentEvent(Event currentEvent) {
-        this.currentEvent = currentEvent;
-    }
 }
