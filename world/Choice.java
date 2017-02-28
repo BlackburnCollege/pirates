@@ -6,4 +6,52 @@ package world;
  */
 public class Choice {
     private String text;
+    private Action action;
+    
+    public Choice() {
+        
+    }
+    
+    public Choice(String text) {
+        this.text = text;
+    }
+
+    public Choice(String text, Action action) {
+        this.text = text;
+        this.action = action;
+    }
+    
+    /**
+     * @return the text
+     */
+    public String getText() {
+        return text;
+    }
+
+    /**
+     * @return the action
+     */
+    public Action getAction() {
+        return action;
+    }
+
+    /**
+     * @param text the text to set
+     * @return 
+     */
+    public Choice setText(String text) {
+        this.text = text;
+        return this;
+    }
+
+    /**
+     * @param action the action to set
+     * @return 
+     */
+    public Choice setAction(Action action) {
+        this.action = action;
+        return this;
+    }
+    
+    
 }
