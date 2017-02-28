@@ -52,6 +52,15 @@ public class PuzzleSafeCrack {
         this.combo3Correct = false;
         this.currentNum = 0;
     }
+    
+    /**
+     * getCurrentNum
+     *
+     * @return the current number selected on the dial
+     */
+    public byte getCurrentNum () {
+        return this.currentNum;
+    }
 
     /**
      * turnClockwise is called by the controller when the player turns the dial.
