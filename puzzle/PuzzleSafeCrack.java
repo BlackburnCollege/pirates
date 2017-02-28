@@ -60,7 +60,7 @@ public class PuzzleSafeCrack {
      * @return the String location of a sound file
      */
     public String turnClockwise() {
-        if (this.currentNum == 0) {
+        if (this.currentNum == -1) {
             this.currentNum = 100;
         } else {
             this.currentNum--;
@@ -75,7 +75,7 @@ public class PuzzleSafeCrack {
      * @return the String location of a sound file
      */
     public String turnCounterClockwise() {
-        if (this.currentNum == 100) {
+        if (this.currentNum == 101) {
             this.currentNum = 0;
         } else {
             this.currentNum++;
