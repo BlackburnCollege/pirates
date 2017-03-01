@@ -10,3 +10,7 @@ http://creativecommons.org/licenses/by/3.0/
 snd_sword is public domain sound from https://www.freesound.org/people/audione/sounds/52458/
 
 snd_click is public domain sound from https://www.freesound.org/people/RonaldVanWonderen/sounds/110101/
+
+
+soundSafe*.mp3 sounds were cropped in Adobe Audition by Drew Hans from wav files found at http://soundbible.com/tags-click.html
+
