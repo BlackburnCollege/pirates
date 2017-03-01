@@ -14,18 +14,15 @@ public class Combat {
     private Player player;
     private Player enemy;
     private double damage;
+    private String status;
 
     public Combat(Player player, Player enemy) {
         this.player = player;
         this.enemy = enemy;
     }
 
-    public void round(String input) {
-
-    }
-
-    public String event(String input) {
-        return "work in progress...";
+    public String round(String input) {
+        return status;
     }
 
     public double getCurrentHealth() {

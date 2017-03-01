@@ -12,26 +12,26 @@ import java.util.Random;
  * @author arthur.levan
  */
 public class Insult {
-    private String[] first;
-    private String[] middle;
-    private String[] last;
+    private String[] adjective;
+    private String[] verb;
+    private String[] noun;
     private Random randNum;
 
     public Insult(String[] first, String[] middle, String[] last) {
-        this.first = first;
-        this.middle = middle;
-        this.last = last;
+        this.adjective = first;
+        this.verb = middle;
+        this.noun = last;
         this.randNum = new Random();
     }
     
     private String createInsult(){
         String insult;
         
-        int first = this.randNum.nextInt(this.first.length);
-        int middle = this.randNum.nextInt(this.middle.length);
-        int last = this.randNum.nextInt(this.last.length);
+        int first = this.randNum.nextInt(this.adjective.length);
+        int middle = this.randNum.nextInt(this.verb.length);
+        int last = this.randNum.nextInt(this.noun.length);
         
-        insult = this.first[first] + " " + this.middle[middle] + " " + this.last[last];
+        insult = this.adjective[first] + " " + this.verb[middle] + " " + this.noun[last];
         
         return insult;
     }
