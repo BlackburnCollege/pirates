@@ -16,21 +16,15 @@
  */
 package gui;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.image.Image;
@@ -74,20 +68,25 @@ public class GameController implements Initializable {
     @FXML
     private VBox controlContainer;
     @FXML
-    private TextFlow gameControls;
+    private TextFlow gamePanel;
     @FXML
-    private TextFlow menuControls;
+    private TextFlow menuPanel;
     @FXML
     private StackPane mediaPane;
     @FXML
     private MediaView gameMedia;
     @FXML
-    private BorderPane gamePane;
+    private BorderPane gameContainer;
     @FXML
     private StackPane mainPane;
     @FXML
     private Pane loaderPane;
 
+    /**
+     * 
+     * @param text create a text to display
+     * @return return the Text object
+     */
     private Text makeText(String text) {
         Text newText = new Text(text + "\n");
         newText.setFont(Font.font("Consolas", 24));
@@ -95,8 +94,12 @@ public class GameController implements Initializable {
         return newText;
     }
 
+    // create audio controller 
     private AudioController musicController = AudioController.get();
 
+    /**
+     *  old playMusic loop method
+     */
     private void playMusic() {
         Random random = new Random();
 
@@ -120,11 +123,14 @@ public class GameController implements Initializable {
         thread.start();
     }
 
+    /** setup backgrounds for the different panels
+     * 
+     */
     private void setBackgrounds() {
 
         BackgroundSize properSizing = new BackgroundSize(1, 1, true, true, true, false);
 
-        gamePane.setBackground(
+        gameContainer.setBackground(
                 new Background(
                         new BackgroundImage(
                                 new Image(IMAGE_LOCATION + "background.jpg"),
@@ -135,7 +141,7 @@ public class GameController implements Initializable {
                         )
                 )
         );
-        gameControls.setBackground(new Background(
+        gamePanel.setBackground(new Background(
                 new BackgroundImage(
                         new Image(IMAGE_LOCATION + "menu-text-background.jpg"),
                         BackgroundRepeat.REPEAT,
@@ -144,7 +150,7 @@ public class GameController implements Initializable {
                         properSizing
                 )
         ));
-        menuControls.setBackground(new Background(
+        menuPanel.setBackground(new Background(
                 new BackgroundImage(
                         new Image(IMAGE_LOCATION + "menu-text-background.jpg"),
                         BackgroundRepeat.REPEAT,
@@ -155,32 +161,49 @@ public class GameController implements Initializable {
         ));
     }
 
+    /**
+     * setup the property binds for the different sizes and positions
+     */
     private void setBinds() {
-        controlContainer.prefWidthProperty().bind(gamePane.widthProperty().divide(2).subtract(PADDING));
-        controlContainer.prefHeightProperty().bind(gamePane.heightProperty().subtract(PADDING));
+        controlContainer.prefWidthProperty().bind(gameContainer.widthProperty().divide(2).subtract(PADDING));
+        controlContainer.prefHeightProperty().bind(gameContainer.heightProperty().subtract(PADDING));
 
-        gameControls.prefWidthProperty().bind(controlContainer.prefWidthProperty());
+        gamePanel.prefWidthProperty().bind(controlContainer.prefWidthProperty());
 
-        menuControls.prefWidthProperty().bind(controlContainer.prefWidthProperty());
-        menuControls.prefHeightProperty().bind(controlContainer.heightProperty().divide(3));
+        menuPanel.prefWidthProperty().bind(controlContainer.prefWidthProperty());
+        menuPanel.prefHeightProperty().bind(controlContainer.heightProperty().divide(3));
         //menuControls.setPrefHeight(controlContainer.heightProperty().divide(3).get());
 
-        gameControls.prefHeightProperty().bind(controlContainer.prefHeightProperty().subtract(menuControls.prefHeightProperty()));
+        gamePanel.prefHeightProperty().bind(controlContainer.prefHeightProperty().subtract(menuPanel.prefHeightProperty()));
 
-        gameImage.fitWidthProperty().bind(gamePane.widthProperty().divide(2).subtract(PADDING));
-        gameImage.fitHeightProperty().bind(gamePane.heightProperty().subtract(PADDING));
+        gameImage.fitWidthProperty().bind(gameContainer.widthProperty().divide(2).subtract(PADDING));
+        gameImage.fitHeightProperty().bind(gameContainer.heightProperty().subtract(PADDING));
         gameImage.setVisible(true);
     }
 
+    /** Adds a string of text to the game text panel. Appends a newline character to the end
+     * of the string.
+     * 
+     * @param text the text to add
+     */
     private void addTextToDisplay(String text) {
         Text textObject = makeText(text);
-        gameControls.getChildren().add(textObject);
+        gamePanel.getChildren().add(textObject);
     }
 
+    /**
+     * clear the display
+     */
     private void clearDisplay() {
-        gameControls.getChildren().clear();
+        gamePanel.getChildren().clear();
     }
 
+    /**Build a Hyperlink object to game text panel. The Hyperlinks are click-able
+     * Text on the screen.
+     * 
+     * @param text The text of the Hyperlink
+     * @return the Hyperlink
+     */
     private Hyperlink makeHyperlink(String text) {
         Hyperlink hyperLink = new Hyperlink(text);
         hyperLink.getStyleClass().add("textLink");
@@ -193,10 +216,20 @@ public class GameController implements Initializable {
         return hyperLink;
     }
 
+    /** Adds a Hyperlink to the game text panel.
+     * 
+     * @param link the Hyperlink to add.
+     */
     private void addHyperlinkToDisplay(Hyperlink link) {
-        gameControls.getChildren().addAll(link, makeText(""));
+        gamePanel.getChildren().addAll(link, makeText(""));
     }
 
+    /** Add a choice to the game text panel. This builds a Hyperlink out of the
+     * Choice object and adds a listener to the Hyperlink to process the Choice's
+     * Event object on click.
+     * 
+     * @param choice 
+     */
     private void addChoiceToDisplay(Choice choice) {
         Hyperlink hyperLink = makeHyperlink(choice.getText());
         hyperLink.setOnAction(new EventHandler<ActionEvent>() {
@@ -211,6 +244,9 @@ public class GameController implements Initializable {
     private boolean inventoryOpen = false;
     private boolean inventoryMoving = false;
 
+    /**
+     *  Setup the inventory Hyperlink and add it to the menu panel.
+     */
     private void setupInventoryButton() {
         Hyperlink inventory = makeHyperlink("Inventory");
         inventory.setStyle("-fx-text-fill: black");
@@ -221,23 +257,23 @@ public class GameController implements Initializable {
                     return;
                 }
                 
-                menuControls.prefHeightProperty().unbind();
+                menuPanel.prefHeightProperty().unbind();
 
                 double newHeight = 0;
                 if (!inventoryOpen) {
-                    newHeight = menuControls.prefHeightProperty().multiply(2).get();
+                    newHeight = menuPanel.prefHeightProperty().multiply(2).get();
                 } else {
                     //menuControls.prefHeightProperty().bind(controlContainer.heightProperty().divide(3));
                     newHeight = controlContainer.heightProperty().divide(3).get();
                 }
 
                 inventoryMoving = true;
-                menuControls.prefHeightProperty().unbind();
+                menuPanel.prefHeightProperty().unbind();
                 Timeline inventoryTimeline = new Timeline();
                 inventoryTimeline.setCycleCount(1);
                 inventoryTimeline.setAutoReverse(false);
                 inventoryTimeline.getKeyFrames().add(new KeyFrame(Duration.millis(500),
-                        new KeyValue(menuControls.prefHeightProperty(),
+                        new KeyValue(menuPanel.prefHeightProperty(),
                                 newHeight)));
                 // TODO: INSERT A GRIDPANE AND RESIZE IT AS WELL AS THE MENU CONTROL PANEL
                 inventoryTimeline.setOnFinished(new EventHandler<ActionEvent>() {
@@ -251,9 +287,12 @@ public class GameController implements Initializable {
             }
         });
 
-        menuControls.getChildren().addAll(inventory, makeText(""));
+        menuPanel.getChildren().addAll(inventory, makeText(""));
     }
 
+    /**
+     * setup the exit Hyperlink and add it to the menu panel.
+     */
     private void setupExitButton() {
         Hyperlink exit = makeHyperlink("Exit Game");
         exit.setStyle("-fx-text-fill: black");
@@ -263,7 +302,7 @@ public class GameController implements Initializable {
                 GuiLoader.getSingleton().getMainStage().close();
             }
         });
-        menuControls.getChildren().add(exit);
+        menuPanel.getChildren().add(exit);
     }
     
     /**
@@ -368,9 +407,9 @@ public class GameController implements Initializable {
         Border border = new Border(new BorderStroke(Color.BLACK,
                 BorderStrokeStyle.SOLID, new CornerRadii(2),
                 new BorderWidths(10, 10, 10, 10)));
-        gamePane.setBorder(border);
-        gameControls.setBorder(border);
-        menuControls.setBorder(border);
+        gameContainer.setBorder(border);
+        gamePanel.setBorder(border);
+        menuPanel.setBorder(border);
 
         // SET BACKGROUNDS
         setBackgrounds();
