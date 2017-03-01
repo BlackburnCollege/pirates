@@ -13,7 +13,7 @@ import javafx.scene.layout.Pane;
  *
  * @author dakota.tebbe
  */
-public class FXMLDocumentController implements Initializable {
+public class CombatExampleController implements Initializable {
     
     private int numShots = 2;
     
