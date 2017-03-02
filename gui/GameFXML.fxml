@@ -46,6 +46,6 @@
             </VBox>
          </right>
       </BorderPane>
-      <StackPane fx:id="loaderPane" prefHeight="600.0" prefWidth="800.0" />
+      <StackPane fx:id="challengePane" prefHeight="600.0" prefWidth="800.0" />
    </children>
 </StackPane>

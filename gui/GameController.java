@@ -80,17 +80,22 @@ public class GameController implements Initializable {
     @FXML
     private StackPane mainPane;
     @FXML
-    private Pane loaderPane;
+    private Pane challengePane;
+
+    // The world
+    private World world;
+    private boolean inventoryOpen = false;
+    private boolean inventoryMoving = false;
 
     /**
-     * 
+     *
      * @param text create a text to display
      * @return return the Text object
      */
     private Text makeText(String text) {
         Text newText = new Text(text + "\n");
         newText.setFont(Font.font("Consolas", 24));
-       // newText.setFocusTraversable(false);
+        // newText.setFocusTraversable(false);
         return newText;
     }
 
@@ -98,7 +103,7 @@ public class GameController implements Initializable {
     private AudioController musicController = AudioController.get();
 
     /**
-     *  old playMusic loop method
+     * old playMusic loop method
      */
     private void playMusic() {
         Random random = new Random();
@@ -123,8 +128,9 @@ public class GameController implements Initializable {
         thread.start();
     }
 
-    /** setup backgrounds for the different panels
-     * 
+    /**
+     * setup backgrounds for the different panels
+     *
      */
     private void setBackgrounds() {
 
@@ -181,9 +187,10 @@ public class GameController implements Initializable {
         gameImage.setVisible(true);
     }
 
-    /** Adds a string of text to the game text panel. Appends a newline character to the end
-     * of the string.
-     * 
+    /**
+     * Adds a string of text to the game text panel. Appends a newline character
+     * to the end of the string.
+     *
      * @param text the text to add
      */
     private void addTextToDisplay(String text) {
@@ -198,9 +205,10 @@ public class GameController implements Initializable {
         gamePanel.getChildren().clear();
     }
 
-    /**Build a Hyperlink object to game text panel. The Hyperlinks are click-able
-     * Text on the screen.
-     * 
+    /**
+     * Build a Hyperlink object to game text panel. The Hyperlinks are
+     * click-able Text on the screen.
+     *
      * @param text The text of the Hyperlink
      * @return the Hyperlink
      */
@@ -208,27 +216,28 @@ public class GameController implements Initializable {
         Hyperlink hyperLink = new Hyperlink(text);
         hyperLink.getStyleClass().add("textLink");
         hyperLink.setFocusTraversable(false);
-        
+
         //hyperLink.setStyle("-fx-text-fill: black; -fx-underline: false");
-        
         //hyperLink.setFocusTraversable(false);
         hyperLink.setFont(Font.font("Consolas", FontWeight.BOLD, 24));
         return hyperLink;
     }
 
-    /** Adds a Hyperlink to the game text panel.
-     * 
+    /**
+     * Adds a Hyperlink to the game text panel.
+     *
      * @param link the Hyperlink to add.
      */
     private void addHyperlinkToDisplay(Hyperlink link) {
         gamePanel.getChildren().addAll(link, makeText(""));
     }
 
-    /** Add a choice to the game text panel. This builds a Hyperlink out of the
-     * Choice object and adds a listener to the Hyperlink to process the Choice's
-     * Event object on click.
-     * 
-     * @param choice 
+    /**
+     * Add a choice to the game text panel. This builds a Hyperlink out of the
+     * Choice object and adds a listener to the Hyperlink to process the
+     * Choice's Event object on click.
+     *
+     * @param choice
      */
     private void addChoiceToDisplay(Choice choice) {
         Hyperlink hyperLink = makeHyperlink(choice.getText());
@@ -241,11 +250,8 @@ public class GameController implements Initializable {
         addHyperlinkToDisplay(hyperLink);
     }
 
-    private boolean inventoryOpen = false;
-    private boolean inventoryMoving = false;
-
     /**
-     *  Setup the inventory Hyperlink and add it to the menu panel.
+     * Setup the inventory Hyperlink and add it to the menu panel.
      */
     private void setupInventoryButton() {
         Hyperlink inventory = makeHyperlink("Inventory");
@@ -256,7 +262,7 @@ public class GameController implements Initializable {
                 if (inventoryMoving) {
                     return;
                 }
-                
+
                 menuPanel.prefHeightProperty().unbind();
 
                 double newHeight = 0;
@@ -304,85 +310,15 @@ public class GameController implements Initializable {
         });
         menuPanel.getChildren().add(exit);
     }
-    
+
     /**
-     * 
-     * @param challenge
-     * @return status code of challenge. Used to select next event in Action's 
-     * event array. 
+     * @param action the Action the challenge belongs to
      */
-    private int loadChallenge(Challenge challenge) {
-        
-        return 0; //RETURN STATUS CODE
-    }
-    
-    private void processGameAction(Action action) {
-        clearDisplay();
-        addTextToDisplay(action.getText());
-        Hyperlink next = makeHyperlink("next");
-        int eventIndex = action.getDefaultEventIndex();
-        next.setOnAction(new EventHandler<ActionEvent>(){
-            @Override
-            public void handle(ActionEvent event) {
-                processGameEvent(action.getEvents()[eventIndex]);
-            }
-            
-        });
-        
-        addDividerToDisplay();
-        addHyperlinkToDisplay(next);
-        
-        
-        if (action.hasChallenge()) {  
-            // TODO: CHALLENGE LOADING
-            // eventIndex = loadChallenge(action.getChallenge());
-            // 
-            
-        } 
-        
-        
-        
-        
-        
-    }
-    
-    private void addDividerToDisplay() {
-        addTextToDisplay("==============");
-    }
-
-    private void processGameEvent(Event event) {
-        clearDisplay();
-        addTextToDisplay(event.getText());
-        Image picture;
-        try {
-            picture = new Image(IMAGE_LOCATION + event.getPicture());
-        } catch (Exception e) {
-            picture = new Image(IMAGE_LOCATION + "gameimage.png");
-        }
-        gameImage.setImage(picture);
-        
-        addDividerToDisplay();
-        
-        for (Choice c : event.getChoices()) {
-            addChoiceToDisplay(c);
-        }
-        
-        if (event.getMusic() != null) {
-            musicController.playSong(event.getMusic());
-        }
-
-    }
-
-    private World world;
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        this.world = new World("PlayerName");
-
-        this.loaderPane.setDisable(true);
-        // TODO
-
+    private void loadChallenge(Action action) {
         /*
+        code for loading FXML 
+        just an example
+        
         try {
             Pane root = (Pane) FXMLLoader.load(getClass().getResource("/combat/FXMLDocument.fxml"));
             loaderPane.getChildren().add(0, root);
@@ -402,6 +338,78 @@ public class GameController implements Initializable {
             Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
         }
          */
+    }
+
+    /**
+     * Process an Action from the world package. This shows the Action's text,
+     * displays a "next" button, checks for a challenge, and then displays it.
+     *
+     * @param action the Action to process
+     */
+    private void processGameAction(Action action) {
+        clearDisplay();
+        addTextToDisplay(action.getText());
+        Hyperlink next = makeHyperlink("next");
+        next.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (action.hasChallenge()) {
+                    // TODO: CHALLENGE LOADING
+                    loadChallenge(action);
+
+                } else {
+                    processGameEvent(action.getEvents()[action.getDefaultEventIndex()]);
+                }
+            }
+
+        });
+
+        addDividerToDisplay();
+        addHyperlinkToDisplay(next);
+    }
+
+    /**
+     * Adds a divider to the game text panel.
+     */
+    private void addDividerToDisplay() {
+        addTextToDisplay("==============");
+    }
+
+    /**
+     * Processes Event objects from the world package. Places the game image,
+     * adds the event's text to the display, and adds the Event's choices.
+     *
+     * @param event The event to process
+     */
+    private void processGameEvent(Event event) {
+        clearDisplay();
+        addTextToDisplay(event.getText());
+        Image picture;
+        try {
+            picture = new Image(IMAGE_LOCATION + event.getPicture());
+        } catch (Exception e) {
+            picture = new Image(IMAGE_LOCATION + "gameimage.png");
+        }
+        gameImage.setImage(picture);
+
+        addDividerToDisplay();
+
+        for (Choice c : event.getChoices()) {
+            addChoiceToDisplay(c);
+        }
+
+        if (event.getMusic() != null) {
+            musicController.playSong(event.getMusic());
+        }
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        this.world = new World("PlayerName");
+
+        // close challenge pane
+        this.challengePane.setDisable(true);
         
         // SET BORDERS
         Border border = new Border(new BorderStroke(Color.BLACK,
