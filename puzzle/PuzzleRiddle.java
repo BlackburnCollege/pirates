@@ -4,9 +4,13 @@ package puzzle;
  *
  * @author Drew Hans
  */
-public class PuzzleRiddle {
+public class PuzzleRiddle extends PuzzleModel {
 
-    private final String background;
+    /**
+     * private modifier restricts other programs, subclasses in this package,
+     * and different packages from accessing these variables directly
+     */
+    private final String bgLocation = "bg.jpg";
     private String riddle;
     private String answer;
 
@@ -14,7 +18,9 @@ public class PuzzleRiddle {
      * Constructor
      */
     public PuzzleRiddle() {
-        this.background = "bg.jpg";
+        this.background = this.bgLocation;
+        this.sound = "";
+        this.text = "";
         this.riddle = "What is at the end of a rainbow?";
         this.answer = "W";
     }
@@ -26,33 +32,26 @@ public class PuzzleRiddle {
      * @param a
      */
     public PuzzleRiddle(String r, String a) {
-        this.background = "bg.jpg";
+        this.background = this.bgLocation;
+        this.sound = "";
+        this.text = "";
         this.riddle = r;
         this.answer = a;
     }
 
     /**
-     * guess is called by the controller when the player makes a guess
+     * protected modifier restricts other programs from accessing this method
      *
-     * @param g the userinput
-     * @return the String response to the guess
-     */
-    public String guess(String g) {
-        return this.onAttempt(g);
-    }
-
-    /**
-     * onAttempt looks at the class variables values and decides what to return
-     * to the controller
+     * guess is called by the controller when the player makes a guess and
+     * decides which text to set for the controller
      *
-     * @return the String location of a sound file
+     * @param g
      */
-    private String onAttempt(String guess) {
-        if (this.answer.equalsIgnoreCase(guess)) {
-            return "Correct!";
+    protected void guess(String g) {
+        if (this.answer.equalsIgnoreCase(g)) {
+            this.setText("Correct!");
         } else {
-            return "Wrong! Try again.";
+            this.setText("Wrong! Try again.");
         }
     }
-
 }

@@ -4,31 +4,40 @@ package puzzle;
  *
  * @author Drew Hans
  */
-public class PuzzleSafeCrack {
+public class PuzzleSafeCrack extends PuzzleModel {
 
-    private final String background;
-    private final String soundTurn;
-    private final String soundDetect;
-    private final String soundOpen;
-    private final String soundReset;
-    private byte comboNum1;
-    private byte comboNum2;
-    private byte comboNum3;
-    private boolean combo1Correct;
-    private boolean combo2Correct;
-    private boolean combo3Correct;
+    /**
+     * private modifier restricts other programs, subclasses in this package,
+     * and different packages from accessing these variables directly
+     */
+    private final String bgLocation = "bg.jpg";
+    private final String soundTurnLocation = "soundturn.mp3";
+    private final String soundDetectLocation = "sounddetect.mp3";
+    private final String soundOpenLocation = "soundopen.mp3";
+    private final String soundResetLocation = "soundreset.mp3";
     private byte currentNum;
+    private boolean[] enteredCorrect;
+    private byte[] safeCombination;
 
     /**
      * Constructor
      */
     public PuzzleSafeCrack() {
-        this.background = "bg.jpg";
-        this.soundTurn = "soundturn.mp3";
-        this.soundDetect = "sounddetect.mp3";
-        this.soundOpen = "soundopen.mp3";
-        this.soundReset = "soundreset.mp3";
+        this.background = this.bgLocation;
+        this.sound = this.soundTurnLocation;
+        this.text = "Turn the dial and listen for clues";
+
         this.currentNum = 0;
+
+        this.enteredCorrect = new boolean[3];
+        this.enteredCorrect[0] = false; // for combo1
+        this.enteredCorrect[1] = false; // for combo2
+        this.enteredCorrect[2] = false; // for combo3
+
+        this.safeCombination = new byte[3];
+        this.safeCombination[0] = 98; // store combo1
+        this.safeCombination[1] = 7; // store combo2
+        this.safeCombination[2] = 5; // store combo3
     }
 
     /**
@@ -39,89 +48,93 @@ public class PuzzleSafeCrack {
      * @param num3
      */
     public PuzzleSafeCrack(byte num1, byte num2, byte num3) {
-        this.background = "bg.jpg";
-        this.soundTurn = "soundturn.mp3";
-        this.soundDetect = "sounddetect.mp3";
-        this.soundOpen = "soundopen.mp3";
-        this.soundReset = "soundreset.mp3";
-        this.comboNum1 = num1;
-        this.comboNum2 = num2;
-        this.comboNum3 = num3;
-        this.combo1Correct = false;
-        this.combo2Correct = false;
-        this.combo3Correct = false;
+        this.background = this.bgLocation;
+        this.sound = this.soundTurnLocation;
+        this.text = "Turn the dial and listen for clues";
+
         this.currentNum = 0;
+
+        this.enteredCorrect = new boolean[3];
+        this.enteredCorrect[0] = false; // for combo1
+        this.enteredCorrect[1] = false; // for combo2
+        this.enteredCorrect[2] = false; // for combo3
+
+        this.safeCombination = new byte[3];
+        this.safeCombination[0] = num1; // store combo1
+        this.safeCombination[1] = num2; // store combo2
+        this.safeCombination[2] = num3; // store combo3
     }
-    
+
     /**
-     * getCurrentNum
+     * protected modifier restricts other programs from accessing this method
      *
      * @return the current number selected on the dial
      */
-    public byte getCurrentNum () {
+    protected byte getCurrentNum() {
         return this.currentNum;
     }
 
     /**
-     * turnClockwise is called by the controller when the player turns the dial.
-     * Simulates turning the safe dial clockwise
+     * protected modifier restricts other programs from accessing this method
      *
-     * @return the String location of a sound file
+     * turnClockwise is called by the controller when the player turns the dial
+     * clockwise
      */
-    public String turnClockwise() {
+    protected void turnClockwise() {
         if (this.currentNum == -1) {
-            this.currentNum = 100;
+            this.currentNum = 99;
         } else {
             this.currentNum--;
         }
-        return this.onAttempt();
+        this.onTurn();
     }
 
     /**
-     * turnCounterClockwise is called by the controller when the player turns
-     * the dial. Simulates turning the safe dial counterclockwise.
+     * protected modifier restricts other programs from accessing this method
      *
-     * @return the String location of a sound file
+     * turnCounterClockwise is called by the controller when the player turns
+     * the dial counterclockwise
      */
-    public String turnCounterClockwise() {
-        if (this.currentNum == 101) {
+    protected void turnCounterClockwise() {
+        if (this.currentNum == 100) {
             this.currentNum = 0;
         } else {
             this.currentNum++;
         }
-        return this.onAttempt();
+        this.onTurn();
     }
 
     /**
-     * onAttempt looks at the class variables values and decides which sound to
-     * return to the controller
+     * private modifier restricts other programs, subclasses in this package,
+     * and different packages from accessing these variables directly
      *
-     * @return the String location of a sound file
+     * onTurn looks at the class variables values and decides which sound to
+     * return to the controller
      */
-    private String onAttempt() {
-        if (!this.combo1Correct && this.currentNum != this.comboNum1) {
-            return this.soundTurn;
-        } else if (!this.combo1Correct && this.currentNum == this.comboNum1) {
-            this.combo1Correct = true;
-            return this.soundDetect;
-        } else if (this.combo1Correct && this.currentNum == this.comboNum1 - 1) {
-            this.combo1Correct = false;
-            return this.soundReset;
-        } else if (!this.combo2Correct && this.currentNum != this.comboNum2) {
-            return this.soundTurn;
-        } else if (!this.combo2Correct && this.currentNum == this.comboNum2) {
-            this.combo2Correct = true;
-            return this.soundDetect;
-        } else if (this.combo2Correct && this.currentNum == this.comboNum2 + 1) {
-            this.combo2Correct = false;
-            return this.soundReset;
-        } else if (!this.combo3Correct && this.currentNum != this.comboNum3) {
-            return this.soundTurn;
-        } else if (!this.combo3Correct && this.currentNum == this.comboNum3) {
-            this.combo3Correct = true;
-            return this.soundOpen;
+    private void onTurn() {
+        if (!this.enteredCorrect[0] && this.currentNum != this.safeCombination[0]) {
+            this.setSound(this.soundTurnLocation);
+        } else if (!this.enteredCorrect[0] && this.currentNum == this.safeCombination[0]) {
+            this.enteredCorrect[0] = true;
+            this.setSound(this.soundDetectLocation);
+        } else if (this.enteredCorrect[0] && this.currentNum == this.safeCombination[0] - 1) {
+            this.enteredCorrect[0] = false;
+            this.setSound(this.soundResetLocation);
+        } else if (!this.enteredCorrect[1] && this.currentNum != this.safeCombination[1]) {
+            this.setSound(this.soundTurnLocation);
+        } else if (!this.enteredCorrect[1] && this.currentNum == this.safeCombination[1]) {
+            this.enteredCorrect[1] = true;
+            this.setSound(this.soundDetectLocation);
+        } else if (this.enteredCorrect[1] && this.currentNum == this.safeCombination[1] + 1) {
+            this.enteredCorrect[1] = false;
+            this.setSound(this.soundResetLocation);
+        } else if (!this.enteredCorrect[2] && this.currentNum != this.safeCombination[2]) {
+            this.setSound(this.soundTurnLocation);
+        } else if (!this.enteredCorrect[2] && this.currentNum == this.safeCombination[2]) {
+            this.enteredCorrect[2] = true;
+            this.setSound(this.soundOpenLocation);
         } else {
-            return "Something went horribly wrong in PuzzleSafeCrack";
+            this.setSound(this.soundTurnLocation);
         }
     }
 
