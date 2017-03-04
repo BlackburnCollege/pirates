@@ -61,6 +61,30 @@ public class PuzzleBinarySwitch extends PuzzleModel {
     }
 
     /**
+     * @return currentSwitchPositions boolean array
+     */
+    public boolean[] getCurrentSwitchPositions() {
+        return this.currentSwitchPositions;
+    }
+
+    /**
+     * private modifier restricts other programs, subclasses in this package,
+     * and different packages from accessing these variables directly
+     *
+     * onPull looks at the class variables values and decides which text to set
+     * for the controller
+     */
+    private void onPull() {
+        if (this.correctSwitchPositions[0] == this.currentSwitchPositions[0]
+                && this.correctSwitchPositions[1] == this.currentSwitchPositions[1]
+                && this.correctSwitchPositions[2] == this.currentSwitchPositions[2]) {
+            this.setText("The door opens!");
+        } else {
+            this.setText("The door doesn't budge");
+        }
+    }
+
+    /**
      * pullLeftmost is called by the controller when the player chooses to pull
      * the leftmost lever
      */
@@ -85,23 +109,6 @@ public class PuzzleBinarySwitch extends PuzzleModel {
     public void pullRightmost() {
         this.currentSwitchPositions[2] = !this.currentSwitchPositions[2];
         this.onPull();
-    }
-
-    /**
-     * private modifier restricts other programs, subclasses in this package,
-     * and different packages from accessing these variables directly
-     *
-     * onPull looks at the class variables values and decides which text to set
-     * for the controller
-     */
-    private void onPull() {
-        if (this.correctSwitchPositions[0] == this.currentSwitchPositions[0]
-                && this.correctSwitchPositions[1] == this.currentSwitchPositions[1]
-                && this.correctSwitchPositions[2] == this.currentSwitchPositions[2]) {
-            this.setText("The door opens!");
-        } else {
-            this.setText("The door doesn't budge");
-        }
     }
 
 }

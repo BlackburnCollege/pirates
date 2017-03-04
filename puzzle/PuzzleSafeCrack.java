@@ -73,29 +73,10 @@ public class PuzzleSafeCrack extends PuzzleModel {
     }
 
     /**
-     * turnClockwise is called by the controller when the player turns the dial
-     * clockwise
+     * @return the safeCombination byte array
      */
-    public void turnClockwise() {
-        if (this.currentNum == -1) {
-            this.currentNum = 99;
-        } else {
-            this.currentNum--;
-        }
-        this.onTurn();
-    }
-
-    /**
-     * turnCounterClockwise is called by the controller when the player turns
-     * the dial counterclockwise
-     */
-    public void turnCounterClockwise() {
-        if (this.currentNum == 100) {
-            this.currentNum = 0;
-        } else {
-            this.currentNum++;
-        }
-        this.onTurn();
+    public byte[] getSafeCombination() {
+        return this.safeCombination;
     }
 
     /**
@@ -130,6 +111,32 @@ public class PuzzleSafeCrack extends PuzzleModel {
         } else {
             this.setSound(this.soundTurnLocation);
         }
+    }
+
+    /**
+     * turnClockwise is called by the controller when the player turns the dial
+     * clockwise
+     */
+    public void turnClockwise() {
+        if (this.currentNum == -1) {
+            this.currentNum = 99;
+        } else {
+            this.currentNum--;
+        }
+        this.onTurn();
+    }
+
+    /**
+     * turnCounterClockwise is called by the controller when the player turns
+     * the dial counterclockwise
+     */
+    public void turnCounterClockwise() {
+        if (this.currentNum == 100) {
+            this.currentNum = 0;
+        } else {
+            this.currentNum++;
+        }
+        this.onTurn();
     }
 
 }

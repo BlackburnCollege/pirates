@@ -11,8 +11,8 @@ public class PuzzleRiddle extends PuzzleModel {
      * and different packages from accessing these variables directly
      */
     private final String bgLocation = "bg.jpg";
-    private String riddle;
     private String answer;
+    private String riddle;
 
     /**
      * Constructor
@@ -20,9 +20,11 @@ public class PuzzleRiddle extends PuzzleModel {
     public PuzzleRiddle() {
         this.background = this.bgLocation;
         this.sound = "";
-        this.text = "";
+
         this.riddle = "What is at the end of a rainbow?";
         this.answer = "W";
+
+        this.text = this.riddle;
     }
 
     /**
@@ -34,9 +36,25 @@ public class PuzzleRiddle extends PuzzleModel {
     public PuzzleRiddle(String r, String a) {
         this.background = this.bgLocation;
         this.sound = "";
-        this.text = "";
+
         this.riddle = r;
         this.answer = a;
+
+        this.text = this.riddle;
+    }
+
+    /**
+     * @return the answer String
+     */
+    public String getAnswer() {
+        return this.answer;
+    }
+
+    /**
+     * @return the riddle String
+     */
+    public String getRiddle() {
+        return this.riddle;
     }
 
     /**
