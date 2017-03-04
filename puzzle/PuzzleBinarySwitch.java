@@ -61,34 +61,28 @@ public class PuzzleBinarySwitch extends PuzzleModel {
     }
 
     /**
-     * protected modifier restricts other programs from accessing this method
-     *
      * pullLeftmost is called by the controller when the player chooses to pull
      * the leftmost lever
      */
-    protected void pullLeftmost() {
+    public void pullLeftmost() {
         this.currentSwitchPositions[0] = !this.currentSwitchPositions[0];
         this.onPull();
     }
 
     /**
-     * protected modifier restricts other programs from accessing this method
-     *
      * pullMiddle is called by the controller when the player chooses to pull
      * the middle lever
      */
-    protected void pullMiddle() {
+    public void pullMiddle() {
         this.currentSwitchPositions[1] = !this.currentSwitchPositions[1];
         this.onPull();
     }
 
     /**
-     * protected modifier restricts other programs from accessing this method
-     *
      * pullRightmost is called by the controller when the player chooses to pull
      * the rightmost lever
      */
-    protected void pullRightmost() {
+    public void pullRightmost() {
         this.currentSwitchPositions[2] = !this.currentSwitchPositions[2];
         this.onPull();
     }

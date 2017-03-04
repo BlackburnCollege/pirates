@@ -66,21 +66,17 @@ public class PuzzleSafeCrack extends PuzzleModel {
     }
 
     /**
-     * protected modifier restricts other programs from accessing this method
-     *
      * @return the current number selected on the dial
      */
-    protected byte getCurrentNum() {
+    public byte getCurrentNum() {
         return this.currentNum;
     }
 
     /**
-     * protected modifier restricts other programs from accessing this method
-     *
      * turnClockwise is called by the controller when the player turns the dial
      * clockwise
      */
-    protected void turnClockwise() {
+    public void turnClockwise() {
         if (this.currentNum == -1) {
             this.currentNum = 99;
         } else {
@@ -90,12 +86,10 @@ public class PuzzleSafeCrack extends PuzzleModel {
     }
 
     /**
-     * protected modifier restricts other programs from accessing this method
-     *
      * turnCounterClockwise is called by the controller when the player turns
      * the dial counterclockwise
      */
-    protected void turnCounterClockwise() {
+    public void turnCounterClockwise() {
         if (this.currentNum == 100) {
             this.currentNum = 0;
         } else {

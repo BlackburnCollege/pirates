@@ -40,14 +40,12 @@ public class PuzzleRiddle extends PuzzleModel {
     }
 
     /**
-     * protected modifier restricts other programs from accessing this method
-     *
      * guess is called by the controller when the player makes a guess and
      * decides which text to set for the controller
      *
      * @param g
      */
-    protected void guess(String g) {
+    public void guess(String g) {
         if (this.answer.equalsIgnoreCase(g)) {
             this.setText("Correct!");
         } else {

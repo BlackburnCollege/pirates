@@ -24,29 +24,23 @@ public abstract class PuzzleModel {
     }
 
     /**
-     * protected modifier restricts other programs from accessing this method
-     *
      * @return this.background
      */
-    protected String getBackground() {
+    public String getBackground() {
         return this.background;
     }
 
     /**
-     * protected modifier restricts other programs from accessing this method
-     *
      * @return this.sound
      */
-    protected String getSound() {
+    public String getSound() {
         return this.sound;
     }
 
     /**
-     * protected modifier restricts other programs from accessing this method
-     *
      * @return this.text
      */
-    protected String getText() {
+    public String getText() {
         return this.text;
     }
 
