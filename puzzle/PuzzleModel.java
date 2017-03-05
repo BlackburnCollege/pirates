@@ -10,9 +10,10 @@ public abstract class PuzzleModel {
      * no modifier restricts other programs and subclasses in different packages
      * from accessing these variables directly
      */
-    String background;
-    String sound;
-    String text;
+    private String background;
+    private String sound;
+    private String text;
+    private boolean completed;
 
     /**
      * Superclass Constructor
@@ -21,6 +22,7 @@ public abstract class PuzzleModel {
         this.background = "";
         this.sound = "";
         this.text = "";
+        this.completed = false;
     }
 
     /**
@@ -28,6 +30,13 @@ public abstract class PuzzleModel {
      */
     public String getBackground() {
         return this.background;
+    }
+
+    /**
+     * @return this.completed
+     */
+    public boolean getCompleted() {
+        return this.completed;
     }
 
     /**
@@ -47,24 +56,40 @@ public abstract class PuzzleModel {
     /**
      * no modifier restricts other programs and subclasses in different packages
      * from accessing this method
+     *
+     * final prevents the method from being overridden in subclasses
      */
-    void setBackground(String newBG) {
+    final void setBackground(String newBG) {
         this.background = newBG;
     }
 
     /**
      * no modifier restricts other programs and subclasses in different packages
      * from accessing this method
+     *
+     * final prevents the method from being overridden in subclasses
      */
-    void setSound(String newS) {
+    final void setCompleted() {
+        this.completed = true;
+    }
+
+    /**
+     * no modifier restricts other programs and subclasses in different packages
+     * from accessing this method
+     *
+     * final prevents the method from being overridden in subclasses
+     */
+    final void setSound(String newS) {
         this.sound = newS;
     }
 
     /**
      * no modifier restricts other programs and subclasses in different packages
      * from accessing this method
+     *
+     * final prevents the method from being overridden in subclasses
      */
-    void setText(String newT) {
+    final void setText(String newT) {
         this.text = newT;
     }
 

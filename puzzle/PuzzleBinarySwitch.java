@@ -16,9 +16,9 @@ public class PuzzleBinarySwitch extends PuzzleModel {
      * Constructor
      */
     public PuzzleBinarySwitch() {
-        this.background = this.bgLocation;
-        this.sound = this.soundPullLeverLocation;
-        this.text = "The number 1 is carved on the door.  What could it mean?";
+        this.setBackground(this.bgLocation);
+        this.setSound(this.soundPullLeverLocation);
+        this.setText("The number 1 is carved on the door.  What could it mean?");
 
         this.doorClue = 1; // store door clue
 
@@ -42,12 +42,12 @@ public class PuzzleBinarySwitch extends PuzzleModel {
      * @param dc
      */
     public PuzzleBinarySwitch(boolean ls, boolean ms, boolean rs, byte dc) {
-        this.background = this.bgLocation;
-        this.sound = this.soundPullLeverLocation;
+        this.setBackground(this.bgLocation);
+        this.setSound(this.soundPullLeverLocation);
 
         this.doorClue = dc; // store door clue
 
-        this.text = "The number " + dc + " is carved on the door.  What could it mean?";
+        this.setText("The number " + dc + " is carved on the door.  What could it mean?");
 
         this.correctSwitchPositions = new boolean[3];
         this.correctSwitchPositions[0] = ls; // store leftmost switch solution

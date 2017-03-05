@@ -23,9 +23,9 @@ public class PuzzleSafeCrack extends PuzzleModel {
      * Constructor
      */
     public PuzzleSafeCrack() {
-        this.background = this.bgLocation;
-        this.sound = this.soundTurnLocation;
-        this.text = "Turn the dial and listen for clues";
+        this.setBackground(this.bgLocation);
+        this.setSound(this.soundTurnLocation);
+        this.setText("Turn the dial and listen for clues");
 
         this.currentNum = 0;
 
@@ -48,9 +48,9 @@ public class PuzzleSafeCrack extends PuzzleModel {
      * @param num3
      */
     public PuzzleSafeCrack(byte num1, byte num2, byte num3) {
-        this.background = this.bgLocation;
-        this.sound = this.soundTurnLocation;
-        this.text = "Turn the dial and listen for clues";
+        this.setBackground(this.bgLocation);
+        this.setSound(this.soundTurnLocation);
+        this.setText("Turn the dial and listen for clues");
 
         this.currentNum = 0;
 

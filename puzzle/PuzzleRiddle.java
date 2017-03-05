@@ -18,13 +18,13 @@ public class PuzzleRiddle extends PuzzleModel {
      * Constructor
      */
     public PuzzleRiddle() {
-        this.background = this.bgLocation;
-        this.sound = "";
+        this.setBackground(this.bgLocation);
+        this.setSound("");
 
         this.riddle = "What is at the end of a rainbow?";
         this.answer = "W";
 
-        this.text = this.riddle;
+        this.setText(this.riddle);
     }
 
     /**
@@ -34,13 +34,13 @@ public class PuzzleRiddle extends PuzzleModel {
      * @param a
      */
     public PuzzleRiddle(String r, String a) {
-        this.background = this.bgLocation;
-        this.sound = "";
+        this.setBackground(this.bgLocation);
+        this.setSound("");
 
         this.riddle = r;
         this.answer = a;
 
-        this.text = this.riddle;
+        this.setText(this.riddle);
     }
 
     /**
