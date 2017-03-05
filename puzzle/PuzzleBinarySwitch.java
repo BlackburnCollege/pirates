@@ -6,6 +6,10 @@ package puzzle;
  */
 public class PuzzleBinarySwitch extends PuzzleModel {
 
+    /**
+     * private modifier restricts other programs, subclasses in this package,
+     * and different packages from accessing these variables directly
+     */
     private final String bgLocation = "bg.jpg";
     private final String soundPullLeverLocation = "soundpulllever.mp3";
     private boolean[] correctSwitchPositions;
@@ -69,7 +73,7 @@ public class PuzzleBinarySwitch extends PuzzleModel {
 
     /**
      * private modifier restricts other programs, subclasses in this package,
-     * and different packages from accessing these variables directly
+     * and different packages from accessing this method directly
      *
      * onPull looks at the class variables values and decides which text to set
      * for the controller

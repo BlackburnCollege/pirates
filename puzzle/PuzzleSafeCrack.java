@@ -81,7 +81,7 @@ public class PuzzleSafeCrack extends PuzzleModel {
 
     /**
      * private modifier restricts other programs, subclasses in this package,
-     * and different packages from accessing these variables directly
+     * and different packages from accessing this method directly
      *
      * onTurn looks at the class variables values and decides which sound to
      * return to the controller

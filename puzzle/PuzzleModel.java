@@ -7,8 +7,8 @@ package puzzle;
 public abstract class PuzzleModel {
 
     /**
-     * no modifier restricts other programs and subclasses in different packages
-     * from accessing these variables directly
+     * private modifier restricts other programs, subclasses in this package,
+     * and different packages from accessing these variables directly
      */
     private String background;
     private String sound;
