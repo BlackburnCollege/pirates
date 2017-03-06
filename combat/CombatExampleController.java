@@ -24,12 +24,6 @@ public class CombatExampleController implements Initializable {
     @FXML
     private Pane mainPane;
     
-    
-    
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        output.setText("Hello World!");
-    }
     @FXML
     private void attack(ActionEvent event){
         this.enemyHealth.setProgress(0.5);
