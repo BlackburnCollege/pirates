@@ -14,3 +14,5 @@ snd_click is public domain sound from https://www.freesound.org/people/RonaldVan
 
 soundSafe*.mp3 sounds were cropped in Adobe Audition by Drew Hans from wav files found at http://soundbible.com/tags-click.html
 
+soundLeverPull.mp3 sound was cropped in Adobe Audition by Drew Hans from a wav file found at http://soundbible.com/1699-Lever.html
+
