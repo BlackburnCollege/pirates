@@ -11,4 +11,6 @@ package combat;
  */
 public enum Proficiency {
     MELEE, GUN, INSULT
+    
+    // hello world
 }
