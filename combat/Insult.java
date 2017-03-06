@@ -12,27 +12,37 @@ import java.util.Random;
  * @author arthur.levan
  */
 public class Insult {
-    private String[] adjective;
-    private String[] verb;
-    private String[] noun;
+
+    private String[] insults;
     private Random randNum;
 
-    public Insult(String[] first, String[] middle, String[] last) {
-        this.adjective = first;
-        this.verb = middle;
-        this.noun = last;
+    public Insult(String[] insults) {
+        this.insults = insults;
         this.randNum = new Random();
     }
-    
-    private String createInsult(){
-        String insult;
+
+    public String createInsult() {
+        String finalInsult = "";
+        int adjective = 0;
+        int verb = 0;
+        int noun = 0;
+        int insult = 0;
         
-        int first = this.randNum.nextInt(this.adjective.length);
-        int middle = this.randNum.nextInt(this.verb.length);
-        int last = this.randNum.nextInt(this.noun.length);
+        insult = this.randNum.nextInt(this.insults.length);
         
-        insult = this.adjective[first] + " " + this.verb[middle] + " " + this.noun[last];
-        
-        return insult;
+        finalInsult = this.insults[insult];
+        while(finalInsult.contains("VERB")){
+            verb = this.randNum.nextInt(Verbs.values().length);
+            finalInsult = finalInsult.replaceFirst("VERB", Verbs.values()[verb].toString());
+        }
+        while(finalInsult.contains("ADJECTIVE")){
+            adjective = this.randNum.nextInt(Adjectives.values().length);
+            finalInsult = finalInsult.replaceFirst("ADJECTIVE", Adjectives.values()[adjective].toString());
+        }
+        while(finalInsult.contains("NOUN")){
+            noun = this.randNum.nextInt(Nouns.values().length);
+            finalInsult = finalInsult.replaceFirst("NOUN", Nouns.values()[noun].toString());
+        }
+        return finalInsult;
     }
 }
