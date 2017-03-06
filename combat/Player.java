@@ -29,7 +29,7 @@ public class Player {
     /*
     * Sets the proficiency level of a given skill.
      */
-    public void setProf(Proficiency profName, boolean value) {
+    public void setProf(proficiency profName, boolean value) {
         switch (profName) {
             case MELEE:
                 meleeProf = value;
