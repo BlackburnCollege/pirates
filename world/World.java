@@ -36,42 +36,42 @@ public class World {
 
         
         // Initialize events with the event text
-        this.events.put("tut_home_f_opening_family", new Event("As you walk down stairs you are"
-                + " greeted by you wife, Marjory, and you son, " + playerName + 
+        this.events.put("tut_home_f_opening_family", new Event("As I walk down stairs I am"
+                + " greeted by my wife, Marjory, and my son, " + playerName + 
                 " jr. \"Hello " + playerName + ",\" Marjory says."));
         
-        this.events.put("tut_home_r_stairs", new Event("You are back at the stairs."));
+        this.events.put("tut_home_r_stairs", new Event("I'm back at the stairs."));
         
-        this.events.put("tut_home_f_outside", new Event("You walk outside, "
-                + "down to the docks. You get on your boat and go fishing."));
+        this.events.put("tut_home_f_outside", new Event("I walk outside, "
+                + "down to the docks. I get on my boat and go fishing."));
         
         this.events.put("tut_pier_f_fishingpuzzle", new Event("This is a fishing puzzle."));
         
-        this.events.put("tut_home_ae_fishing", new Event("As you walk home the smell of fish"
-                + " attracts a wolf. Kill it. Defend your honor."));
+        this.events.put("tut_home_ae_fishing", new Event("As I walk home the smell of fish"
+                + " attracts a wolf. I must kill it. I shall defend my honor."));
         
-        this.events.put("tut_home_ae_wolfcombat", new Event("You made it home!"));
+        this.events.put("tut_home_ae_wolfcombat", new Event("I made it home!"));
         
         //Add choices and set settings to each event
         this.events.get("tut_home_f_opening_family")
                 .setMusic(Music.LIVING_VOYAGE)
                 .addChoice("Hello Person",
                     new Action(events.get("tut_home_f_outside"), "\"Hello Person,\" "
-                            + "you greet your wife. You are a fully operational "
+                            + "I greet my wife. I am a fully operational "
                             + "human being, and definitely not a robot."))
                 .addChoice("Wassup dude.", 
                 new Action(events.get("tut_home_f_outside"), "\"Wassup dude.\" "
                         + "Really?"));
         
         this.events.get("tut_home_f_outside").addChoice("next", 
-                new Action(events.get("tut_pier_f_fishingpuzzle"), "You leave to catch some fish."));
+                new Action(events.get("tut_pier_f_fishingpuzzle"), "I leave to catch some fish."));
         
         this.events.get("tut_pier_f_fishingpuzzle").addChoice("next", 
                 new Action(events.get("tut_home_ae_fishing"), "catching fish.",
                         new Challenge("puzzle", "fish")));
         
         this.events.get("tut_home_ae_fishing").addChoice("next", 
-                new Action(events.get("tut_home_ae_wolfcombat"), "You have killed the wolf. Yay.",
+                new Action(events.get("tut_home_ae_wolfcombat"), "I have killed the wolf. Yay.",
                         new Challenge("combat", "wolf"))).setMusic(Music.THE_BUILDER);
         
         this.events.get("tut_home_ae_wolfcombat").addChoice("next", 

@@ -100,7 +100,7 @@ public class GameController implements Initializable {
     }
 
     // create audio controller 
-    private AudioController musicController = AudioController.get();
+    private final AudioController musicController = AudioController.get();
 
     /**
      * old playMusic loop method
@@ -265,7 +265,7 @@ public class GameController implements Initializable {
 
                 menuPanel.prefHeightProperty().unbind();
 
-                double newHeight = 0;
+                double newHeight;
                 if (!inventoryOpen) {
                     newHeight = menuPanel.prefHeightProperty().multiply(2).get();
                 } else {
@@ -315,6 +315,7 @@ public class GameController implements Initializable {
      * @param action the Action the challenge belongs to
      */
     private void loadChallenge(Action action) {
+        
         /*
         code for loading FXML 
         just an example
