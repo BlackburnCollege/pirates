@@ -33,15 +33,15 @@ public class Insult {
         finalInsult = this.insults[insult];
         while(finalInsult.contains("VERB")){
             verb = this.randNum.nextInt(Verbs.values().length);
-            finalInsult = finalInsult.replaceFirst("VERB", Verbs.values()[verb].toString());
+            finalInsult = finalInsult.replaceFirst("VERB", Verbs.values()[verb].toString()).toLowerCase();
         }
         while(finalInsult.contains("ADJECTIVE")){
             adjective = this.randNum.nextInt(Adjectives.values().length);
-            finalInsult = finalInsult.replaceFirst("ADJECTIVE", Adjectives.values()[adjective].toString());
+            finalInsult = finalInsult.replaceFirst("ADJECTIVE", Adjectives.values()[adjective].toString()).toLowerCase();
         }
         while(finalInsult.contains("NOUN")){
             noun = this.randNum.nextInt(Nouns.values().length);
-            finalInsult = finalInsult.replaceFirst("NOUN", Nouns.values()[noun].toString());
+            finalInsult = finalInsult.replaceFirst("NOUN", Nouns.values()[noun].toString()).toLowerCase();
         }
         return finalInsult;
     }
