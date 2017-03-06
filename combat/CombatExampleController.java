@@ -24,6 +24,7 @@ public class CombatExampleController implements Initializable {
     @FXML
     private Pane mainPane;
     
+    
     @FXML
     private void attack(ActionEvent event){
         this.enemyHealth.setProgress(0.5);

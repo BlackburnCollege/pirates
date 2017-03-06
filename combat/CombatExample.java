@@ -15,7 +15,7 @@ public class CombatExample extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("CombatExampleFXML.fxml"));
         
         Scene scene = new Scene(root);
         
@@ -27,7 +27,13 @@ public class CombatExample extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);
+        //launch(args);
+        String [] insult = {"I'll VERB your NOUN, you ADJECTIVE NOUN"};
+        Insult test = new Insult(insult);
+        for (int i = 0; i < 10; i++) {
+            System.out.println(test.createInsult());
+        }
     }
+    
     
 }
