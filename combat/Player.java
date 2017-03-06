@@ -45,7 +45,7 @@ public class Player {
         }
     }
     
-    public void setHealth(double damage){
+    public void decreaseHealth(double damage){
         currentHealth -= damage;
     }
     /*
