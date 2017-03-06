@@ -1,6 +1,7 @@
 
 package combat;
 
+import gui.ChallengeController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.*;
@@ -13,7 +14,8 @@ import javafx.scene.layout.Pane;
  *
  * @author dakota.tebbe
  */
-public class CombatExampleController implements Initializable {
+public class CombatExampleController extends ChallengeController 
+        implements Initializable {
     
     private int numShots = 2;
     
