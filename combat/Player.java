@@ -31,13 +31,17 @@ public class Player {
     /*
     * Sets the proficiency level of a given skill.
     */
-    public void setProf(String profName, boolean value) {
-        if (profName == "meleeProf"){
-            meleeProf = value;
-        } else if (profName == "gunProf"){
-            gunProf = value;
-        } else if (profName == "insultProf"){
-            insultProf = value;
+    public void setProf(proficiency profName, boolean value) {
+        switch(profName){
+            case MELEE:
+                meleeProf = value;
+                break;
+            case GUN:
+                gunProf = value;
+                break;
+            case INSULT:
+                insultProf = value;
+                break;
         }
     }
     
