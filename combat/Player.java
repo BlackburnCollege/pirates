@@ -14,25 +14,23 @@ import world.Item;
  */
 public class Player {
 
-    private double currentHealth;
-    private double maxHealth;
-    private boolean ai;
+    private double currentHealth = 1.0;
+    private double maxHealth = 1.0;
     private boolean meleeProf = false;
     private boolean gunProf = false;
     private boolean insultProf = false;
     private String name;
     private ArrayList<Item> inventory = new ArrayList<>();
 
-    public Player(boolean ai, String name) {
-        this.ai = ai;
+    public Player(String name) {
         this.name = name;
     }
-    
+
     /*
     * Sets the proficiency level of a given skill.
-    */
+     */
     public void setProf(proficiency profName, boolean value) {
-        switch(profName){
+        switch (profName) {
             case MELEE:
                 meleeProf = value;
                 break;
@@ -44,16 +42,22 @@ public class Player {
                 break;
         }
     }
-    
-    public void decreaseHealth(double damage){
+
+    public void decreaseHealth(double damage) {
         currentHealth -= damage;
     }
+
     /*
     * Returns the current health of the Player
-    */
+     */
     public double getHealth() {
         return currentHealth;
     }
+
+    public int intHealth() {
+        return (int) (100 * currentHealth);
+    }
+
     /*
      * Resets player health back to full.
      */
@@ -75,6 +79,10 @@ public class Player {
         if (inventory != null) {
             this.inventory = inventory;
         }
+    }
+
+    public String getName() {
+        return name;
     }
 
 }
