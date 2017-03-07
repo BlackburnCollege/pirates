@@ -1,17 +1,22 @@
 package world;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  *
  * @author lucas.burdell
  */
 public class Choice {
+
     private String text;
     private Action action;
-    
+    private ArrayList<Conditional> conditions = new ArrayList<>();
+
     public Choice() {
-        
+
     }
-    
+
     public Choice(String text) {
         this.text = text;
     }
@@ -20,7 +25,22 @@ public class Choice {
         this.text = text;
         this.action = action;
     }
+
+    public Choice(String text, Action action, ArrayList<Conditional> conditionals) {
+        this.text = text;
+        this.action = action;
+        this.conditions = conditionals;
+    }
     
+    public boolean checkConditions() {
+        for (Conditional c : conditions) {
+            if (c.getCondition() == false) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * @return the text
      */
@@ -37,7 +57,7 @@ public class Choice {
 
     /**
      * @param text the text to set
-     * @return 
+     * @return
      */
     public Choice setText(String text) {
         this.text = text;
@@ -46,12 +66,32 @@ public class Choice {
 
     /**
      * @param action the action to set
-     * @return 
+     * @return
      */
     public Choice setAction(Action action) {
         this.action = action;
         return this;
     }
-    
-    
+
+    /**
+     * @return the conditions
+     */
+    public Conditional[] getConditions() {
+        return conditions.toArray(new Conditional[1]);
+    }
+
+    /**
+     * @param conditions the conditions to set
+     * @return
+     */
+    public Choice setConditions(Conditional[] conditions) {
+        this.conditions = new ArrayList<>(Arrays.asList(conditions));
+        return this;
+    }
+
+    public Choice addCondition(Conditional condition) {
+        this.conditions.add(condition);
+        return this;
+    }
+
 }

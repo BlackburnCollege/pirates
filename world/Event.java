@@ -81,11 +81,15 @@ public class Event {
     /**
      * @param choices the choices to set
      */
-    
     public Event addChoice(String text, Action action){
+        this.addChoice(new Choice(text, action));
+        return this;
+    }
+    
+    public Event addChoice(Choice choice) {
         Choice[] temp = new Choice[this.choices.length + 1];
         System.arraycopy(this.choices, 0, temp, 0, choices.length);
-        temp[temp.length - 1] = new Choice(text, action);
+        temp[temp.length - 1] = choice;
         this.choices = temp;
         return this;
     }

@@ -8,22 +8,22 @@ import java.util.concurrent.Callable;
  */
 public abstract class ChallengeController {
     
-    private Callable onFinish;
+    private Callable onChallengeFinish;
     
     
     
     /**
      * @return the callable
      */
-    public Callable getOnFinish() {
-        return onFinish;
+    public Callable getOnChallengeFinish() {
+        return onChallengeFinish;
     }
 
     /**
      * @param callable the callable to set
      */
-    public void setOnFinish(Callable callable) {
-        this.onFinish = callable;
+    public void setOnChallengeFinish(Callable callable) {
+        this.onChallengeFinish = callable;
     }
     
     

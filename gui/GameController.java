@@ -351,6 +351,11 @@ public class GameController implements Initializable {
         clearDisplay();
         addTextToDisplay(action.getText());
         Hyperlink next = makeHyperlink("next");
+        for (Modifier modifier : action.getModifiers()) {
+            if (modifier != null) {
+                modifier.modify();
+            }
+        }
         next.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -358,6 +363,7 @@ public class GameController implements Initializable {
                     // TODO: CHALLENGE LOADING
                     loadChallenge(action);
 
+                    processGameEvent(action.getEvents()[action.getDefaultEventIndex()]);
                 } else {
                     processGameEvent(action.getEvents()[action.getDefaultEventIndex()]);
                 }
@@ -396,7 +402,9 @@ public class GameController implements Initializable {
         addDividerToDisplay();
 
         for (Choice c : event.getChoices()) {
-            addChoiceToDisplay(c);
+            if (c.checkConditions()) {
+                addChoiceToDisplay(c);
+            }
         }
 
         if (event.getMusic() != null) {

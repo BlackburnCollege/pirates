@@ -1,5 +1,8 @@
 package world;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  *
  * @author lucas.burdell
@@ -8,6 +11,7 @@ public class Action {
     private Event[] events;
     private String text;
     private Challenge challenge = null;
+    private ArrayList<Modifier> modifiers = new ArrayList<>();
     
     public Action() {
         this.events = null;
@@ -106,6 +110,28 @@ public class Action {
         return events;
     }
     
+    
+        /**
+     * @return the conditions
+     */
+    public Modifier[] getModifiers() {
+        return modifiers.toArray(new Modifier[1]);
+    }
+
+    /**
+     * @param modifiers
+     * @return
+     */
+    public Action setModifiers(Modifier[] modifiers) {
+        this.modifiers = new ArrayList<>(Arrays.asList(modifiers));
+        return this;
+    }
+
+    public Action addModifier(Modifier modifier) {
+        this.modifiers.add(modifier);
+        return this;
+    }
+
     
     
     
