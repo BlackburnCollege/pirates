@@ -20,7 +20,7 @@ package gui;
  *
  * @author Lucas Burdell lucas.burdell@blackburn.edu
  */
+@FunctionalInterface
 public interface ChallengeCallback {
-    
     public abstract void challengeCompleted(ChallengeStatus status);
 }

@@ -9,6 +9,7 @@ package world;
  *
  * @author timothy.francis
  */
+@FunctionalInterface
 public interface Conditional {
     
     public abstract boolean getCondition();
