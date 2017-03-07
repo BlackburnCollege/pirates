@@ -24,13 +24,7 @@ public class Enemy extends Player {
         super(name);
         this.name = name;
     }
-
-    public int getDamage() {
-        Random rand = new Random();
-        damage = 0 + rand.nextInt(20 - 0 + 1);
-        return damage;
-    }
-
+    @Override
     public String getMove(int damage) {
         move = name + " attacked for " + damage;
         return move;

@@ -12,11 +12,11 @@ package combat;
 public class Combat {
 
     private Player player;
-    private Player enemy;
+    private Enemy enemy;
     private double damage;
     private String status;
 
-    public Combat(Player player, Player enemy) {
+    public Combat(Player player, Enemy enemy) {
         this.player = player;
         this.enemy = enemy;
     }
@@ -25,6 +25,7 @@ public class Combat {
         String round = "";
         switch(move){
             case ATTACK:
+                round = this.attack();
                 break;
             case SHOOT:
                 break;
@@ -33,8 +34,19 @@ public class Combat {
         }
         return round;
     }
+    
+    private String attack(){
+        double playerDamage = this.player.getDamage()/100.0;
+        double enemyDamage = this.enemy.getDamage()/100.0;
+        this.player.decreaseHealth(enemyDamage);
+        this.enemy.decreaseHealth(playerDamage);
+        return this.player.getMove((int)(playerDamage*100))+"\n"+this.enemy.getMove((int)(enemyDamage*100));
+    }
 
-    public double getCurrentHealth() {
-        return 1.0;
+    public double getPlayerHealth() {
+        return this.player.getHealth();
+    }
+    public double getEnemyHealth() {
+        return this.enemy.getHealth();
     }
 }

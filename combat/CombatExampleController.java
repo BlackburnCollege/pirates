@@ -31,11 +31,15 @@ public class CombatExampleController extends ChallengeController
     
     @FXML
     private void attack(ActionEvent event){
-        this.combat.round(Move.ATTACK);
+        this.output.setText(this.combat.round(Move.ATTACK));
+        this.enemyHealth.setProgress(this.combat.getEnemyHealth());
+        this.playerHealth.setProgress(this.combat.getPlayerHealth());
     }
     @FXML
     private void insult(ActionEvent event){
         this.combat.round(Move.INSULT);
+        this.enemyHealth.setProgress(this.combat.getEnemyHealth());
+        this.playerHealth.setProgress(this.combat.getPlayerHealth());
     }
     @FXML
     private void run(ActionEvent event){
@@ -45,12 +49,14 @@ public class CombatExampleController extends ChallengeController
     @FXML
     private void fireGun(ActionEvent event){
         this.combat.round(Move.SHOOT);
+        this.enemyHealth.setProgress(this.combat.getEnemyHealth());
+        this.playerHealth.setProgress(this.combat.getPlayerHealth());
     }
             
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Player player = new Player("REPLACE_LATER");
-        Enemy enemy = new Enemy("REPLACE_LATER");
+        Player player = new Player("Tim");
+        Enemy enemy = new Enemy("Jessica");
         this.combat = new Combat(player, enemy);
     }    
     
