@@ -339,7 +339,8 @@ public class GameController implements Initializable {
             try {
                 // TODO: PUZZLE LOADING
                 loader = new FXMLLoader(getClass().getResource(
-                        "/puzzle/PuzzleFishingFXML.fxml"));
+                        puzzleControllers.get(action.getChallenge()
+                                .getChallengeName())));
                 root = (Pane) loader.load();
                 controller = loader.getController();
                 controller.setChallengeInformation(action.getChallenge().getChallengeName());
@@ -466,6 +467,10 @@ public class GameController implements Initializable {
         }
 
     }
+    
+    private void buildPuzzleControllerMappings(){
+        this.puzzleControllers.put("fish", "/puzzle/PuzzleFishingFXML.fxml");
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -489,7 +494,7 @@ public class GameController implements Initializable {
         setBinds();
         setupInventoryButton();
         setupExitButton();
-
+        buildPuzzleControllerMappings();
         processGameEvent(world.getCurrentEvent());
     }
 }

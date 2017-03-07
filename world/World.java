@@ -46,8 +46,15 @@ public class World {
         this.events.put("tut_pier_f_fishingpuzzle",
                 new Event("This is a fishing puzzle."));
 
-        this.events.put("tut_home_ae_fishing",
-                new Event("As I walk home the smell of fish"
+        this.events.put("tut_home_ae_fishing_loss",
+                new Event("I didn't catch a lot of fish, however, "
+                        + "as I walk home the smell of fish"
+                        + " attracts a wolf. I must kill it."
+                        + " I shall defend my honor.")
+        );
+
+        this.events.put("tut_home_ae_fishing_win",
+                new Event("I caught so many fish that as I walk home the smell"
                         + " attracts a wolf. I must kill it."
                         + " I shall defend my honor.")
         );
@@ -92,13 +99,23 @@ public class World {
         this.events.get("tut_pier_f_fishingpuzzle")
                 .addChoice("next",
                         new Action(
-                                events.get("tut_home_ae_fishing"),
-                                "catching fish.",
                                 new Challenge("puzzle", "fish")
                         )
+                        .addEvent(events.get("tut_home_ae_fishing_loss"))
+                        .addEvent(events.get("tut_home_ae_fishing_win"))
                 );
 
-        this.events.get("tut_home_ae_fishing")
+        this.events.get("tut_home_ae_fishing_loss")
+                .addChoice("next",
+                        new Action(
+                                new Challenge("combat", "wolf")
+                        )
+                        .addEvent(events.get("tut_home_ae_wolfcombat_loss"))
+                        .addEvent(events.get("tut_home_ae_wolfcombat_win"))
+                )
+                .setMusic(Music.THE_BUILDER);
+
+        this.events.get("tut_home_ae_fishing_win")
                 .addChoice("next",
                         new Action(
                                 new Challenge("combat", "wolf")

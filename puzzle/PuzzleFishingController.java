@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -28,7 +29,7 @@ public class PuzzleFishingController extends ChallengeController
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        fish.setImage(new Image("/resources/fish.png"));
     }    
 
     @FXML
