@@ -1,22 +1,21 @@
-
 package combat;
 
 import gui.ChallengeController;
+import gui.ChallengeStatus;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 /**
  *
  * @author dakota.tebbe
  */
-public class CombatExampleController extends ChallengeController 
+public class CombatExampleController extends ChallengeController
         implements Initializable {
-    
+
     private int numShots = 2;
     private Combat combat;
     @FXML
@@ -27,37 +26,46 @@ public class CombatExampleController extends ChallengeController
     private ProgressBar playerHealth = new ProgressBar(1.0);
     @FXML
     private Pane mainPane;
-    
-    
+
     @FXML
-    private void attack(ActionEvent event){
+    private void attack(ActionEvent event) {
         this.output.setText(this.combat.round(Move.ATTACK));
         this.enemyHealth.setProgress(this.combat.getEnemyHealth());
         this.playerHealth.setProgress(this.combat.getPlayerHealth());
+        if (this.combat.getEnemyHealth() <= 0) {
+            this.finishChallenge(ChallengeStatus.WIN);
+        } else if (this.combat.getPlayerHealth() <= 0) {
+            this.finishChallenge(ChallengeStatus.LOSS);
+        }
     }
+
     @FXML
-    private void insult(ActionEvent event){
+    private void insult(ActionEvent event) {
         this.combat.round(Move.INSULT);
         this.enemyHealth.setProgress(this.combat.getEnemyHealth());
         this.playerHealth.setProgress(this.combat.getPlayerHealth());
     }
+
     @FXML
-    private void run(ActionEvent event){
-        this.output.setText("You ran");
-        this.mainPane.setVisible(false);
+    private void run(ActionEvent event) {
+        this.output.setText(this.combat.round(Move.RUN));
+        if (this.combat.getPlayerHealth() <= 0) {
+            this.finishChallenge(ChallengeStatus.LOSS);
+        }
     }
+
     @FXML
-    private void fireGun(ActionEvent event){
+    private void fireGun(ActionEvent event) {
         this.combat.round(Move.SHOOT);
         this.enemyHealth.setProgress(this.combat.getEnemyHealth());
         this.playerHealth.setProgress(this.combat.getPlayerHealth());
     }
-            
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Player player = new Player("Tim");
-        Enemy enemy = new Enemy("Jessica");
+        Player player = new Player("Sean Cena");
+        Enemy enemy = new Enemy("Overtaker");
         this.combat = new Combat(player, enemy);
     }
-    
+
 }

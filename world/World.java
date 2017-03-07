@@ -33,10 +33,10 @@ public class World {
         //opening event, after convo, fish puzzle, wolf combat, closing event
 
         // Initialize events with the event text
-        this.events.put("tut_home_f_opening_family", 
+        this.events.put("tut_home_f_opening_family",
                 new Event("As I walk down stairs I am"
-                + " greeted by my wife, Marjory, and my son, " + playerName
-                + " jr. \"Hello " + playerName + ",\" Marjory says."));
+                        + " greeted by my wife, Marjory, and my son, " + playerName
+                        + " jr. \"Hello " + playerName + ",\" Marjory says."));
 
         this.events.put("tut_home_r_stairs", new Event("I'm back at the stairs."));
 
@@ -52,8 +52,10 @@ public class World {
                         + " I shall defend my honor.")
         );
 
-        this.events.put("tut_home_ae_wolfcombat",
-                new Event("I made it home!"));
+        this.events.put("tut_home_ae_wolfcombat_win",
+                new Event("I made it home after winning!"));
+        this.events.put("tut_home_ae_wolfcombat_loss",
+                new Event("I barely made it home after losing!"));
 
         //Add choices and set settings to each event
         this.events.get("tut_home_f_opening_family")
@@ -99,18 +101,31 @@ public class World {
         this.events.get("tut_home_ae_fishing")
                 .addChoice("next",
                         new Action(
-                                events.get("tut_home_ae_wolfcombat"),
-                                "I have killed the wolf. Yay.",
                                 new Challenge("combat", "wolf")
                         )
+                        .addEvent(events.get("tut_home_ae_wolfcombat_loss"))
+                        .addEvent(events.get("tut_home_ae_wolfcombat_win"))
                 )
                 .setMusic(Music.THE_BUILDER);
 
-        this.events.get("tut_home_ae_wolfcombat")
+        this.events.get("tut_home_ae_wolfcombat_win")
                 .addChoice("next",
                         new Action(
                                 events.get("tut_home_f_opening_family"),
                                 "Its groundhogs day up in here"
+                        )
+                        .addModifier(new Modifier() {
+                            @Override
+                            public void modify() {
+                                flags.put("test", Boolean.TRUE);
+                            }
+                        })
+                );
+        this.events.get("tut_home_ae_wolfcombat_loss")
+                .addChoice("next",
+                        new Action(
+                                events.get("tut_home_f_opening_family"),
+                                "You feel a disturbance in the force..."
                         )
                         .addModifier(new Modifier() {
                             @Override

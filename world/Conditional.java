@@ -9,7 +9,7 @@ package world;
  *
  * @author timothy.francis
  */
-public abstract class Conditional {
+public interface Conditional {
     
     public abstract boolean getCondition();
         

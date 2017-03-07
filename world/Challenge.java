@@ -18,4 +18,32 @@ public class Challenge {
         this.type = type;
         this.challengeName = challengeName;
     }
+
+    /**
+     * @return the type
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    /**
+     * @return the challengeName
+     */
+    public String getChallengeName() {
+        return challengeName;
+    }
+
+    /**
+     * @param challengeName the challengeName to set
+     */
+    public void setChallengeName(String challengeName) {
+        this.challengeName = challengeName;
+    }
 }

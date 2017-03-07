@@ -8,32 +8,46 @@ import java.util.Arrays;
  * @author lucas.burdell
  */
 public class Action {
-    private Event[] events;
+
+    private ArrayList<Event> events;
     private String text;
     private Challenge challenge = null;
     private ArrayList<Modifier> modifiers = new ArrayList<>();
-    
+
     public Action() {
         this.events = null;
     }
-    
+
     public Action(Event event) {
-        this.events = new Event[]{event};
+        this.events = new ArrayList<>();
     }
-    
-    public Action(Event event, String text) {
-        this.events = new Event[]{event};
+
+    public Action(String text, Challenge challenge) {
+        this.events = new ArrayList<>();
         this.text = text;
     }
-    
+
+    public Action(Event event, String text) {
+        this.events = new ArrayList<>();
+        this.events.add(event);
+        this.text = text;
+    }
+
     public Action(Event event, String text, Challenge challenge) {
-        this.events = new Event[]{event};
+        this.events = new ArrayList<>();
+        this.events.add(event);
         this.text = text;
         this.challenge = challenge;
     }
-    
+
     public Action(String text) {
         this.text = text;
+    }
+    
+    public Action(Challenge challenge) {
+        this.challenge = challenge;
+        this.events = new ArrayList<>();
+        this.text = null;
     }
 
     /**
@@ -42,9 +56,9 @@ public class Action {
     public Event getDefaultEvent() {
         return this.getEvents()[0];
     }
-    
+
     /**
-     * 
+     *
      * @return the default event index
      */
     public int getDefaultEventIndex() {
@@ -53,13 +67,10 @@ public class Action {
 
     /**
      * @param event the Event to set
-     * @return 
+     * @return
      */
     public Action addEvent(Event event) {
-        Event[] temp = new Event[this.getEvents().length + 1];
-        System.arraycopy(this.getEvents(), 0, temp, 0, getEvents().length);
-        temp[temp.length - 1] = event;
-        this.events = temp;
+        this.events.add(event);
         return this;
     }
 
@@ -72,7 +83,7 @@ public class Action {
 
     /**
      * @param text the text to set
-     * @return 
+     * @return
      */
     public Action setText(String text) {
         this.text = text;
@@ -80,13 +91,13 @@ public class Action {
     }
 
     /**
-     * 
+     *
      * @return true if there is a challenge present
      */
     public boolean hasChallenge() {
         return challenge != null;
     }
-    
+
     /**
      * @return the challenge
      */
@@ -96,7 +107,7 @@ public class Action {
 
     /**
      * @param challenge the challenge to set
-     * @return 
+     * @return
      */
     public Action setChallenge(Challenge challenge) {
         this.challenge = challenge;
@@ -107,15 +118,14 @@ public class Action {
      * @return the events
      */
     public Event[] getEvents() {
-        return events;
+        return events.toArray(new Event[events.size()]);
     }
-    
-    
-        /**
+
+    /**
      * @return the conditions
      */
     public Modifier[] getModifiers() {
-        return modifiers.toArray(new Modifier[1]);
+        return modifiers.toArray(new Modifier[modifiers.size()]);
     }
 
     /**
@@ -132,7 +142,4 @@ public class Action {
         return this;
     }
 
-    
-    
-    
 }

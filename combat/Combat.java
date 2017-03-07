@@ -23,7 +23,7 @@ public class Combat {
 
     public String round(Move move) {
         String round = "";
-        switch(move){
+        switch (move) {
             case ATTACK:
                 round = this.attack();
                 break;
@@ -31,21 +31,28 @@ public class Combat {
                 break;
             case INSULT:
                 break;
+            case RUN:
+                this.player.decreaseHealth(.3);
+                round = "you cannot run. You take 30 damage.";
+                break;
+
         }
         return round;
     }
-    
-    private String attack(){
-        double playerDamage = this.player.getDamage()/100.0;
-        double enemyDamage = this.enemy.getDamage()/100.0;
+
+    private String attack() {
+        double playerDamage = this.player.getDamage() / 100.0;
+        double enemyDamage = this.enemy.getDamage() / 100.0;
         this.player.decreaseHealth(enemyDamage);
         this.enemy.decreaseHealth(playerDamage);
-        return this.player.getMove((int)(playerDamage*100))+"\n"+this.enemy.getMove((int)(enemyDamage*100));
+        return this.player.getMove((int) (playerDamage * 100)) + "\n" + 
+                this.enemy.getMove((int) (enemyDamage * 100));
     }
 
     public double getPlayerHealth() {
         return this.player.getHealth();
     }
+
     public double getEnemyHealth() {
         return this.enemy.getHealth();
     }

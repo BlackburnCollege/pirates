@@ -16,6 +16,7 @@
  */
 package gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -25,6 +26,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.image.Image;
@@ -315,7 +317,30 @@ public class GameController implements Initializable {
      * @param action the Action the challenge belongs to
      */
     private void loadChallenge(Action action) {
-        
+
+        //load controller
+        if (action.getChallenge().getType().equals("combat")) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                        "/combat/CombatExampleFXML.fxml"));
+                Pane root = (Pane) loader.load();
+                challengePane.getChildren().add(0, root);
+                challengePane.setDisable(false);
+                ChallengeController controller = loader.getController();
+                controller.setOnChallengeFinish(new ChallengeCallback() {
+                    @Override
+                    public void challengeCompleted(ChallengeStatus status) {
+                        challengePane.getChildren().remove(root);
+                        challengePane.setDisable(true);
+                        processGameEvent(action.getEvents()[status.ordinal()]);
+                    }
+
+                });
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+            }
+        }
+
         /*
         code for loading FXML 
         just an example
@@ -349,30 +374,38 @@ public class GameController implements Initializable {
      */
     private void processGameAction(Action action) {
         clearDisplay();
-        addTextToDisplay(action.getText());
-        Hyperlink next = makeHyperlink("next");
-        for (Modifier modifier : action.getModifiers()) {
-            if (modifier != null) {
-                modifier.modify();
-            }
-        }
-        next.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if (action.hasChallenge()) {
-                    // TODO: CHALLENGE LOADING
-                    loadChallenge(action);
+        if (action.getText() != null) {
+            addTextToDisplay(action.getText());
 
-                    processGameEvent(action.getEvents()[action.getDefaultEventIndex()]);
-                } else {
-                    processGameEvent(action.getEvents()[action.getDefaultEventIndex()]);
+            Hyperlink next = makeHyperlink("next");
+            for (Modifier modifier : action.getModifiers()) {
+                if (modifier != null) {
+                    modifier.modify();
                 }
             }
+            next.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    if (action.hasChallenge()) {
+                        // TODO: CHALLENGE LOADING
+                        loadChallenge(action);
 
-        });
+                        processGameEvent(action.getEvents()[action.getDefaultEventIndex()]);
+                    } else {
+                        processGameEvent(action.getEvents()[action.getDefaultEventIndex()]);
+                    }
+                }
 
-        addDividerToDisplay();
-        addHyperlinkToDisplay(next);
+            });
+
+            addDividerToDisplay();
+            addHyperlinkToDisplay(next);
+        } else if (action.hasChallenge()) {
+            loadChallenge(action);
+            //processGameEvent(action.getEvents()[action.getDefaultEventIndex()]);
+        } else {
+            processGameEvent(action.getEvents()[action.getDefaultEventIndex()]);
+        }
     }
 
     /**
@@ -419,7 +452,7 @@ public class GameController implements Initializable {
 
         // close challenge pane
         this.challengePane.setDisable(true);
-        
+
         // SET BORDERS
         Border border = new Border(new BorderStroke(Color.BLACK,
                 BorderStrokeStyle.SOLID, new CornerRadii(2),

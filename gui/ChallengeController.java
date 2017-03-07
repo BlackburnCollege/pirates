@@ -1,29 +1,33 @@
 package gui;
 
-import java.util.concurrent.Callable;
-
+import java.util.function.Consumer;
 /**
  *
  * @author lucas.burdell
  */
 public abstract class ChallengeController {
     
-    private Callable onChallengeFinish;
+    
+    private ChallengeCallback onChallengeFinish;
     
     
     
     /**
      * @return the callable
      */
-    public Callable getOnChallengeFinish() {
+    public ChallengeCallback getOnChallengeFinish() {
         return onChallengeFinish;
     }
 
     /**
      * @param callable the callable to set
      */
-    public void setOnChallengeFinish(Callable callable) {
+    public void setOnChallengeFinish(ChallengeCallback callable) {
         this.onChallengeFinish = callable;
+    }
+    
+    public void finishChallenge(ChallengeStatus status) {
+        this.onChallengeFinish.challengeCompleted(status);
     }
     
     
