@@ -21,8 +21,17 @@ public class Combat {
         this.enemy = enemy;
     }
 
-    public String round(String input) {
-        return status;
+    public String round(Move move) {
+        String round = "";
+        switch(move){
+            case ATTACK:
+                break;
+            case SHOOT:
+                break;
+            case INSULT:
+                break;
+        }
+        return round;
     }
 
     public double getCurrentHealth() {
