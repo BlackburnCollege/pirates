@@ -18,24 +18,28 @@ public class CombatExampleController extends ChallengeController
         implements Initializable {
     
     private int numShots = 2;
-    
+    private Combat combat;
     @FXML
     private Label output;
     @FXML
     private ProgressBar enemyHealth = new ProgressBar(1.0);
+    @FXML
+    private ProgressBar playerHealth = new ProgressBar(1.0);
     @FXML
     private Pane mainPane;
     
     
     @FXML
     private void attack(ActionEvent event){
-        this.enemyHealth.setProgress(0.5);
-        this.output.setText("You attacked your opponent");
+        this.output.setText(this.combat.round(Move.ATTACK));
+        this.enemyHealth.setProgress(this.combat.getEnemyHealth());
+        this.playerHealth.setProgress(this.combat.getPlayerHealth());
     }
     @FXML
     private void insult(ActionEvent event){
-        this.enemyHealth.setStyle("-fx-accent: slategrey");
-        this.output.setText("''I'll devour yer parrot, ye parrot-loving parrot!''");
+        this.combat.round(Move.INSULT);
+        this.enemyHealth.setProgress(this.combat.getEnemyHealth());
+        this.playerHealth.setProgress(this.combat.getPlayerHealth());
     }
     @FXML
     private void run(ActionEvent event){
@@ -44,18 +48,16 @@ public class CombatExampleController extends ChallengeController
     }
     @FXML
     private void fireGun(ActionEvent event){
-        if(this.numShots!=0){
-            this.output.setText("Fired gun");
-            this.numShots--;
-        }
-        else{
-            this.output.setText("Out of shots");
-        }
+        this.combat.round(Move.SHOOT);
+        this.enemyHealth.setProgress(this.combat.getEnemyHealth());
+        this.playerHealth.setProgress(this.combat.getPlayerHealth());
     }
             
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        Player player = new Player("Tim");
+        Enemy enemy = new Enemy("Jessica");
+        this.combat = new Combat(player, enemy);
     }    
     
 }

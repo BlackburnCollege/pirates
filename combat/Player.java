@@ -6,6 +6,7 @@
 package combat;
 
 import java.util.ArrayList;
+import java.util.Random;
 import world.Item;
 
 /**
@@ -21,6 +22,7 @@ public class Player {
     private boolean insultProf = false;
     private String name;
     private ArrayList<Item> inventory = new ArrayList<>();
+    private int damage;
 
     public Player(String name) {
         this.name = name;
@@ -83,6 +85,17 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+    
+    public int getDamage() {
+        Random rand = new Random();
+        this.damage = 0 + rand.nextInt(20 - 0 + 1);
+        return this.damage;
+    }
+
+    public String getMove(int damage) {
+        String move = name + " attacked for " + damage;
+        return move;
     }
 
 }

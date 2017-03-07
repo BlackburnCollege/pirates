@@ -31,7 +31,7 @@
             <Label text="Enemy Health:" />
             <ProgressBar fx:id="enemyHealth" prefWidth="200.0" progress="1.0" style="-fx-accent: firebrick;" />
             <Label text="Player health:" />
-            <ProgressBar prefWidth="200.0" progress="1.0" style="-fx-accent: firebrick;" />
+            <ProgressBar fx:id="playerHealth" prefWidth="200.0" progress="1.0" style="-fx-accent: firebrick;" />
          </children>
       </VBox>
       <VBox layoutX="14.0" layoutY="311.0" prefHeight="0.0" prefWidth="107.0">
