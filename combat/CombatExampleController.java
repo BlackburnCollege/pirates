@@ -58,6 +58,6 @@ public class CombatExampleController extends ChallengeController
         Player player = new Player("Tim");
         Enemy enemy = new Enemy("Jessica");
         this.combat = new Combat(player, enemy);
-    }    
+    }
     
 }
