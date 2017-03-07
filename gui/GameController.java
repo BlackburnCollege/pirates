@@ -18,6 +18,7 @@ package gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
@@ -313,33 +314,53 @@ public class GameController implements Initializable {
         menuPanel.getChildren().add(exit);
     }
 
+    private HashMap<String, String> puzzleControllers = new HashMap<>();
+
     /**
      * @param action the Action the challenge belongs to
      */
     private void loadChallenge(Action action) {
 
+        FXMLLoader loader = null;
+        Pane root = null;
+        ChallengeController controller = null;
         //load controller
         if (action.getChallenge().getType().equals("combat")) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                loader = new FXMLLoader(getClass().getResource(
                         "/combat/CombatExampleFXML.fxml"));
-                Pane root = (Pane) loader.load();
-                challengePane.getChildren().add(0, root);
-                challengePane.setDisable(false);
-                ChallengeController controller = loader.getController();
-                controller.setOnChallengeFinish(new ChallengeCallback() {
-                    @Override
-                    public void challengeCompleted(ChallengeStatus status) {
-                        challengePane.getChildren().remove(root);
-                        challengePane.setDisable(true);
-                        processGameEvent(action.getEvents()[status.ordinal()]);
-                    }
-
-                });
+                root = (Pane) loader.load();
+                controller = loader.getController();
+                controller.setChallengeInformation(action.getChallenge().getChallengeName());
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+            }
+        } else if (action.getChallenge().getType().equals("puzzle")) {
+            try {
+                // TODO: PUZZLE LOADING
+                loader = new FXMLLoader(getClass().getResource(
+                        "/puzzle/PuzzleFishingFXML.fxml"));
+                root = (Pane) loader.load();
+                controller = loader.getController();
+                controller.setChallengeInformation(action.getChallenge().getChallengeName());
             } catch (IOException ioe) {
                 ioe.printStackTrace();
             }
         }
+
+        challengePane.getChildren().add(0, root);
+        challengePane.setDisable(false);
+        final Pane challengeRoot = root;
+
+        controller.setOnChallengeFinish(new ChallengeCallback() {
+            @Override
+            public void challengeCompleted(ChallengeStatus status) {
+                challengePane.getChildren().remove(challengeRoot);
+                challengePane.setDisable(true);
+                processGameEvent(action.getEvents()[status.ordinal()]);
+            }
+
+        });
 
         /*
         code for loading FXML 

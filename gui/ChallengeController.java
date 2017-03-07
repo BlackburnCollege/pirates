@@ -9,6 +9,7 @@ public abstract class ChallengeController {
     
     
     private ChallengeCallback onChallengeFinish;
+    private String challengeInformation;
     
     
     
@@ -28,6 +29,20 @@ public abstract class ChallengeController {
     
     public void finishChallenge(ChallengeStatus status) {
         this.onChallengeFinish.challengeCompleted(status);
+    }
+
+    /**
+     * @return the challengeInformation
+     */
+    public String getChallengeInformation() {
+        return challengeInformation;
+    }
+
+    /**
+     * @param challengeInformation the challengeInformation to set
+     */
+    public void setChallengeInformation(String challengeInformation) {
+        this.challengeInformation = challengeInformation;
     }
     
     
