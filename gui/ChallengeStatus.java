@@ -22,4 +22,6 @@ package gui;
  */
 public enum ChallengeStatus {
     LOSS, WIN
+
+    // THIS IS A COMMIT
 }
