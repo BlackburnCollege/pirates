@@ -73,7 +73,7 @@ public class Player {
      * @return the inventory
      */
     public ArrayList<Item> getInventory() {
-        return inventory;
+        return this.inventory;
     }
 
     /**
