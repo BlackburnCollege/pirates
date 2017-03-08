@@ -30,8 +30,10 @@ public class CombatExampleController extends ChallengeController
     @FXML
     private void attack(ActionEvent event) {
         this.output.setText(this.combat.round(Move.ATTACK));
-        this.enemyHealth.setProgress(this.combat.getEnemyCurrentHealth());
-        this.playerHealth.setProgress(this.combat.getPlayerCurrentHealth());
+
+        this.enemyHealth.setProgress(this.combat.getEnemyCurrentHealth() / (double)this.combat.getEnemyMaxHealth());
+        this.playerHealth.setProgress(this.combat.getPlayerCurrentHealth() / (double)this.combat.getPlayerMaxHealth());
+
         if (this.combat.getEnemyCurrentHealth() <= 0) {
             this.finishChallenge(ChallengeStatus.WIN);
         } else if (this.combat.getPlayerCurrentHealth() <= 0) {
@@ -55,7 +57,7 @@ public class CombatExampleController extends ChallengeController
     }
 
     @FXML
-    private void fireGun(ActionEvent event) {
+    private void shoot(ActionEvent event) {
         this.combat.round(Move.SHOOT);
         this.enemyHealth.setProgress(this.combat.getEnemyCurrentHealth());
         this.playerHealth.setProgress(this.combat.getPlayerCurrentHealth());

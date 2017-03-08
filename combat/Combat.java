@@ -47,11 +47,19 @@ public class Combat {
                 this.enemy.getMove(enemyDamage);
     }
 
-    public double getPlayerCurrentHealth() {
+    public int getPlayerCurrentHealth() {
         return this.player.getCurrentHealth();
     }
 
-    public double getEnemyCurrentHealth() {
+    public int getEnemyCurrentHealth() {
         return this.enemy.getCurrentHealth();
+    }
+
+    public int getPlayerMaxHealth() {
+        return this.player.getMaxHealth();
+    }
+
+    public int getEnemyMaxHealth() {
+        return this.enemy.getMaxHealth();
     }
 }

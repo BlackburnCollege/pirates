@@ -55,15 +55,12 @@ public class Player {
     * Returns the current health of the Player
      */
     public int getCurrentHealth() {
-        return currentHealth;
+        return this.currentHealth;
     }
     public int getMaxHealth(){
-        return maxHealth;
+        return this.maxHealth;
     }
 
-    public int intHealth() {
-        return (int) (100 * currentHealth);
-    }
 
     /*
      * Resets player health back to full.

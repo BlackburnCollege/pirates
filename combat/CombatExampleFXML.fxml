@@ -15,7 +15,7 @@
             <Image url="@../resources/gameimage.png" />
          </image>
       </ImageView>
-      <Button layoutX="121.0" layoutY="311.0" mnemonicParsing="false" onAction="#fireGun" text="Shoot" />
+      <Button layoutX="121.0" layoutY="311.0" mnemonicParsing="false" onAction="#shoot" text="Shoot" />
       <ImageView fitHeight="148.0" fitWidth="74.0" layoutX="121.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/pirate_back.png" />
