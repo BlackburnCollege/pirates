@@ -15,8 +15,8 @@ import world.Item;
  */
 public class Player {
 
-    private double currentHealth = 1.0;
-    private double maxHealth = 1.0;
+    private int currentHealth;
+    private final int maxHealth;
     private boolean meleeProf = false;
     private boolean gunProf = false;
     private boolean insultProf = false;
@@ -24,8 +24,10 @@ public class Player {
     private ArrayList<Item> inventory = new ArrayList<>();
     private int damage;
 
-    public Player(String name) {
+    public Player(String name, int maxHealth) {
         this.name = name;
+        this.maxHealth = maxHealth;
+        this.currentHealth = this.maxHealth;
     }
 
     /*
@@ -52,8 +54,11 @@ public class Player {
     /*
     * Returns the current health of the Player
      */
-    public double getHealth() {
+    public int getCurrentHealth() {
         return currentHealth;
+    }
+    public int getMaxHealth(){
+        return maxHealth;
     }
 
     public int intHealth() {

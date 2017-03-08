@@ -32,8 +32,6 @@ public class Combat {
             case INSULT:
                 break;
             case RUN:
-                this.player.decreaseHealth(.3);
-                round = "you cannot run. You take 30 damage.";
                 break;
 
         }
@@ -41,19 +39,19 @@ public class Combat {
     }
 
     private String attack() {
-        double playerDamage = this.player.getDamage() / 100.0;
-        double enemyDamage = this.enemy.getDamage() / 100.0;
+        int playerDamage = this.player.getDamage();
+        int enemyDamage = this.enemy.getDamage();
         this.player.decreaseHealth(enemyDamage);
         this.enemy.decreaseHealth(playerDamage);
-        return this.player.getMove((int) (playerDamage * 100)) + "\n" + 
-                this.enemy.getMove((int) (enemyDamage * 100));
+        return this.player.getMove(playerDamage) + "\n" +
+                this.enemy.getMove(enemyDamage);
     }
 
-    public double getPlayerHealth() {
-        return this.player.getHealth();
+    public double getPlayerCurrentHealth() {
+        return this.player.getCurrentHealth();
     }
 
-    public double getEnemyHealth() {
-        return this.enemy.getHealth();
+    public double getEnemyCurrentHealth() {
+        return this.enemy.getCurrentHealth();
     }
 }

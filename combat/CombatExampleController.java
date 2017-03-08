@@ -30,11 +30,11 @@ public class CombatExampleController extends ChallengeController
     @FXML
     private void attack(ActionEvent event) {
         this.output.setText(this.combat.round(Move.ATTACK));
-        this.enemyHealth.setProgress(this.combat.getEnemyHealth());
-        this.playerHealth.setProgress(this.combat.getPlayerHealth());
-        if (this.combat.getEnemyHealth() <= 0) {
+        this.enemyHealth.setProgress(this.combat.getEnemyCurrentHealth());
+        this.playerHealth.setProgress(this.combat.getPlayerCurrentHealth());
+        if (this.combat.getEnemyCurrentHealth() <= 0) {
             this.finishChallenge(ChallengeStatus.WIN);
-        } else if (this.combat.getPlayerHealth() <= 0) {
+        } else if (this.combat.getPlayerCurrentHealth() <= 0) {
             this.finishChallenge(ChallengeStatus.LOSS);
         }
     }
@@ -42,14 +42,14 @@ public class CombatExampleController extends ChallengeController
     @FXML
     private void insult(ActionEvent event) {
         this.combat.round(Move.INSULT);
-        this.enemyHealth.setProgress(this.combat.getEnemyHealth());
-        this.playerHealth.setProgress(this.combat.getPlayerHealth());
+        this.enemyHealth.setProgress(this.combat.getEnemyCurrentHealth());
+        this.playerHealth.setProgress(this.combat.getPlayerCurrentHealth());
     }
 
     @FXML
     private void run(ActionEvent event) {
         this.output.setText(this.combat.round(Move.RUN));
-        if (this.combat.getPlayerHealth() <= 0) {
+        if (this.combat.getPlayerCurrentHealth() <= 0) {
             this.finishChallenge(ChallengeStatus.LOSS);
         }
     }
@@ -57,14 +57,14 @@ public class CombatExampleController extends ChallengeController
     @FXML
     private void fireGun(ActionEvent event) {
         this.combat.round(Move.SHOOT);
-        this.enemyHealth.setProgress(this.combat.getEnemyHealth());
-        this.playerHealth.setProgress(this.combat.getPlayerHealth());
+        this.enemyHealth.setProgress(this.combat.getEnemyCurrentHealth());
+        this.playerHealth.setProgress(this.combat.getPlayerCurrentHealth());
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Player player = new Player("Sean Cena");
-        Enemy enemy = new Enemy("Overtaker");
+        Player player = new Player("Sean Cena", 100);
+        Enemy enemy = new Enemy("Overtaker", 100);
         this.combat = new Combat(player, enemy);
     }
 

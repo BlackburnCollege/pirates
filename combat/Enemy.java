@@ -20,8 +20,8 @@ public class Enemy extends Player {
     private String name;
     private int damage;
 
-    public Enemy(String name) {
-        super(name);
+    public Enemy(String name, int maxHealth) {
+        super(name, maxHealth);
         this.name = name;
     }
     @Override
