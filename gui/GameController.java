@@ -309,6 +309,7 @@ public class GameController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 GuiLoader.getSingleton().getMainStage().close();
+                System.exit(0);
             }
         });
         menuPanel.getChildren().add(exit);
@@ -362,6 +363,7 @@ public class GameController implements Initializable {
             }
 
         });
+        controller.setChallengeInformation(action.getChallenge().getChallengeName());
 
         /*
         code for loading FXML 

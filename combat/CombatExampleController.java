@@ -46,6 +46,7 @@ public class CombatExampleController extends ChallengeController
         this.combat.round(Move.INSULT);
         this.enemyHealth.setProgress(this.combat.getEnemyCurrentHealth());
         this.playerHealth.setProgress(this.combat.getPlayerCurrentHealth());
+
     }
 
     @FXML
@@ -65,6 +66,7 @@ public class CombatExampleController extends ChallengeController
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        String nameOfChallenger = this.getChallengeInformation();
         Player player = new Player("Sean Cena", 100);
         Enemy enemy = new Enemy("Overtaker", 100);
         this.combat = new Combat(player, enemy);
