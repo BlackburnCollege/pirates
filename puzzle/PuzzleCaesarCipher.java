@@ -2,8 +2,8 @@ package puzzle;
 
 public class PuzzleCaesarCipher extends PuzzleModel {
     
-    private final String answer = "";
-    private final String originalMessage = "";
+    private final String answer = "treasure";
+    private final String originalMessage = "vtgcuwtg";
     
     public PuzzleCaesarCipher(){
         this.setBackground("");
