@@ -83,6 +83,7 @@ public class PuzzleBinarySwitch extends PuzzleModel {
                 && this.correctSwitchPositions[1] == this.currentSwitchPositions[1]
                 && this.correctSwitchPositions[2] == this.currentSwitchPositions[2]) {
             this.setText("The door opens!");
+            this.setCompleted(); // set puzzle status to solved
         } else {
             this.setText("The door doesn't budge");
         }

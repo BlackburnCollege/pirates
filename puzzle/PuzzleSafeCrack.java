@@ -10,11 +10,11 @@ public class PuzzleSafeCrack extends PuzzleModel {
      * private modifier restricts other programs, subclasses in this package,
      * and different packages from accessing these variables directly
      */
-    private final String bgLocation = "bg.jpg";
-    private final String soundTurnLocation = "soundturn.mp3";
-    private final String soundDetectLocation = "sounddetect.mp3";
-    private final String soundOpenLocation = "soundopen.mp3";
-    private final String soundResetLocation = "soundreset.mp3";
+    private final String bgLocation = "/resources/safedial.jpg";
+    private final String soundTurnLocation = "/resources/soundturn.mp3";
+    private final String soundDetectLocation = "/resources/sounddetect.mp3";
+    private final String soundOpenLocation = "/resources/soundopen.mp3";
+    private final String soundResetLocation = "/resources/soundreset.mp3";
     private byte currentNum;
     private boolean[] enteredCorrect;
     private byte[] safeCombination;
@@ -108,6 +108,7 @@ public class PuzzleSafeCrack extends PuzzleModel {
         } else if (!this.enteredCorrect[2] && this.currentNum == this.safeCombination[2]) {
             this.enteredCorrect[2] = true;
             this.setSound(this.soundOpenLocation);
+            this.setCompleted(); // set puzzle status to solved
         } else {
             this.setSound(this.soundTurnLocation);
         }
