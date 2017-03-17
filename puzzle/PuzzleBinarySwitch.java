@@ -14,7 +14,7 @@ public class PuzzleBinarySwitch extends PuzzleModel {
     private final String soundPullLeverLocation = "soundpulllever.mp3";
     private boolean[] correctSwitchPositions;
     private boolean[] currentSwitchPositions;
-    private byte doorClue;
+    private int doorClue;
 
     /**
      * Constructor
@@ -45,7 +45,7 @@ public class PuzzleBinarySwitch extends PuzzleModel {
      * @param rs
      * @param dc
      */
-    public PuzzleBinarySwitch(boolean ls, boolean ms, boolean rs, byte dc) {
+    public PuzzleBinarySwitch(boolean ls, boolean ms, boolean rs, int dc) {
         this.setBackground(this.bgLocation);
         this.setSound(this.soundPullLeverLocation);
 

@@ -20,7 +20,7 @@ import javafx.scene.media.MediaPlayer;
  *
  * @author Drew Hans
  */
-public class PuzzleSafeCrackController extends ChallengeController implements Initializable {
+public class PuzzleMapController extends ChallengeController implements Initializable {
 
     @FXML
     private Pane gamePane;
@@ -37,16 +37,16 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
     @FXML
     private TextField text;
 
-    private PuzzleSafeCrack psc;
+    private PuzzleMap pm;
 
     /**
      * initialize method
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.psc = new PuzzleSafeCrack((byte) 95, (byte) 15, (byte) 5);
-        this.background.setImage(new Image(this.psc.getBackground()));
-        this.sound = new Media(new File(this.psc.getSound()).toURI().toString());
+        this.pm = new PuzzleMap(true, true, true, true, true, true);
+        this.background.setImage(new Image(this.pm.getBackground()));
+        this.sound = new Media(new File(this.pm.getSound()).toURI().toString());
         this.mediaPlayer = new MediaPlayer(this.sound);
     }
 
@@ -55,23 +55,6 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
      */
     @FXML
     private void onKeyEvent(KeyEvent event) {
-        switch (event.getCode()) {
-            case LEFT:
-            case KP_LEFT:
-                System.out.println("Dial is turned counter-clockwise.");
-                psc.turnCounterClockwise();
-                break;
-            case RIGHT:
-            case KP_RIGHT:
-                System.out.println("Dial is turned clockwise.");
-                psc.turnClockwise();
-                break;
-            default:
-                break;
-        }
-        this.sound = new Media(new File(this.psc.getSound()).toURI().toString());
-        playSound();
-        checkSolution();
     }
 
     /**
@@ -94,8 +77,9 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
      * through finishChallenge method
      */
     private void checkSolution() {
-        if (psc.getCompleted() == true) {
+        if (pm.getCompleted() == true) {
             this.finishChallenge(ChallengeStatus.WIN);
         }
     }
+
 }

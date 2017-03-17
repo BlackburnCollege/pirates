@@ -92,5 +92,4 @@ public abstract class PuzzleModel {
     final void setText(String newT) {
         this.text = newT;
     }
-
 }

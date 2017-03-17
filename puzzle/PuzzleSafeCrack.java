@@ -139,5 +139,4 @@ public class PuzzleSafeCrack extends PuzzleModel {
         }
         this.onTurn();
     }
-
 }
