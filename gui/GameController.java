@@ -367,6 +367,7 @@ public class GameController implements Initializable {
 
         });
         controller.setChallengeInformation(action.getChallenge().getChallengeName());
+        controller.onChallengeLoaded();
     }
 
     /**
