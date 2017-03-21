@@ -1,6 +1,8 @@
 package gui;
 
-import java.util.function.Consumer;
+import world.Challenge;
+import world.Player;
+
 /**
  *
  * @author lucas.burdell
@@ -10,9 +12,9 @@ public abstract class ChallengeController {
     
     private ChallengeCallback onChallengeFinish;
     private String challengeInformation;
-    
-    
-    
+    private world.Player player;
+
+
     /**
      * @return the callable
      */
@@ -26,7 +28,12 @@ public abstract class ChallengeController {
     public void setOnChallengeFinish(ChallengeCallback callable) {
         this.onChallengeFinish = callable;
     }
-    
+
+    /**
+     * This method will be called after the Challenge object is loaded into the controller.
+     */
+    public abstract void onChallengeLoaded();
+
     public void finishChallenge(ChallengeStatus status) {
         this.onChallengeFinish.challengeCompleted(status);
     }
@@ -44,6 +51,13 @@ public abstract class ChallengeController {
     public void setChallengeInformation(String challengeInformation) {
         this.challengeInformation = challengeInformation;
     }
-    
-    
+
+
+    public world.Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(world.Player player) {
+        this.player = player;
+    }
 }

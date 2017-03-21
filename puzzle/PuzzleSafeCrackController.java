@@ -45,9 +45,10 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.psc = new PuzzleSafeCrack((byte) 95, (byte) 15, (byte) 5);
-        this.background.setImage(new Image(this.psc.getBackground()));
-        this.sound = new Media(new File(this.psc.getSound()).toURI().toString());
-        this.mediaPlayer = new MediaPlayer(this.sound);
+        this.gamePane.requestFocus();
+        //this.background.setImage(new Image(this.psc.getBackground()));
+        //this.sound = new Media(new File(this.psc.getSound()).toURI().toString());
+        //this.mediaPlayer = new MediaPlayer(this.sound);
     }
 
     /**
@@ -55,6 +56,8 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
      */
     @FXML
     private void onKeyEvent(KeyEvent event) {
+        System.out.println("Key event triggered");
+        System.out.println(event.getCode());
         switch (event.getCode()) {
             case LEFT:
             case KP_LEFT:
@@ -69,7 +72,7 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
             default:
                 break;
         }
-        this.sound = new Media(new File(this.psc.getSound()).toURI().toString());
+        //this.sound = new Media(new File(this.psc.getSound()).toURI().toString());
         playSound();
         checkSolution();
     }
@@ -85,8 +88,8 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
      * playSound method handles MediaPlayer updates and sound plays
      */
     private void playSound() {
-        this.mediaPlayer = new MediaPlayer(this.sound);
-        this.mediaPlayer.play();
+        //this.mediaPlayer = new MediaPlayer(this.sound);
+        //this.mediaPlayer.play();
     }
 
     /**
@@ -94,8 +97,13 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
      * through finishChallenge method
      */
     private void checkSolution() {
-        if (psc.getCompleted() == true) {
+        //if (psc.getCompleted() == true) {
             this.finishChallenge(ChallengeStatus.WIN);
-        }
+        //}
+    }
+
+    @Override
+    public void onChallengeLoaded() {
+
     }
 }

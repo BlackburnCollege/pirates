@@ -4,7 +4,7 @@ package world;
  *
  * @author lucas.burdell
  */
-public class Event {
+public class Event extends ACEObject {
 
     private gui.Music music;
     private String[] sounds;
@@ -78,9 +78,6 @@ public class Event {
         return this;
     }
 
-    /**
-     * @param choices the choices to set
-     */
     public Event addChoice(String text, Action action){
         this.addChoice(new Choice(text, action));
         return this;

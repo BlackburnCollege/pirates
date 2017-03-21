@@ -81,4 +81,9 @@ public class PuzzleRiddleController extends ChallengeController implements Initi
             this.finishChallenge(ChallengeStatus.WIN);
         }
     }
+
+    @Override
+    public void onChallengeLoaded() {
+
+    }
 }

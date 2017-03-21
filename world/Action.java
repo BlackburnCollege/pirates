@@ -7,33 +7,38 @@ import java.util.Arrays;
  *
  * @author lucas.burdell
  */
-public class Action {
+public class Action extends ACEObject {
 
     private ArrayList<Event> events;
     private String text;
     private Challenge challenge = null;
-    private ArrayList<Modifier> modifiers = new ArrayList<>();
+    private ArrayList<Conditional> modifiers = new ArrayList<>();
 
     public Action() {
+        super();
         this.events = null;
     }
 
     public Action(Event event) {
+        super();
         this.events = new ArrayList<>();
     }
 
     public Action(String text, Challenge challenge) {
+        super();
         this.events = new ArrayList<>();
         this.text = text;
     }
 
     public Action(Event event, String text) {
+        super();
         this.events = new ArrayList<>();
         this.events.add(event);
         this.text = text;
     }
 
     public Action(Event event, String text, Challenge challenge) {
+        super();
         this.events = new ArrayList<>();
         this.events.add(event);
         this.text = text;
@@ -41,10 +46,12 @@ public class Action {
     }
 
     public Action(String text) {
+        super();
         this.text = text;
     }
     
     public Action(Challenge challenge) {
+        super();
         this.challenge = challenge;
         this.events = new ArrayList<>();
         this.text = null;
@@ -124,22 +131,28 @@ public class Action {
     /**
      * @return the conditions
      */
-    public Modifier[] getModifiers() {
-        return modifiers.toArray(new Modifier[modifiers.size()]);
+    public Conditional[] getConditionals() {
+        return modifiers.toArray(new Conditional[modifiers.size()]);
     }
 
     /**
      * @param modifiers
      * @return
      */
-    public Action setModifiers(Modifier[] modifiers) {
+    public Action setConditionals(Conditional[] modifiers) {
         this.modifiers = new ArrayList<>(Arrays.asList(modifiers));
         return this;
     }
 
-    public Action addModifier(Modifier modifier) {
+    public Action addConditional(Conditional modifier) {
         this.modifiers.add(modifier);
         return this;
+    }
+
+    public void doConditionalModifiers() {
+        for (Conditional c : this.modifiers) {
+            c.setCondition();
+        }
     }
 
 }

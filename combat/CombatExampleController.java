@@ -72,4 +72,8 @@ public class CombatExampleController extends ChallengeController
         this.combat = new Combat(player, enemy);
     }
 
+    @Override
+    public void onChallengeLoaded() {
+
+    }
 }

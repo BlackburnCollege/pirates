@@ -82,4 +82,8 @@ public class PuzzleMapController extends ChallengeController implements Initiali
         }
     }
 
+    @Override
+    public void onChallengeLoaded() {
+
+    }
 }

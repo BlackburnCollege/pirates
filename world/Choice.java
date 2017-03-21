@@ -7,7 +7,7 @@ import java.util.Arrays;
  *
  * @author lucas.burdell
  */
-public class Choice {
+public class Choice extends ACEObject {
 
     private String text;
     private Action action;
@@ -34,7 +34,7 @@ public class Choice {
     
     public boolean checkConditions() {
         for (Conditional c : conditions) {
-            if (c.getCondition() == false) {
+            if (!c.checkCondition()) {
                 return false;
             }
         }

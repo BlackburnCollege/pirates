@@ -81,4 +81,9 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
             this.finishChallenge(ChallengeStatus.WIN);
         }
     }
+
+    @Override
+    public void onChallengeLoaded() {
+
+    }
 }

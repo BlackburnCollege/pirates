@@ -1,7 +1,9 @@
 package world;
 
 import gui.Music;
+
 import java.util.HashMap;
+
 
 /**
  *
@@ -26,7 +28,7 @@ public class World {
      */
     // HashMap that tracks events using an event's name as the key.
     private HashMap<String, Event> events = new HashMap<>();
-    private HashMap<String, Boolean> flags = new HashMap<>();
+    private HashMap<String, Integer> storyFlags = new HashMap<>();
 
     public World(String playerName) {
         this.player = new Player(playerName);
@@ -80,12 +82,7 @@ public class World {
                                         "\"Wassup dude.\" Really?"
                                 )
                         )
-                        .addCondition(new Conditional() {
-                            @Override
-                            public boolean getCondition() {
-                                return flags.getOrDefault("test", Boolean.FALSE);
-                            }
-                        })
+                        .addCondition(new Conditional(storyFlags, "test", true))
                 );
 
         this.events.get("tut_home_f_outside")
@@ -131,12 +128,7 @@ public class World {
                                 events.get("tut_home_f_opening_family"),
                                 "Its groundhogs day up in here"
                         )
-                        .addModifier(new Modifier() {
-                            @Override
-                            public void modify() {
-                                flags.put("test", Boolean.TRUE);
-                            }
-                        })
+                        .addConditional(new Conditional(storyFlags, "test", true))
                 );
         this.events.get("tut_home_ae_wolfcombat_loss")
                 .addChoice("next",
@@ -144,12 +136,7 @@ public class World {
                                 events.get("tut_home_f_opening_family"),
                                 "You feel a disturbance in the force..."
                         )
-                        .addModifier(new Modifier() {
-                            @Override
-                            public void modify() {
-                                flags.put("test", Boolean.TRUE);
-                            }
-                        })
+                        .addConditional(new Conditional(storyFlags, "test", true))
                 );
 
         this.currentEvent = events.get("tut_home_f_opening_family");
@@ -188,9 +175,9 @@ public class World {
     }
 
     /**
-     * @return the flags
+     * @return the storyFlags
      */
-    public HashMap<String, Boolean> getFlags() {
-        return flags;
+    public HashMap<String, Integer> getStoryFlags() {
+        return storyFlags;
     }
 }

@@ -89,6 +89,8 @@ public class GameController implements Initializable {
     private World world;
     private boolean inventoryOpen = false;
     private boolean inventoryMoving = false;
+    private HashMap<String, String> puzzleControllers = new HashMap<>();
+    private final AudioController musicController = AudioController.get();
 
     /**
      *
@@ -103,7 +105,7 @@ public class GameController implements Initializable {
     }
 
     // create audio controller 
-    private final AudioController musicController = AudioController.get();
+
 
     /**
      * old playMusic loop method
@@ -315,8 +317,6 @@ public class GameController implements Initializable {
         menuPanel.getChildren().add(exit);
     }
 
-    private HashMap<String, String> puzzleControllers = new HashMap<>();
-
     /**
      * @param action the Action the challenge belongs to
      */
@@ -345,6 +345,7 @@ public class GameController implements Initializable {
                 root = (Pane) loader.load();
                 controller = loader.getController();
                 controller.setChallengeInformation(action.getChallenge().getChallengeName());
+                controller.setPlayer(world.getPlayer());
             } catch (IOException ioe) {
                 ioe.printStackTrace();
             }
@@ -352,6 +353,7 @@ public class GameController implements Initializable {
 
         challengePane.getChildren().add(0, root);
         challengePane.setDisable(false);
+        challengePane.setStyle("-fx-background-color: #FFFFFFFF");
         final Pane challengeRoot = root;
 
         controller.setOnChallengeFinish(new ChallengeCallback() {
@@ -359,35 +361,12 @@ public class GameController implements Initializable {
             public void challengeCompleted(ChallengeStatus status) {
                 challengePane.getChildren().remove(challengeRoot);
                 challengePane.setDisable(true);
+                challengePane.setStyle("-fx-background-color: #FFFFFF00");
                 processGameEvent(action.getEvents()[status.ordinal()]);
             }
 
         });
         controller.setChallengeInformation(action.getChallenge().getChallengeName());
-
-        /*
-        code for loading FXML 
-        just an example
-        
-        try {
-            Pane root = (Pane) FXMLLoader.load(getClass().getResource("/combat/FXMLDocument.fxml"));
-            loaderPane.getChildren().add(0, root);
-            root.visibleProperty().addListener(new ChangeListener<Boolean>() {
-                @Override
-                public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                    if (newValue == false) {
-                        loaderPane.getChildren().remove(root);
-                        loaderPane.setDisable(true);
-                    }
-                }
-
-            });
-            //gamePane.visibleProperty().bind(root.visibleProperty().not());
-
-        } catch (IOException ex) {
-            Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         */
     }
 
     /**
@@ -402,11 +381,7 @@ public class GameController implements Initializable {
             addTextToDisplay(action.getText());
 
             Hyperlink next = makeHyperlink("next");
-            for (Modifier modifier : action.getModifiers()) {
-                if (modifier != null) {
-                    modifier.modify();
-                }
-            }
+            action.doConditionalModifiers();
             next.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
@@ -471,7 +446,8 @@ public class GameController implements Initializable {
     }
     
     private void buildPuzzleControllerMappings(){
-        this.puzzleControllers.put("fish", "/puzzle/PuzzleFishingFXML.fxml");
+        this.puzzleControllers.put("safecrack", "/puzzle/PuzzleSafeCrackGUI.fxml");
+        this.puzzleControllers.put("fish", "/puzzle/TestFishPuzzleGui.fxml");
     }
 
     @Override
