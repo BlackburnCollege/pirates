@@ -1,6 +1,7 @@
 package sql;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -24,15 +25,23 @@ public class SQLTest {
 
     public static Path loadSQL() throws IOException {
         Path path = Files.createTempDirectory("piratestmp", new FileAttribute[0]);
+        File tempDir = path.toFile();
+        FileFilter sqlFilter = new FileFilter() {
+            @Override
+            public boolean accept(File pathname) {
+                return pathname.toString().endsWith(".sql");
+            }
+        };
         Path schemaPath = new File(path.toFile(), "story_schema.sql").toPath();
-        Files.copy(SQLTest.class.getResourceAsStream("/sql/story_schema.sql"), schemaPath, 
+        Files.copy(SQLTest.class.getResourceAsStream("/sql/story_schema.sql"), schemaPath,
                 StandardCopyOption.REPLACE_EXISTING);
         Path storyPath = new File(path.toFile(), "loadSTORY.sql").toPath();
-        Files.copy(SQLTest.class.getResourceAsStream("/sql/loadSTORY.sql"), storyPath, 
+        Files.copy(SQLTest.class.getResourceAsStream("/sql/loadSTORY.sql"), storyPath,
                 StandardCopyOption.REPLACE_EXISTING);
+
         return path;
     }
-    
+
     public static void main(String[] args) throws Exception {
         Path tempDir = loadSQL();
         String[] argTest = new String[]{(new File(tempDir.toString(), "story_schema.sql")).getAbsolutePath()};
@@ -40,9 +49,9 @@ public class SQLTest {
         System.setProperty("ij.database", dbURLCS + ";create=true");
         ij.main(argTest);
         argTest = new String[]{(new File(tempDir.toString(), "loadSTORY.sql")).getAbsolutePath()};
-        
+
         ij.main(argTest);
-        
+
         System.out.println("Loading the Derby jdbc driver...");
         Class<?> clazz = Class.forName(CSdriver);
         clazz.getConstructor().newInstance();
@@ -50,7 +59,7 @@ public class SQLTest {
         System.out.println("Getting Derby database connection...");
         Connection connCS = DriverManager.getConnection(dbURLCS);
         System.out.println("Successfully got the Derby database connection...");
-        
+
         PreparedStatement ps = connCS.prepareStatement("SELECT TNAME FROM TEST");
         System.out.println("executing statement:");
         ps.execute();
@@ -58,7 +67,6 @@ public class SQLTest {
         while (set.next()) {
             System.out.println(set.getString(1));
         }
-        
 
         connCS.close();
         System.out.println("Closed connection");
