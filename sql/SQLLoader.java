@@ -31,8 +31,8 @@ import org.apache.derby.tools.ij;
 public class SQLLoader {
 
     public static final String databaseName = "piratestest";
-    public static final String databaseDriver = "org.apache.derby.jdbc.EmbeddedDriver";
-    public static final String databaseURL = "jdbc:derby:" + databaseName;
+    private static final String databaseDriver = "org.apache.derby.jdbc.EmbeddedDriver";
+    private static final String databaseURL = "jdbc:derby:" + databaseName;
     private static final String databaseCreationURL = databaseURL + ";create=true";
 
     /**
