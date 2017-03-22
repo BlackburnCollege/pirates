@@ -91,14 +91,16 @@ public class SQLLoader {
 
         File oldDatabase = new File(databaseName);
         if (oldDatabase.exists()) {
+            System.out.println("Deleting old database: " + oldDatabase.getAbsolutePath().toString());
             oldDatabase.delete();
         }
 
         System.setProperty("ij.driver", databaseDriver);
         System.setProperty("ij.database", databaseCreationURL);
         PrintStream console = System.out;
-        System.setOut(new PrintStream(new File("sqloutput")));
+        //System.setOut(new PrintStream(new File("sqloutput")));
         for (String path : extractSQLFiles()) {
+            System.out.println("running " + path);
             String[] argArray = new String[]{path};
             ij.main(argArray);
         }
