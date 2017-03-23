@@ -18,11 +18,13 @@ import world.Challenge;
 import javax.swing.*;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.scene.Scene;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
+import javafx.stage.Stage;
 import puzzle.PuzzleFishTest.Fish;
 
 /**
@@ -43,6 +45,11 @@ public class TestFishPuzzleController extends ChallengeController implements Ini
     private FishingTimer timer;
 
     private PuzzleFishTest fishPuzzle = new PuzzleFishTest();
+
+    @Override
+    public void setupListeners(Scene scene) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     // Timer for puzzle timeout
     // gotta catch 'em all before this goes off

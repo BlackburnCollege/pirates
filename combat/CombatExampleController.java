@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.*;
 import javafx.fxml.*;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -111,5 +112,10 @@ public class CombatExampleController extends ChallengeController
         }
         Enemy enemy = new Enemy(nameOfChallenger, 100);
         this.combat = new Combat(player, enemy);
+    }
+
+    @Override
+    public void setupListeners(Scene scene) {
+        
     }
 }

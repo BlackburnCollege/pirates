@@ -1,5 +1,7 @@
 package gui;
 
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import world.Challenge;
 import world.Player;
 
@@ -21,6 +23,8 @@ public abstract class ChallengeController {
     public ChallengeCallback getOnChallengeFinish() {
         return onChallengeFinish;
     }
+    
+    public abstract void setupListeners(Scene scene);
 
     /**
      * @param callable the callable to set

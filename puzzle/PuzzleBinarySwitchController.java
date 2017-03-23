@@ -7,6 +7,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,6 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
 
 /**
  *
@@ -55,6 +57,7 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
      */
     @FXML
     private void onKeyEvent(KeyEvent event) {
+        
     }
 
     /**
@@ -85,5 +88,10 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
     @Override
     public void onChallengeLoaded() {
 
+    }
+
+    @Override
+    public void setupListeners(Scene scene) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

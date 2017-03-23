@@ -74,6 +74,8 @@ public class World {
                                 "\"Hello Person,\" "
                                 + "I greet my wife. I am a fully operational "
                                 + "human being, and definitely not a robot.")
+                                .addEvent(events.get("tut_home_f_outside"))
+                        .setChallenge(new Challenge("puzzle", "safecrack"))
                 )
                 .addChoice(
                         new Choice("Wassup dude.",
