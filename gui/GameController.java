@@ -29,6 +29,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -355,7 +356,9 @@ public class GameController implements Initializable {
         challengePane.setDisable(false);
         challengePane.setStyle("-fx-background-color: #FFFFFFFF");
         final Pane challengeRoot = root;
+        final Scene sceneRef = this.mainPane.getScene();
 
+        final ChallengeController controller2 = controller;
         controller.setOnChallengeFinish(new ChallengeCallback() {
             @Override
             public void challengeCompleted(ChallengeStatus status) {
@@ -363,6 +366,7 @@ public class GameController implements Initializable {
                 challengePane.setDisable(true);
                 challengePane.setStyle("-fx-background-color: #FFFFFF00");
                 processGameEvent(action.getEvents()[status.ordinal()]);
+                controller2.teardownListeners(sceneRef);
             }
 
         });

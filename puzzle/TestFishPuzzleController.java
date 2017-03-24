@@ -51,6 +51,11 @@ public class TestFishPuzzleController extends ChallengeController implements Ini
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public void teardownListeners(Scene scene) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     // Timer for puzzle timeout
     // gotta catch 'em all before this goes off
     // I put this in the controller because the model has no sense of time

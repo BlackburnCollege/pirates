@@ -118,4 +118,9 @@ public class CombatExampleController extends ChallengeController
     public void setupListeners(Scene scene) {
         
     }
+
+    @Override
+    public void teardownListeners(Scene scene) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

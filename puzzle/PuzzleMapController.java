@@ -93,4 +93,9 @@ public class PuzzleMapController extends ChallengeController implements Initiali
     public void setupListeners(Scene scene) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void teardownListeners(Scene scene) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

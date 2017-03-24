@@ -133,14 +133,21 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
 
     }
 
-    @Override
-    public void setupListeners(Scene scene) {
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+    private EventHandler keyListener = new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
                 onKeyEvent(event);
             }
 
-        });
+        };
+    
+    @Override
+    public void setupListeners(Scene scene) {
+        scene.setOnKeyPressed(keyListener);
+    }
+
+    @Override
+    public void teardownListeners(Scene scene) {
+        scene.onKeyPressedProperty().set(null);
     }
 }

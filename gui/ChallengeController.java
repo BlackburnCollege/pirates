@@ -25,6 +25,8 @@ public abstract class ChallengeController {
     }
     
     public abstract void setupListeners(Scene scene);
+    
+    public abstract void teardownListeners(Scene scene);
 
     /**
      * @param callable the callable to set
