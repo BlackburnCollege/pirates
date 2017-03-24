@@ -11,7 +11,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -19,7 +18,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.stage.Stage;
 
 /**
  *
@@ -30,22 +28,19 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
     @FXML
     private Pane gamePane;
 
-    MediaPlayer mediaPlayer;
-
-    private PuzzleSafeCrack psc;
-
-    private final String bgLocation = "/resources/safedial.jpg";
-    private final String soundTurnLocation = "/resources/soundturn.mp3";
-    private final String soundDetectLocation = "/resources/sounddetect.mp3";
-    private final String soundOpenLocation = "/resources/soundopen.mp3";
-    private final String soundResetLocation = "/resources/soundreset.mp3";
+    @FXML
+    private ImageView dialBackground; // the outer safe dial ring
 
     @FXML
-    private ImageView dialBackground;
+    private ImageView dial; // the inner safe dial ring
+
     @FXML
-    private ImageView dial;
+    private Hyperlink leaveButton; // the exit button
+
     @FXML
-    private Hyperlink leaveButton;
+    private MediaPlayer mediaPlayer; // plays sounds
+
+    private PuzzleSafeCrack psc;  // the PuzzleObject
 
     /**
      * initialize method
@@ -53,24 +48,34 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.psc = new PuzzleSafeCrack(95, 15, 5);
-        //this.background.setImage(new Image(this.psc.getBackground()));
-        //this.sound = new Media(new File(this.psc.getSound()).toURI().toString());
-        //this.mediaPlayer = new MediaPlayer(this.sound);
+
         this.dialBackground.fitWidthProperty().bind(gamePane.prefWidthProperty());
         this.dialBackground.fitHeightProperty().bind(gamePane.prefHeightProperty());
-        this.dialBackground.setImage(new Image("/resources/puzzlesafedialOUTER.png"));
+        this.dialBackground.setImage(new Image(this.psc.getDialOuterLocation()));
+
         this.dial.fitWidthProperty().bind(gamePane.prefWidthProperty());
         this.dial.fitHeightProperty().bind(gamePane.prefHeightProperty());
-        this.dial.setImage(new Image("/resources/puzzlesafedialINNER.png"));
+        this.dial.setImage(new Image(this.psc.getDialInnerLocation()));
+
         this.gamePane.requestFocus();
-        this.leaveButton.setOnAction(new EventHandler<ActionEvent>(){
+
+        this.leaveButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 PuzzleSafeCrackController.this.finishChallenge(ChallengeStatus.LOSS);
             }
-            
         });
+    }
 
+    /**
+     * checkSolution method interacts with ChallengeController superclass
+     * through finishChallenge method
+     */
+    private void checkSolution() {
+        System.out.println(psc.getCurrentNum());
+        if (psc.getCompleted() == true) {
+            this.finishChallenge(ChallengeStatus.WIN);
+        }
     }
 
     /**
@@ -78,8 +83,8 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
      */
     @FXML
     private void onKeyEvent(KeyEvent event) {
-        //System.out.println("Key event triggered");
-        //System.out.println(event.getCode());
+        System.out.println("Key event triggered");
+        System.out.println(event.getCode());
         switch (event.getCode()) {
             case LEFT:
             case A:
@@ -96,9 +101,15 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
             default:
                 break;
         }
-        //this.sound = new Media(new File(this.psc.getSound()).toURI().toString());
+
+        // update the GUI - rotate the inner dial image
         this.dial.setRotate((psc.getCurrentNum() / 100.0) * -360.0);
-        playSound();
+
+        // play the appropriate sound (determined by the PuzzleObject)
+        this.mediaPlayer = new MediaPlayer(new Media(new File(this.psc.getSound()).toURI().toString()));
+        this.mediaPlayer.play();
+
+        // check solve status
         checkSolution();
     }
 
@@ -109,38 +120,19 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
     private void onMouseEvent(MouseEvent event) {
     }
 
-    /**
-     * playSound method handles MediaPlayer updates and sound plays
-     */
-    private void playSound() {
-        //this.mediaPlayer = new MediaPlayer(this.sound);
-        //this.mediaPlayer.play();
-    }
-
-    /**
-     * checkSolution method interacts with ChallengeController superclass
-     * through finishChallenge method
-     */
-    private void checkSolution() {
-        System.out.println(psc.getCurrentNum());
-        if (psc.getCompleted() == true) {
-            this.finishChallenge(ChallengeStatus.WIN);
+    private EventHandler keyListener = new EventHandler<KeyEvent>() {
+        @Override
+        public void handle(KeyEvent event) {
+            onKeyEvent(event);
         }
-    }
+
+    };
 
     @Override
     public void onChallengeLoaded() {
 
     }
 
-    private EventHandler keyListener = new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                onKeyEvent(event);
-            }
-
-        };
-    
     @Override
     public void setupListeners(Scene scene) {
         scene.setOnKeyPressed(keyListener);

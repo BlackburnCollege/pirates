@@ -2,21 +2,21 @@ package puzzle;
 
 import gui.ChallengeController;
 import gui.ChallengeStatus;
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.stage.Stage;
 
 /**
  *
@@ -28,18 +28,21 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
     private Pane gamePane;
 
     @FXML
-    private ImageView background;
+    private ImageView leverBackground;  // the background lever
 
     @FXML
-    private Media sound;
+    private ImageView lever;  // the lever
 
     @FXML
-    MediaPlayer mediaPlayer;
+    private Hyperlink leaveButton;  // the exit button
 
     @FXML
-    private TextField text;
+    MediaPlayer mediaPlayer;  // plays sounds
 
-    private PuzzleBinarySwitch pbs;
+    @FXML
+    private TextField hint;  // displays text hint
+
+    private PuzzleBinarySwitch pbs;  // the PuzzleObject
 
     /**
      * initialize method
@@ -47,32 +50,23 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.pbs = new PuzzleBinarySwitch(false, false, true, 1);
-        this.background.setImage(new Image(this.pbs.getBackground()));
-        this.sound = new Media(new File(this.pbs.getSound()).toURI().toString());
-        this.mediaPlayer = new MediaPlayer(this.sound);
-    }
 
-    /**
-     * onKeyEvent method handles key presses
-     */
-    @FXML
-    private void onKeyEvent(KeyEvent event) {
-        
-    }
+        this.leverBackground.fitWidthProperty().bind(gamePane.prefWidthProperty());
+        this.leverBackground.fitHeightProperty().bind(gamePane.prefHeightProperty());
+        this.leverBackground.setImage(new Image(this.pbs.getLeverBackgroundLocation()));
 
-    /**
-     * onMouseEvent method handles mouse clicks and movement
-     */
-    @FXML
-    private void onMouseEvent(MouseEvent event) {
-    }
+        this.lever.fitWidthProperty().bind(gamePane.prefWidthProperty());
+        this.lever.fitHeightProperty().bind(gamePane.prefHeightProperty());
+        this.lever.setImage(new Image(this.pbs.getLeverLocation()));
 
-    /**
-     * playSound method handles MediaPlayer updates and sound plays
-     */
-    private void playSound() {
-        this.mediaPlayer = new MediaPlayer(this.sound);
-        this.mediaPlayer.play();
+        this.gamePane.requestFocus();
+
+        this.leaveButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                PuzzleBinarySwitchController.this.finishChallenge(ChallengeStatus.LOSS);
+            }
+        });
     }
 
     /**
@@ -83,6 +77,21 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
         if (pbs.getCompleted() == true) {
             this.finishChallenge(ChallengeStatus.WIN);
         }
+    }
+
+    /**
+     * onKeyEvent method handles key presses
+     */
+    @FXML
+    private void onKeyEvent(KeyEvent event) {
+
+    }
+
+    /**
+     * onMouseEvent method handles mouse clicks and movement
+     */
+    @FXML
+    private void onMouseEvent(MouseEvent event) {
     }
 
     @Override

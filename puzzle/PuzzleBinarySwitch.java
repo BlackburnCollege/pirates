@@ -10,20 +10,19 @@ public class PuzzleBinarySwitch extends PuzzleModel {
      * private modifier restricts other programs, subclasses in this package,
      * and different packages from accessing these variables directly
      */
-    private final String bgLocation = "bg.jpg";
-    private final String soundPullLeverLocation = "soundpulllever.mp3";
     private boolean[] correctSwitchPositions;
     private boolean[] currentSwitchPositions;
     private int doorClue;
+
+    // PuzzleBinarySwitch resource locations
+    private final String leverBackgroundLocation = "/resources/puzzlebinaryswitchLEVERBG";
+    private final String leverLocation = "/resources/puzzlebinaryswitchLEVER";
+    private final String soundLeverPullLocation = "/resources/soundpulllever.mp3";
 
     /**
      * Constructor
      */
     public PuzzleBinarySwitch() {
-        this.setBackground(this.bgLocation);
-        this.setSound(this.soundPullLeverLocation);
-        this.setText("The number 1 is carved on the door.  What could it mean?");
-
         this.doorClue = 1; // store door clue
 
         this.correctSwitchPositions = new boolean[3];
@@ -35,6 +34,11 @@ public class PuzzleBinarySwitch extends PuzzleModel {
         this.currentSwitchPositions[0] = false; // for leftmost switch
         this.currentSwitchPositions[1] = false; // for middle switch
         this.currentSwitchPositions[2] = false; // for rightmost switch
+
+        // update model parameters for controller
+        this.setBackground(this.leverBackgroundLocation);
+        this.setSound(this.soundLeverPullLocation);
+        this.setText("The number " + this.doorClue + " is carved on the door.  What could it mean?");
     }
 
     /**
@@ -46,12 +50,7 @@ public class PuzzleBinarySwitch extends PuzzleModel {
      * @param dc
      */
     public PuzzleBinarySwitch(boolean ls, boolean ms, boolean rs, int dc) {
-        this.setBackground(this.bgLocation);
-        this.setSound(this.soundPullLeverLocation);
-
         this.doorClue = dc; // store door clue
-
-        this.setText("The number " + dc + " is carved on the door.  What could it mean?");
 
         this.correctSwitchPositions = new boolean[3];
         this.correctSwitchPositions[0] = ls; // store leftmost switch solution
@@ -62,13 +61,39 @@ public class PuzzleBinarySwitch extends PuzzleModel {
         this.currentSwitchPositions[0] = false; // for leftmost switch
         this.currentSwitchPositions[1] = false; // for middle switch
         this.currentSwitchPositions[2] = false; // for rightmost switch
+
+        // update model parameters for controller
+        this.setBackground(this.leverBackgroundLocation);
+        this.setSound(this.soundLeverPullLocation);
+        this.setText("The number " + this.doorClue + " is carved on the door.  What could it mean?");
     }
 
     /**
-     * @return currentSwitchPositions boolean array
+     * @return the currentSwitchPositions boolean array
      */
     public boolean[] getCurrentSwitchPositions() {
         return this.currentSwitchPositions;
+    }
+
+    /**
+     * @return the doorClue int
+     */
+    public int getDoorClue() {
+        return this.doorClue;
+    }
+
+    /**
+     * @return the String location of the inner dial
+     */
+    public String getLeverBackgroundLocation() {
+        return this.leverBackgroundLocation;
+    }
+
+    /**
+     * @return the String location of the outer dial
+     */
+    public String getLeverLocation() {
+        return this.leverLocation;
     }
 
     /**

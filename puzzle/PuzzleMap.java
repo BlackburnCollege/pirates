@@ -10,19 +10,17 @@ public class PuzzleMap extends PuzzleModel {
      * private modifier restricts other programs, subclasses in this package,
      * and different packages from accessing these variables directly
      */
-    private final String bgLocation = "bg.jpg";
-    private final String soundMapOpen = "soundmapopen.mp3";
     private String[] mapPieceLocationHints;
     private boolean[] mapPiecesHeld;
+
+    // PuzleMap resource locations
+    private final String bgLocation = "/resources/puzzlemapbg.jpg";
+    private final String soundMapOpen = "/resources/soundmapopen.mp3";
 
     /**
      * Constructor
      */
     public PuzzleMap() {
-        this.setBackground(this.bgLocation);
-        this.setSound(this.soundMapOpen);
-        this.setText("");
-
         this.mapPieceLocationHints = new String[6];
         this.mapPieceLocationHints[0] = ""; // for mapPiece1
         this.mapPieceLocationHints[1] = ""; // for mapPiece2
@@ -38,6 +36,11 @@ public class PuzzleMap extends PuzzleModel {
         this.mapPiecesHeld[3] = false; // store mapPiece4
         this.mapPiecesHeld[4] = false; // store mapPiece5
         this.mapPiecesHeld[5] = false; // store mapPiece6
+
+        // update model parameters for controller
+        this.setBackground(this.bgLocation);
+        this.setSound(this.soundMapOpen);
+        this.setText("");
     }
 
     /**
@@ -51,10 +54,6 @@ public class PuzzleMap extends PuzzleModel {
      * @param mpiece6
      */
     public PuzzleMap(boolean mpiece1, boolean mpiece2, boolean mpiece3, boolean mpiece4, boolean mpiece5, boolean mpiece6) {
-        this.setBackground(this.bgLocation);
-        this.setSound(this.soundMapOpen);
-        this.setText("");
-
         this.mapPieceLocationHints = new String[6];
         this.mapPieceLocationHints[0] = ""; // for mapPiece1
         this.mapPieceLocationHints[1] = ""; // for mapPiece2
@@ -70,6 +69,11 @@ public class PuzzleMap extends PuzzleModel {
         this.mapPiecesHeld[3] = mpiece4; // store mapPiece4
         this.mapPiecesHeld[4] = mpiece5; // store mapPiece5
         this.mapPiecesHeld[5] = mpiece6; // store mapPiece6
+
+        // update model parameters for controller
+        this.setBackground(this.bgLocation);
+        this.setSound(this.soundMapOpen);
+        this.setText("");
     }
 
     /**

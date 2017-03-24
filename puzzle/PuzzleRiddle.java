@@ -10,20 +10,22 @@ public class PuzzleRiddle extends PuzzleModel {
      * private modifier restricts other programs, subclasses in this package,
      * and different packages from accessing these variables directly
      */
-    private final String bgLocation = "bg.jpg";
     private String answer;
     private String riddle;
+
+    // PuzzleRiddle resource locations
+    private final String bgLocation = "bg.jpg";
 
     /**
      * Constructor
      */
     public PuzzleRiddle() {
-        this.setBackground(this.bgLocation);
-        this.setSound("");
-
         this.riddle = "What is at the end of a rainbow?";
         this.answer = "W";
 
+        // update model parameters for controller
+        this.setBackground(this.bgLocation);
+        this.setSound("");
         this.setText(this.riddle);
     }
 
@@ -34,12 +36,12 @@ public class PuzzleRiddle extends PuzzleModel {
      * @param a
      */
     public PuzzleRiddle(String r, String a) {
-        this.setBackground(this.bgLocation);
-        this.setSound("");
-
         this.riddle = r;
         this.answer = a;
 
+        // update model parameters for controller
+        this.setBackground(this.bgLocation);
+        this.setSound("");
         this.setText(this.riddle);
     }
 

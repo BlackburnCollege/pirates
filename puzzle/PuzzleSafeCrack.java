@@ -14,14 +14,18 @@ public class PuzzleSafeCrack extends PuzzleModel {
     private boolean[] enteredCorrect;
     private int[] safeCombination;
 
+    // PuzleSafeCrack resource locations
+    private final String dialOuterLocation = "/resources/puzzlesafedialOUTER.png";
+    private final String dialInnerLocation = "/resources/puzzlesafedialINNER.png";
+    private final String soundTurnLocation = "/resources/soundturn.mp3";
+    private final String soundDetectLocation = "/resources/sounddetect.mp3";
+    private final String soundOpenLocation = "/resources/soundopen.mp3";
+    private final String soundResetLocation = "/resources/soundreset.mp3";
+
     /**
      * Constructor
      */
     public PuzzleSafeCrack() {
-//        this.setBackground(this.bgLocation);
-//        this.setSound(this.soundTurnLocation);
-        this.setText("Turn the dial and listen for clues");
-
         this.currentNum = 0;
 
         this.enteredCorrect = new boolean[3];
@@ -33,6 +37,11 @@ public class PuzzleSafeCrack extends PuzzleModel {
         this.safeCombination[0] = 98; // store combo1
         this.safeCombination[1] = 7; // store combo2
         this.safeCombination[2] = 5; // store combo3
+
+        // update model parameters for controller
+        this.setBackground(this.dialOuterLocation);
+        this.setSound(this.soundTurnLocation);
+        this.setText("Turn the dial and listen for clues");
     }
 
     /**
@@ -43,10 +52,6 @@ public class PuzzleSafeCrack extends PuzzleModel {
      * @param num3
      */
     public PuzzleSafeCrack(int num1, int num2, int num3) {
-//        this.setBackground(this.bgLocation);
-//        this.setSound(this.soundTurnLocation);
-        this.setText("Turn the dial and listen for clues");
-
         this.currentNum = 0;
 
         this.enteredCorrect = new boolean[3];
@@ -58,6 +63,11 @@ public class PuzzleSafeCrack extends PuzzleModel {
         this.safeCombination[0] = num1; // store combo1
         this.safeCombination[1] = num2; // store combo2
         this.safeCombination[2] = num3; // store combo3
+
+        // update model parameters for controller
+        this.setBackground(this.dialOuterLocation);
+        this.setSound(this.soundTurnLocation);
+        this.setText("Turn the dial and listen for clues");
     }
 
     /**
@@ -65,6 +75,20 @@ public class PuzzleSafeCrack extends PuzzleModel {
      */
     public byte getCurrentNum() {
         return this.currentNum;
+    }
+
+    /**
+     * @return the String location of the inner dial
+     */
+    public String getDialInnerLocation() {
+        return this.dialInnerLocation;
+    }
+
+    /**
+     * @return the String location of the outer dial
+     */
+    public String getDialOuterLocation() {
+        return this.dialOuterLocation;
     }
 
     /**
@@ -83,29 +107,29 @@ public class PuzzleSafeCrack extends PuzzleModel {
      */
     private void onTurn() {
         if (!this.enteredCorrect[0] && this.currentNum != this.safeCombination[0]) {
-//            this.setSound(this.soundTurnLocation);
+            this.setSound(this.soundTurnLocation);
         } else if (!this.enteredCorrect[0] && this.currentNum == this.safeCombination[0]) {
             this.enteredCorrect[0] = true;
-//            this.setSound(this.soundDetectLocation);
+            this.setSound(this.soundDetectLocation);
         } else if (this.enteredCorrect[0] && this.currentNum == this.safeCombination[0] - 1) {
             this.enteredCorrect[0] = false;
-//            this.setSound(this.soundResetLocation);
+            this.setSound(this.soundResetLocation);
         } else if (!this.enteredCorrect[1] && this.currentNum != this.safeCombination[1]) {
-//            this.setSound(this.soundTurnLocation);
+            this.setSound(this.soundTurnLocation);
         } else if (!this.enteredCorrect[1] && this.currentNum == this.safeCombination[1]) {
             this.enteredCorrect[1] = true;
-//            this.setSound(this.soundDetectLocation);
+            this.setSound(this.soundDetectLocation);
         } else if (this.enteredCorrect[1] && this.currentNum == this.safeCombination[1] + 1) {
             this.enteredCorrect[1] = false;
-//            this.setSound(this.soundResetLocation);
+            this.setSound(this.soundResetLocation);
         } else if (!this.enteredCorrect[2] && this.currentNum != this.safeCombination[2]) {
-//            this.setSound(this.soundTurnLocation);
+            this.setSound(this.soundTurnLocation);
         } else if (!this.enteredCorrect[2] && this.currentNum == this.safeCombination[2]) {
             this.enteredCorrect[2] = true;
-//            this.setSound(this.soundOpenLocation);
+            this.setSound(this.soundOpenLocation);
             this.setCompleted(); // set puzzle status to solved
         } else {
-//            this.setSound(this.soundTurnLocation);
+            this.setSound(this.soundTurnLocation);
         }
     }
 
