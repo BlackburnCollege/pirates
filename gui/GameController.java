@@ -21,19 +21,24 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.animation.Animation;
+import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.animation.Transition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
@@ -105,34 +110,33 @@ public class GameController implements Initializable {
         return newText;
     }
 
-    // create audio controller 
+    private final Animation fadeOutAnimation = new Transition() {
 
+        {
+            setCycleDuration(Duration.millis(250));
+            setInterpolator(Interpolator.EASE_OUT);
+        }
 
-    /**
-     * old playMusic loop method
-     */
-    private void playMusic() {
-        Random random = new Random();
+        @Override
+        protected void interpolate(double frac) {
+            Color vColor = new Color(0, 0, 0, 1 - frac);
+            challengePane.setBackground(new Background(new BackgroundFill(vColor, CornerRadii.EMPTY, Insets.EMPTY)));
+        }
+    };
 
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                int songNumber = random.nextInt(musicController.getResources().size());
-                while (true) {
-                    musicController.playSongAndYield(musicController.getResources().get(songNumber));
-                    int lastPlayed = songNumber;
-                    songNumber = random.nextInt(musicController.getResources().size());
-                    int tries = 0;
-                    while (songNumber == lastPlayed && tries < 5) {
-                        songNumber = random.nextInt(musicController.getResources().size());
-                        tries++;
-                    }
-                }
-            }
-        });
-        thread.setDaemon(true);
-        thread.start();
-    }
+    private final Animation fadeInAnimation = new Transition() {
+
+        {
+            setCycleDuration(Duration.millis(250));
+            setInterpolator(Interpolator.EASE_IN);
+        }
+
+        @Override
+        protected void interpolate(double frac) {
+            Color vColor = new Color(0, 0, 0, frac);
+            challengePane.setBackground(new Background(new BackgroundFill(vColor, CornerRadii.EMPTY, Insets.EMPTY)));
+        }
+    };
 
     /**
      * setup backgrounds for the different panels
@@ -250,6 +254,8 @@ public class GameController implements Initializable {
         hyperLink.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                // PLAY CLICK SOUND
+                musicController.playSound(Sound.CLICK);
                 processGameAction(choice.getAction());
             }
         });
@@ -352,27 +358,39 @@ public class GameController implements Initializable {
             }
         }
 
-        challengePane.getChildren().add(0, root);
         challengePane.setDisable(false);
-        challengePane.setStyle("-fx-background-color: #FFFFFFFF");
+        //challengePane.setStyle("-fx-background-color: #000000FF");
+        fadeInAnimation.play();
+
+        
         final Pane challengeRoot = root;
         final Scene sceneRef = this.mainPane.getScene();
 
-        final ChallengeController controller2 = controller;
-        controller.setOnChallengeFinish(new ChallengeCallback() {
+        final ChallengeController finalController = controller;
+        final Pane finalRoot = root;
+        // wait for animation to finish before loading new screen in
+        fadeInAnimation.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                challengePane.getChildren().add(0, finalRoot);
+            }
+        });
+        finalController.setOnChallengeFinish(new ChallengeCallback() {
             @Override
             public void challengeCompleted(ChallengeStatus status) {
-                challengePane.getChildren().remove(challengeRoot);
+                challengePane.getChildren().clear();
                 challengePane.setDisable(true);
-                challengePane.setStyle("-fx-background-color: #FFFFFF00");
+                //challengePane.setStyle("-fx-background-color: #00000000");
+                fadeOutAnimation.play();
                 processGameEvent(action.getEvents()[status.ordinal()]);
-                controller2.teardownListeners(sceneRef);
+                finalController.teardownListeners(sceneRef);
             }
 
         });
-        controller.setChallengeInformation(action.getChallenge().getChallengeName());
-        controller.onChallengeLoaded();
-        controller.setupListeners(this.mainPane.getScene());
+        finalController.setChallengeInformation(action.getChallenge().getChallengeName());
+        finalController.onChallengeLoaded();
+        finalController.setupListeners(GameController.this.mainPane.getScene());
+
     }
 
     /**
@@ -392,11 +410,10 @@ public class GameController implements Initializable {
                 @Override
                 public void handle(ActionEvent event) {
                     if (action.hasChallenge()) {
-                        // TODO: CHALLENGE LOADING
+                        musicController.playSound(Sound.SWORD_SWISH);
                         loadChallenge(action);
-
-                        processGameEvent(action.getEvents()[action.getDefaultEventIndex()]);
                     } else {
+                        musicController.playSound(Sound.CLICK);
                         processGameEvent(action.getEvents()[action.getDefaultEventIndex()]);
                     }
                 }
@@ -450,8 +467,8 @@ public class GameController implements Initializable {
         }
 
     }
-    
-    private void buildPuzzleControllerMappings(){
+
+    private void buildPuzzleControllerMappings() {
         this.puzzleControllers.put("safecrack", "/puzzle/PuzzleSafeCrackGUI.fxml");
         this.puzzleControllers.put("fish", "/puzzle/TestFishPuzzleGui.fxml");
     }

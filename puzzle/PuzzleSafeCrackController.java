@@ -1,5 +1,6 @@
 package puzzle;
 
+import gui.AudioController;
 import gui.ChallengeController;
 import gui.ChallengeStatus;
 import java.io.File;
@@ -40,22 +41,22 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
     @FXML
     private MediaPlayer mediaPlayer; // plays sounds
 
-    private PuzzleSafeCrack psc;  // the PuzzleObject
+    private PuzzleSafeCrack puzzle;  // the PuzzleObject
 
     /**
      * initialize method
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.psc = new PuzzleSafeCrack(95, 15, 5);
+        this.puzzle = new PuzzleSafeCrack(95, 15, 5);
 
         this.dialBackground.fitWidthProperty().bind(gamePane.prefWidthProperty());
         this.dialBackground.fitHeightProperty().bind(gamePane.prefHeightProperty());
-        this.dialBackground.setImage(new Image(this.psc.getDialOuterLocation()));
+        this.dialBackground.setImage(new Image(this.puzzle.getDialOuterLocation()));
 
         this.dial.fitWidthProperty().bind(gamePane.prefWidthProperty());
         this.dial.fitHeightProperty().bind(gamePane.prefHeightProperty());
-        this.dial.setImage(new Image(this.psc.getDialInnerLocation()));
+        this.dial.setImage(new Image(this.puzzle.getDialInnerLocation()));
 
         this.gamePane.requestFocus();
 
@@ -72,8 +73,8 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
      * through finishChallenge method
      */
     private void checkSolution() {
-        System.out.println(psc.getCurrentNum());
-        if (psc.getCompleted() == true) {
+        System.out.println(puzzle.getCurrentNum());
+        if (puzzle.getCompleted() == true) {
             this.finishChallenge(ChallengeStatus.WIN);
         }
     }
@@ -90,25 +91,23 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
             case A:
             case KP_LEFT:
                 System.out.println("Dial is turned counter-clockwise.");
-                psc.turnCounterClockwise();
+                puzzle.turnCounterClockwise();
                 break;
             case RIGHT:
             case D:
             case KP_RIGHT:
                 System.out.println("Dial is turned clockwise.");
-                psc.turnClockwise();
+                puzzle.turnClockwise();
                 break;
             default:
                 break;
         }
 
         // update the GUI - rotate the inner dial image
-        this.dial.setRotate((psc.getCurrentNum() / 100.0) * -360.0);
+        this.dial.setRotate((puzzle.getCurrentNum() / 100.0) * -360.0);
 
         // play the appropriate sound (determined by the PuzzleObject)
-        this.mediaPlayer = new MediaPlayer(new Media(new File(this.psc.getSound()).toURI().toString()));
-        this.mediaPlayer.play();
-
+        AudioController.get().playSound(this.puzzle.getSound());
         // check solve status
         checkSolution();
     }

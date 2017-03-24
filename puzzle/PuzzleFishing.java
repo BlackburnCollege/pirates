@@ -1,5 +1,6 @@
 package puzzle;
 
+import gui.Sound;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -11,7 +12,7 @@ public class PuzzleFishing extends PuzzleModel {
     private final String smallFishPic = "";
     private final String mediumFishPic = "";
     private final String largeFishPic = "";
-    private final String newFishSound = "";
+    private final Sound newFishSound = null;
     private int fishCount = 0;
     private final Button smallFishButton = null;
     private final Button mediumFishButton = null;

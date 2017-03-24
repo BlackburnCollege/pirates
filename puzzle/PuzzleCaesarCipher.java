@@ -7,7 +7,7 @@ public class PuzzleCaesarCipher extends PuzzleModel {
     
     public PuzzleCaesarCipher(){
         this.setBackground("");
-        this.setSound("");
+        this.setSound(null);
         this.setText("I examine the box more closely and I notice a jumble "
                 + "of letters carved into the top of the box that reads ... " 
                 + this.originalMessage + ". A closer examination reveals"
