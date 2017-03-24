@@ -17,8 +17,8 @@ public class PuzzleSafeCrack extends PuzzleModel {
     private int[] safeCombination;
 
     // PuzleSafeCrack resource locations
-    private final String dialOuterLocation = "/resources/puzzlesafedialOUTER.png";
-    private final String dialInnerLocation = "/resources/puzzlesafedialINNER.png";
+    private final String dialOuterLocation = "puzzlesafedialOUTER";
+    private final String dialInnerLocation = "puzzlesafedialINNER";
     
     //sounds
     private final Sound soundTurnLocation = Sound.SAFEDIALTURN;

@@ -2,6 +2,7 @@ package puzzle;
 
 import gui.ChallengeController;
 import gui.ChallengeStatus;
+import gui.ImageController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -43,6 +44,8 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
     private TextField hint;  // displays text hint
 
     private PuzzleBinarySwitch pbs;  // the PuzzleObject
+    
+    private ImageController images = ImageController.get();
 
     /**
      * initialize method
@@ -53,11 +56,11 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
 
         this.leverBackground.fitWidthProperty().bind(gamePane.prefWidthProperty());
         this.leverBackground.fitHeightProperty().bind(gamePane.prefHeightProperty());
-        this.leverBackground.setImage(new Image(this.pbs.getLeverBackgroundLocation()));
+        this.leverBackground.setImage(images.getImage(this.pbs.getLeverBackgroundLocation()));
 
         this.lever.fitWidthProperty().bind(gamePane.prefWidthProperty());
         this.lever.fitHeightProperty().bind(gamePane.prefHeightProperty());
-        this.lever.setImage(new Image(this.pbs.getLeverLocation()));
+        this.lever.setImage(images.getImage((this.pbs.getLeverLocation())));
 
         this.gamePane.requestFocus();
 

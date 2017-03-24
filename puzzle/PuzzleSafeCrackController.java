@@ -3,6 +3,7 @@ package puzzle;
 import gui.AudioController;
 import gui.ChallengeController;
 import gui.ChallengeStatus;
+import gui.ImageController;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -42,6 +43,8 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
     private MediaPlayer mediaPlayer; // plays sounds
 
     private PuzzleSafeCrack puzzle;  // the PuzzleObject
+    
+    private final ImageController images = ImageController.get();
 
     /**
      * initialize method
@@ -52,11 +55,11 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
 
         this.dialBackground.fitWidthProperty().bind(gamePane.prefWidthProperty());
         this.dialBackground.fitHeightProperty().bind(gamePane.prefHeightProperty());
-        this.dialBackground.setImage(new Image(this.puzzle.getDialOuterLocation()));
+        this.dialBackground.setImage(images.getImage(this.puzzle.getDialOuterLocation()));
 
         this.dial.fitWidthProperty().bind(gamePane.prefWidthProperty());
         this.dial.fitHeightProperty().bind(gamePane.prefHeightProperty());
-        this.dial.setImage(new Image(this.puzzle.getDialInnerLocation()));
+        this.dial.setImage(images.getImage(this.puzzle.getDialInnerLocation()));
 
         this.gamePane.requestFocus();
 
@@ -84,19 +87,15 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
      */
     @FXML
     private void onKeyEvent(KeyEvent event) {
-        System.out.println("Key event triggered");
-        System.out.println(event.getCode());
         switch (event.getCode()) {
             case LEFT:
             case A:
             case KP_LEFT:
-                System.out.println("Dial is turned counter-clockwise.");
                 puzzle.turnCounterClockwise();
                 break;
             case RIGHT:
             case D:
             case KP_RIGHT:
-                System.out.println("Dial is turned clockwise.");
                 puzzle.turnClockwise();
                 break;
             default:

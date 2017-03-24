@@ -2,6 +2,7 @@ package combat;
 
 import gui.ChallengeController;
 import gui.ChallengeStatus;
+import gui.ImageController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.*;
@@ -38,6 +39,8 @@ public class CombatExampleController extends ChallengeController
     private ImageView enemyImage;
     @FXML
     private ImageView playerImage;
+    
+    private ImageController images = ImageController.get();
 
     @FXML
     private void attack(ActionEvent event) {
@@ -105,11 +108,7 @@ public class CombatExampleController extends ChallengeController
         }
          */
 
-        try {
-            enemyImage.setImage(new Image("resources/" + nameOfChallenger + ".jpg"));
-        } catch (Exception e) {
-            System.err.println("image not found for " + nameOfChallenger);
-        }
+        enemyImage.setImage(images.getImage(nameOfChallenger));
         Enemy enemy = new Enemy(nameOfChallenger, 100);
         this.combat = new Combat(player, enemy);
     }
@@ -121,6 +120,6 @@ public class CombatExampleController extends ChallengeController
 
     @Override
     public void teardownListeners(Scene scene) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 }

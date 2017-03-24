@@ -16,7 +16,7 @@ public class PuzzleMap extends PuzzleModel {
     private boolean[] mapPiecesHeld;
 
     // PuzleMap resource locations
-    private final String bgLocation = "/resources/puzzlemapbg.jpg";
+    private final String bgLocation = "puzzlemapbg";
     private final Sound soundMapOpen = null;
 
     /**

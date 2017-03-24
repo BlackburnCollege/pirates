@@ -3,6 +3,7 @@ package puzzle;
 import com.sun.media.jfxmediaimpl.platform.Platform;
 import gui.ChallengeController;
 import gui.ChallengeStatus;
+import gui.ImageController;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -34,8 +35,9 @@ public class TestFishPuzzleController extends ChallengeController implements Ini
 
     public static final int TIME_TO_FISH = 10;
 
-    private Image fishImage = new Image("resources/fish.png");
-
+    private final ImageController images = ImageController.get();
+    private Image fishImage = images.getImage("fish");
+    
     @FXML
     public Pane gamePane;
 
@@ -45,15 +47,15 @@ public class TestFishPuzzleController extends ChallengeController implements Ini
     private FishingTimer timer;
 
     private PuzzleFishTest fishPuzzle = new PuzzleFishTest();
-
+    
     @Override
     public void setupListeners(Scene scene) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void teardownListeners(Scene scene) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     // Timer for puzzle timeout
@@ -154,7 +156,7 @@ public class TestFishPuzzleController extends ChallengeController implements Ini
         //there's probably a much easier way to do this
         gamePane.setBackground(new Background(
                 new BackgroundImage(
-                        new Image("resources/fishing_background.png"), 
+                        images.getImage("fishing_background"), 
                         BackgroundRepeat.REPEAT, 
                         BackgroundRepeat.REPEAT, 
                         BackgroundPosition.CENTER, 

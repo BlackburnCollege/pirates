@@ -14,7 +14,7 @@ public class PuzzleRiddle extends PuzzleModel {
     private String riddle;
 
     // PuzzleRiddle resource locations
-    private final String bgLocation = "bg.jpg";
+    private final String bgLocation = "riddlebg";
 
     /**
      * Constructor

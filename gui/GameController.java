@@ -97,6 +97,7 @@ public class GameController implements Initializable {
     private boolean inventoryMoving = false;
     private HashMap<String, String> puzzleControllers = new HashMap<>();
     private final AudioController musicController = AudioController.get();
+    private final ImageController images = ImageController.get();
 
     /**
      *
@@ -149,7 +150,7 @@ public class GameController implements Initializable {
         gameContainer.setBackground(
                 new Background(
                         new BackgroundImage(
-                                new Image(IMAGE_LOCATION + "background.jpg"),
+                                images.getImage("game_background"),
                                 BackgroundRepeat.REPEAT,
                                 BackgroundRepeat.REPEAT,
                                 BackgroundPosition.CENTER,
@@ -159,7 +160,7 @@ public class GameController implements Initializable {
         );
         gamePanel.setBackground(new Background(
                 new BackgroundImage(
-                        new Image(IMAGE_LOCATION + "menu-text-background.jpg"),
+                        images.getImage("menu-text-background"),
                         BackgroundRepeat.REPEAT,
                         BackgroundRepeat.REPEAT,
                         BackgroundPosition.CENTER,
@@ -168,7 +169,7 @@ public class GameController implements Initializable {
         ));
         menuPanel.setBackground(new Background(
                 new BackgroundImage(
-                        new Image(IMAGE_LOCATION + "menu-text-background.jpg"),
+                        images.getImage("menu-text-background"),
                         BackgroundRepeat.REPEAT,
                         BackgroundRepeat.REPEAT,
                         BackgroundPosition.CENTER,
@@ -448,9 +449,9 @@ public class GameController implements Initializable {
         addTextToDisplay(event.getText());
         Image picture;
         try {
-            picture = new Image(IMAGE_LOCATION + event.getPicture());
+            picture = images.getImage(event.getPicture());
         } catch (Exception e) {
-            picture = new Image(IMAGE_LOCATION + "gameimage.png");
+            picture = images.getImage("player_male_front_0");
         }
         gameImage.setImage(picture);
 

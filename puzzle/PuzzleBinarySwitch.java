@@ -17,8 +17,8 @@ public class PuzzleBinarySwitch extends PuzzleModel {
     private int doorClue;
 
     // PuzzleBinarySwitch resource locations
-    private final String leverBackgroundLocation = "/resources/puzzlebinaryswitchLEVERBG";
-    private final String leverLocation = "/resources/puzzlebinaryswitchLEVER";
+    private final String leverBackgroundLocation = "puzzlebinaryswitchLEVERBG";
+    private final String leverLocation = "puzzlebinaryswitchLEVER";
     private final String soundLeverPullLocation = "/resources/soundpulllever.mp3";
 
     /**

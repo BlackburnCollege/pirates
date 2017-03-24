@@ -2,6 +2,7 @@ package puzzle;
 
 import gui.ChallengeController;
 import gui.ChallengeStatus;
+import gui.ImageController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -43,6 +44,8 @@ public class PuzzleRiddleController extends ChallengeController implements Initi
     private TextField text;
 
     private PuzzleRiddle pr;
+    
+    private final ImageController images = ImageController.get();
 
     /**
      * initialize method

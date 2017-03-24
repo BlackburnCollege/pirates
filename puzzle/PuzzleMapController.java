@@ -2,6 +2,7 @@ package puzzle;
 
 import gui.ChallengeController;
 import gui.ChallengeStatus;
+import gui.ImageController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -42,14 +43,15 @@ public class PuzzleMapController extends ChallengeController implements Initiali
     @FXML
     private TextField text;
 
-    private PuzzleMap pm;
+    private PuzzleMap puzzle;
 
+    private final ImageController images = ImageController.get();
     /**
      * initialize method
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.pm = new PuzzleMap(true, true, true, true, true, true);
+        this.puzzle = new PuzzleMap(true, true, true, true, true, true);
 
         this.gamePane.requestFocus();
 
@@ -67,7 +69,7 @@ public class PuzzleMapController extends ChallengeController implements Initiali
      * through finishChallenge method
      */
     private void checkSolution() {
-        if (pm.getCompleted() == true) {
+        if (puzzle.getCompleted() == true) {
             this.finishChallenge(ChallengeStatus.WIN);
         }
     }
