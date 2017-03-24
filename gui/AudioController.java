@@ -31,9 +31,13 @@ import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 /**
  *
@@ -47,6 +51,7 @@ public class AudioController {
     private boolean autoPlaySongs = true;
     private float volume = 1f;
     private final float LOWEST_VOLUME = 0.2f;
+    private Timeline volumeTimeline = null;
 
     private final HashMap<String, Media> names = new HashMap<>();
     private final ArrayList<Media> resources = new ArrayList<>();
@@ -75,7 +80,7 @@ public class AudioController {
             for (Iterator<Path> it = walk.iterator(); it.hasNext();) {
                 Path path = it.next();
                 String name = path.getFileName().toString();
-                if (name.endsWith(".mp3") && name.startsWith("mus_")) {
+                if (name.endsWith(".mp3")) {
                     System.out.println("audio controller: loading " + AUDIO_LOCATION + name);
                     Media media = new Media(GuiLoader.class.getClassLoader().getResource(AUDIO_LOCATION + name).toString());
                     getResources().add(media);
@@ -282,10 +287,48 @@ public class AudioController {
      * @param volume the volume to set
      */
     public void setVolume(float volume) {
+
         this.volume = volume;
         if (player != null) {
-            player.setVolume(volume);
+            if (volumeTimeline != null) {
+                volumeTimeline.stop();
+            }
+            volumeTimeline = new Timeline();
+            volumeTimeline.setCycleCount(1);
+            volumeTimeline.setAutoReverse(false);
+            final KeyValue newValue = new KeyValue(player.volumeProperty(), volume);
+            final KeyFrame newFrame = new KeyFrame(Duration.millis(500), newValue);
+            volumeTimeline.getKeyFrames().add(newFrame);
         }
+    }
+
+    public void playSound(Sound sound) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Media soundMedia = names.get(sound.getFileName());
+                playSound(soundMedia);
+            }
+        });
+    }
+
+    public void playSound(Media sound) {
+        MediaPlayer player = new MediaPlayer(sound);
+        float vol = getVolume();
+        //setVolume(Math.min(vol, LOWEST_VOLUME));
+        Runnable dispose = new Runnable() {
+            @Override
+            public void run() {
+                player.dispose();
+                if (getVolume() == LOWEST_VOLUME) {
+                    //setVolume(vol);
+                }
+            }
+        };
+        player.setOnEndOfMedia(dispose);
+        player.setOnStopped(dispose);
+        player.setOnError(dispose);
+        player.play();
     }
 
     public void playSound(String name) {
@@ -304,23 +347,7 @@ public class AudioController {
                         return;
                     }
                 }
-                MediaPlayer player = new MediaPlayer(media);
-                float vol = getVolume();
-                setVolume(Math.min(vol, LOWEST_VOLUME));
-                Runnable dispose = new Runnable() {
-                    @Override
-                    public void run() {
-                        player.dispose();
-                        if (getVolume() == LOWEST_VOLUME) {
-                            setVolume(vol);
-                        }
-                    }
-                };
-                player.setOnEndOfMedia(dispose);
-                player.setOnStopped(dispose);
-                player.setOnError(dispose);
-                player.play();
-                System.out.println("audio controller: Playing " + media + " " + media.getSource());
+                playSound(media);
             }
         });
     }

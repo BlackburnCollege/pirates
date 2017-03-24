@@ -1,5 +1,7 @@
 package puzzle;
 
+import gui.Sound;
+
 /**
  *
  * @author Drew Hans
@@ -37,7 +39,10 @@ public class PuzzleBinarySwitch extends PuzzleModel {
 
         // update model parameters for controller
         this.setBackground(this.leverBackgroundLocation);
-        this.setSound(this.soundLeverPullLocation);
+        
+        //TODO: SET SOUND TO LEVERPULL
+        //this.setSound(this.soundLeverPullLocation);
+        this.setSound(null);
         this.setText("The number " + this.doorClue + " is carved on the door.  What could it mean?");
     }
 
@@ -64,7 +69,8 @@ public class PuzzleBinarySwitch extends PuzzleModel {
 
         // update model parameters for controller
         this.setBackground(this.leverBackgroundLocation);
-        this.setSound(this.soundLeverPullLocation);
+        //TODO: SET SOUND TO LEVER PULL 
+        //this.setSound(this.soundLeverPullLocation);
         this.setText("The number " + this.doorClue + " is carved on the door.  What could it mean?");
     }
 

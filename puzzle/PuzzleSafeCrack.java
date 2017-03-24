@@ -1,5 +1,7 @@
 package puzzle;
 
+import gui.Sound;
+
 /**
  *
  * @author Drew Hans & Lucas Burdell
@@ -17,10 +19,12 @@ public class PuzzleSafeCrack extends PuzzleModel {
     // PuzleSafeCrack resource locations
     private final String dialOuterLocation = "/resources/puzzlesafedialOUTER.png";
     private final String dialInnerLocation = "/resources/puzzlesafedialINNER.png";
-    private final String soundTurnLocation = "/resources/soundturn.mp3";
-    private final String soundDetectLocation = "/resources/sounddetect.mp3";
-    private final String soundOpenLocation = "/resources/soundopen.mp3";
-    private final String soundResetLocation = "/resources/soundreset.mp3";
+    
+    //sounds
+    private final Sound soundTurnLocation = Sound.SAFEDIALTURN;
+    private final Sound soundDetectLocation = Sound.SAFEDETECTCOMBO;
+    private final Sound soundOpenLocation = Sound.SAFEUNLOCK;
+    private final Sound soundResetLocation = Sound.SAFELOCKRESET;
 
     /**
      * Constructor

@@ -1,5 +1,7 @@
 package puzzle;
 
+import gui.Sound;
+
 /**
  *
  * @author Drew Hans
@@ -11,7 +13,7 @@ public abstract class PuzzleModel {
      * and different packages from accessing these variables directly
      */
     private String background;
-    private String sound;
+    private Sound sound;
     private String text;
     private boolean completed;
 
@@ -20,7 +22,7 @@ public abstract class PuzzleModel {
      */
     public PuzzleModel() {
         this.background = "";
-        this.sound = "";
+        this.sound = null;
         this.text = "";
         this.completed = false;
     }
@@ -42,7 +44,7 @@ public abstract class PuzzleModel {
     /**
      * @return this.sound
      */
-    public String getSound() {
+    public Sound getSound() {
         return this.sound;
     }
 
@@ -79,7 +81,7 @@ public abstract class PuzzleModel {
      *
      * final prevents the method from being overridden in subclasses
      */
-    final void setSound(String newS) {
+    final void setSound(Sound newS) {
         this.sound = newS;
     }
 

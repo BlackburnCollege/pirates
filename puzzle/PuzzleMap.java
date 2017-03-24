@@ -1,5 +1,7 @@
 package puzzle;
 
+import gui.Sound;
+
 /**
  *
  * @author Drew.Hans
@@ -15,7 +17,7 @@ public class PuzzleMap extends PuzzleModel {
 
     // PuzleMap resource locations
     private final String bgLocation = "/resources/puzzlemapbg.jpg";
-    private final String soundMapOpen = "/resources/soundmapopen.mp3";
+    private final Sound soundMapOpen = null;
 
     /**
      * Constructor

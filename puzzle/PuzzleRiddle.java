@@ -25,7 +25,7 @@ public class PuzzleRiddle extends PuzzleModel {
 
         // update model parameters for controller
         this.setBackground(this.bgLocation);
-        this.setSound("");
+        this.setSound(null);
         this.setText(this.riddle);
     }
 
@@ -41,7 +41,7 @@ public class PuzzleRiddle extends PuzzleModel {
 
         // update model parameters for controller
         this.setBackground(this.bgLocation);
-        this.setSound("");
+        this.setSound(null);
         this.setText(this.riddle);
     }
 
