@@ -2,7 +2,7 @@ package puzzle;
 
 /**
  *
- * @author Drew Hans
+ * @author Drew Hans & Lucas Burdell
  */
 public class PuzzleSafeCrack extends PuzzleModel {
 
