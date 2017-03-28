@@ -11,22 +11,33 @@ import java.util.Random;
  *
  * @author arthur.levan
  */
-public class Enemy extends Player {
-
-    private boolean meleeProf = false;
-    private boolean gunProf = false;
-    private boolean insultProf = false;
-    String move = "";
-    private String name;
-    private int damage;
+public class Enemy extends Entity {
 
     public Enemy(String name, int maxHealth) {
         super(name, maxHealth);
-        this.name = name;
     }
-    @Override
-    public String getMove(int damage) {
-        move = name + " attacked for " + damage;
-        return move;
+    
+    public String getMove(Entity entity) {
+        Random randnum = new Random();
+        String action = "";
+        Action choice = null;
+        Move move = Move.values()[randnum.nextInt(3)];
+        
+        switch(move){
+            case ATTACK:
+                choice = new Melee();
+                action = " attacked ";
+                break;
+            case SHOOT:
+                choice = new Ranged();
+                action = " shot ";
+                break;
+            case INSULT:
+                choice = new Verbal();
+                action = " insulted ";
+                break;
+        }
+        choice.affect(entity);
+        return this.getName() + action + entity.getName();
     }
 }

@@ -96,10 +96,9 @@ public class CombatExampleController extends ChallengeController
     @Override
     public void onChallengeLoaded() {
         String nameOfChallenger = this.getChallengeInformation();
-
         
 
-        Player player = new Player("PLAYERNAME", 100);
+        CombatPlayer player = new CombatPlayer("PLAYERNAME", 100);
         //TODO: LOAD ENEMY DATA FROM SOMEWHERE
         // pseudo example of what that might look like: 
         /* if nameOfChallenger.equals("wolf") {
@@ -109,6 +108,7 @@ public class CombatExampleController extends ChallengeController
          */
 
         enemyImage.setImage(images.getImage(nameOfChallenger));
+        
         Enemy enemy = new Enemy(nameOfChallenger, 100);
         this.combat = new Combat(player, enemy);
     }
