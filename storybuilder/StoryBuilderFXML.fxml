@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.media.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="storybuilder.StoryBuilderFXMLController">
+   <children>
+      <ScrollPane fx:id="scrollPane" focusTraversable="false" hbarPolicy="ALWAYS" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pannable="true" prefHeight="550.0" prefViewportHeight="800.0" prefViewportWidth="550.0" prefWidth="800.0" style="-fx-focus-color: transparent;" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+         <content>
+            <Pane fx:id="canvasPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-focus-color: transparent;">
+               <children>
+                  <Pane fx:id="actionTemplate" visible="false">
+                     <children>
+                        <Ellipse id="shape" centerX="100.0" centerY="100.0" fill="WHITE" radiusX="100.0" radiusY="100.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Label id="label" alignment="CENTER" contentDisplay="CENTER" prefHeight="200.0" prefWidth="200.0" text="Label" textAlignment="CENTER">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="eventTemplate" visible="false">
+                     <children>
+                        <Rectangle id="shape" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+                        <Label id="label" alignment="CENTER" contentDisplay="CENTER" prefHeight="200.0" prefWidth="200.0" text="Label" textAlignment="CENTER">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="choiceTemplate" layoutX="100.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" visible="false">
+                     <children>
+                        <Polygon id="shape" fill="WHITE" stroke="BLACK" strokeType="INSIDE">
+                          <points>
+                            <Double fx:value="-50.0" />
+                            <Double fx:value="40.0" />
+                            <Double fx:value="50.0" />
+                            <Double fx:value="40.0" />
+                            <Double fx:value="0.0" />
+                            <Double fx:value="-60.0" />
+                          </points>
+                        </Polygon>
+                        <Label id="label" alignment="CENTER" contentDisplay="CENTER" prefHeight="200.0" prefWidth="200.0" text="Label" textAlignment="CENTER">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children></Pane>
+         </content>
+      </ScrollPane>
+      <ToolBar fx:id="toolbar" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="800.0">
+         <items>
+            <Button fx:id="eventButton" mnemonicParsing="false" text="EVENT">
+               <font>
+                  <Font name="Arial" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="actionButton" mnemonicParsing="false" text="ACTION">
+               <font>
+                  <Font name="Arial" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="choiceButton" mnemonicParsing="false" text="CHOICE">
+               <font>
+                  <Font name="Arial" size="18.0" />
+               </font>
+            </Button>
+         </items>
+      </ToolBar>
+   </children>
+</AnchorPane>

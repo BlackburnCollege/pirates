@@ -11,13 +11,14 @@ import java.util.HashMap;
  *
  * @author timothy.francis
  */
-public class Conditional {
+public class Conditional extends ACEObject {
 
     private String flagName;
     private int value;
     private HashMap<String, Integer> flags;
 
     public Conditional(HashMap<String, Integer> flags, String flagName, int value) {
+        super();
         this.flags = flags;
         this.flagName = flagName;
         this.value = value;

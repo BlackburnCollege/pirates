@@ -9,12 +9,13 @@ package world;
  *
  * @author timothy.francis
  */
-public class Challenge {
+public class Challenge extends ACEObject {
     private String type; // combat or puzzle
     private String challengeName; // name of puzzle to load, or name of opponent to load
 
     
     public Challenge(String type, String challengeName) {
+        super();
         this.type = type;
         this.challengeName = challengeName;
     }

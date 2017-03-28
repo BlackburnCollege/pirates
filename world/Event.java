@@ -16,15 +16,18 @@ public class Event extends ACEObject {
     //public Event(String music, String[] sounds, Choice[] choices, String picture, String text) {
     //public Event(String text, Choice[] choices) {
     public Event(String text, Choice[] choices) {
+        super();
         this.text = text;
         this.choices = choices;
     }
     
     public Event(String text) {
+        super();
         this.text = text;
     }
 
     public Event(String text, Choice[] choices, String picture, gui.Music music, String[] sounds) {
+        super();
         this.text = text;
         this.choices = choices;
         this.picture = picture;

@@ -14,19 +14,22 @@ public class Choice extends ACEObject {
     private ArrayList<Conditional> conditions = new ArrayList<>();
 
     public Choice() {
-
+        super();
     }
 
     public Choice(String text) {
+        super();
         this.text = text;
     }
 
     public Choice(String text, Action action) {
+        super();
         this.text = text;
         this.action = action;
     }
 
     public Choice(String text, Action action, ArrayList<Conditional> conditionals) {
+        super();
         this.text = text;
         this.action = action;
         this.conditions = conditionals;

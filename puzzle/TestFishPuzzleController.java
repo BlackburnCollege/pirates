@@ -157,10 +157,10 @@ public class TestFishPuzzleController extends ChallengeController implements Ini
         gamePane.setBackground(new Background(
                 new BackgroundImage(
                         images.getImage("fishing_background"), 
-                        BackgroundRepeat.REPEAT, 
-                        BackgroundRepeat.REPEAT, 
+                        BackgroundRepeat.NO_REPEAT, 
+                        BackgroundRepeat.NO_REPEAT, 
                         BackgroundPosition.CENTER, 
-                        BackgroundSize.DEFAULT
+                        new BackgroundSize(1, 1, true, true, true, true)
                 )
         ));
 
