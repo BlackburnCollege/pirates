@@ -11,17 +11,18 @@ import java.util.Random;
  *
  * @author arthur.levan
  */
-public class Insult {
+public class Verbal implements Action{
 
     private String[] insults;
     private Random randNum;
 
-    public Insult(String[] insults) {
+    public Verbal() {
+        String[] insults = {"Go VERB yourself, you ADJECTIVE NOUN"};
         this.insults = insults;
         this.randNum = new Random();
     }
 
-    public String createInsult() {
+    public String generateInsult() {
         String finalInsult = "";
         int adjective = 0;
         int verb = 0;
@@ -44,5 +45,10 @@ public class Insult {
             finalInsult = finalInsult.replaceFirst("NOUN", Nouns.values()[noun].toString().toLowerCase());
         }
         return finalInsult;
+    }
+    
+    @Override
+    public void affect(Entity entity){
+        
     }
 }
