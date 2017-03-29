@@ -44,7 +44,7 @@ public class Combat {
         this.player.decreaseHealth(enemyDamage);
         this.enemy.decreaseHealth(playerDamage);
         return this.player.getMove(playerDamage) + "\n" +
-                this.enemy.getMove(enemyDamage);
+                this.enemy.getMove(this.player);
     }
 
     public int getPlayerCurrentHealth() {
