@@ -1,9 +1,11 @@
 CREATE TABLE event (
-    eventID INTEGER NOT NULL Primary Key,
+    id INTEGER NOT NULL Primary Key,
     text varchar(64) not null,
     backgroundname varchar(64),
     music varchar(64)
 );
+
+ALTER TABLE event add foreign key (id) references aceobject (id);
 
 CREATE TABLE choice (
     choiceid integer not null primary key,
@@ -12,10 +14,14 @@ CREATE TABLE choice (
     actionid integer not null
 );
 
+ALTER TABLE choice add foreign key (id) references aceobject (id);
+
 CREATE TABLE actions (
     actionid integer not null primary key,
     text varchar(512)
 );
+
+ALTER TABLE actions add foreign key (id) references aceobject (id);
 
 CREATE TABLE conditional(
     conditionalid integer not null primary key,
@@ -37,8 +43,7 @@ CREATE TABLE actionsevent(
     eventid integer not null
 );
 
-ALTER TABLE actionsevent
-    add constraint ae_pk primary key (
-        actionid,
-        eventid
-    );
+CREATE TABLE aceobject(
+    id integer not null primary key,
+    acetype varchar(64) not null
+)

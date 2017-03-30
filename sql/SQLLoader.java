@@ -113,28 +113,28 @@ public class SQLLoader {
     public static void main(String[] args) throws Exception {
         loadSQL();
 
-        System.out.println("Loading the Derby jdbc driver...");
-        Class<?> clazz = Class.forName(databaseDriver);
-        clazz.getConstructor().newInstance();
-
-        System.out.println("Getting Derby database connection...");
-        Connection connCS = DriverManager.getConnection(databaseURL);
-        System.out.println("Successfully got the Derby database connection...");
-
-        PreparedStatement ps2 = connCS.prepareStatement("SELECT * FROM TEST");
-        System.out.println("executing statement: ");
-
-        ps2.execute();
-        ResultSet set = ps2.getResultSet();
-
-        while (set.next()) {
-            System.out.println(
-                    set.getString("TNAME") + " " + set.getString("TTEXT")
-                    + set.getInt("TVALUE"));
-        }
-
-        connCS.close();
-        System.out.println("Closed connection");
+//        System.out.println("Loading the Derby jdbc driver...");
+//        Class<?> clazz = Class.forName(databaseDriver);
+//        clazz.getConstructor().newInstance();
+//
+//        System.out.println("Getting Derby database connection...");
+//        Connection connCS = DriverManager.getConnection(databaseURL);
+//        System.out.println("Successfully got the Derby database connection...");
+//
+//        PreparedStatement ps2 = connCS.prepareStatement("SELECT * FROM TEST");
+//        System.out.println("executing statement: ");
+//
+//        ps2.execute();
+//        ResultSet set = ps2.getResultSet();
+//
+//        while (set.next()) {
+//            System.out.println(
+//                    set.getString("TNAME") + " " + set.getString("TTEXT")
+//                    + set.getInt("TVALUE"));
+//        }
+//
+//        connCS.close();
+//        System.out.println("Closed connection");
 
     }
 }
