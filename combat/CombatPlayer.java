@@ -14,8 +14,25 @@ public class CombatPlayer extends Entity{
         super(name,maxHealth);
     }
     
-    public String getMove(int damage) {
-        String move = super.getName() + " attacked for " + damage;
-        return move;
+    public String getMove(Move move, Entity entity) {
+        String action = "";
+        Action choice = null;
+        
+        switch(move){
+            case ATTACK:
+                choice = new Melee();
+                action = " attacked ";
+                break;
+            case SHOOT:
+                choice = new Ranged();
+                action = " shot ";
+                break;
+            case INSULT:
+                choice = new Verbal();
+                action = " insulted ";
+                break;
+        }
+        choice.affect(entity);
+        return this.getName() + action + entity.getName();
     }
 }

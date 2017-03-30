@@ -10,5 +10,5 @@ package combat;
  * @author dakota.tebbe
  */
 public enum Move {
-    ATTACK, INSULT, SHOOT, RUN;
+    ATTACK, INSULT, SHOOT;
 }

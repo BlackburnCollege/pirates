@@ -22,44 +22,17 @@ public class Combat {
     }
 
     public String round(Move move) {
-        String round = "";
-        switch (move) {
-            case ATTACK:
-                round = this.attack();
-                break;
-            case SHOOT:
-                break;
-            case INSULT:
-                break;
-            case RUN:
-                break;
-
-        }
-        return round;
-    }
-
-    private String attack() {
-        int playerDamage = 8;
-        int enemyDamage = 8;
-        this.player.decreaseHealth(enemyDamage);
-        this.enemy.decreaseHealth(playerDamage);
-        return this.player.getMove(playerDamage) + "\n" +
+        String out = this.player.getMove(move, this.enemy) + "\n" +
                 this.enemy.getMove(this.player);
+        return out;
     }
 
-    public int getPlayerCurrentHealth() {
-        return this.player.getCurrentHealth();
+    public double getPlayerHealthDouble() {
+        return this.player.getCurrentHealth() / (double)this.player.getMaxHealth();
     }
 
-    public int getEnemyCurrentHealth() {
-        return this.enemy.getCurrentHealth();
+    public double getEnemyHealthDouble() {
+        return this.enemy.getCurrentHealth() / (double)this.enemy.getMaxHealth();
     }
 
-    public int getPlayerMaxHealth() {
-        return this.player.getMaxHealth();
-    }
-
-    public int getEnemyMaxHealth() {
-        return this.enemy.getMaxHealth();
-    }
 }

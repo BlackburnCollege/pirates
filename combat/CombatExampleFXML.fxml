@@ -11,7 +11,6 @@
 <Pane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="combat.CombatExampleController">
    <children>
       <ImageView fx:id="enemyImage" fitHeight="150.0" fitWidth="200.0" layoutX="585.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="121.0" layoutY="300.0" mnemonicParsing="false" onAction="#shoot" text="Shoot" />
       <ImageView fx:id="playerImage" fitHeight="180.0" fitWidth="200.0" layoutX="14.0" layoutY="408.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/player_male_combat_0.png" />
@@ -24,17 +23,17 @@
       </BorderPane>
       <VBox layoutX="54.0" layoutY="225.0" prefHeight="69.0" prefWidth="100.0">
          <children>
-            <Label text="Enemy Health:" />
-            <ProgressBar fx:id="enemyHealth" prefWidth="200.0" progress="1.0" style="-fx-accent: firebrick;" />
             <Label text="Player health:" />
             <ProgressBar fx:id="playerHealth" prefWidth="200.0" progress="1.0" style="-fx-accent: firebrick;" />
+            <Label text="Enemy Health:" />
+            <ProgressBar fx:id="enemyHealth" prefWidth="200.0" progress="1.0" style="-fx-accent: firebrick;" />
          </children>
       </VBox>
       <VBox layoutX="14.0" layoutY="300.0" prefHeight="0.0" prefWidth="107.0">
          <children>
             <Button mnemonicParsing="false" onAction="#attack" prefWidth="786.0" text="Attack" />
             <Button mnemonicParsing="false" onAction="#insult" prefWidth="786.0" text="Insult" />
-            <Button mnemonicParsing="false" onAction="#run" prefWidth="786.0" text="Run" />
+            <Button mnemonicParsing="false" onAction="#shoot" prefWidth="786.0" text="Shoot" />
          </children>
       </VBox>
    </children>

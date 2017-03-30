@@ -46,37 +46,38 @@ public class CombatExampleController extends ChallengeController
     private void attack(ActionEvent event) {
         this.output.setText(this.combat.round(Move.ATTACK));
 
-        this.enemyHealth.setProgress(this.combat.getEnemyCurrentHealth() / (double) this.combat.getEnemyMaxHealth());
-        this.playerHealth.setProgress(this.combat.getPlayerCurrentHealth() / (double) this.combat.getPlayerMaxHealth());
-
-        if (this.combat.getEnemyCurrentHealth() <= 0) {
-            this.finishChallenge(ChallengeStatus.WIN);
-        } else if (this.combat.getPlayerCurrentHealth() <= 0) {
-            this.finishChallenge(ChallengeStatus.LOSS);
-        }
+        this.enemyHealth.setProgress(this.combat.getEnemyHealthDouble());
+        this.playerHealth.setProgress(this.combat.getPlayerHealthDouble());
+        
+        this.healthCheck();
     }
 
     @FXML
     private void insult(ActionEvent event) {
         this.combat.round(Move.INSULT);
-        this.enemyHealth.setProgress(this.combat.getEnemyCurrentHealth());
-        this.playerHealth.setProgress(this.combat.getPlayerCurrentHealth());
-
-    }
-
-    @FXML
-    private void run(ActionEvent event) {
-        this.output.setText(this.combat.round(Move.RUN));
-        if (this.combat.getPlayerCurrentHealth() <= 0) {
-            this.finishChallenge(ChallengeStatus.LOSS);
-        }
+        
+        this.enemyHealth.setProgress(this.combat.getEnemyHealthDouble());
+        this.playerHealth.setProgress(this.combat.getPlayerHealthDouble());
+        
+        this.healthCheck();
     }
 
     @FXML
     private void shoot(ActionEvent event) {
         this.combat.round(Move.SHOOT);
-        this.enemyHealth.setProgress(this.combat.getEnemyCurrentHealth());
-        this.playerHealth.setProgress(this.combat.getPlayerCurrentHealth());
+        
+        this.enemyHealth.setProgress(this.combat.getEnemyHealthDouble());
+        this.playerHealth.setProgress(this.combat.getPlayerHealthDouble());
+        
+        this.healthCheck();
+    }
+    
+    private void healthCheck(){
+        if (this.combat.getEnemyHealthDouble() <= 0) {
+            this.finishChallenge(ChallengeStatus.WIN);
+        } else if (this.combat.getPlayerHealthDouble() <= 0) {
+            this.finishChallenge(ChallengeStatus.LOSS);
+        }
     }
 
     @Override
