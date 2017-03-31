@@ -21,28 +21,36 @@ public class Enemy extends Entity {
         Random randnum = new Random();
         String action = "";
         Action choice = null;
-        Move move = Move.values()[randnum.nextInt(3)];
+        int randChoice = randnum.nextInt(3);
+        Move move = Move.values()[randChoice];
         
-        switch(move){
-            case ATTACK:
-                if(this.meleeMulti > 0){
-                    choice = new Melee(this.meleeMulti);
-                    action = " attacked ";
-                }
-                break;
-            case SHOOT:
-                if(this.rangedMulti > 0){
-                    choice = new Ranged(this.rangedMulti);
-                    action = " shot ";
-                }
-                break;
-            case INSULT:
-                if(this.verbalMulti > 0){
-                    choice = new Verbal(this.verbalMulti);
-                    action = " insulted ";
-                }
-                break;
+        while (choice == null){
+            switch(move){
+                case ATTACK:
+                    if(this.meleeMulti > 0){
+                        choice = new Melee(this.meleeMulti);
+                        action = " attacked ";
+                    }   
+                    break;
+                case SHOOT:
+                    if(this.rangedMulti > 0){
+                        choice = new Ranged(this.rangedMulti);
+                        action = " shot ";
+                    }
+                    break;
+                case INSULT:
+                    if(this.verbalMulti > 0){
+                        choice = new Verbal(this.verbalMulti);
+                        action = " insulted ";
+                    }
+                    break;
+            }
+            if(choice == null){
+                randChoice++;
+                move = Move.values()[randChoice];
+            }
         }
+        
         choice.affect(entity);
         return this.getName() + action + entity.getName();
     }
