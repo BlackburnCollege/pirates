@@ -13,8 +13,8 @@ import java.util.Random;
  */
 public class Enemy extends Entity {
 
-    public Enemy(String name, int maxHealth) {
-        super(name, maxHealth);
+    public Enemy(String name, int maxHealth, double meleeMulti, double rangedMulti, double verbalMulti) {
+        super(name, maxHealth, meleeMulti, rangedMulti, verbalMulti);
     }
     
     public String getMove(Entity entity) {
@@ -25,16 +25,22 @@ public class Enemy extends Entity {
         
         switch(move){
             case ATTACK:
-                choice = new Melee();
-                action = " attacked ";
+                if(this.meleeMulti > 0){
+                    choice = new Melee(this.meleeMulti);
+                    action = " attacked ";
+                }
                 break;
             case SHOOT:
-                choice = new Ranged();
-                action = " shot ";
+                if(this.rangedMulti > 0){
+                    choice = new Ranged(this.rangedMulti);
+                    action = " shot ";
+                }
                 break;
             case INSULT:
-                choice = new Verbal();
-                action = " insulted ";
+                if(this.verbalMulti > 0){
+                    choice = new Verbal(this.verbalMulti);
+                    action = " insulted ";
+                }
                 break;
         }
         choice.affect(entity);

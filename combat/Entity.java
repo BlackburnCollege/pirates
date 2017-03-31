@@ -19,11 +19,17 @@ public class Entity {
     private final int maxHealth;
     private String name;
     private int statusCounter=0;
+    double meleeMulti;
+    double rangedMulti;
+    double verbalMulti;
 
-    public Entity(String name, int maxHealth) {
+    public Entity(String name, int maxHealth, double meleeMulti, double rangedMulti, double verbalMulti) {
         this.name = name;
         this.maxHealth = maxHealth;
         this.currentHealth = this.maxHealth;
+        this.meleeMulti = meleeMulti;
+        this.rangedMulti = rangedMulti;
+        this.verbalMulti = verbalMulti;
     }
 
 

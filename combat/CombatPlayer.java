@@ -10,8 +10,8 @@ package combat;
  * @author arthur.levan
  */
 public class CombatPlayer extends Entity{
-    CombatPlayer(String name, int maxHealth){
-        super(name,maxHealth);
+    CombatPlayer(String name, int maxHealth, double meleeMulti, double rangedMulti, double verbalMulti){
+        super(name, maxHealth, meleeMulti, rangedMulti, verbalMulti);
     }
     
     public String getMove(Move move, Entity entity) {
@@ -20,15 +20,15 @@ public class CombatPlayer extends Entity{
         
         switch(move){
             case ATTACK:
-                choice = new Melee();
+                choice = new Melee(this.meleeMulti);
                 action = " attacked ";
                 break;
             case SHOOT:
-                choice = new Ranged();
+                choice = new Ranged(this.rangedMulti);
                 action = " shot ";
                 break;
             case INSULT:
-                choice = new Verbal();
+                choice = new Verbal(this.verbalMulti);
                 action = " insulted ";
                 break;
         }

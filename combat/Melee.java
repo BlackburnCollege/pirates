@@ -10,11 +10,16 @@ package combat;
  * @author arthur.levan
  */
 public class Melee implements Action{
+    private double multiplier;
     private int damage = 8;
+    
+    public Melee(double multiplier){
+        this.multiplier = multiplier;
+    }
     
     @Override
     public void affect(Entity entity){
-        entity.decreaseHealth(this.damage);
+        entity.decreaseHealth((int)(this.damage*this.multiplier));
     }
     
     public int getDamage(){
