@@ -89,7 +89,7 @@ public class CombatExampleController extends ChallengeController
                         BackgroundRepeat.REPEAT,
                         BackgroundRepeat.REPEAT,
                         BackgroundPosition.CENTER,
-                        BackgroundSize.DEFAULT
+                        new BackgroundSize(1, 1, true, true, true, true)
                 )
         ));
     }
