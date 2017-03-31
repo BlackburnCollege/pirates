@@ -86,10 +86,10 @@ public class CombatExampleController extends ChallengeController
         mainPane.setBackground(new Background(
                 new BackgroundImage(
                         new Image("resources/woods_background.png"),
-                        BackgroundRepeat.REPEAT,
-                        BackgroundRepeat.REPEAT,
+                        BackgroundRepeat.ROUND,
+                        BackgroundRepeat.ROUND,
                         BackgroundPosition.CENTER,
-                        BackgroundSize.DEFAULT
+                        new BackgroundSize(1, 1, true, true, true, true)
                 )
         ));
     }
@@ -99,7 +99,7 @@ public class CombatExampleController extends ChallengeController
         String nameOfChallenger = this.getChallengeInformation();
         
 
-        CombatPlayer player = new CombatPlayer("PLAYERNAME", 100);
+        CombatPlayer player = new CombatPlayer("PLAYERNAME", 100, 2.5, 6.25, 0);
         //TODO: LOAD ENEMY DATA FROM SOMEWHERE
         // pseudo example of what that might look like: 
         /* if nameOfChallenger.equals("wolf") {
@@ -110,7 +110,7 @@ public class CombatExampleController extends ChallengeController
 
         enemyImage.setImage(images.getImage(nameOfChallenger));
         
-        Enemy enemy = new Enemy(nameOfChallenger, 100);
+        Enemy enemy = new Enemy(nameOfChallenger, 100, 6.25, 0, 0);
         this.combat = new Combat(player, enemy);
     }
 

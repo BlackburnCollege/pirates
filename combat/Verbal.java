@@ -12,14 +12,16 @@ import java.util.Random;
  * @author arthur.levan
  */
 public class Verbal implements Action{
-
+    private double multiplier;
+    
     private String[] insults;
     private Random randNum;
 
-    public Verbal() {
+    public Verbal(double multiplier) {
         String[] insults = {"Go VERB yourself, you ADJECTIVE NOUN"};
         this.insults = insults;
         this.randNum = new Random();
+        this.multiplier = multiplier;
     }
 
     public String generateInsult() {
