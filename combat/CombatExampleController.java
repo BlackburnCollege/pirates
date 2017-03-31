@@ -86,8 +86,8 @@ public class CombatExampleController extends ChallengeController
         mainPane.setBackground(new Background(
                 new BackgroundImage(
                         new Image("resources/woods_background.png"),
-                        BackgroundRepeat.REPEAT,
-                        BackgroundRepeat.REPEAT,
+                        BackgroundRepeat.ROUND,
+                        BackgroundRepeat.ROUND,
                         BackgroundPosition.CENTER,
                         new BackgroundSize(1, 1, true, true, true, true)
                 )
