@@ -1,6 +1,5 @@
 package puzzle;
 
-import com.sun.media.jfxmediaimpl.platform.Platform;
 import gui.ChallengeController;
 import gui.ChallengeStatus;
 import gui.ImageController;
@@ -14,9 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import world.Challenge;
-
-import javax.swing.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.scene.Scene;
@@ -25,7 +21,6 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-import javafx.stage.Stage;
 import puzzle.PuzzleFishTest.Fish;
 
 /**

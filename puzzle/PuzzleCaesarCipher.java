@@ -15,7 +15,7 @@ public class PuzzleCaesarCipher extends PuzzleModel {
                 + "that I have to translate the message and enter it into the "
                 + "lock.");
     }
-
+    
     /**
      * @return the answer String
      */

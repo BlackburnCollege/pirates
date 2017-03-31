@@ -14,6 +14,11 @@ public class Action extends ACEObject {
     private Challenge challenge = null;
     private ArrayList<Conditional> modifiers = new ArrayList<>();
 
+    
+    public Action(int id) {
+        super(id);
+    }
+    
     public Action() {
         super();
         this.events = null;

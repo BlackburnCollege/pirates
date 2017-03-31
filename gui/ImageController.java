@@ -76,7 +76,14 @@ public class ImageController {
     }
     
     public Image getImage(String name) {
-        return (names.get(name.toLowerCase()));
+        if (name == null || name.equals("")) {
+            return null;
+        }
+        final Image image = names.get(name.toLowerCase());
+        if (image == null) {
+            System.err.println("Image controller: could not find " + name);
+        }
+        return image;
     }
 
 }

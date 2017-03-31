@@ -1,3 +1,8 @@
+
+/* schema file for story database
+    authors: Lucas Burdell and Timothy Francis
+*/
+
 CREATE TABLE event (
     id INTEGER NOT NULL Primary Key,
     text varchar(64) not null,

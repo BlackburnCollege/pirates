@@ -8,6 +8,10 @@ public abstract class ACEObject {
     private static int objectCount = 0;
     private final int ID;
 
+    public ACEObject(int id) {
+        this.ID = id;
+    }
+
     public ACEObject() {
         this.ID = objectCount;
         objectCount++;

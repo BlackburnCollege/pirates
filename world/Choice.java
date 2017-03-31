@@ -13,6 +13,10 @@ public class Choice extends ACEObject {
     private Action action;
     private ArrayList<Conditional> conditions = new ArrayList<>();
 
+    public Choice(int id) {
+        super(id);
+    }
+    
     public Choice() {
         super();
     }

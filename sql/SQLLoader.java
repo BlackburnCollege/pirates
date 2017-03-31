@@ -30,10 +30,23 @@ import org.apache.derby.tools.ij;
  */
 public class SQLLoader {
 
-    public static final String databaseName = "piratestest";
     private static final String databaseDriver = "org.apache.derby.jdbc.EmbeddedDriver";
-    private static final String databaseURL = "jdbc:derby:" + databaseName;
-    private static final String databaseCreationURL = databaseURL + ";create=true";
+    private static final String databaseURL = "jdbc:derby:pirates/";// + databaseName;
+
+    //public static final String databaseName = "pirates/piratestest";
+    private String databaseName;
+    private String databaseCreationURL = databaseURL + databaseName + ";create=true";
+    private boolean create;
+    //private static final String databaseCreationURL = databaseURL + ";create=true";
+
+    public SQLLoader(String databaseName) {
+        this(databaseName, false);
+    }
+    
+    public SQLLoader(String databaseName, boolean create) {
+        this.databaseName = databaseName;
+        this.create = create;
+    }
 
     /**
      * Extract .sql files out of the Jar and into a temporary directory so that
@@ -47,7 +60,7 @@ public class SQLLoader {
      *
      * @return Arraylist of Strings that are the paths to the loaded SQL files.
      */
-    private static ArrayList<String> extractSQLFiles() throws Exception {
+    private ArrayList<String> extractSQLFiles() throws Exception {
         ArrayList<String> tempFiles = new ArrayList<>();
         Path tempDirPath = Files.createTempDirectory("piratestmp", new FileAttribute[0]);
         File tempDir = tempDirPath.toFile();
@@ -87,7 +100,7 @@ public class SQLLoader {
      * @throws Exception if the database wasn't loaded correctly an exception is
      * thrown and must be caught.
      */
-    public static void loadSQL() throws Exception {
+    public void loadSQL() throws Exception {
 
         File oldDatabase = new File(databaseName);
         if (oldDatabase.exists()) {
@@ -105,13 +118,14 @@ public class SQLLoader {
             ij.main(argArray);
         }
         System.setOut(console);
-        System.setProperty("ij.database", databaseURL);
+        System.setProperty("ij.database", databaseURL + databaseName);
     }
 
     // MAIN METHOD USED FOR TESTING ONLY
     // TODO: REMOVE METHOD
     public static void main(String[] args) throws Exception {
-        loadSQL();
+        SQLLoader loader = new SQLLoader("piratestest", true);
+        //loadSQL();
 
 //        System.out.println("Loading the Derby jdbc driver...");
 //        Class<?> clazz = Class.forName(databaseDriver);
@@ -135,6 +149,12 @@ public class SQLLoader {
 //
 //        connCS.close();
 //        System.out.println("Closed connection");
+    }
 
+    /**
+     * @return the create
+     */
+    public boolean isCreate() {
+        return create;
     }
 }

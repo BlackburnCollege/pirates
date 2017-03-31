@@ -14,6 +14,11 @@ public class Challenge extends ACEObject {
     private String challengeName; // name of puzzle to load, or name of opponent to load
 
     
+    public Challenge(int id) {
+        super(id);
+    }
+    
+    
     public Challenge(String type, String challengeName) {
         super();
         this.type = type;
