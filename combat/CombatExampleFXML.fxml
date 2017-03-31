@@ -16,17 +16,15 @@
             <Image url="@../resources/player_male_combat_0.png" />
          </image>
       </ImageView>
-      <BorderPane layoutX="318.0" layoutY="498.0" prefHeight="75.0" prefWidth="321.0" style="-fx-border-color: deeppink;">
+      <BorderPane layoutX="318.0" layoutY="498.0" prefHeight="75.0" prefWidth="321.0" style="-fx-border-color: deeppink; -fx-background-color: white;">
          <top>
             <Label fx:id="output" BorderPane.alignment="CENTER" />
          </top>
       </BorderPane>
-      <VBox layoutX="54.0" layoutY="225.0" prefHeight="69.0" prefWidth="100.0">
+      <VBox layoutX="104.0" layoutY="31.0" prefHeight="25.0" prefWidth="100.0">
          <children>
             <Label text="Player health:" />
             <ProgressBar fx:id="playerHealth" prefWidth="200.0" progress="1.0" style="-fx-accent: firebrick;" />
-            <Label text="Enemy Health:" />
-            <ProgressBar fx:id="enemyHealth" prefWidth="200.0" progress="1.0" style="-fx-accent: firebrick;" />
          </children>
       </VBox>
       <VBox layoutX="14.0" layoutY="300.0" prefHeight="0.0" prefWidth="107.0">
@@ -34,6 +32,12 @@
             <Button mnemonicParsing="false" onAction="#attack" prefWidth="786.0" text="Attack" />
             <Button mnemonicParsing="false" onAction="#insult" prefWidth="786.0" text="Insult" />
             <Button mnemonicParsing="false" onAction="#shoot" prefWidth="786.0" text="Shoot" />
+         </children>
+      </VBox>
+      <VBox layoutX="624.0" layoutY="31.0" prefHeight="25.0" prefWidth="100.0">
+         <children>
+            <Label text="Enemy Health:" />
+            <ProgressBar fx:id="enemyHealth" prefWidth="200.0" progress="1.0" style="-fx-accent: firebrick;" />
          </children>
       </VBox>
    </children>
