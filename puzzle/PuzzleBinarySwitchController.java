@@ -49,11 +49,7 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
     @FXML
     private Hyperlink leaveButton;  // the exit button
 
-    @FXML
     MediaPlayer mediaPlayer;  // plays sounds
-
-    @FXML
-    private TextField hint;  // displays text hint
 
     private PuzzleBinarySwitch puzzle;  // the PuzzleObject
 
@@ -172,13 +168,6 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
         checkSolution();
     }
 
-    /**
-     * onMouseEvent method handles mouse clicks and movement
-     */
-    @FXML
-    private void onMouseEvent(MouseEvent event) {
-    }
-
     private EventHandler keyListener = new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
@@ -200,5 +189,33 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
     @Override
     public void teardownListeners(Scene scene) {
         scene.onKeyPressedProperty().set(null);
+    }
+
+    @FXML
+    private void onClickedLever(MouseEvent event) {
+        if (event.getSource().equals(this.leverLeft)) {
+            puzzle.pullLeftmost();
+            if (this.leverLeft.getRotate() == 180) {
+                this.leverLeft.setRotate(0);
+            } else {
+                this.leverLeft.setRotate(180);
+            }
+        } else if (event.getSource().equals(this.leverMiddle)) {
+            puzzle.pullMiddle();
+            if (this.leverMiddle.getRotate() == 180) {
+                this.leverMiddle.setRotate(0);
+            } else {
+                this.leverMiddle.setRotate(180);
+            }
+        } else if (event.getSource().equals(this.leverRight)) {
+            puzzle.pullRightmost();
+            if (this.leverRight.getRotate() == 180) {
+                this.leverRight.setRotate(0);
+            } else {
+                this.leverRight.setRotate(180);
+            }
+        }
+        AudioController.get().playSound(this.puzzle.getSound());
+        this.checkSolution();
     }
 }

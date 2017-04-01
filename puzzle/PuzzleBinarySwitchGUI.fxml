@@ -14,20 +14,20 @@
          <children>
             <StackPane prefHeight="150.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="leverLeftBackground" fitHeight="150.0" fitWidth="200.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="leverLeft" fitHeight="150.0" fitWidth="200.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="leverLeftBackground" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="leverLeft" onKeyPressed="#onKeyEvent" onMouseClicked="#onClickedLever" pickOnBounds="true" preserveRatio="true" />
                </children>
             </StackPane>
             <StackPane prefHeight="150.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="leverMiddleBackground" fitHeight="150.0" fitWidth="200.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="leverMiddle" fitHeight="150.0" fitWidth="200.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="leverMiddleBackground" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="leverMiddle" onKeyPressed="#onKeyEvent" onMouseClicked="#onClickedLever" pickOnBounds="true" preserveRatio="true" />
                </children>
             </StackPane>
             <StackPane prefHeight="150.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="leverRightBackground" fitHeight="150.0" fitWidth="200.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="leverRight" fitHeight="150.0" fitWidth="200.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="leverRightBackground" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="leverRight" onKeyPressed="#onKeyEvent" onMouseClicked="#onClickedLever" pickOnBounds="true" preserveRatio="true" />
                </children>
             </StackPane>
          </children>
