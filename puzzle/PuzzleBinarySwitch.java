@@ -17,9 +17,9 @@ public class PuzzleBinarySwitch extends PuzzleModel {
     private int doorClue;
 
     // PuzzleBinarySwitch resource locations
-    private final String leverBackgroundLocation = "puzzlebinaryswitchLEVERBG";
-    private final String leverLocation = "puzzlebinaryswitchLEVER";
-    private final String soundLeverPullLocation = "/resources/soundpulllever.mp3";
+    private final String leverBackgroundLocation = "lever_base_0";
+    private final String leverLocation = "lever_0";
+    private final Sound soundLeverPullLocation = Sound.CLICK;
 
     /**
      * Constructor
@@ -41,8 +41,7 @@ public class PuzzleBinarySwitch extends PuzzleModel {
         this.setBackground(this.leverBackgroundLocation);
         
         //TODO: SET SOUND TO LEVERPULL
-        //this.setSound(this.soundLeverPullLocation);
-        this.setSound(null);
+        this.setSound(this.soundLeverPullLocation);
         this.setText("The number " + this.doorClue + " is carved on the door.  What could it mean?");
     }
 
@@ -70,7 +69,7 @@ public class PuzzleBinarySwitch extends PuzzleModel {
         // update model parameters for controller
         this.setBackground(this.leverBackgroundLocation);
         //TODO: SET SOUND TO LEVER PULL 
-        //this.setSound(this.soundLeverPullLocation);
+        this.setSound(this.soundLeverPullLocation);
         this.setText("The number " + this.doorClue + " is carved on the door.  What could it mean?");
     }
 

@@ -64,38 +64,47 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        this.leaveButton.setVisible(false);
         this.puzzle = new PuzzleBinarySwitch(false, false, true, 1);
 
+        this.leverLeftBackground.setImage(images.getImage(this.puzzle.getLeverBackgroundLocation()));
+        this.leverMiddleBackground.setImage(images.getImage(this.puzzle.getLeverBackgroundLocation()));
+        this.leverRightBackground.setImage(images.getImage(this.puzzle.getLeverBackgroundLocation()));
+        this.leverLeft.setImage(images.getImage((this.puzzle.getLeverLocation())));
+        this.leverMiddle.setImage(images.getImage((this.puzzle.getLeverLocation())));
+        this.leverRight.setImage(images.getImage((this.puzzle.getLeverLocation())));
+
+        /*
         this.leverLeftBackground.fitWidthProperty().bind(gamePane.prefWidthProperty());
         this.leverLeftBackground.fitHeightProperty().bind(gamePane.prefHeightProperty());
-        this.leverLeftBackground.setImage(images.getImage(this.puzzle.getLeverBackgroundLocation()));
+        
 
         this.leverMiddleBackground.fitWidthProperty().bind(gamePane.prefWidthProperty());
         this.leverMiddleBackground.fitHeightProperty().bind(gamePane.prefHeightProperty());
-        this.leverMiddleBackground.setImage(images.getImage(this.puzzle.getLeverBackgroundLocation()));
+        
 
         this.leverRightBackground.fitWidthProperty().bind(gamePane.prefWidthProperty());
         this.leverRightBackground.fitHeightProperty().bind(gamePane.prefHeightProperty());
-        this.leverRightBackground.setImage(images.getImage(this.puzzle.getLeverBackgroundLocation()));
+        
 
         this.leverLeft.fitWidthProperty().bind(gamePane.prefWidthProperty());
         this.leverLeft.fitHeightProperty().bind(gamePane.prefHeightProperty());
-        this.leverLeft.setImage(images.getImage((this.puzzle.getLeverLocation())));
+        
 
         this.leverMiddle.fitWidthProperty().bind(gamePane.prefWidthProperty());
         this.leverMiddle.fitHeightProperty().bind(gamePane.prefHeightProperty());
-        this.leverMiddle.setImage(images.getImage((this.puzzle.getLeverLocation())));
+        
 
         this.leverRight.fitWidthProperty().bind(gamePane.prefWidthProperty());
         this.leverRight.fitHeightProperty().bind(gamePane.prefHeightProperty());
-        this.leverRight.setImage(images.getImage((this.puzzle.getLeverLocation())));
-
+        
+         */
         this.gamePane.requestFocus();
 
         this.leaveButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                PuzzleBinarySwitchController.this.finishChallenge(ChallengeStatus.LOSS);
+                PuzzleBinarySwitchController.this.finishChallenge(ChallengeStatus.WIN);
             }
         });
     }
@@ -105,8 +114,8 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
      * through finishChallenge method
      */
     private void checkSolution() {
-        if (puzzle.getCompleted() == true) {
-            this.finishChallenge(ChallengeStatus.WIN);
+        if (puzzle.getCompleted()) {
+            this.leaveButton.setVisible(true);
         }
     }
 
@@ -121,7 +130,12 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
             case A:
                 puzzle.pullLeftmost();
                 // update the GUI
-                this.leverLeft.setRotate(180);
+
+                if (this.leverLeft.getRotate() == 180) {
+                    this.leverLeft.setRotate(0);
+                } else {
+                    this.leverLeft.setRotate(180);
+                }
                 break;
             case UP:
             case KP_UP:
@@ -130,14 +144,23 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
             case S:
                 puzzle.pullMiddle();
                 // update the GUI
-                this.leverLeft.setRotate(180);
+
+                if (this.leverMiddle.getRotate() == 180) {
+                    this.leverMiddle.setRotate(0);
+                } else {
+                    this.leverMiddle.setRotate(180);
+                }
                 break;
             case RIGHT:
             case KP_RIGHT:
             case D:
                 puzzle.pullRightmost();
                 // update the GUI
-                this.leverLeft.setRotate(180);
+                if (this.leverRight.getRotate() == 180) {
+                    this.leverRight.setRotate(0);
+                } else {
+                    this.leverRight.setRotate(180);
+                }
                 break;
             default:
                 break;
