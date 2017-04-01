@@ -99,6 +99,12 @@ public class GameController implements Initializable {
     private final AudioController musicController = AudioController.get();
     private final ImageController images = ImageController.get();
 
+    private void buildPuzzleControllerMappings() {
+        this.puzzleControllers.put("safecrack", "/puzzle/PuzzleSafeCrackGUI.fxml");
+        this.puzzleControllers.put("fish", "/puzzle/TestFishPuzzleGui.fxml");
+        this.puzzleControllers.put("binary", "/puzzle/PuzzleBinarySwitchGUI.fxml");
+    }
+
     /**
      *
      * @param text create a text to display
@@ -363,7 +369,6 @@ public class GameController implements Initializable {
         //challengePane.setStyle("-fx-background-color: #000000FF");
         fadeInAnimation.play();
 
-        
         final Pane challengeRoot = root;
         final Scene sceneRef = this.mainPane.getScene();
 
@@ -467,11 +472,6 @@ public class GameController implements Initializable {
             musicController.playSong(event.getMusic());
         }
 
-    }
-
-    private void buildPuzzleControllerMappings() {
-        this.puzzleControllers.put("safecrack", "/puzzle/PuzzleSafeCrackGUI.fxml");
-        this.puzzleControllers.put("fish", "/puzzle/TestFishPuzzleGui.fxml");
     }
 
     @Override

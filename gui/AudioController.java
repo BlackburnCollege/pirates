@@ -343,7 +343,8 @@ public class AudioController {
                                 .getClassLoader().getResource(AUDIO_LOCATION + name).toString());
                         names.put(name, media);
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        System.err.println("Audio controller: could not find " 
+                                + name);
                         return;
                     }
                 }
