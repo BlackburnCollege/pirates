@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
 
-<Pane fx:id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="puzzle.PuzzleBinarySwitchController">
-    <children>
-        <ImageView fx:id="binaryswitches" fitHeight="150.0" fitWidth="200.0" layoutX="130.0" layoutY="32.0" onMouseClicked="#onMouseEvent" onKeyPressed="#onKeyEvent" pickOnBounds="true" preserveRatio="true" />
-    </children>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="puzzle.PuzzleBinarySwitchController">
+   <children>
+      <StackPane fx:id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyEvent" prefHeight="600.0" prefWidth="800.0">
+         <children>
+            <ImageView fx:id="leverLeftBackground" fitHeight="150.0" fitWidth="200.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="leverLeft" fitHeight="150.0" fitWidth="200.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="leverMiddleBackground" fitHeight="150.0" fitWidth="200.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="leverMiddle" fitHeight="150.0" fitWidth="200.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="leverRightBackground" fitHeight="150.0" fitWidth="200.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="leverRight" fitHeight="150.0" fitWidth="200.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </StackPane>
+      <Hyperlink fx:id="leaveButton" text="LEAVE" />
+   </children>
 </Pane>

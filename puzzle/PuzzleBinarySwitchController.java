@@ -1,5 +1,6 @@
 package puzzle;
 
+import gui.AudioController;
 import gui.ChallengeController;
 import gui.ChallengeStatus;
 import gui.ImageController;
@@ -12,7 +13,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -29,10 +29,22 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
     private Pane gamePane;
 
     @FXML
-    private ImageView leverBackground;  // the background lever
+    private ImageView leverLeftBackground;
 
     @FXML
-    private ImageView lever;  // the lever
+    private ImageView leverLeft;
+
+    @FXML
+    private ImageView leverMiddleBackground;
+
+    @FXML
+    private ImageView leverMiddle;
+
+    @FXML
+    private ImageView leverRightBackground;
+
+    @FXML
+    private ImageView leverRight;
 
     @FXML
     private Hyperlink leaveButton;  // the exit button
@@ -43,8 +55,8 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
     @FXML
     private TextField hint;  // displays text hint
 
-    private PuzzleBinarySwitch pbs;  // the PuzzleObject
-    
+    private PuzzleBinarySwitch puzzle;  // the PuzzleObject
+
     private ImageController images = ImageController.get();
 
     /**
@@ -52,15 +64,31 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.pbs = new PuzzleBinarySwitch(false, false, true, 1);
+        this.puzzle = new PuzzleBinarySwitch(false, false, true, 1);
 
-        this.leverBackground.fitWidthProperty().bind(gamePane.prefWidthProperty());
-        this.leverBackground.fitHeightProperty().bind(gamePane.prefHeightProperty());
-        this.leverBackground.setImage(images.getImage(this.pbs.getLeverBackgroundLocation()));
+        this.leverLeftBackground.fitWidthProperty().bind(gamePane.prefWidthProperty());
+        this.leverLeftBackground.fitHeightProperty().bind(gamePane.prefHeightProperty());
+        this.leverLeftBackground.setImage(images.getImage(this.puzzle.getLeverBackgroundLocation()));
 
-        this.lever.fitWidthProperty().bind(gamePane.prefWidthProperty());
-        this.lever.fitHeightProperty().bind(gamePane.prefHeightProperty());
-        this.lever.setImage(images.getImage((this.pbs.getLeverLocation())));
+        this.leverMiddleBackground.fitWidthProperty().bind(gamePane.prefWidthProperty());
+        this.leverMiddleBackground.fitHeightProperty().bind(gamePane.prefHeightProperty());
+        this.leverMiddleBackground.setImage(images.getImage(this.puzzle.getLeverBackgroundLocation()));
+
+        this.leverRightBackground.fitWidthProperty().bind(gamePane.prefWidthProperty());
+        this.leverRightBackground.fitHeightProperty().bind(gamePane.prefHeightProperty());
+        this.leverRightBackground.setImage(images.getImage(this.puzzle.getLeverBackgroundLocation()));
+
+        this.leverLeft.fitWidthProperty().bind(gamePane.prefWidthProperty());
+        this.leverLeft.fitHeightProperty().bind(gamePane.prefHeightProperty());
+        this.leverLeft.setImage(images.getImage((this.puzzle.getLeverLocation())));
+
+        this.leverMiddle.fitWidthProperty().bind(gamePane.prefWidthProperty());
+        this.leverMiddle.fitHeightProperty().bind(gamePane.prefHeightProperty());
+        this.leverMiddle.setImage(images.getImage((this.puzzle.getLeverLocation())));
+
+        this.leverRight.fitWidthProperty().bind(gamePane.prefWidthProperty());
+        this.leverRight.fitHeightProperty().bind(gamePane.prefHeightProperty());
+        this.leverRight.setImage(images.getImage((this.puzzle.getLeverLocation())));
 
         this.gamePane.requestFocus();
 
@@ -77,7 +105,7 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
      * through finishChallenge method
      */
     private void checkSolution() {
-        if (pbs.getCompleted() == true) {
+        if (puzzle.getCompleted() == true) {
             this.finishChallenge(ChallengeStatus.WIN);
         }
     }
@@ -87,7 +115,38 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
      */
     @FXML
     private void onKeyEvent(KeyEvent event) {
+        switch (event.getCode()) {
+            case LEFT:
+            case KP_LEFT:
+            case A:
+                puzzle.pullLeftmost();
+                // update the GUI
+                this.leverLeft.setRotate(180);
+                break;
+            case UP:
+            case KP_UP:
+            case DOWN:
+            case KP_DOWN:
+            case S:
+                puzzle.pullMiddle();
+                // update the GUI
+                this.leverLeft.setRotate(180);
+                break;
+            case RIGHT:
+            case KP_RIGHT:
+            case D:
+                puzzle.pullRightmost();
+                // update the GUI
+                this.leverLeft.setRotate(180);
+                break;
+            default:
+                break;
+        }
 
+        // play the appropriate sound (determined by the PuzzleObject)
+        AudioController.get().playSound(this.puzzle.getSound());
+        // check solve status
+        checkSolution();
     }
 
     /**
@@ -97,6 +156,14 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
     private void onMouseEvent(MouseEvent event) {
     }
 
+    private EventHandler keyListener = new EventHandler<KeyEvent>() {
+        @Override
+        public void handle(KeyEvent event) {
+            onKeyEvent(event);
+        }
+
+    };
+
     @Override
     public void onChallengeLoaded() {
 
@@ -104,11 +171,11 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
 
     @Override
     public void setupListeners(Scene scene) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        scene.setOnKeyPressed(keyListener);
     }
 
     @Override
     public void teardownListeners(Scene scene) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        scene.onKeyPressedProperty().set(null);
     }
 }
