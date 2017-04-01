@@ -8,7 +8,7 @@ public class Event extends ACEObject {
 
     private gui.Music music;
     private String[] sounds;
-    private Choice[] choices;
+    private Choice[] choices = new Choice[0];
     private String picture;
     private String text;
     
