@@ -54,7 +54,7 @@ public class CombatExampleController extends ChallengeController
 
     @FXML
     private void insult(ActionEvent event) {
-        this.combat.round(Move.INSULT);
+        this.output.setText(this.combat.round(Move.INSULT));
         
         this.enemyHealth.setProgress(this.combat.getEnemyHealthDouble());
         this.playerHealth.setProgress(this.combat.getPlayerHealthDouble());
@@ -64,7 +64,7 @@ public class CombatExampleController extends ChallengeController
 
     @FXML
     private void shoot(ActionEvent event) {
-        this.combat.round(Move.SHOOT);
+        this.output.setText(this.combat.round(Move.SHOOT));
         
         this.enemyHealth.setProgress(this.combat.getEnemyHealthDouble());
         this.playerHealth.setProgress(this.combat.getPlayerHealthDouble());

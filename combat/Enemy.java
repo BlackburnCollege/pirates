@@ -23,8 +23,9 @@ public class Enemy extends Entity {
         Action choice = null;
         int randChoice = randnum.nextInt(3);
         Move move = Move.values()[randChoice];
+        String output = "";
         
-        while (choice == null){
+        
             switch(move){
                 case ATTACK:
                     if(this.meleeMulti > 0){
@@ -45,13 +46,19 @@ public class Enemy extends Entity {
                     }
                     break;
             }
-            if(choice == null){
-                randChoice++;
-                move = Move.values()[randChoice];
-            }
+//            if(choice == null){
+//                randChoice = (randChoice + 1) ;
+//                move = Move.values()[randChoice];
+//            }
+        
+        
+        if (choice != null){
+            output = choice.affect(entity);
+            return output + this.getName() + action + entity.getName();
+        }
+        else {
+            return this.getName() + " missed";
         }
         
-        choice.affect(entity);
-        return this.getName() + action + entity.getName();
     }
 }

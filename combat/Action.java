@@ -10,5 +10,5 @@ package combat;
  * @author arthur.levan
  */
 public interface Action {
-    public void affect(Entity entity);
+    public String affect(Entity entity);
 }

@@ -32,7 +32,7 @@ public class CombatPlayer extends Entity{
                 action = " insulted ";
                 break;
         }
-        choice.affect(entity);
-        return this.getName() + action + entity.getName();
+        String output = choice.affect(entity);
+        return output + this.getName() + action + entity.getName();
     }
 }
