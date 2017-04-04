@@ -11,9 +11,10 @@ import java.util.Random;
  *
  * @author arthur.levan
  */
-public class Verbal implements Action{
+public class Verbal implements Action {
+
     private double multiplier;
-    
+
     private String[] insults;
     private Random randNum;
 
@@ -30,42 +31,45 @@ public class Verbal implements Action{
         int verb = 0;
         int noun = 0;
         int insult = 0;
-        
+
         insult = this.randNum.nextInt(this.insults.length);
-        
+
         finalInsult = this.insults[insult];
-        while(finalInsult.contains("VERB")){
+        while (finalInsult.contains("VERB")) {
             verb = this.randNum.nextInt(Verbs.values().length);
             finalInsult = finalInsult.replaceFirst("VERB", Verbs.values()[verb].toString().toLowerCase());
         }
-        while(finalInsult.contains("ADJECTIVE")){
+        while (finalInsult.contains("ADJECTIVE")) {
             adjective = this.randNum.nextInt(Adjectives.values().length);
             finalInsult = finalInsult.replaceFirst("ADJECTIVE", Adjectives.values()[adjective].toString().toLowerCase());
         }
-        while(finalInsult.contains("NOUN")){
+        while (finalInsult.contains("NOUN")) {
             noun = this.randNum.nextInt(Nouns.values().length);
             finalInsult = finalInsult.replaceFirst("NOUN", Nouns.values()[noun].toString().toLowerCase());
         }
         return finalInsult;
     }
-    
+
     @Override
-    public String affect(Entity entity){
+    public String affect(Entity entity) {
         String insult;
         insult = this.generateInsult();
-        
-        switch(this.randNum.nextInt(3)){
-            case 0:
-                entity.decreaseMeleeMulti();
-                break;
-            case 1:
-                entity.decreaseRangedMulti();
-                break;
-            case 2:
-                entity.decreaseVerbalMulti();
-                break;
+        if (!entity.verbalImmunity) {
+            switch (this.randNum.nextInt(3)) {
+                case 0:
+                    entity.decreaseMeleeMulti();
+                    break;
+                case 1:
+                    entity.decreaseRangedMulti();
+                    break;
+                case 2:
+                    entity.decreaseVerbalMulti();
+                    break;
+            }
+
+            return "''" + insult + "''" + "\n";
+        } else {
+            return "";
         }
-        
-        return "''" + insult + "''" + "\n";
     }
 }

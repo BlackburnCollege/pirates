@@ -10,8 +10,8 @@ package combat;
  * @author arthur.levan
  */
 public class CombatPlayer extends Entity{
-    CombatPlayer(String name, int maxHealth, double meleeMulti, double rangedMulti, double verbalMulti){
-        super(name, maxHealth, meleeMulti, rangedMulti, verbalMulti);
+    CombatPlayer(String name, int maxHealth, double meleeMulti, double rangedMulti, double verbalMulti, boolean verbalImmunity){
+        super(name, maxHealth, meleeMulti, rangedMulti, verbalMulti, verbalImmunity);
     }
     
     public String getMove(Move move, Entity entity) {
