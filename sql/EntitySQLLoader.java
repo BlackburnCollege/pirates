@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 public class EntitySQLLoader {
 
     private final SQLDatabaseManager manager
-            = new SQLDatabaseManager("piratestest", false);
+            = new SQLDatabaseManager("combatDB", false);
 
     private final Connection connection = manager.getConnection();
 
@@ -29,8 +29,9 @@ public class EntitySQLLoader {
         try {
             PreparedStatement statement
                     = connection.prepareStatement(""
-                            + "SELECT * FROM entitydata WHERE ENTITY_NAME=?");
-            statement.setString(0, name);
+                            + "SELECT * FROM entitydata WHERE ENTITY_NAME=?",
+                            ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            statement.setString(1, name);
             ResultSet set = statement.executeQuery();
 
             if (set.isBeforeFirst()) {
@@ -54,8 +55,10 @@ public class EntitySQLLoader {
         try {
             PreparedStatement statement
                     = connection.prepareStatement(""
-                            + "SELECT * FROM entitydata WHERE ENTITY_NAME=?");
-            statement.setString(0, name);
+                            + "SELECT * FROM entitydata WHERE ENTITY_NAME=?",
+                            ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                            ResultSet.CONCUR_READ_ONLY);
+            statement.setString(1, name);
             ResultSet set = statement.executeQuery();
             
             if (!set.isBeforeFirst()) {
@@ -65,13 +68,14 @@ public class EntitySQLLoader {
                         "INSERT INTO entitydata(ENTITY_NAME, HEALTH, "
                         + "MELEE_MODIFIER, RANGED_MODIFIER, "
                         + "VERBAL_MODIFIER, INSULT_IMMUNITY) VALUES "
-                        + "(?,?,?,?,?,?)");
-                insert.setString(0, this.name);
-                insert.setInt(1, this.health);
-                insert.setDouble(2, this.meleeModifier);
-                insert.setDouble(3, this.rangedModifier);
-                insert.setDouble(4, this.verbalModifier);
-                insert.setBoolean(5, this.insultImmune);
+                        + "(?,?,?,?,?,?)", ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                        ResultSet.CONCUR_READ_ONLY);
+                insert.setString(1, this.name);
+                insert.setInt(2, this.health);
+                insert.setDouble(3, this.meleeModifier);
+                insert.setDouble(4, this.rangedModifier);
+                insert.setDouble(5, this.verbalModifier);
+                insert.setBoolean(6, this.insultImmune);
                 insert.execute();
             } else {
                 // use update
@@ -79,13 +83,15 @@ public class EntitySQLLoader {
                         "UPDATE entitydata SET HEALTH=?, MELEE_MODIFIER=?, "
                         + "RANGED_MODIFIER=?, VERBAL_MODIFIER=?, "
                         + "INSULT_IMMUNITY=? "
-                        + "WHERE ENTITY_NAME=?");
-                update.setInt(0, this.health);
-                update.setDouble(1, this.meleeModifier);
-                update.setDouble(2, this.rangedModifier);
-                update.setDouble(3, this.verbalModifier);
-                update.setBoolean(4, this.insultImmune);
-                update.setString(5, this.name);
+                        + "WHERE ENTITY_NAME=?", 
+                        ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                        ResultSet.CONCUR_READ_ONLY);
+                update.setInt(1, this.health);
+                update.setDouble(2, this.meleeModifier);
+                update.setDouble(3, this.rangedModifier);
+                update.setDouble(4, this.verbalModifier);
+                update.setBoolean(5, this.insultImmune);
+                update.setString(6, this.name);
                 update.execute();
 
             }
