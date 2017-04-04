@@ -21,6 +21,7 @@ import javafx.scene.media.MediaPlayer;
 /**
  *
  * @author Drew Hans
+ * @author Lucas Burdell
  */
 public class PuzzleSafeCrackController extends ChallengeController implements Initializable {
 

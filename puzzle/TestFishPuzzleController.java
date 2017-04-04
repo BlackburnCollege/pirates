@@ -24,7 +24,7 @@ import javafx.scene.layout.BackgroundSize;
 import puzzle.PuzzleFishTest.Fish;
 
 /**
- * Created by lucas.burdell on 3/20/2017.
+ * @author Lucas Burdell
  */
 public class TestFishPuzzleController extends ChallengeController implements Initializable {
 

@@ -22,6 +22,7 @@ import javafx.scene.media.MediaPlayer;
 /**
  *
  * @author Drew Hans
+ * @author Lucas Burdell
  */
 public class PuzzleBinarySwitchController extends ChallengeController implements Initializable {
 

@@ -5,7 +5,7 @@ package world;
  */
 public abstract class ACEObject {
 
-    private static int objectCount = 0;
+    private static int objectCount = 1;
     private final int ID;
 
     public ACEObject(int id) {
