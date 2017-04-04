@@ -25,23 +25,27 @@ public class Enemy extends Entity {
         Move move = Move.values()[randChoice];
         String output = "";
         
+        if(this.decrementStatusCounter()){
+            this.resetMultis();
+        }
+        
         
             switch(move){
                 case ATTACK:
-                    if(this.meleeMulti > 0){
-                        choice = new Melee(this.meleeMulti);
+                    if(this.currentMeleeMulti > 0){
+                        choice = new Melee(this.currentMeleeMulti);
                         action = " attacked ";
                     }   
                     break;
                 case SHOOT:
-                    if(this.rangedMulti > 0){
-                        choice = new Ranged(this.rangedMulti);
+                    if(this.currentRangedMulti > 0){
+                        choice = new Ranged(this.currentRangedMulti);
                         action = " shot ";
                     }
                     break;
                 case INSULT:
-                    if(this.verbalMulti > 0){
-                        choice = new Verbal(this.verbalMulti);
+                    if(this.currentVerbalMulti > 0){
+                        choice = new Verbal(this.currentVerbalMulti);
                         action = " insulted ";
                     }
                     break;

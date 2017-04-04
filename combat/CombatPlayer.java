@@ -18,17 +18,21 @@ public class CombatPlayer extends Entity{
         String action = "";
         Action choice = null;
         
+        if(this.decrementStatusCounter()){
+            this.resetMultis();
+        }
+        
         switch(move){
             case ATTACK:
-                choice = new Melee(this.meleeMulti);
+                choice = new Melee(this.currentMeleeMulti);
                 action = " attacked ";
                 break;
             case SHOOT:
-                choice = new Ranged(this.rangedMulti);
+                choice = new Ranged(this.currentRangedMulti);
                 action = " shot ";
                 break;
             case INSULT:
-                choice = new Verbal(this.verbalMulti);
+                choice = new Verbal(this.currentVerbalMulti);
                 action = " insulted ";
                 break;
         }

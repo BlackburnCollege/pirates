@@ -19,17 +19,23 @@ public class Entity {
     private final int maxHealth;
     private String name;
     private int statusCounter=0;
-    double meleeMulti;
-    double rangedMulti;
-    double verbalMulti;
+    final double maxMeleeMulti;
+    final double maxRangedMulti;
+    final double maxVerbalMulti;
+    double currentMeleeMulti;
+    double currentRangedMulti;
+    double currentVerbalMulti;
 
     public Entity(String name, int maxHealth, double meleeMulti, double rangedMulti, double verbalMulti) {
         this.name = name;
         this.maxHealth = maxHealth;
         this.currentHealth = this.maxHealth;
-        this.meleeMulti = meleeMulti;
-        this.rangedMulti = rangedMulti;
-        this.verbalMulti = verbalMulti;
+        this.maxMeleeMulti = meleeMulti;
+        this.maxRangedMulti = rangedMulti;
+        this.maxVerbalMulti = verbalMulti;
+        this.currentMeleeMulti = this.maxMeleeMulti;
+        this.currentRangedMulti = this.maxRangedMulti;
+        this.currentVerbalMulti = this.maxVerbalMulti;
     }
 
 
@@ -59,5 +65,35 @@ public class Entity {
         return name;
     }
     
-
+    public void decreaseMeleeMulti(){
+        this.currentMeleeMulti = 0;
+        this.statusCounter = 3;
+    }
+    public void decreaseRangedMulti (){
+        this.currentRangedMulti = 0;
+        this.statusCounter = 3;
+    }
+    public void decreaseVerbalMulti (){
+        this.currentVerbalMulti = 0;
+        this.statusCounter = 3;
+    }
+    
+    public void resetMultis (){
+        if(this.currentMeleeMulti != this.maxMeleeMulti){
+            this.currentMeleeMulti = this.maxMeleeMulti;
+        }
+        if(this.currentRangedMulti != this.maxRangedMulti){
+            this.currentRangedMulti = this.maxRangedMulti;
+        }
+        if(this.currentVerbalMulti != this.maxVerbalMulti){
+            this.currentVerbalMulti = this.maxVerbalMulti;
+        }
+    }
+    
+    public boolean decrementStatusCounter(){
+        if (this.statusCounter != 0){
+            this.statusCounter--;
+        }
+        return (this.statusCounter == 0);
+    }
 }

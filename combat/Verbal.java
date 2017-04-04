@@ -54,6 +54,18 @@ public class Verbal implements Action{
         String insult;
         insult = this.generateInsult();
         
+        switch(this.randNum.nextInt(3)){
+            case 0:
+                entity.decreaseMeleeMulti();
+                break;
+            case 1:
+                entity.decreaseRangedMulti();
+                break;
+            case 2:
+                entity.decreaseVerbalMulti();
+                break;
+        }
+        
         return "''" + insult + "''" + "\n";
     }
 }
