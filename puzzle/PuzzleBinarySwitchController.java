@@ -71,31 +71,6 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
         this.leverMiddle.setImage(images.getImage((this.puzzle.getLeverLocation())));
         this.leverRight.setImage(images.getImage((this.puzzle.getLeverLocation())));
 
-        /*
-        this.leverLeftBackground.fitWidthProperty().bind(gamePane.prefWidthProperty());
-        this.leverLeftBackground.fitHeightProperty().bind(gamePane.prefHeightProperty());
-        
-
-        this.leverMiddleBackground.fitWidthProperty().bind(gamePane.prefWidthProperty());
-        this.leverMiddleBackground.fitHeightProperty().bind(gamePane.prefHeightProperty());
-        
-
-        this.leverRightBackground.fitWidthProperty().bind(gamePane.prefWidthProperty());
-        this.leverRightBackground.fitHeightProperty().bind(gamePane.prefHeightProperty());
-        
-
-        this.leverLeft.fitWidthProperty().bind(gamePane.prefWidthProperty());
-        this.leverLeft.fitHeightProperty().bind(gamePane.prefHeightProperty());
-        
-
-        this.leverMiddle.fitWidthProperty().bind(gamePane.prefWidthProperty());
-        this.leverMiddle.fitHeightProperty().bind(gamePane.prefHeightProperty());
-        
-
-        this.leverRight.fitWidthProperty().bind(gamePane.prefWidthProperty());
-        this.leverRight.fitHeightProperty().bind(gamePane.prefHeightProperty());
-        
-         */
         this.gamePane.requestFocus();
 
         this.leaveButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -127,7 +102,6 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
             case A:
                 puzzle.pullLeftmost();
                 // update the GUI
-
                 if (this.leverLeft.getRotate() == 180) {
                     this.leverLeft.setRotate(0);
                 } else {
@@ -141,7 +115,6 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
             case S:
                 puzzle.pullMiddle();
                 // update the GUI
-
                 if (this.leverMiddle.getRotate() == 180) {
                     this.leverMiddle.setRotate(0);
                 } else {

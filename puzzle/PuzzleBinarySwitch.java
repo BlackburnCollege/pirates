@@ -39,7 +39,7 @@ public class PuzzleBinarySwitch extends PuzzleModel {
 
         // update model parameters for controller
         this.setBackground(this.leverBackgroundLocation);
-        
+
         //TODO: SET SOUND TO LEVERPULL
         this.setSound(this.soundLeverPullLocation);
         this.setText("The number " + this.doorClue + " is carved on the door.  What could it mean?");

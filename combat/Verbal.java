@@ -50,7 +50,10 @@ public class Verbal implements Action{
     }
     
     @Override
-    public void affect(Entity entity){
+    public String affect(Entity entity){
+        String insult;
+        insult = this.generateInsult();
         
+        return "''" + insult + "''" + "\n";
     }
 }

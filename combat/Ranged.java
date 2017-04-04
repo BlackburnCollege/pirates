@@ -18,8 +18,9 @@ public class Ranged implements Action{
     }
     
     @Override
-    public void affect(Entity entity){
+    public String affect(Entity entity){
         entity.decreaseHealth((int)(this.damage*this.multiplier));
+        return "";
     }
     
     public int getDamage(){
