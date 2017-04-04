@@ -1,6 +1,7 @@
 package puzzle;
 
 import gui.Sound;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -8,11 +9,20 @@ import javafx.scene.control.Button;
 
 public class PuzzleFishing extends PuzzleModel {
     
-    private final String waterPic = "water.jpg";
-    private final String smallFishPic = "";
-    private final String mediumFishPic = "";
-    private final String largeFishPic = "";
-    private final Sound newFishSound = null;
+    public static final int MAP_WIDTH = 10;
+    public static final int MAP_HEIGHT = 10;
+    public static final int NUMBER_OF_FISH = 5;
+    
+    private static final Random RANDOM = new Random();
+    private ArrayList<PuzzleFishTest.Fish> fishes = new ArrayList<>();
+    private int fishLeft;
+    
+    
+    //private final String waterPic = "water.jpg";
+    //private final String smallFishPic = "";
+    //private final String mediumFishPic = "";
+    //private final String largeFishPic = "";
+    //private final Sound newFishSound = null;
     private int fishCount = 0;
     private final Button smallFishButton = null;
     private final Button mediumFishButton = null;
@@ -20,8 +30,8 @@ public class PuzzleFishing extends PuzzleModel {
     private int fishWeight = 0; 
     
     public PuzzleFishing() throws InterruptedException {
-        this.setBackground(waterPic);
-        this.setSound(newFishSound);
+        //this.setBackground(waterPic);
+       // this.setSound(newFishSound);
         this.setText("I row out to my normal fishing spot. I’ll need 5 fish to "
                 + "sell at the market today.”\n Instructions: Click on the "
                 + "fish to catch them. Bigger fish will disappear faster, "
@@ -40,7 +50,7 @@ public class PuzzleFishing extends PuzzleModel {
 
     public void displayFish() throws InterruptedException{
         int fish = this.getRandomFishSize();
-        this.setSound(this.newFishSound);
+        //this.setSound(this.newFishSound);
         TimerTask smallFishTask = new TimerTask() {
             @Override
             public void run() {
