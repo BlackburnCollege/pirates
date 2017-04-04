@@ -142,8 +142,19 @@ public class SQLDatabaseManager {
     // MAIN METHOD USED FOR TESTING ONLY
     // TODO: REMOVE METHOD
     public static void main(String[] args) throws Exception {
-        SQLDatabaseManager loader = new SQLDatabaseManager("storyDB", true);
+        //SQLDatabaseManager loader = new SQLDatabaseManager("storyDB", true);
+        //loader.rebuild();
+        SQLDatabaseManager loader = new SQLDatabaseManager("combatDB", true);
         loader.rebuild();
+        
+        EntitySQLLoader entity = new EntitySQLLoader("wolf");
+        System.out.println(entity.getHealth());
+        System.out.println(entity.getMeleeModifier());
+        
+        entity = new EntitySQLLoader("dog");
+        entity.setInsultImmune(true);
+        entity.setHealth(50);
+        entity.saveToDatabase();
 
 //        System.out.println("Loading the Derby jdbc driver...");
 //        Class<?> clazz = Class.forName(databaseDriver);
