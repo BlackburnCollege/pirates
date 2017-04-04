@@ -78,26 +78,26 @@ public class EventScaffolding extends ACEObjectScaffolding<Event> {
                 + "INSERT INTO EVENT(id, text, backgroundname, music) "
                 + "VALUES (?, ?, ?, ?)");
 
-        insert.setInt(0, object.getID());
-        update.setInt(3, id);
+        insert.setInt(1, object.getID());
+        update.setInt(4, id);
 
-        update.setString(0, text);
-        insert.setString(1, object.getText());
+        update.setString(1, text);
+        insert.setString(2, object.getText());
 
         if (background == null || background.equals("")) {
-            update.setNull(1, Types.VARCHAR);
-            insert.setNull(2, Types.VARCHAR);
-        } else {
-            update.setString(1, background);
-            insert.setString(2, background);
-        }
-
-        if (music == null || music.equals("")) {
             update.setNull(2, Types.VARCHAR);
             insert.setNull(3, Types.VARCHAR);
         } else {
-            update.setString(2, music);
-            insert.setString(3, music);
+            update.setString(2, background);
+            insert.setString(3, background);
+        }
+
+        if (music == null || music.equals("")) {
+            update.setNull(3, Types.VARCHAR);
+            insert.setNull(4, Types.VARCHAR);
+        } else {
+            update.setString(3, music);
+            insert.setString(4, music);
         }
 
         if (this.existsInDatabase()) {

@@ -30,7 +30,7 @@ import org.apache.derby.tools.ij;
 public class SQLDatabaseManager {
 
     public static final String databaseDriver = "org.apache.derby.jdbc.EmbeddedDriver";
-    private String databaseURL = "jdbc:derby:pirates/";// + databaseName;
+    private String databaseURL = "jdbc:derby:";// + databaseName;
 
     //public static final String databaseName = "pirates/piratestest";
     private String databaseName;
@@ -155,6 +155,11 @@ public class SQLDatabaseManager {
         entity.setInsultImmune(true);
         entity.setHealth(50);
         entity.saveToDatabase();
+        
+        entity = new EntitySQLLoader("dog");
+        System.out.println(entity.isInsultImmune());
+        System.out.println(entity.getHealth());
+        System.out.println(entity.getMeleeModifier());
 
 //        System.out.println("Loading the Derby jdbc driver...");
 //        Class<?> clazz = Class.forName(databaseDriver);

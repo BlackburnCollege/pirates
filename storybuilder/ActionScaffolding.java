@@ -52,18 +52,18 @@ public class ActionScaffolding extends ACEObjectScaffolding<Action> {
                 + "INSERT INTO actions(id, text, eventid) "
                 + "VALUES (?, ?, ?)");
 
-        insert.setInt(0, object.getID());
-        update.setInt(2, id);
+        insert.setInt(1, object.getID());
+        update.setInt(3, id);
 
-        update.setString(0, text);
-        insert.setString(1, object.getText());
+        update.setString(1, text);
+        insert.setString(2, object.getText());
 
         if (eventid == -1) {
-            update.setNull(1, Types.INTEGER);
-            insert.setNull(2, Types.INTEGER);
+            update.setNull(2, Types.INTEGER);
+            insert.setNull(3, Types.INTEGER);
         } else {
-            update.setInt(1, eventid);
-            insert.setInt(2, eventid);
+            update.setInt(2, eventid);
+            insert.setInt(3, eventid);
         }
 
         if (this.existsInDatabase()) {
@@ -95,7 +95,7 @@ public class ActionScaffolding extends ACEObjectScaffolding<Action> {
         }
         PreparedStatement check = getDatabase().prepareStatement("SELECT * FROM actions"
                 + " WHERE id=?");
-        check.setInt(0, id);
+        check.setInt(1, id);
         ResultSet set = check.executeQuery();
         if (set.isBeforeFirst()) {
             set.next();

@@ -83,7 +83,7 @@ public abstract class ACEObjectScaffolding<T extends ACEObject> {
     public static boolean existsInDatabase(String type, int id) throws SQLException {
         PreparedStatement check = getDatabase().prepareStatement("SELECT * FROM aceobject"
                 + "WHERE id=?");
-        check.setInt(0, id);
+        check.setInt(1, id);
         ResultSet set = check.executeQuery();
         if (set.isBeforeFirst()) {
             set.next();
@@ -103,7 +103,7 @@ public abstract class ACEObjectScaffolding<T extends ACEObject> {
     public boolean existsInDatabase() throws SQLException {
         PreparedStatement check = getDatabase().prepareStatement("SELECT * FROM aceobject"
                 + "WHERE id=?");
-        check.setInt(0, this.object.getID());
+        check.setInt(1, this.object.getID());
         ResultSet set = check.executeQuery();
         if (set.isBeforeFirst()) {
             set.next();
