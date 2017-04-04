@@ -25,14 +25,16 @@ public class Entity {
     double currentMeleeMulti;
     double currentRangedMulti;
     double currentVerbalMulti;
+    boolean verbalImmunity;
 
-    public Entity(String name, int maxHealth, double meleeMulti, double rangedMulti, double verbalMulti) {
+    public Entity(String name, int maxHealth, double meleeMulti, double rangedMulti, double verbalMulti, boolean verbalImmunity) {
         this.name = name;
         this.maxHealth = maxHealth;
         this.currentHealth = this.maxHealth;
         this.maxMeleeMulti = meleeMulti;
         this.maxRangedMulti = rangedMulti;
         this.maxVerbalMulti = verbalMulti;
+        this.verbalImmunity = verbalImmunity;
         this.currentMeleeMulti = this.maxMeleeMulti;
         this.currentRangedMulti = this.maxRangedMulti;
         this.currentVerbalMulti = this.maxVerbalMulti;

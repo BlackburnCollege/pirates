@@ -343,7 +343,7 @@ public class GameController implements Initializable {
         if (action.getChallenge().getType().equals("combat")) {
             try {
                 loader = new FXMLLoader(getClass().getResource(
-                        "/combat/CombatExampleFXML.fxml"));
+                        "/combat/CombatFXML.fxml"));
                 root = (Pane) loader.load();
                 controller = loader.getController();
                 controller.setChallengeInformation(action.getChallenge().getChallengeName());

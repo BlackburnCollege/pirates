@@ -13,8 +13,8 @@ import java.util.Random;
  */
 public class Enemy extends Entity {
 
-    public Enemy(String name, int maxHealth, double meleeMulti, double rangedMulti, double verbalMulti) {
-        super(name, maxHealth, meleeMulti, rangedMulti, verbalMulti);
+    public Enemy(String name, int maxHealth, double meleeMulti, double rangedMulti, double verbalMulti, boolean verbalImmunity) {
+        super(name, maxHealth, meleeMulti, rangedMulti, verbalMulti, verbalImmunity);
     }
     
     public String getMove(Entity entity) {

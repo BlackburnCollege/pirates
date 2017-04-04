@@ -22,7 +22,7 @@ import javafx.scene.layout.Pane;
  *
  * @author dakota.tebbe
  */
-public class CombatExampleController extends ChallengeController
+public class CombatController extends ChallengeController
         implements Initializable {
 
     private int numShots = 2;
@@ -99,7 +99,7 @@ public class CombatExampleController extends ChallengeController
         String nameOfChallenger = this.getChallengeInformation();
         
 
-        CombatPlayer player = new CombatPlayer("PLAYERNAME", 100, 2.5, 6.25, 0);
+        CombatPlayer player = new CombatPlayer("PLAYERNAME", 100, 2.5, 6.25, 0, false);
         //TODO: LOAD ENEMY DATA FROM SOMEWHERE
         // pseudo example of what that might look like: 
         /* if nameOfChallenger.equals("wolf") {
@@ -110,7 +110,7 @@ public class CombatExampleController extends ChallengeController
 
         enemyImage.setImage(images.getImage(nameOfChallenger));
         
-        Enemy enemy = new Enemy(nameOfChallenger, 100, 6.25, 0, 0);
+        Enemy enemy = new Enemy(nameOfChallenger, 100, 6.25, 0, 0, true);
         this.combat = new Combat(player, enemy);
     }
 
