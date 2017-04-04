@@ -33,7 +33,7 @@ public class EntitySQLLoader {
             statement.setString(0, name);
             ResultSet set = statement.executeQuery();
 
-            if (!set.isBeforeFirst()) {
+            if (set.isBeforeFirst()) {
                 set.next();
                 this.name = set.getString("ENTITY_NAME");
                 this.health = set.getInt("HEALTH");
