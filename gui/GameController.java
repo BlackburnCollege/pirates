@@ -101,7 +101,7 @@ public class GameController implements Initializable {
 
     private void buildPuzzleControllerMappings() {
         this.puzzleControllers.put("safecrack", "/puzzle/PuzzleSafeCrackGUI.fxml");
-        this.puzzleControllers.put("fish", "/puzzle/TestFishPuzzleGui.fxml");
+        this.puzzleControllers.put("fish", "/puzzle/PuzzleFishGUI.fxml");
         this.puzzleControllers.put("binary", "/puzzle/PuzzleBinarySwitchGUI.fxml");
     }
 
