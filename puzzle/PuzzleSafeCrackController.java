@@ -41,7 +41,7 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
     private MediaPlayer mediaPlayer; // plays sounds
 
     private PuzzleSafeCrack puzzle;  // the PuzzleObject
-    
+
     private final ImageController images = ImageController.get();
 
     /**

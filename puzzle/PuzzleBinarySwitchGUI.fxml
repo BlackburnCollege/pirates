@@ -9,29 +9,29 @@
 <?import javafx.scene.layout.Pane?>
 
 <AnchorPane fx:id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="puzzle.PuzzleBinarySwitchController">
-   <children>
-      <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <StackPane prefHeight="150.0" prefWidth="200.0">
-               <children>
-                  <ImageView fx:id="leverLeftBackground" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="leverLeft" onKeyPressed="#onKeyEvent" onMouseClicked="#onClickedLever" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </StackPane>
-            <StackPane prefHeight="150.0" prefWidth="200.0">
-               <children>
-                  <ImageView fx:id="leverMiddleBackground" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="leverMiddle" onKeyPressed="#onKeyEvent" onMouseClicked="#onClickedLever" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </StackPane>
-            <StackPane prefHeight="150.0" prefWidth="200.0">
-               <children>
-                  <ImageView fx:id="leverRightBackground" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="leverRight" onKeyPressed="#onKeyEvent" onMouseClicked="#onClickedLever" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </StackPane>
-         </children>
-      </HBox>
-      <Hyperlink fx:id="leaveButton" text="LEAVE" />
-   </children>
+    <children>
+        <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <StackPane prefHeight="150.0" prefWidth="200.0">
+                    <children>
+                        <ImageView fx:id="leverLeftBackground" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="leverLeft" onKeyPressed="#onKeyEvent" onMouseClicked="#onClickedLever" pickOnBounds="true" preserveRatio="true" />
+                    </children>
+                </StackPane>
+                <StackPane prefHeight="150.0" prefWidth="200.0">
+                    <children>
+                        <ImageView fx:id="leverMiddleBackground" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="leverMiddle" onKeyPressed="#onKeyEvent" onMouseClicked="#onClickedLever" pickOnBounds="true" preserveRatio="true" />
+                    </children>
+                </StackPane>
+                <StackPane prefHeight="150.0" prefWidth="200.0">
+                    <children>
+                        <ImageView fx:id="leverRightBackground" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="leverRight" onKeyPressed="#onKeyEvent" onMouseClicked="#onClickedLever" pickOnBounds="true" preserveRatio="true" />
+                    </children>
+                </StackPane>
+            </children>
+        </HBox>
+        <Hyperlink fx:id="leaveButton" text="LEAVE" />
+    </children>
 </AnchorPane>

@@ -7,24 +7,24 @@ import java.util.Random;
  * This class was written specifically to test certain GUI elements and ideas
  * for puzzles. do not use for production-quality fishing puzzle
  *
- * This puzzle will build a list of Fish, which is an inner class of
- * PuzzleFishTest and randomly place them on a 10 by 10 grid
+ * This puzzle will build a list of Fish, which is an inner class of PuzzleFish
+ * and randomly place them on a 10 by 10 grid
  *
  * @author lucas.burdell
  */
-public class PuzzleFishTest extends PuzzleModel {
+public class PuzzleFish extends PuzzleModel {
 
     // configurable constants
     public static final int MAP_WIDTH = 10;
     public static final int MAP_HEIGHT = 10;
     public static final int NUMBER_OF_FISH = 5;
-    
+
     private static final Random RANDOM = new Random();
 
     private ArrayList<Fish> fishes = new ArrayList<>();
     private int fishLeft;
 
-    public PuzzleFishTest() {
+    public PuzzleFish() {
         for (int i = 0; i < NUMBER_OF_FISH; i++) {
             Fish fish = new Fish();
             fishes.add(fish);

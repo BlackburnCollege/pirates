@@ -1,21 +1,21 @@
 package puzzle;
 
 public class PuzzleCaesarCipher extends PuzzleModel {
-    
+
     private final String answer = "treasure";
     private final String originalMessage = "vtgcuwtg";
-    
-    public PuzzleCaesarCipher(){
+
+    public PuzzleCaesarCipher() {
         this.setBackground("");
         this.setSound(null);
         this.setText("I examine the box more closely and I notice a jumble "
-                + "of letters carved into the top of the box that reads ... " 
+                + "of letters carved into the top of the box that reads ... "
                 + this.originalMessage + ". A closer examination reveals"
                 + "something else on the bottom: A = C, B = D ...  It appears "
                 + "that I have to translate the message and enter it into the "
                 + "lock.");
     }
-    
+
     /**
      * @return the answer String
      */
