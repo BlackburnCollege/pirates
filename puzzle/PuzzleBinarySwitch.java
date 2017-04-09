@@ -88,14 +88,14 @@ public class PuzzleBinarySwitch extends PuzzleModel {
     }
 
     /**
-     * @return the String location of the inner dial
+     * @return the String location of the lever background
      */
     public String getLeverBackgroundLocation() {
         return this.leverBackgroundLocation;
     }
 
     /**
-     * @return the String location of the outer dial
+     * @return the String location of the lever
      */
     public String getLeverLocation() {
         return this.leverLocation;

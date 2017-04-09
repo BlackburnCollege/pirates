@@ -1,40 +1,85 @@
 package puzzle;
 
+import gui.Sound;
+
+/**
+ *
+ * @author Drew Hans
+ */
 public class PuzzleCaesarCipher extends PuzzleModel {
 
-    private final String answer = "treasure";
-    private final String originalMessage = "vtgcuwtg";
+    /**
+     * private modifier restricts other programs, subclasses in this package,
+     * and different packages from accessing these variables directly
+     */
+    private int correctKey;
+    private int currentKey;
 
+    // PuzzleCaesarCipher resource locations
+    private final String decoderBackgroundLocation = "decoder_base_0";
+    private final String decoderLocation = "decoder_0";
+    private final Sound soundClickLocation = Sound.CLICK;
+
+    /**
+     * Constructor
+     */
     public PuzzleCaesarCipher() {
-        this.setBackground("");
-        this.setSound(null);
-        this.setText("I examine the box more closely and I notice a jumble "
-                + "of letters carved into the top of the box that reads ... "
-                + this.originalMessage + ". A closer examination reveals"
-                + "something else on the bottom: A = C, B = D ...  It appears "
-                + "that I have to translate the message and enter it into the "
-                + "lock.");
+        this.correctKey = 5; // store default correctKey
+
+        this.currentKey = 0; // store currentKey
+
+        // update model parameters for controller
+        this.setBackground(this.decoderBackgroundLocation);
+
+        //TODO: SET SOUND TO LEVERPULL
+        this.setSound(this.soundClickLocation);
+        this.setText("The decode is set to " + this.currentKey + ".");
     }
 
     /**
-     * @return the answer String
-     */
-    public String getAnswer() {
-        return this.answer;
-    }
-
-    /**
-     * guess is called by the controller when the player makes a guess and
-     * decides which text to set for the controller
+     * Constructor
      *
-     * @param g
+     * @param solutionKey
      */
-    public void guess(String g) {
-        if (this.answer.equalsIgnoreCase(g)) {
-            this.setText("It seems to have worked!");
-            //opening sound
-        } else {
-            this.setText("Nothing happened. Maybe I should try again.");
-        }
+    public PuzzleCaesarCipher(int solutionKey) {
+        this.correctKey = solutionKey; // store default correctKey
+
+        this.currentKey = 0; // store currentKey
+
+        // update model parameters for controller
+        this.setBackground(this.decoderBackgroundLocation);
+
+        //TODO: SET SOUND TO LEVERPULL
+        this.setSound(this.soundClickLocation);
+        this.setText("The decode is set to " + this.currentKey + ".");
     }
+
+    /**
+     * @return the correct key
+     */
+    public int getCorrectKey() {
+        return this.correctKey;
+    }
+
+    /**
+     * @return the current key
+     */
+    public int getCurrentKey() {
+        return this.currentKey;
+    }
+
+    /**
+     * @return the String location of the decoder background
+     */
+    public String getDecoderBackgroundLocation() {
+        return this.decoderBackgroundLocation;
+    }
+
+    /**
+     * @return the String location of the decoder
+     */
+    public String getDecoderLocation() {
+        return this.decoderLocation;
+    }
+
 }
