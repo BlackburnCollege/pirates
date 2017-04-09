@@ -121,5 +121,4 @@ public class PuzzleFish extends PuzzleModel {
         }
         return true;
     }
-
 }

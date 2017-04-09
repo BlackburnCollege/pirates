@@ -21,7 +21,7 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-import puzzle.PuzzleFishTest.Fish;
+import puzzle.PuzzleFish.Fish;
 
 /**
  * @author Lucas Burdell
@@ -41,7 +41,7 @@ public class PuzzleFishController extends ChallengeController implements Initial
 
     private FishingTimer timer;
 
-    private PuzzleFishTest fishPuzzle = new PuzzleFishTest();
+    private PuzzleFish fishPuzzle = new PuzzleFish();
 
     @Override
     public void setupListeners(Scene scene) {
@@ -112,9 +112,9 @@ public class PuzzleFishController extends ChallengeController implements Initial
         ImageView fishView = new ImageView(fishImage);
 
         //calculate position on screen
-        double screenPosX = ((double) fish.getXPos() / (double) PuzzleFishTest.MAP_WIDTH)
+        double screenPosX = ((double) fish.getXPos() / (double) PuzzleFish.MAP_WIDTH)
                 * gamePane.getPrefWidth() - fishImage.getHeight();
-        double screenPosY = ((double) fish.getYPos() / (double) PuzzleFishTest.MAP_HEIGHT)
+        double screenPosY = ((double) fish.getYPos() / (double) PuzzleFish.MAP_HEIGHT)
                 * gamePane.getPrefHeight();
 
         // shoddy bounds checking
