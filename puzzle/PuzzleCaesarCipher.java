@@ -16,8 +16,8 @@ public class PuzzleCaesarCipher extends PuzzleModel {
     private int currentKey;
 
     // PuzzleCaesarCipher resource locations
-    private final String decoderOuterLocation = "caesarcipherdecoderOUTER";
-    private final String decoderInnerLocation = "caesarcipherdecoderINNER";
+    private final String decoderOuterLocation = "puzzlecaesarcipherdecoderOUTER";
+    private final String decoderInnerLocation = "puzzlecaesarcipherdecoderINNER";
     private final Sound soundClickLocation = Sound.CLICK;
 
     /**
@@ -30,8 +30,6 @@ public class PuzzleCaesarCipher extends PuzzleModel {
 
         // update model parameters for controller
         this.setBackground(this.decoderOuterLocation);
-
-        //TODO: SET SOUND TO LEVERPULL
         this.setSound(this.soundClickLocation);
         this.setText("Ymj pnqqjw nx Qzhfx");
     }
@@ -91,6 +89,10 @@ public class PuzzleCaesarCipher extends PuzzleModel {
      */
     private void onTurn() {
         this.setSound(this.soundClickLocation);
+        
+        if (this.correctKey == this.currentKey) {
+            this.setCompleted(); // set puzzle status to solved
+        }
     }
 
     /**
