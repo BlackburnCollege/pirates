@@ -39,7 +39,7 @@ public class PuzzleCaesarCipherController extends ChallengeController implements
 
     @FXML
     private MediaPlayer mediaPlayer; // plays sounds
-    
+
     @FXML
     private TextField decoderKey; // the current decoder key
 
@@ -61,8 +61,8 @@ public class PuzzleCaesarCipherController extends ChallengeController implements
         this.decoder.fitWidthProperty().bind(gamePane.prefWidthProperty());
         this.decoder.fitHeightProperty().bind(gamePane.prefHeightProperty());
         this.decoder.setImage(images.getImage(this.puzzle.getDecoderInnerLocation()));
-        
-        this.decoderKey.setText("5");
+
+        this.decoderKey.setText(Integer.toString(this.puzzle.getCurrentKey()));
 
         this.gamePane.requestFocus();
 
@@ -95,11 +95,13 @@ public class PuzzleCaesarCipherController extends ChallengeController implements
             case A:
             case KP_LEFT:
                 puzzle.turnCounterClockwise();
+                this.decoderKey.setText(Integer.toString(this.puzzle.getCurrentKey()));
                 break;
             case RIGHT:
             case D:
             case KP_RIGHT:
                 puzzle.turnClockwise();
+                this.decoderKey.setText(Integer.toString(this.puzzle.getCurrentKey()));
                 break;
             default:
                 break;
@@ -110,6 +112,7 @@ public class PuzzleCaesarCipherController extends ChallengeController implements
 
         // play the appropriate sound (determined by the PuzzleObject)
         AudioController.get().playSound(this.puzzle.getSound());
+
         // check solve status
         checkSolution();
     }
