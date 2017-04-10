@@ -39,8 +39,6 @@ public class PuzzleBinarySwitch extends PuzzleModel {
 
         // update model parameters for controller
         this.setBackground(this.leverBackgroundLocation);
-
-        //TODO: SET SOUND TO LEVERPULL
         this.setSound(this.soundLeverPullLocation);
         this.setText("The number " + this.doorClue + " is carved on the door.  What could it mean?");
     }
@@ -74,6 +72,13 @@ public class PuzzleBinarySwitch extends PuzzleModel {
     }
 
     /**
+     * @return the correctSwitchPositions boolean array
+     */
+    public boolean[] getCorrectSwitchPositions() {
+        return this.correctSwitchPositions;
+    }
+
+    /**
      * @return the currentSwitchPositions boolean array
      */
     public boolean[] getCurrentSwitchPositions() {
@@ -88,14 +93,14 @@ public class PuzzleBinarySwitch extends PuzzleModel {
     }
 
     /**
-     * @return the String location of the inner dial
+     * @return the String location of the lever background
      */
     public String getLeverBackgroundLocation() {
         return this.leverBackgroundLocation;
     }
 
     /**
-     * @return the String location of the outer dial
+     * @return the String location of the lever
      */
     public String getLeverLocation() {
         return this.leverLocation;

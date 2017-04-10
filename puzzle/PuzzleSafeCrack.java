@@ -19,8 +19,6 @@ public class PuzzleSafeCrack extends PuzzleModel {
     // PuzleSafeCrack resource locations
     private final String dialOuterLocation = "puzzlesafedialOUTER";
     private final String dialInnerLocation = "puzzlesafedialINNER";
-    
-    //sounds
     private final Sound soundTurnLocation = Sound.SAFEDIALTURN;
     private final Sound soundDetectLocation = Sound.SAFEDETECTCOMBO;
     private final Sound soundOpenLocation = Sound.SAFEUNLOCK;
@@ -96,7 +94,14 @@ public class PuzzleSafeCrack extends PuzzleModel {
     }
 
     /**
-     * @return the safeCombination byte array
+     * @return the enteredCorrect boolean array
+     */
+    public boolean[] getEnteredCorrect() {
+        return this.enteredCorrect;
+    }
+
+    /**
+     * @return the safeCombination int array
      */
     public int[] getSafeCombination() {
         return this.safeCombination;

@@ -1,40 +1,124 @@
 package puzzle;
 
+import gui.Sound;
+
+/**
+ *
+ * @author Drew Hans
+ */
 public class PuzzleCaesarCipher extends PuzzleModel {
-    
-    private final String answer = "treasure";
-    private final String originalMessage = "vtgcuwtg";
-    
-    public PuzzleCaesarCipher(){
-        this.setBackground("");
-        this.setSound(null);
-        this.setText("I examine the box more closely and I notice a jumble "
-                + "of letters carved into the top of the box that reads ... " 
-                + this.originalMessage + ". A closer examination reveals"
-                + "something else on the bottom: A = C, B = D ...  It appears "
-                + "that I have to translate the message and enter it into the "
-                + "lock.");
-    }
-    
+
     /**
-     * @return the answer String
+     * private modifier restricts other programs, subclasses in this package,
+     * and different packages from accessing these variables directly
      */
-    public String getAnswer() {
-        return this.answer;
+    private int correctKey;
+    private int currentKey;
+
+    // PuzzleCaesarCipher resource locations
+    private final String decoderOuterLocation = "puzzlecaesarcipherdecoderOUTER";
+    private final String decoderInnerLocation = "puzzlecaesarcipherdecoderINNER";
+    private final Sound soundClickLocation = Sound.CLICK;
+
+    /**
+     * Constructor
+     */
+    public PuzzleCaesarCipher() {
+        this.correctKey = 5; // store default correctKey
+
+        this.currentKey = 0; // store currentKey
+
+        // update model parameters for controller
+        this.setBackground(this.decoderOuterLocation);
+        this.setSound(this.soundClickLocation);
+        this.setText("Ymj pnqqjw nx Qzhfx");
     }
 
     /**
-     * guess is called by the controller when the player makes a guess and
-     * decides which text to set for the controller
+     * Constructor
      *
-     * @param g
+     * @param solutionKey - the decoder key solution
      */
-    public void guess(String g) {
-        if (this.answer.equalsIgnoreCase(g)) {
-            this.setText("It seems to have worked!");
-            //opening sound
-        } else {
-            this.setText("Nothing happened. Maybe I should try again.");
+    public PuzzleCaesarCipher(int solutionKey) {
+        this.correctKey = solutionKey; // store default correctKey
+
+        this.currentKey = 0; // store currentKey
+
+        // update model parameters for controller
+        this.setBackground(this.decoderOuterLocation);
+
+        //TODO: SET SOUND TO LEVERPULL
+        this.setSound(this.soundClickLocation);
+        this.setText("");
+    }
+
+    /**
+     * @return the correct key
+     */
+    public int getCorrectKey() {
+        return this.correctKey;
+    }
+
+    /**
+     * @return the current key
+     */
+    public int getCurrentKey() {
+        return this.currentKey;
+    }
+
+    /**
+     * @return the String location of the decoder background
+     */
+    public String getDecoderOuterLocation() {
+        return this.decoderOuterLocation;
+    }
+
+    /**
+     * @return the String location of the decoder
+     */
+    public String getDecoderInnerLocation() {
+        return this.decoderInnerLocation;
+    }
+
+    /**
+     * private modifier restricts other programs, subclasses in this package,
+     * and different packages from accessing this method directly
+     *
+     * onTurn looks at the class variables values and decides which sound to set
+     * for the controller
+     */
+    private void onTurn() {
+        this.setSound(this.soundClickLocation);
+        
+        if (this.correctKey == this.currentKey) {
+            this.setCompleted(); // set puzzle status to solved
         }
     }
+
+    /**
+     * turnClockwise is called by the controller when the player turns the
+     * decoder clockwise
+     */
+    public void turnClockwise() {
+        if (this.currentKey == 0) {
+            this.currentKey = 25;
+        } else {
+            this.currentKey--;
+        }
+        this.onTurn();
+    }
+
+    /**
+     * turnCounterClockwise is called by the controller when the player turns
+     * the decoder counterclockwise
+     */
+    public void turnCounterClockwise() {
+        if (this.currentKey == 25) {
+            this.currentKey = 0;
+        } else {
+            this.currentKey++;
+        }
+        this.onTurn();
+    }
+
 }

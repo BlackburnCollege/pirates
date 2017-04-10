@@ -21,18 +21,18 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-import puzzle.PuzzleFishTest.Fish;
+import puzzle.PuzzleFish.Fish;
 
 /**
  * @author Lucas Burdell
  */
-public class TestFishPuzzleController extends ChallengeController implements Initializable {
+public class PuzzleFishController extends ChallengeController implements Initializable {
 
     public static final int TIME_TO_FISH = 10;
 
     private final ImageController images = ImageController.get();
     private Image fishImage = images.getImage("fish");
-    
+
     @FXML
     public Pane gamePane;
 
@@ -41,16 +41,16 @@ public class TestFishPuzzleController extends ChallengeController implements Ini
 
     private FishingTimer timer;
 
-    private PuzzleFishTest fishPuzzle = new PuzzleFishTest();
-    
+    private PuzzleFish fishPuzzle = new PuzzleFish();
+
     @Override
     public void setupListeners(Scene scene) {
-        
+
     }
 
     @Override
     public void teardownListeners(Scene scene) {
-        
+
     }
 
     // Timer for puzzle timeout
@@ -75,10 +75,10 @@ public class TestFishPuzzleController extends ChallengeController implements Ini
             currentTime += now - currentTime;
             double timeRemaining = (maxTime - currentTime) / 1000000000.0;
             // massive hack
-            TestFishPuzzleController.this.timerLabel.setText(
+            PuzzleFishController.this.timerLabel.setText(
                     "Click the fish before time runs out! " + timeRemaining + " seconds left");
             if (currentTime >= maxTime && !fishPuzzle.getCompleted()) {
-                TestFishPuzzleController.this.finishChallenge(ChallengeStatus.LOSS);
+                PuzzleFishController.this.finishChallenge(ChallengeStatus.LOSS);
                 this.stop();
             }
         }
@@ -110,22 +110,20 @@ public class TestFishPuzzleController extends ChallengeController implements Ini
     // also sets up the mouse click event listener
     public ImageView buildFishView(Fish fish) {
         ImageView fishView = new ImageView(fishImage);
-        
+
         //calculate position on screen
-        double screenPosX = ((double) fish.getXPos() / (double) PuzzleFishTest.MAP_WIDTH)
+        double screenPosX = ((double) fish.getXPos() / (double) PuzzleFish.MAP_WIDTH)
                 * gamePane.getPrefWidth() - fishImage.getHeight();
-        double screenPosY = ((double) fish.getYPos() / (double) PuzzleFishTest.MAP_HEIGHT)
+        double screenPosY = ((double) fish.getYPos() / (double) PuzzleFish.MAP_HEIGHT)
                 * gamePane.getPrefHeight();
-        
-        
-        
+
         // shoddy bounds checking
         if (screenPosX < fishImage.getWidth()) {
             screenPosX = fishImage.getWidth();
         } else if (screenPosX > gamePane.getPrefWidth() - fishImage.getWidth()) {
             screenPosX = gamePane.getPrefWidth() - fishImage.getWidth();
         }
-        
+
         if (screenPosY < fishImage.getHeight()) {
             screenPosY = fishImage.getHeight();
         } else if (screenPosY > gamePane.getPrefHeight() - fishImage.getHeight()) {
@@ -146,15 +144,15 @@ public class TestFishPuzzleController extends ChallengeController implements Ini
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+
         //backgrounds are a pain to set sometimes
         //there's probably a much easier way to do this
         gamePane.setBackground(new Background(
                 new BackgroundImage(
-                        images.getImage("fishing_background"), 
-                        BackgroundRepeat.NO_REPEAT, 
-                        BackgroundRepeat.NO_REPEAT, 
-                        BackgroundPosition.CENTER, 
+                        images.getImage("fishing_background"),
+                        BackgroundRepeat.NO_REPEAT,
+                        BackgroundRepeat.NO_REPEAT,
+                        BackgroundPosition.CENTER,
                         new BackgroundSize(1, 1, true, true, true, true)
                 )
         ));
@@ -164,7 +162,7 @@ public class TestFishPuzzleController extends ChallengeController implements Ini
             ImageView fishView = buildFishView(fish);
             gamePane.getChildren().add(fishView);
         }
-        
+
         // make and start timer
         timer = new FishingTimer(TIME_TO_FISH);
         timer.start();
