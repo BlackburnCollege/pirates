@@ -10,5 +10,5 @@ package combat;
  * @author dakota.tebbe
  */
 public enum Nouns {
-    PARROT, VITTLES, HARDTACK, AFT, GOLD, PEGLEG
+    PARROT, VITTLES, HARDTACK, AFT, GOLD, PEGLEG, MONKEY
 }
