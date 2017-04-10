@@ -48,10 +48,15 @@ CREATE TABLE conditional(
 );
 
 CREATE TABLE actionsevent(
-    aceid integer not null primary key,
+    # aceid integer not null primary key,
     actionid integer not null,
     eventid integer not null
 );
+
+ALTER TABLE actionsevent
+   ADD CONSTRAINT actionsevent_pk Primary Key (
+      actionid,
+      eventid);
 
 CREATE TABLE challenge(
     challengeid integer not null primary key,
