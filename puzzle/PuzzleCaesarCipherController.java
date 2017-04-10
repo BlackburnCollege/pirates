@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -21,18 +22,17 @@ import javafx.scene.media.MediaPlayer;
 /**
  *
  * @author Drew Hans
- * @author Lucas Burdell
  */
-public class PuzzleSafeCrackController extends ChallengeController implements Initializable {
+public class PuzzleCaesarCipherController extends ChallengeController implements Initializable {
 
     @FXML
     private Pane gamePane;
 
     @FXML
-    private ImageView dialBackground; // the outer safe dial ring
+    private ImageView decoderBackground; // the outer decoder ring
 
     @FXML
-    private ImageView dial; // the inner safe dial ring
+    private ImageView decoder; // the inner decoder ring
 
     @FXML
     private Hyperlink leaveButton; // the exit button
@@ -40,7 +40,10 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
     @FXML
     private MediaPlayer mediaPlayer; // plays sounds
 
-    private PuzzleSafeCrack puzzle;  // the PuzzleObject
+    @FXML
+    private TextField decoderKey; // the current decoder key
+
+    private PuzzleCaesarCipher puzzle;  // the PuzzleObject
 
     private final ImageController images = ImageController.get();
 
@@ -49,22 +52,24 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.puzzle = new PuzzleSafeCrack(95, 15, 5);
+        this.puzzle = new PuzzleCaesarCipher(5);
 
-        this.dialBackground.fitWidthProperty().bind(gamePane.prefWidthProperty());
-        this.dialBackground.fitHeightProperty().bind(gamePane.prefHeightProperty());
-        this.dialBackground.setImage(images.getImage(this.puzzle.getDialOuterLocation()));
+        this.decoderBackground.fitWidthProperty().bind(gamePane.prefWidthProperty());
+        this.decoderBackground.fitHeightProperty().bind(gamePane.prefHeightProperty());
+        this.decoderBackground.setImage(images.getImage(this.puzzle.getDecoderOuterLocation()));
 
-        this.dial.fitWidthProperty().bind(gamePane.prefWidthProperty());
-        this.dial.fitHeightProperty().bind(gamePane.prefHeightProperty());
-        this.dial.setImage(images.getImage(this.puzzle.getDialInnerLocation()));
+        this.decoder.fitWidthProperty().bind(gamePane.prefWidthProperty());
+        this.decoder.fitHeightProperty().bind(gamePane.prefHeightProperty());
+        this.decoder.setImage(images.getImage(this.puzzle.getDecoderInnerLocation()));
+
+        this.decoderKey.setText(Integer.toString(this.puzzle.getCurrentKey()));
 
         this.gamePane.requestFocus();
 
         this.leaveButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                PuzzleSafeCrackController.this.finishChallenge(ChallengeStatus.LOSS);
+                PuzzleCaesarCipherController.this.finishChallenge(ChallengeStatus.LOSS);
             }
         });
     }
@@ -74,7 +79,7 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
      * through finishChallenge method
      */
     private void checkSolution() {
-        System.out.println(puzzle.getCurrentNum());
+        System.out.println(puzzle.getCurrentKey());
         if (puzzle.getCompleted() == true) {
             this.finishChallenge(ChallengeStatus.WIN);
         }
@@ -90,21 +95,24 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
             case A:
             case KP_LEFT:
                 puzzle.turnCounterClockwise();
+                this.decoderKey.setText(Integer.toString(this.puzzle.getCurrentKey()));
                 break;
             case RIGHT:
             case D:
             case KP_RIGHT:
                 puzzle.turnClockwise();
+                this.decoderKey.setText(Integer.toString(this.puzzle.getCurrentKey()));
                 break;
             default:
                 break;
         }
 
-        // update the GUI - rotate the inner dial image
-        this.dial.setRotate((puzzle.getCurrentNum() / 100.0) * -360.0);
+        // update the GUI - rotate the inner decoder image
+        this.decoderBackground.setRotate((puzzle.getCurrentKey() / 26.0) * -360.0);
 
         // play the appropriate sound (determined by the PuzzleObject)
         AudioController.get().playSound(this.puzzle.getSound());
+
         // check solve status
         checkSolution();
     }

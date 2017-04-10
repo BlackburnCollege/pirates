@@ -17,6 +17,7 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
+import sql.EntitySQLLoader;
 
 /**
  *
@@ -39,7 +40,7 @@ public class CombatController extends ChallengeController
     private ImageView enemyImage;
     @FXML
     private ImageView playerImage;
-    
+
     private ImageController images = ImageController.get();
 
     @FXML
@@ -48,31 +49,31 @@ public class CombatController extends ChallengeController
 
         this.enemyHealth.setProgress(this.combat.getEnemyHealthDouble());
         this.playerHealth.setProgress(this.combat.getPlayerHealthDouble());
-        
+
         this.healthCheck();
     }
 
     @FXML
     private void insult(ActionEvent event) {
         this.output.setText(this.combat.round(Move.INSULT));
-        
+
         this.enemyHealth.setProgress(this.combat.getEnemyHealthDouble());
         this.playerHealth.setProgress(this.combat.getPlayerHealthDouble());
-        
+
         this.healthCheck();
     }
 
     @FXML
     private void shoot(ActionEvent event) {
         this.output.setText(this.combat.round(Move.SHOOT));
-        
+
         this.enemyHealth.setProgress(this.combat.getEnemyHealthDouble());
         this.playerHealth.setProgress(this.combat.getPlayerHealthDouble());
-        
+
         this.healthCheck();
     }
-    
-    private void healthCheck(){
+
+    private void healthCheck() {
         if (this.combat.getEnemyHealthDouble() <= 0) {
             this.finishChallenge(ChallengeStatus.WIN);
         } else if (this.combat.getPlayerHealthDouble() <= 0) {
@@ -97,9 +98,11 @@ public class CombatController extends ChallengeController
     @Override
     public void onChallengeLoaded() {
         String nameOfChallenger = this.getChallengeInformation();
-        
+        EntitySQLLoader load;
 
-        CombatPlayer player = new CombatPlayer("PLAYERNAME", 100, 2.5, 6.25, 0, false);
+        load = new EntitySQLLoader("Demo Drew");
+
+        CombatPlayer player = new CombatPlayer(load.getName(), load.getHealth(), load.getMeleeModifier(), load.getRangedModifier(), load.getVerbalModifier(), load.isInsultImmune());
         //TODO: LOAD ENEMY DATA FROM SOMEWHERE
         // pseudo example of what that might look like: 
         /* if nameOfChallenger.equals("wolf") {
@@ -109,18 +112,19 @@ public class CombatController extends ChallengeController
          */
 
         enemyImage.setImage(images.getImage(nameOfChallenger));
-        
-        Enemy enemy = new Enemy(nameOfChallenger, 100, 6.25, 0, 0, true);
+        load = new EntitySQLLoader(nameOfChallenger);
+
+        Enemy enemy = new Enemy(load.getName(), load.getHealth(), load.getMeleeModifier(), load.getRangedModifier(), load.getVerbalModifier(), load.isInsultImmune());
         this.combat = new Combat(player, enemy);
     }
 
     @Override
     public void setupListeners(Scene scene) {
-        
+
     }
 
     @Override
     public void teardownListeners(Scene scene) {
-        
+
     }
 }
