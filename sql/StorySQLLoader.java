@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import world.ACEObject;
@@ -115,20 +116,6 @@ public class StorySQLLoader {
                 }
             }
 
-            // check conditionals 
-            /*
-            statement = connection.prepareStatement("SELECT * FROM "
-                    + "conditional WHERE attachedid=?");
-            statement.setInt(1, event.getId());
-            set = statement.executeQuery();
-
-            while (set.next()) {
-                int id = set.getInt("id");
-                if (id > event.getId()) {
-                    addNeededId(event, id);
-                }
-            }
-             */
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
@@ -140,14 +127,14 @@ public class StorySQLLoader {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM "
                     + "actions WHERE id=?", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             statement.setInt(1, id);
-            ResultSet events = statement.executeQuery();
-            if (events.isBeforeFirst()) {
-                object.setText(events.getString("text"));
+            ResultSet actions = statement.executeQuery();
+            if (actions.isBeforeFirst()) {
+                object.setText(actions.getString("text"));
             } else {
-                throw new RuntimeException("Event with id " + id + " not found "
-                        + "in event table");
+                throw new RuntimeException("Action with id " + id + " not found "
+                        + "in action table");
             }
-            ACEScaffold<Action> scaffold = new ACEScaffold<>(object, ACEType.EVENT);
+            ACEScaffold<Action> scaffold = new ACEScaffold<>(object, ACEType.ACTION);
             return scaffold;
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
@@ -195,6 +182,158 @@ public class StorySQLLoader {
                     addNeededId(action, id);
                 }
             }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    private ACEScaffold<Choice> loadChoice(int id) {
+        try {
+            Choice object = new Choice(id);
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM "
+                    + "choice WHERE id=?", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            statement.setInt(1, id);
+            ResultSet choices = statement.executeQuery();
+            if (choices.isBeforeFirst()) {
+                object.setText(choices.getString("text"));
+            } else {
+                throw new RuntimeException("Event with id " + id + " not found "
+                        + "in event table");
+            }
+            ACEScaffold<Choice> scaffold = new ACEScaffold<>(object, ACEType.CHOICE);
+            return scaffold;
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    private void handleChoiceNeededIds(ACEScaffold<Choice> choice) {
+        try {
+            attachIds(choice);
+
+            // check events
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM "
+                    + "choice WHERE id=?");
+            statement.setInt(1, choice.getId());
+            ResultSet set = statement.executeQuery();
+            while (set.next()) {
+                int id = set.getInt("eventid");
+                if (id > choice.getId()) {
+                    addNeededId(choice, id);
+                }
+            }
+
+            // check actions
+            statement = connection.prepareStatement("SELECT * FROM "
+                    + "choice WHERE id=?");
+            statement.setInt(1, choice.getId());
+            set = statement.executeQuery();
+            while (set.next()) {
+                int id = set.getInt("actionid");
+                if (id > choice.getId()) {
+                    addNeededId(choice, id);
+                }
+            }
+
+            // check conditionals 
+            statement = connection.prepareStatement("SELECT * FROM "
+                    + "conditional WHERE attachedid=?");
+            statement.setInt(1, choice.getId());
+            set = statement.executeQuery();
+
+            while (set.next()) {
+                int id = set.getInt("id");
+                if (id > choice.getId()) {
+                    addNeededId(choice, id);
+                }
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    private ACEScaffold<Challenge> loadChallenge(int id) {
+        try {
+            Challenge object = new Challenge(id);
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM "
+                    + "challenge WHERE challengeid=?",
+                    ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            statement.setInt(1, id);
+            ResultSet challenges = statement.executeQuery();
+            if (challenges.isBeforeFirst()) {
+                object.setChallengeName(challenges.getString("challengename"));
+                object.setType(challenges.getString("challengetype"));
+            } else {
+                throw new RuntimeException("Challenge with id " + id + " not found "
+                        + "in challenge table");
+            }
+            ACEScaffold<Challenge> scaffold = new ACEScaffold<>(object, ACEType.CHALLENGE);
+            return scaffold;
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    private void handleChallengeNeededIds(ACEScaffold<Challenge> challenge) {
+        try {
+            attachIds(challenge);
+
+            // check actions
+            PreparedStatement statement = connection.prepareStatement(""
+                    + "SELECT * "
+                    + "FROM actions "
+                    + "WHERE challengeid=?");
+            statement.setInt(1, challenge.getId());
+            ResultSet set = statement.executeQuery();
+            while (set.next()) {
+                int id = set.getInt("id");
+                if (id > challenge.getId()) {
+                    addNeededId(challenge, id);
+                }
+            }
+
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    private ACEScaffold<Conditional> loadConditional(int id) {
+        try {
+            Conditional object = new Conditional(id);
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM "
+                    + "conditional WHERE id=?",
+                    ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            statement.setInt(1, id);
+            ResultSet conditionals = statement.executeQuery();
+            if (conditionals.isBeforeFirst()) {
+                object.setFlagName(conditionals.getString("flag"));
+                object.setValue(conditionals.getInt("flagstate"));
+            } else {
+                throw new RuntimeException("Conditional with id " + id + " not found "
+                        + "in conditional table");
+            }
+            ACEScaffold<Conditional> scaffold = new ACEScaffold<>(object, ACEType.CONDITIONAL);
+            return scaffold;
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    private void handleConditionalNeededIds(ACEScaffold<Conditional> conditional) {
+        try {
+            attachIds(conditional);
+
+            // get attached id
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM conditional WHERE id=?");
+            statement.setInt(1, conditional.getId());
+            ResultSet set = statement.executeQuery();
+            set.next();
+            int attachedId = set.getInt("attachedid");
+            if (attachedId > conditional.getId()) {
+                addNeededId(conditional, attachedId);
+            }
+
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
@@ -260,6 +399,9 @@ public class StorySQLLoader {
                     case CHOICE:
                         attach(event, (Choice) object);
                         break;
+                    default:
+                        System.err.println("Event " + event.getID() + " "
+                                + "mismatched with " + object.getID());
                 }
             }
         } else if (newObject.getType() == ACEType.ACTION) {
@@ -279,20 +421,69 @@ public class StorySQLLoader {
                     case CHALLENGE:
                         attach(action, (Challenge) object);
                         break;
+                    default:
+                        System.err.println("Action " + action.getID() + " "
+                                + "mismatched with " + object.getID());
+                }
+            }
+        } else if (newObject.getType() == ACEType.CHOICE) {
+            Choice choice = (Choice) newObject.getObject();
+            for (ACEScaffold scaffold : list) {
+                ACEObject object = scaffold.getObject();
+                switch (scaffold.getType()) {
+                    case EVENT:
+                        attach((Event) object, choice);
+                        break;
+                    case ACTION:
+                        attach(choice, (Action) object);
+                        break;
+                    case CONDITIONAL:
+                        attach(choice, (Conditional) object);
+                        break;
+                    default:
+                        System.err.println("choice " + choice.getID() + " "
+                                + "mismatched with " + object.getID());
+                }
+            }
+        } else if (newObject.getType() == ACEType.CHALLENGE) {
+            Challenge challenge = (Challenge) newObject.getObject();
+            for (ACEScaffold scaffold : list) {
+                ACEObject object = scaffold.getObject();
+                switch (scaffold.getType()) {
+                    case ACTION:
+                        attach((Action) object, challenge);
+                        break;
+                    default:
+                        System.err.println("challenge " + challenge.getID()
+                                + " mismatched with " + object.getID());
+                }
+            }
+        } else if (newObject.getType() == ACEType.CONDITIONAL) {
+            Conditional conditional = (Conditional) newObject.getObject();
+            for (ACEScaffold scaffold : list) {
+                ACEObject object = scaffold.getObject();
+                switch (scaffold.getType()) {
+                    case ACTION:
+                        attach((Action) object, conditional);
+                        break;
+                    case CHOICE:
+                        attach((Choice) object, conditional);
+                        break;
+                    default:
+                        System.err.println("conditional " + conditional.getID()
+                                + " mismatched with " + object.getID());
                 }
             }
         }
+        loadMap.remove(newObject.getId());
     }
 
-    private void handleNeededIds(ACEScaffold object) {
-        switch (object.getType()) {
-            case EVENT:
-                handleEventNeededIds(object);
-                break;
-        }
+    public boolean loadedProperly() {
+        return loadMap.isEmpty();
     }
 
-    public ArrayList<ACEObject> loadDB() throws SQLException {
+    public Event loadDB() throws SQLException {
+        Event root = null;
         PreparedStatement statement = connection.prepareStatement("SELECT * FROM "
                 + "aceobject ORDER BY id",
                 ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -305,15 +496,36 @@ public class StorySQLLoader {
             switch (acetype) {
                 case "event":
                     scaffold = loadEvent(id);
+                    handleEventNeededIds(scaffold);
+                    if (root == null) {
+                        root = (Event) scaffold.getObject();
+                    }
                     break;
-                default:
-                    continue;
+                case "action":
+                    scaffold = loadAction(id);
+                    handleActionNeededIds(scaffold);
+                    break;
+                case "choice":
+                    scaffold = loadChoice(id);
+                    handleChoiceNeededIds(scaffold);
+                    break;
+                case "challenge":
+                    scaffold = loadChallenge(id);
+                    handleChallengeNeededIds(scaffold);
+                    break;
+                case "conditional":
+                    scaffold = loadConditional(id);
+                    handleConditionalNeededIds(scaffold);
+                    break;
             }
-            handleNeededIds(scaffold);
         }
 
-        //return all;
-        return null;
+        if (!loadedProperly()) {
+            throw new RuntimeException("Not everything was removed from the hash"
+                    + " map. Please use the debugger.");
+        }
+        
+        return root;
     }
 
 }
