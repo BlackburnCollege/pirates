@@ -103,6 +103,8 @@ public class GameController implements Initializable {
         this.puzzleControllers.put("safecrack", "/puzzle/PuzzleSafeCrackGUI.fxml");
         this.puzzleControllers.put("fish", "/puzzle/PuzzleFishGUI.fxml");
         this.puzzleControllers.put("binary", "/puzzle/PuzzleBinarySwitchGUI.fxml");
+        this.puzzleControllers.put("caesar", "/puzzle/PuzzleCaesarCipherGUI.fxml");
+        this.puzzleControllers.put("final", "/puzzle/PuzzleFinalGUI.fxml");
     }
 
     /**

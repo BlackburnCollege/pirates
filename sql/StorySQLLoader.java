@@ -75,7 +75,11 @@ public class StorySQLLoader {
             if (events.isBeforeFirst()) {
                 events.next();
                 object.setText(events.getString("text"));
-                object.setMusic(Music.valueOf(events.getString("music")));
+                try {
+                    object.setMusic(Music.valueOf(events.getString("music")));
+                } catch (NullPointerException npe) {
+                    object.setMusic(null);
+                }
                 object.setPicture(events.getString("backgroundname"));
             } else {
                 throw new RuntimeException("Event with id " + id + " not found "

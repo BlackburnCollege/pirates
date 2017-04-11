@@ -126,14 +126,14 @@ public class SQLDatabaseManager {
 
             System.setProperty("ij.driver", databaseDriver);
             System.setProperty("ij.database", databaseURL + ";create=true");
-            //PrintStream console = System.out;
-            //System.setOut(new PrintStream(new File("sqloutput")));
+            PrintStream console = System.out;
+            System.setOut(new PrintStream(new File("sqloutput")));
             for (String path : extractSQLFiles()) {
-                System.out.println("running " + path);
+                console.println("running " + path);
                 String[] argArray = new String[]{path};
                 ij.main(argArray);
             }
-            //System.setOut(console);
+            System.setOut(console);
             System.setProperty("ij.database", databaseURL);
         } catch (IOException | URISyntaxException ex) {
             throw new RuntimeException(ex);

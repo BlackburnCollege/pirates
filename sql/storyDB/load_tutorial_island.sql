@@ -20,4 +20,4 @@ INSERT INTO choice(id, eventid, text, actionid) VALUES (2, 1, 'I greet my wife.'
 INSERT INTO aceobject(id, acetype) VALUES (3, 'action');
 INSERT INTO actions(id, text) VALUES (3, 'She greets me back.');
 
-INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (3, 1, 0);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (3, 100, 0);
