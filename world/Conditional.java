@@ -33,11 +33,39 @@ public class Conditional extends ACEObject {
     }
     
     public boolean checkCondition() {
-        return flags.getOrDefault(this.flagName, 0) == this.value;
+        return flags.getOrDefault(this.getFlagName(), 0) == this.getValue();
     };
 
     public void setCondition() {
-        flags.put(this.flagName, this.value);
+        flags.put(this.getFlagName(), this.getValue());
+    }
+
+    /**
+     * @return the flagName
+     */
+    public String getFlagName() {
+        return flagName;
+    }
+
+    /**
+     * @param flagName the flagName to set
+     */
+    public void setFlagName(String flagName) {
+        this.flagName = flagName;
+    }
+
+    /**
+     * @return the value
+     */
+    public int getValue() {
+        return value;
+    }
+
+    /**
+     * @param value the value to set
+     */
+    public void setValue(int value) {
+        this.value = value;
     }
         
     
