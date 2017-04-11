@@ -64,7 +64,12 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
         this.leaveButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                PuzzleSafeCrackController.this.finishChallenge(ChallengeStatus.LOSS);
+                if (puzzle.getCompleted()) {
+                    PuzzleSafeCrackController.this.finishChallenge(ChallengeStatus.WIN);
+                } else {
+                    PuzzleSafeCrackController.this.finishChallenge(ChallengeStatus.LOSS);
+                }
+                
             }
         });
     }
@@ -76,7 +81,7 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
     private void checkSolution() {
         System.out.println(puzzle.getCurrentNum());
         if (puzzle.getCompleted() == true) {
-            this.finishChallenge(ChallengeStatus.WIN);
+            this.leaveButton.setText("FINISH");
         }
     }
 

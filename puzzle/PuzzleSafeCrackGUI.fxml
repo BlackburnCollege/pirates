@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
@@ -7,7 +8,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="puzzle.PuzzleSafeCrackController">
     <children>
@@ -17,6 +17,9 @@
                 <ImageView fx:id="dial" fitHeight="150.0" fitWidth="200.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
             </children>
         </StackPane>
-        <Hyperlink fx:id="leaveButton" text="LEAVE" />
+        <Hyperlink fx:id="leaveButton" text="LEAVE">
+         <font>
+            <Font size="36.0" />
+         </font></Hyperlink>
     </children>
 </Pane>

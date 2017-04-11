@@ -61,7 +61,6 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.leaveButton.setVisible(false);
         this.puzzle = new PuzzleBinarySwitch(false, false, true, 1);
 
         this.leverLeftBackground.setImage(images.getImage(this.puzzle.getLeverBackgroundLocation()));
@@ -76,7 +75,11 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
         this.leaveButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                PuzzleBinarySwitchController.this.finishChallenge(ChallengeStatus.WIN);
+                if (puzzle.getCompleted()) {
+                    PuzzleBinarySwitchController.this.finishChallenge(ChallengeStatus.WIN);
+                } else {
+                    PuzzleBinarySwitchController.this.finishChallenge(ChallengeStatus.LOSS);
+                }
             }
         });
     }
@@ -87,7 +90,7 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
      */
     private void checkSolution() {
         if (puzzle.getCompleted()) {
-            this.leaveButton.setVisible(true);
+            this.leaveButton.setText("FINISH");
         }
     }
 

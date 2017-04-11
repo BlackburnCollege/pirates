@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
@@ -32,6 +33,9 @@
                 </StackPane>
             </children>
         </HBox>
-        <Hyperlink fx:id="leaveButton" text="LEAVE" />
+        <Hyperlink fx:id="leaveButton" text="LEAVE">
+         <font>
+            <Font size="48.0" />
+         </font></Hyperlink>
     </children>
 </AnchorPane>
