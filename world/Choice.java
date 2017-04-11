@@ -96,7 +96,7 @@ public class Choice extends ACEObject {
         return this;
     }
 
-    public Choice addCondition(Conditional condition) {
+    public Choice addConditional(Conditional condition) {
         this.conditions.add(condition);
         return this;
     }

@@ -84,7 +84,7 @@ public class World {
                                         "\"Wassup dude.\" Really?"
                                 )
                         )
-                        .addCondition(new Conditional(storyFlags, "test", true))
+                        .addConditional(new Conditional(storyFlags, "test", true))
                 );
 
         this.events.get("tut_home_f_outside")
@@ -112,7 +112,7 @@ public class World {
                         .addEvent(events.get("tut_home_ae_wolfcombat_loss"))
                         .addEvent(events.get("tut_home_ae_wolfcombat_win"))
                 )
-                .setMusic(Music.THE_BUILDER);
+                .setMusic(Music.CORRUPTION);
 
         this.events.get("tut_home_ae_fishing_win")
                 .addChoice("next",
@@ -122,7 +122,7 @@ public class World {
                         .addEvent(events.get("tut_home_ae_wolfcombat_loss"))
                         .addEvent(events.get("tut_home_ae_wolfcombat_win"))
                 )
-                .setMusic(Music.THE_BUILDER);
+                .setMusic(Music.CORRUPTION);
 
         this.events.get("tut_home_ae_wolfcombat_win")
                 .addChoice("next",

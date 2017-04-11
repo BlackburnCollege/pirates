@@ -35,6 +35,7 @@ ALTER TABLE choice add foreign key (id) references aceobject (id);
 
 CREATE TABLE actions (
     id integer not null primary key,
+    challengeid integer not null,
     text varchar(512)
 );
 
@@ -50,7 +51,8 @@ CREATE TABLE conditional(
 CREATE TABLE actionsevent(
     # aceid integer not null primary key,
     actionid integer not null,
-    eventid integer not null
+    eventid integer not null,
+    eventposition integer not null
 );
 
 ALTER TABLE actionsevent

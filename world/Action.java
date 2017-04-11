@@ -12,7 +12,7 @@ public class Action extends ACEObject {
     private ArrayList<Event> events;
     private String text;
     private Challenge challenge = null;
-    private ArrayList<Conditional> modifiers = new ArrayList<>();
+    private ArrayList<Conditional> modifiers = new ArrayList<>(5);
 
     
     public Action(int id) {
@@ -158,6 +158,10 @@ public class Action extends ACEObject {
         for (Conditional c : this.modifiers) {
             c.setCondition();
         }
+    }
+    
+    public void setEvent(Event event, int position) {
+        this.events.set(position, event);
     }
 
 }

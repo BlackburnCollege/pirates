@@ -43,7 +43,12 @@ public class ImageController {
             URI uri = AudioController.class.getResource("/" + IMAGE_LOCATION).toURI();
             Path myPath;
             if (uri.getScheme().equals("jar")) {
-                FileSystem fileSystem = FileSystems.newFileSystem(uri, Collections.<String, Object>emptyMap());
+                FileSystem fileSystem;
+                try {
+                    fileSystem = FileSystems.getFileSystem(uri);
+                } catch (Exception e) {
+                    fileSystem = FileSystems.newFileSystem(uri, Collections.<String, Object>emptyMap());
+                }
                 myPath = fileSystem.getPath(IMAGE_LOCATION);
             } else {
                 myPath = Paths.get(uri);
