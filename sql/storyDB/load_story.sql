@@ -20,11 +20,5 @@ INSERT INTO actions(id, text) VALUES (3, 'She greets me back.');
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (3, 1, 0);
 
 
-CREATE TABLE choice (
-    id integer not null primary key,
-    eventid integer not null,
-    text varchar(1024) not null,
-    actionid integer not null
-);
 
 
