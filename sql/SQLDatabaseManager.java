@@ -22,6 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 import org.apache.derby.tools.ij;
+import world.Event;
 
 /**
  *
@@ -144,6 +145,14 @@ public class SQLDatabaseManager {
     public static void main(String[] args) throws Exception {
         //SQLDatabaseManager loader = new SQLDatabaseManager("storyDB", true);
         //loader.rebuild();
+        StorySQLLoader loader = new StorySQLLoader();
+        Event root = loader.loadDB();
+        System.out.println("");
+        System.out.println("LOADED DB. OUTPUT:");
+        System.out.println(root.getID() + ": " + root.getText());
+        System.out.println(root.getPicture());
+        System.out.println(root.getMusic());
+        /*
         SQLDatabaseManager loader = new SQLDatabaseManager("combatDB", true);
         loader.rebuild();
         
@@ -160,6 +169,7 @@ public class SQLDatabaseManager {
         System.out.println(entity.isInsultImmune());
         System.out.println(entity.getHealth());
         System.out.println(entity.getMeleeModifier());
+        */
 
 //        System.out.println("Loading the Derby jdbc driver...");
 //        Class<?> clazz = Class.forName(databaseDriver);

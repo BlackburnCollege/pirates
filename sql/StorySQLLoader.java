@@ -73,6 +73,7 @@ public class StorySQLLoader {
             statement.setInt(1, id);
             ResultSet events = statement.executeQuery();
             if (events.isBeforeFirst()) {
+                events.next();
                 object.setText(events.getString("text"));
                 object.setMusic(Music.valueOf(events.getString("music")));
                 object.setPicture(events.getString("backgroundname"));
@@ -129,6 +130,7 @@ public class StorySQLLoader {
             statement.setInt(1, id);
             ResultSet actions = statement.executeQuery();
             if (actions.isBeforeFirst()) {
+                actions.next();
                 object.setText(actions.getString("text"));
             } else {
                 throw new RuntimeException("Action with id " + id + " not found "
@@ -195,6 +197,7 @@ public class StorySQLLoader {
             statement.setInt(1, id);
             ResultSet choices = statement.executeQuery();
             if (choices.isBeforeFirst()) {
+                choices.next();
                 object.setText(choices.getString("text"));
             } else {
                 throw new RuntimeException("Event with id " + id + " not found "
@@ -261,6 +264,7 @@ public class StorySQLLoader {
             statement.setInt(1, id);
             ResultSet challenges = statement.executeQuery();
             if (challenges.isBeforeFirst()) {
+                challenges.next();
                 object.setChallengeName(challenges.getString("challengename"));
                 object.setType(challenges.getString("challengetype"));
             } else {
@@ -306,6 +310,7 @@ public class StorySQLLoader {
             statement.setInt(1, id);
             ResultSet conditionals = statement.executeQuery();
             if (conditionals.isBeforeFirst()) {
+                conditionals.next();
                 object.setFlagName(conditionals.getString("flag"));
                 object.setValue(conditionals.getInt("flagstate"));
             } else {

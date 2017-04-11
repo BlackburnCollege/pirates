@@ -3,6 +3,7 @@
  * Created: Mar 21, 2017
  */
 
+INSERT INTO aceobject(id, acetype) VALUES (1, 'event');
 INSERT INTO event(id, text, backgroundname, music) VALUES (1, 
 'I awake from a deep slumber. I had the nightmare again. The one where I was 
 kidnapped by pirates. I am a humble fisherman, living with my wife and child 
