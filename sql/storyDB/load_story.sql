@@ -3,6 +3,9 @@
  * Created: Mar 21, 2017
  */
 
+/*
+Tutorial
+*/
 INSERT INTO aceobject(id, acetype) VALUES (1, 'event');
 INSERT INTO event(id, text, backgroundname, music) VALUES (1, 
 'I awake from a deep slumber. I had the nightmare again. The one where I was 
@@ -19,6 +22,38 @@ INSERT INTO actions(id, text) VALUES (3, 'She greets me back.');
 
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (3, 1, 0);
 
+/* 
+Lucas
+*/
 
+
+
+/*
+Tim
+*/
+
+
+
+/*
+Jessica
+*/
+
+
+
+/*
+Drew
+*/
+
+
+
+/*
+Arthur
+*/
+
+
+
+/*
+Dakota
+*/
 
 
