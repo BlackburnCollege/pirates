@@ -4,7 +4,7 @@
  */
 
 /*
-Tutorial
+TUTORIAL STARTS AT ID 1
 */
 INSERT INTO aceobject(id, acetype) VALUES (1, 'event');
 INSERT INTO event(id, text, backgroundname, music) VALUES (1, 
@@ -21,39 +21,3 @@ INSERT INTO aceobject(id, acetype) VALUES (3, 'action');
 INSERT INTO actions(id, text) VALUES (3, 'She greets me back.');
 
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (3, 1, 0);
-
-/* 
-Lucas
-*/
-
-
-
-/*
-Tim
-*/
-
-
-
-/*
-Jessica
-*/
-
-
-
-/*
-Drew
-*/
-
-
-
-/*
-Arthur
-*/
-
-
-
-/*
-Dakota
-*/
-
-
