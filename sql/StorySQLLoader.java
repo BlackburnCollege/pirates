@@ -167,7 +167,9 @@ public class StorySQLLoader {
 
             while (set.next()) {
                 int id = set.getInt("challengeid");
-                if (id > action.getId()) {
+                if (id == 0) {
+                    action.getObject().setChallenge(null);
+                } else if (id > action.getId()) {
                     addNeededId(action, id);
                 }
             }
@@ -529,7 +531,7 @@ public class StorySQLLoader {
             throw new RuntimeException("Not everything was removed from the hash"
                     + " map. Please use the debugger.");
         }
-        
+
         return root;
     }
 

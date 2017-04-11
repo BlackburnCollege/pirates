@@ -9,7 +9,12 @@ import java.util.Arrays;
  */
 public class Action extends ACEObject {
 
-    private ArrayList<Event> events;
+    private ArrayList<Event> events = new ArrayList<>(5);
+    {
+        for (int i = 0; i < 5; i++) {
+            events.add(null);
+        }
+    }
     private String text;
     private Challenge challenge = null;
     private ArrayList<Conditional> modifiers = new ArrayList<>(5);
@@ -21,30 +26,30 @@ public class Action extends ACEObject {
     
     public Action() {
         super();
-        this.events = null;
+        //this.events = null;
     }
 
     public Action(Event event) {
         super();
-        this.events = new ArrayList<>();
+        //this.events = new ArrayList<>();
     }
 
     public Action(String text, Challenge challenge) {
         super();
-        this.events = new ArrayList<>();
+        //this.events = new ArrayList<>();
         this.text = text;
     }
 
     public Action(Event event, String text) {
         super();
-        this.events = new ArrayList<>();
+        //this.events = new ArrayList<>();
         this.events.add(event);
         this.text = text;
     }
 
     public Action(Event event, String text, Challenge challenge) {
         super();
-        this.events = new ArrayList<>();
+       // this.events = new ArrayList<>();
         this.events.add(event);
         this.text = text;
         this.challenge = challenge;
@@ -58,7 +63,7 @@ public class Action extends ACEObject {
     public Action(Challenge challenge) {
         super();
         this.challenge = challenge;
-        this.events = new ArrayList<>();
+        //this.events = new ArrayList<>();
         this.text = null;
     }
 

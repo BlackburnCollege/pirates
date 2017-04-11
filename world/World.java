@@ -1,8 +1,12 @@
 package world;
 
 import gui.Music;
+import java.sql.SQLException;
 
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import sql.StorySQLLoader;
 
 
 /**
@@ -30,6 +34,16 @@ public class World {
     private HashMap<String, Event> events = new HashMap<>();
     private HashMap<String, Integer> storyFlags = new HashMap<>();
 
+    public World(){
+        this.player = new Player("Testing");
+        StorySQLLoader loader = new StorySQLLoader();
+        try {
+            this.currentEvent = loader.loadDB();
+        } catch (SQLException ex) {
+            Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public World(String playerName) {
         this.player = new Player(playerName);
         //opening event, after convo, fish puzzle, wolf combat, closing event

@@ -36,7 +36,7 @@ ALTER TABLE choice add foreign key (id) references aceobject (id);
 
 CREATE TABLE actions (
     id integer not null primary key,
-    challengeid integer not null,
+    challengeid integer,
     text varchar(1024)
 );
 
