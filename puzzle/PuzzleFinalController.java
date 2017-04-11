@@ -180,7 +180,8 @@ public class PuzzleFinalController extends ChallengeController implements Initia
      * through finishChallenge method
      */
     private void checkSolution() {
-        System.out.println(Arrays.toString(puzzle.getCorrectDialPositions()));
+        
+        //System.out.println(Arrays.toString(puzzle.getCorrectDialPositions()));
         if (puzzle.getCompleted() == true) {
             this.finishChallenge(ChallengeStatus.WIN);
         }

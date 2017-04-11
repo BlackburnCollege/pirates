@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
@@ -8,16 +9,27 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="puzzle.PuzzleCaesarCipherController">
     <children>
-        <StackPane fx:id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyEvent" prefHeight="600.0" prefWidth="800.0">
-            <children>
-                <ImageView fx:id="decoderBackground" fitHeight="150.0" fitWidth="200.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
-                <ImageView fx:id="decoder" fitHeight="150.0" fitWidth="200.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
-                <TextField fx:id="decoderKey" />
-            </children>
-        </StackPane>
         <Hyperlink fx:id="leaveButton" text="LEAVE" />
+      <StackPane fx:id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyEvent" prefHeight="600.0" prefWidth="800.0">
+         <children>
+            <ImageView fx:id="decoderBackground" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" rotate="166.0">
+               <image>
+                  <Image url="@../resources/puzzlecaesarcipherdecoderOUTER.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="decoder" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/puzzlecaesarcipherdecoderINNER.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <Label fx:id="decoderKey" alignment="CENTER" contentDisplay="CENTER" layoutX="386.0" layoutY="180.0" prefHeight="20.0" prefWidth="32.0" style="-fx-background-color: #000000;" text="0" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
     </children>
 </Pane>

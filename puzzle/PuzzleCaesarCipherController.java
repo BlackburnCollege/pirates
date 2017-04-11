@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -41,11 +42,13 @@ public class PuzzleCaesarCipherController extends ChallengeController implements
     private MediaPlayer mediaPlayer; // plays sounds
 
     @FXML
-    private TextField decoderKey; // the current decoder key
+    private Label decoderKey; // the current decoder key
 
     private PuzzleCaesarCipher puzzle;  // the PuzzleObject
 
     private final ImageController images = ImageController.get();
+    
+    private int rotateOffset = 166;
 
     /**
      * initialize method
@@ -54,13 +57,15 @@ public class PuzzleCaesarCipherController extends ChallengeController implements
     public void initialize(URL location, ResourceBundle resources) {
         this.puzzle = new PuzzleCaesarCipher(5);
 
-        this.decoderBackground.fitWidthProperty().bind(gamePane.prefWidthProperty());
-        this.decoderBackground.fitHeightProperty().bind(gamePane.prefHeightProperty());
+        
+        //this.decoderBackground.fitWidthProperty().bind(gamePane.prefWidthProperty());
+        //this.decoderBackground.fitHeightProperty().bind(gamePane.prefHeightProperty());
         this.decoderBackground.setImage(images.getImage(this.puzzle.getDecoderOuterLocation()));
 
-        this.decoder.fitWidthProperty().bind(gamePane.prefWidthProperty());
-        this.decoder.fitHeightProperty().bind(gamePane.prefHeightProperty());
+        //this.decoder.fitWidthProperty().bind(gamePane.prefWidthProperty());
+        //this.decoder.fitHeightProperty().bind(gamePane.prefHeightProperty());
         this.decoder.setImage(images.getImage(this.puzzle.getDecoderInnerLocation()));
+        
 
         this.decoderKey.setText(Integer.toString(this.puzzle.getCurrentKey()));
 
@@ -94,13 +99,13 @@ public class PuzzleCaesarCipherController extends ChallengeController implements
             case LEFT:
             case A:
             case KP_LEFT:
-                puzzle.turnCounterClockwise();
+                puzzle.turnClockwise();
                 this.decoderKey.setText(Integer.toString(this.puzzle.getCurrentKey()));
                 break;
             case RIGHT:
             case D:
             case KP_RIGHT:
-                puzzle.turnClockwise();
+                puzzle.turnCounterClockwise();
                 this.decoderKey.setText(Integer.toString(this.puzzle.getCurrentKey()));
                 break;
             default:
@@ -108,7 +113,7 @@ public class PuzzleCaesarCipherController extends ChallengeController implements
         }
 
         // update the GUI - rotate the inner decoder image
-        this.decoderBackground.setRotate((puzzle.getCurrentKey() / 26.0) * -360.0);
+        this.decoderBackground.setRotate((puzzle.getCurrentKey() / 26.0) * - 360.0 + rotateOffset);
 
         // play the appropriate sound (determined by the PuzzleObject)
         AudioController.get().playSound(this.puzzle.getSound());
