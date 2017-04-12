@@ -79,11 +79,11 @@ public class StorySQLLoader {
         public ACEType getType() {
             return type;
         }
-        
-       @Override
-       public String toString() {
-           return id + " " + type.toString();
-       }
+
+        @Override
+        public String toString() {
+            return id + " " + type.toString();
+        }
     }
 
     private ACEScaffold<Event> loadEvent(int id) {
@@ -97,6 +97,9 @@ public class StorySQLLoader {
             if (events.isBeforeFirst()) {
                 events.next();
                 object.setText(events.getString("text"));
+                if (object.getText() == null) {
+                    throw new RuntimeException("Event with id " + id + " has no text!");
+                }
                 try {
                     object.setMusic(Music.valueOf(events.getString("music")));
                 } catch (NullPointerException npe) {
@@ -123,11 +126,16 @@ public class StorySQLLoader {
                     + "actionsevent WHERE eventid=?");
             statement.setInt(1, event.getId());
             ResultSet set = statement.executeQuery();
+            boolean isEmpty = true;
             while (set.next()) {
+                isEmpty = false;
                 int id = set.getInt("actionid");
                 if (id > event.getId()) {
                     addNeededId(event, id);
                 }
+            }
+            if (isEmpty) {
+                System.err.println("WARNING: " + event + " has no associated actions!");
             }
 
             // check choices
@@ -135,12 +143,17 @@ public class StorySQLLoader {
                     + "choice WHERE eventid=?");
             statement.setInt(1, event.getId());
             set = statement.executeQuery();
-
+            isEmpty = true;
             while (set.next()) {
+                isEmpty = false;
                 int id = set.getInt("id");
                 if (id > event.getId()) {
                     addNeededId(event, id);
                 }
+            }
+
+            if (isEmpty) {
+                System.err.println("WARNING: " + event + " has no associated choices!");
             }
 
         } catch (SQLException ex) {
@@ -179,11 +192,17 @@ public class StorySQLLoader {
                     + "actionsevent WHERE actionid=?");
             statement.setInt(1, action.getId());
             ResultSet set = statement.executeQuery();
+            boolean isEmpty = true;
             while (set.next()) {
+                isEmpty = false;
                 int id = set.getInt("eventid");
                 if (id > action.getId()) {
                     addNeededId(action, id);
                 }
+            }
+
+            if (isEmpty) {
+                throw new RuntimeException(action + " has no associated events!");
             }
 
             // check challenges
@@ -229,6 +248,9 @@ public class StorySQLLoader {
             if (choices.isBeforeFirst()) {
                 choices.next();
                 object.setText(choices.getString("text"));
+                if (object.getText() == null) {
+                    throw new RuntimeException("Choice with id " + id + " has no text!");
+                }
             } else {
                 throw new RuntimeException("Event with id " + id + " not found "
                         + "in event table");
@@ -249,11 +271,16 @@ public class StorySQLLoader {
                     + "choice WHERE id=?");
             statement.setInt(1, choice.getId());
             ResultSet set = statement.executeQuery();
+            boolean isEmpty = true;
             while (set.next()) {
+                isEmpty = false;
                 int id = set.getInt("eventid");
                 if (id > choice.getId()) {
                     addNeededId(choice, id);
                 }
+            }
+            if (isEmpty) {
+                System.err.println(choice + " has no associated events!");
             }
 
             // check actions
@@ -261,11 +288,17 @@ public class StorySQLLoader {
                     + "choice WHERE id=?");
             statement.setInt(1, choice.getId());
             set = statement.executeQuery();
+            isEmpty = true;
             while (set.next()) {
+                isEmpty = false;
                 int id = set.getInt("actionid");
                 if (id > choice.getId()) {
                     addNeededId(choice, id);
                 }
+            }
+
+            if (isEmpty) {
+                System.err.println(choice + " has no associated actions!");
             }
 
             // check conditionals 
@@ -273,13 +306,13 @@ public class StorySQLLoader {
                     + "conditional WHERE attachedid=?");
             statement.setInt(1, choice.getId());
             set = statement.executeQuery();
-
             while (set.next()) {
                 int id = set.getInt("id");
                 if (id > choice.getId()) {
                     addNeededId(choice, id);
                 }
             }
+
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
@@ -320,11 +353,16 @@ public class StorySQLLoader {
                     + "WHERE challengeid=?");
             statement.setInt(1, challenge.getId());
             ResultSet set = statement.executeQuery();
+            boolean isEmpty = true;
             while (set.next()) {
+                isEmpty = false;
                 int id = set.getInt("id");
                 if (id > challenge.getId()) {
                     addNeededId(challenge, id);
                 }
+            }
+            if (isEmpty) {
+                System.err.println(challenge + " has no associated actions!");
             }
 
         } catch (SQLException ex) {
@@ -365,10 +403,16 @@ public class StorySQLLoader {
                     "SELECT * FROM conditional WHERE id=?");
             statement.setInt(1, conditional.getId());
             ResultSet set = statement.executeQuery();
-            set.next();
-            int attachedId = set.getInt("attachedid");
-            if (attachedId > conditional.getId()) {
-                addNeededId(conditional, attachedId);
+            boolean isEmpty = true;
+            while (set.next()) {
+                isEmpty = false;
+                int attachedId = set.getInt("attachedid");
+                if (attachedId > conditional.getId()) {
+                    addNeededId(conditional, attachedId);
+                }
+            }
+            if (isEmpty) {
+                System.err.println(conditional + " has no associated objects!");
             }
 
         } catch (SQLException ex) {
@@ -437,8 +481,8 @@ public class StorySQLLoader {
                         attach(event, (Choice) object);
                         break;
                     default:
-                        System.err.println("Event " + event.getID() + " "
-                                + "mismatched with " + object.getID());
+                        System.err.println(newObject
+                                + " mismatched with " + scaffold);
                 }
             }
         } else if (newObject.getType() == ACEType.ACTION) {
@@ -459,8 +503,8 @@ public class StorySQLLoader {
                         attach(action, (Challenge) object);
                         break;
                     default:
-                        System.err.println("Action " + action.getID() + " "
-                                + "mismatched with " + object.getID());
+                        System.err.println(newObject
+                                + " mismatched with " + scaffold);
                 }
             }
         } else if (newObject.getType() == ACEType.CHOICE) {
@@ -478,8 +522,8 @@ public class StorySQLLoader {
                         attach(choice, (Conditional) object);
                         break;
                     default:
-                        System.err.println("choice " + choice.getID() + " "
-                                + "mismatched with " + object.getID());
+                        System.err.println(newObject
+                                + " mismatched with " + scaffold);
                 }
             }
         } else if (newObject.getType() == ACEType.CHALLENGE) {
@@ -491,8 +535,8 @@ public class StorySQLLoader {
                         attach((Action) object, challenge);
                         break;
                     default:
-                        System.err.println("challenge " + challenge.getID()
-                                + " mismatched with " + object.getID());
+                        System.err.println(newObject
+                                + " mismatched with " + scaffold);
                 }
             }
         } else if (newObject.getType() == ACEType.CONDITIONAL) {
@@ -507,8 +551,8 @@ public class StorySQLLoader {
                         attach((Choice) object, conditional);
                         break;
                     default:
-                        System.err.println("conditional " + conditional.getID()
-                                + " mismatched with " + object.getID());
+                        System.err.println(newObject
+                                + " mismatched with " + scaffold);
                 }
             }
         }

@@ -32,11 +32,21 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
+import javafx.scene.Cursor;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Control;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
@@ -50,6 +60,7 @@ import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.MediaView;
@@ -90,6 +101,8 @@ public class GameController implements Initializable {
     private StackPane mainPane;
     @FXML
     private Pane challengePane;
+
+    private Scene scene;
 
     // The world
     private World world;
@@ -191,9 +204,13 @@ public class GameController implements Initializable {
      */
     private void setBinds() {
         controlContainer.prefWidthProperty().bind(gameContainer.widthProperty().divide(2).subtract(PADDING));
+        controlContainer.maxWidthProperty().bind(gameContainer.widthProperty().divide(2).subtract(PADDING));
         controlContainer.prefHeightProperty().bind(gameContainer.heightProperty().subtract(PADDING));
+        //controlContainer.setPrefWidth(controlContainer.getScene().getWidth() / 3 - PADDING);
+        //controlContainer.setPrefHeight(controlContainer.getScene().getHeight() / 2 - PADDING);
 
         gamePanel.prefWidthProperty().bind(controlContainer.prefWidthProperty());
+        gamePanel.maxWidthProperty().bind(controlContainer.prefWidthProperty());
 
         menuPanel.prefWidthProperty().bind(controlContainer.prefWidthProperty());
         menuPanel.prefHeightProperty().bind(controlContainer.heightProperty().divide(3));
@@ -224,14 +241,67 @@ public class GameController implements Initializable {
         gamePanel.getChildren().clear();
     }
 
+    //Taken from
+    //http://stackoverflow.com/questions/15593287/binding-textarea-height-to-its-content
+    class MyTextArea extends TextArea {
+
+        private Text helper = new Text();
+
+        @Override
+        protected void layoutChildren() {
+            super.layoutChildren();
+            ScrollBar scrollBarv = (ScrollBar) this.lookup(".scroll-bar:vertical");
+            if (scrollBarv != null) {
+                System.out.println("hiding vbar");
+                ((ScrollPane) scrollBarv.getParent()).setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+            }
+            ScrollBar scrollBarh = (ScrollBar) this.lookup(".scroll-bar:horizontal");
+            if (scrollBarh != null) {
+                System.out.println("hiding hbar");
+                ((ScrollPane) scrollBarh.getParent()).setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+            }
+        }
+
+        @Override
+        protected double computePrefWidth(double width) {
+            Bounds bounds = getTextBounds();
+            Insets insets = getInsets();
+            double w = Math.ceil(bounds.getWidth() + insets.getLeft() + insets.getRight());
+            return w;
+        }
+
+        @Override
+        protected double computePrefHeight(double height) {
+            Bounds bounds = getTextBounds();
+            Insets insets = getInsets();
+            double h = Math.ceil(bounds.getHeight() + insets.getLeft() + insets.getRight());
+            return h;
+        }
+
+        //from http://stackoverflow.com/questions/15593287/binding-textarea-height-to-its-content/19717901#19717901
+        public Bounds getTextBounds() {
+            //String text = (textArea.getText().equals("")) ? textArea.getPromptText() : textArea.getText();
+            String text = "";
+            text = this.getParagraphs().stream().map((p) -> p + "W\n").reduce(text, String::concat);
+            text += "W";
+            helper.setText(text);
+            helper.setFont(this.getFont());
+            // Note that the wrapping width needs to be set to zero before
+            // getting the text's real preferred width.
+            helper.setWrappingWidth(0);
+            return helper.getLayoutBounds();
+        }
+    }
+
     /**
      * Build a Hyperlink object to game text panel. The Hyperlinks are
-     * click-able Text on the screen.
+     * click-able TextField on the screen.
      *
      * @param text The text of the Hyperlink
      * @return the Hyperlink
      */
-    private Hyperlink makeHyperlink(String text) {
+    private TextArea makeHyperlink(String text) {
+        /*
         Hyperlink hyperLink = new Hyperlink(text);
         hyperLink.getStyleClass().add("textLink");
         hyperLink.setFocusTraversable(false);
@@ -239,7 +309,34 @@ public class GameController implements Initializable {
         //hyperLink.setStyle("-fx-text-fill: black; -fx-underline: false");
         //hyperLink.setFocusTraversable(false);
         hyperLink.setFont(Font.font("Consolas", FontWeight.BOLD, 24));
-        return hyperLink;
+         */
+        MyTextArea button = new MyTextArea();
+        button.setText(text);
+        button.setEditable(false);
+        button.getStyleClass().add("textlink");
+        button.setFocusTraversable(false);
+        button.setBackground(Background.EMPTY);
+        button.setWrapText(true);
+        
+        button.prefWidthProperty().bind(gamePanel.prefWidthProperty());
+        button.setPrefHeight(Control.USE_COMPUTED_SIZE);
+        button.setOnMouseEntered(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event) {
+                scene.setCursor(Cursor.HAND);
+            }
+        });
+        button.setOnMouseExited(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event) {
+                scene.setCursor(Cursor.DEFAULT);
+            }
+            
+        });
+        //ScrollBar scrollBarv = (ScrollBar) button.lookup(".scroll-bar:vertical");
+        //scrollBarv.setDisable(true);
+        button.setFont(Font.font("Consolas", FontWeight.BOLD, 24));
+        return button;
     }
 
     /**
@@ -247,7 +344,7 @@ public class GameController implements Initializable {
      *
      * @param link the Hyperlink to add.
      */
-    private void addHyperlinkToDisplay(Hyperlink link) {
+    private void addHyperlinkToDisplay(TextArea link) {
         gamePanel.getChildren().addAll(link, makeText(""));
     }
 
@@ -259,10 +356,10 @@ public class GameController implements Initializable {
      * @param choice
      */
     private void addChoiceToDisplay(Choice choice) {
-        Hyperlink hyperLink = makeHyperlink(choice.getText());
-        hyperLink.setOnAction(new EventHandler<ActionEvent>() {
+        TextArea hyperLink = makeHyperlink(choice.getText());
+        hyperLink.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(ActionEvent event) {
+            public void handle(MouseEvent event) {
                 // PLAY CLICK SOUND
                 musicController.playSound(Sound.CLICK);
                 processGameAction(choice.getAction());
@@ -275,11 +372,11 @@ public class GameController implements Initializable {
      * Setup the inventory Hyperlink and add it to the menu panel.
      */
     private void setupInventoryButton() {
-        Hyperlink inventory = makeHyperlink("Inventory");
+        TextArea inventory = makeHyperlink("Inventory");
         inventory.setStyle("-fx-text-fill: black");
-        inventory.setOnAction(new EventHandler<ActionEvent>() {
+        inventory.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(ActionEvent event) {
+            public void handle(MouseEvent event) {
                 if (inventoryMoving) {
                     return;
                 }
@@ -321,11 +418,11 @@ public class GameController implements Initializable {
      * setup the exit Hyperlink and add it to the menu panel.
      */
     private void setupExitButton() {
-        Hyperlink exit = makeHyperlink("Exit Game");
+        TextArea exit = makeHyperlink("Exit Game");
         exit.setStyle("-fx-text-fill: black");
-        exit.setOnAction(new EventHandler<ActionEvent>() {
+        exit.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(ActionEvent event) {
+            public void handle(MouseEvent event) {
                 GuiLoader.getSingleton().getMainStage().close();
                 System.exit(0);
             }
@@ -412,11 +509,11 @@ public class GameController implements Initializable {
         if (action.getText() != null) {
             addTextToDisplay(action.getText());
 
-            Hyperlink next = makeHyperlink("next");
+            TextArea next = makeHyperlink("next");
             action.doConditionalModifiers();
-            next.setOnAction(new EventHandler<ActionEvent>() {
+            next.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
-                public void handle(ActionEvent event) {
+                public void handle(MouseEvent event) {
                     if (action.hasChallenge()) {
                         musicController.playSound(Sound.SWORD_SWISH);
                         loadChallenge(action);
@@ -481,7 +578,7 @@ public class GameController implements Initializable {
         //this.world = new World("PlayerName");
         // WORLD TESTING
         this.world = new World();
-        
+
         // close challenge pane
         this.challengePane.setDisable(true);
 
@@ -502,5 +599,19 @@ public class GameController implements Initializable {
         setupExitButton();
         buildPuzzleControllerMappings();
         processGameEvent(world.getCurrentEvent());
+    }
+
+    /**
+     * @return the scene
+     */
+    public Scene getScene() {
+        return scene;
+    }
+
+    /**
+     * @param scene the scene to set
+     */
+    public void setScene(Scene scene) {
+        this.scene = scene;
     }
 }

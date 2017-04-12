@@ -22,13 +22,15 @@ insert into choice(id, eventid, text, actionid) values (5, 4, '“Hello, my darl
 
 insert into actions(id) values (6);
 
+insert into actionsevent (actionid, eventid, eventposition) values (6, 7, 0);
+
 insert into event(id, text) values(7,'“Hello love. How did you sleep?”');
 
 insert into choice(id, eventid, text, actionid) values (8, 7, ' “I slept well, thank you." you lie; not wanting to talk about your nightmares.', 9);
 
 insert into actions(id, text) values (9, '“That’s great, dear” she gives a thin smile. She knows you lied.');
 
-insert into actionsevent (actionid, eventid, eventposition) values (9, 18, 0);
+insert into actionsevent (actionid, eventid, eventposition) values (9, 19, 0);
 
 insert into choice(id, eventid, text, actionid) values (10, 7, '“I didn’t sleep well last night; I had that nightmare again.” You grimace at the thought of it.', 11);
 
@@ -39,6 +41,8 @@ insert into actionsevent (actionid, eventid, eventposition) values (11, 19, 0);
 insert into choice(id, eventid, text, actionid) values (12, 4, 'I stand back and stare at her.', 13);
 
 insert into actions(id) values (13);
+
+insert into actionsevent (actionid, eventid, eventposition) values (13, 14, 0);
 
 insert into actionsevent (actionid, eventid, eventposition) values (11, 14, 0);
 
@@ -62,6 +66,9 @@ insert into choice(id, eventid, text, actionid) values (20, 19, '“Good morning
 
 insert into actions(id, text) values (21, 'Hug child');
 
-insert into actionsevent (actionid, eventid, eventposition) values (21, 22, 0);
+/* THIS USED TO BE 21, 22, 0. I changed it to 100 to remove errors when loading.
+ please to be changing of to a the correct value when the 22 is of being writing :)
+*/
+insert into actionsevent (actionid, eventid, eventposition) values (21, 100, 0);
 
 INSERT INTO event(id, text) VALUES (19, 'It’s already past sunrise. I’ve dawdled for too long; those fish won’t catch themselves!');

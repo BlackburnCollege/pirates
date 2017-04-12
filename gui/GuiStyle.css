@@ -3,45 +3,64 @@
     Author     : lucas.burdell
 */
 
-.hyperlink{
+.text-area .scroll-bar:vertical:disabled {
+    -fx-opacity: 0;
+}
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
+.textlink{
     -fx-border-color: #00000000;
     -fx-text-fill: #0d72bf;
     -fx-stroke: black;
     -fx-stroke-width: 2;
+    -fx-background-color: #00000000;
     
     -fx-border-style: none;
     -fx-underline: false;
 }
-.hyperlink:hover{
+.textlink:hover{
     
     -fx-border-color: #00000000;
+    -fx-background-color: #00000000;
     -fx-text-fill: khaki;
     -fx-stroke: black;
     -fx-stroke-width: 2;
     -fx-border-style: none;
     -fx-underline: false;
 }
-
-.hyperlink:active{
+/*
+.textlink:active{
     /*
     -fx-border-color: #00000000;
     -fx-text-fill: khaki;
     -fx-border-style: none;
     -fx-underline: false;
-    */
+    
     -fx-border-color: #00000000;
     -fx-text-fill: blue;
     -fx-border-style: none;
     -fx-underline: false;
 }
-
-.hyperlink:focused{
+*/
+/*
+.textlink:focused{
     /*
     -fx-border-color: #00000000;
     -fx-border-style: none;
     -fx-text-fill: khaki;
     -fx-underline: false;
-    */
+    
 
     -fx-border-color: #00000000;
     -fx-text-fill: blue;
@@ -49,4 +68,5 @@
     -fx-underline: false;
 
 }
+*/
 

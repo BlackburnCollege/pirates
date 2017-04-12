@@ -44,11 +44,15 @@ public class GuiLoader extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("GameFXML.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("GameFXML.fxml"));
+        Parent root = loader.load();
+        GameController controller = loader.getController();
 
         Scene scene = new Scene(root);
+        controller.setScene(scene);
         String css = this.getClass().getResource("GuiStyle.css").toExternalForm();
         scene.getStylesheets().add(css);
+        
 
         stage.setScene(scene);
         stage.setFullScreen(true);
