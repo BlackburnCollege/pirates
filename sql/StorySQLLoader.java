@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import world.ACEObject;
@@ -77,6 +79,11 @@ public class StorySQLLoader {
         public ACEType getType() {
             return type;
         }
+        
+       @Override
+       public String toString() {
+           return id + " " + type.toString();
+       }
     }
 
     private ACEScaffold<Event> loadEvent(int id) {
@@ -509,7 +516,18 @@ public class StorySQLLoader {
     }
 
     public boolean loadedProperly() {
-        return loadMap.isEmpty();
+        boolean loaded = true;
+        for (Entry<Integer, ArrayList<ACEScaffold>> entry : loadMap.entrySet()) {
+            loaded = false;
+            System.err.println("ID " + entry.getKey() + " detected as missing!");
+            if (!entry.getValue().isEmpty()) {
+                System.err.println("Entries waiting for ID " + entry.getKey() + ":");
+                System.err.println(entry.getValue().toString());
+            } else {
+                System.err.println("Entry for " + entry.getKey() + " was empty!");
+            }
+        }
+        return loaded;
     }
 
     public Event loadDB() throws SQLException {
@@ -551,8 +569,7 @@ public class StorySQLLoader {
         }
 
         if (!loadedProperly()) {
-            throw new RuntimeException("Not everything was removed from the hash"
-                    + " map. Please use the debugger.");
+            throw new RuntimeException("Detected unfinished map. Look for errors from the output above.");
         }
 
         return root;

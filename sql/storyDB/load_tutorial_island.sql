@@ -26,7 +26,7 @@ insert into event(id, text) values(7,'“Hello love. How did you sleep?”');
 
 insert into choice(id, eventid, text, actionid) values (8, 7, ' “I slept well, thank you." you lie; not wanting to talk about your nightmares.', 9);
 
-insert into actions(id, text) values (6, '“That’s great, dear” she gives a thin smile. She knows you lied.');
+insert into actions(id, text) values (9, '“That’s great, dear” she gives a thin smile. She knows you lied.');
 
 insert into actionsevent (actionid, eventid, eventposition) values (9, 18, 0);
 
@@ -56,7 +56,7 @@ insert into actions(id) values (18);
 
 insert into actionsevent (actionid, eventid, eventposition) values (18, 19, 0);
 
-INSERT INTO event(id, text, backgroundname, music) VALUES (19, 'I hear the patter of small, excited feet coming down the stairs. “You’re awake!” Little Benjamin; while not my real son, he’s the closest thing I have to one. ');
+INSERT INTO event(id, text) VALUES (19, 'I hear the patter of small, excited feet coming down the stairs. “You’re awake!” Little Benjamin; while not my real son, he’s the closest thing I have to one. ');
 
 insert into choice(id, eventid, text, actionid) values (20, 19, '“Good morning Ben!”' , 21);
 
@@ -64,6 +64,4 @@ insert into actions(id, text) values (21, 'Hug child');
 
 insert into actionsevent (actionid, eventid, eventposition) values (21, 22, 0);
 
-INSERT INTO event(id, text, backgroundname, music) VALUES (19, 'It’s already past sunrise. I’ve dawdled for too long; those fish won’t catch themselves!');
-
-insert into choice(id, eventid, text, actionid) values (20, 19, '“Good morning Ben!”' , 21);
+INSERT INTO event(id, text) VALUES (19, 'It’s already past sunrise. I’ve dawdled for too long; those fish won’t catch themselves!');

@@ -1,6 +1,7 @@
 package sql;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.lang.reflect.InvocationTargetException;
@@ -129,7 +130,8 @@ public class SQLDatabaseManager {
             System.setProperty("ij.driver", databaseDriver);
             System.setProperty("ij.database", databaseURL + ";create=true");
             PrintStream console = System.out;
-            System.setOut(new PrintStream(new File("sqloutput")));
+
+            //System.setOut(new PrintStream(new File("sqloutput")));
             for (String path : extractSQLFiles()) {
                 console.println("running " + path);
                 String[] argArray = new String[]{path};
@@ -161,9 +163,9 @@ public class SQLDatabaseManager {
                 System.out.println(set.getInt("id") + ": " + set.getString("acetype"));
             }
         } catch (Exception ie) {
-            
+
         }
-        
+
         /*
         SQLDatabaseManager loader = new SQLDatabaseManager("combatDB", true);
         loader.rebuild();
@@ -181,8 +183,7 @@ public class SQLDatabaseManager {
         System.out.println(entity.isInsultImmune());
         System.out.println(entity.getHealth());
         System.out.println(entity.getMeleeModifier());
-        */
-
+         */
 //        System.out.println("Loading the Derby jdbc driver...");
 //        Class<?> clazz = Class.forName(databaseDriver);
 //        clazz.getConstructor().newInstance();
