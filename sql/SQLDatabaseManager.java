@@ -15,6 +15,8 @@ import java.nio.file.StandardCopyOption;
 import java.nio.file.attribute.FileAttribute;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -118,7 +120,7 @@ public class SQLDatabaseManager {
     public final void rebuild() {
 
         try {
-            File oldDatabase = new File(getDatabaseName());
+            File oldDatabase = new File("/" + getDatabaseName());
             if (oldDatabase.exists()) {
                 System.out.println("Deleting old database: " + oldDatabase.getAbsolutePath().toString());
                 oldDatabase.delete();
@@ -152,6 +154,16 @@ public class SQLDatabaseManager {
         System.out.println(root.getID() + ": " + root.getText());
         System.out.println(root.getPicture());
         System.out.println(root.getMusic());
+        try {
+            PreparedStatement statement = loader.getConnection().prepareStatement("SELECT * FROM aceobject");
+            ResultSet set = statement.executeQuery();
+            while (set.next()) {
+                System.out.println(set.getInt("id") + ": " + set.getString("acetype"));
+            }
+        } catch (Exception ie) {
+            
+        }
+        
         /*
         SQLDatabaseManager loader = new SQLDatabaseManager("combatDB", true);
         loader.rebuild();
