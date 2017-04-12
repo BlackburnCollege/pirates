@@ -27,6 +27,20 @@ public class StorySQLLoader {
     private Connection connection = manager.getConnection();
     private HashMap<Integer, ArrayList<ACEScaffold>> loadMap = new HashMap<>();
 
+    /**
+     * @return the connection
+     */
+    public Connection getConnection() {
+        return connection;
+    }
+
+    /**
+     * @param connection the connection to set
+     */
+    public void setConnection(Connection connection) {
+        this.connection = connection;
+    }
+
     private static enum ACEType {
         ACTION, CHOICE, CONDITIONAL, EVENT, CHALLENGE;
     }
@@ -66,9 +80,10 @@ public class StorySQLLoader {
     }
 
     private ACEScaffold<Event> loadEvent(int id) {
+        System.out.println("loading event " + id);
         try {
             Event object = new Event(id);
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM "
+            PreparedStatement statement = getConnection().prepareStatement("SELECT * FROM "
                     + "event WHERE id=?", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             statement.setInt(1, id);
             ResultSet events = statement.executeQuery();
@@ -97,7 +112,7 @@ public class StorySQLLoader {
             attachIds(event);
 
             // check actions
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM "
+            PreparedStatement statement = getConnection().prepareStatement("SELECT * FROM "
                     + "actionsevent WHERE eventid=?");
             statement.setInt(1, event.getId());
             ResultSet set = statement.executeQuery();
@@ -109,7 +124,7 @@ public class StorySQLLoader {
             }
 
             // check choices
-            statement = connection.prepareStatement("SELECT * FROM "
+            statement = getConnection().prepareStatement("SELECT * FROM "
                     + "choice WHERE eventid=?");
             statement.setInt(1, event.getId());
             set = statement.executeQuery();
@@ -127,9 +142,10 @@ public class StorySQLLoader {
     }
 
     private ACEScaffold<Action> loadAction(int id) {
+        System.out.println("loading action " + id);
         try {
             Action object = new Action(id);
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM "
+            PreparedStatement statement = getConnection().prepareStatement("SELECT * FROM "
                     + "actions WHERE id=?", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             statement.setInt(1, id);
             ResultSet actions = statement.executeQuery();
@@ -152,7 +168,7 @@ public class StorySQLLoader {
             attachIds(action);
 
             // check events
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM "
+            PreparedStatement statement = getConnection().prepareStatement("SELECT * FROM "
                     + "actionsevent WHERE actionid=?");
             statement.setInt(1, action.getId());
             ResultSet set = statement.executeQuery();
@@ -164,7 +180,7 @@ public class StorySQLLoader {
             }
 
             // check challenges
-            statement = connection.prepareStatement("SELECT * FROM "
+            statement = getConnection().prepareStatement("SELECT * FROM "
                     + "actions WHERE id=?");
             statement.setInt(1, action.getId());
             set = statement.executeQuery();
@@ -179,7 +195,7 @@ public class StorySQLLoader {
             }
 
             // check conditionals 
-            statement = connection.prepareStatement("SELECT * FROM "
+            statement = getConnection().prepareStatement("SELECT * FROM "
                     + "conditional WHERE attachedid=?");
             statement.setInt(1, action.getId());
             set = statement.executeQuery();
@@ -196,9 +212,10 @@ public class StorySQLLoader {
     }
 
     private ACEScaffold<Choice> loadChoice(int id) {
+        System.out.println("loading choice " + id);
         try {
             Choice object = new Choice(id);
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM "
+            PreparedStatement statement = getConnection().prepareStatement("SELECT * FROM "
                     + "choice WHERE id=?", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             statement.setInt(1, id);
             ResultSet choices = statement.executeQuery();
@@ -221,7 +238,7 @@ public class StorySQLLoader {
             attachIds(choice);
 
             // check events
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM "
+            PreparedStatement statement = getConnection().prepareStatement("SELECT * FROM "
                     + "choice WHERE id=?");
             statement.setInt(1, choice.getId());
             ResultSet set = statement.executeQuery();
@@ -233,7 +250,7 @@ public class StorySQLLoader {
             }
 
             // check actions
-            statement = connection.prepareStatement("SELECT * FROM "
+            statement = getConnection().prepareStatement("SELECT * FROM "
                     + "choice WHERE id=?");
             statement.setInt(1, choice.getId());
             set = statement.executeQuery();
@@ -245,7 +262,7 @@ public class StorySQLLoader {
             }
 
             // check conditionals 
-            statement = connection.prepareStatement("SELECT * FROM "
+            statement = getConnection().prepareStatement("SELECT * FROM "
                     + "conditional WHERE attachedid=?");
             statement.setInt(1, choice.getId());
             set = statement.executeQuery();
@@ -262,9 +279,10 @@ public class StorySQLLoader {
     }
 
     private ACEScaffold<Challenge> loadChallenge(int id) {
+        System.out.println("loading challenge " + id);
         try {
             Challenge object = new Challenge(id);
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM "
+            PreparedStatement statement = getConnection().prepareStatement("SELECT * FROM "
                     + "challenge WHERE challengeid=?",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             statement.setInt(1, id);
@@ -289,7 +307,7 @@ public class StorySQLLoader {
             attachIds(challenge);
 
             // check actions
-            PreparedStatement statement = connection.prepareStatement(""
+            PreparedStatement statement = getConnection().prepareStatement(""
                     + "SELECT * "
                     + "FROM actions "
                     + "WHERE challengeid=?");
@@ -308,9 +326,10 @@ public class StorySQLLoader {
     }
 
     private ACEScaffold<Conditional> loadConditional(int id) {
+        System.out.println("loading conditional " + id);
         try {
             Conditional object = new Conditional(id);
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM "
+            PreparedStatement statement = getConnection().prepareStatement("SELECT * FROM "
                     + "conditional WHERE id=?",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             statement.setInt(1, id);
@@ -335,7 +354,7 @@ public class StorySQLLoader {
             attachIds(conditional);
 
             // get attached id
-            PreparedStatement statement = connection.prepareStatement(
+            PreparedStatement statement = getConnection().prepareStatement(
                     "SELECT * FROM conditional WHERE id=?");
             statement.setInt(1, conditional.getId());
             ResultSet set = statement.executeQuery();
@@ -361,7 +380,7 @@ public class StorySQLLoader {
 
     private void attach(Action action, Event event) {
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM "
+            PreparedStatement statement = getConnection().prepareStatement("SELECT * FROM "
                     + "actionsevent WHERE eventid=? AND actionid=?");
             statement.setInt(1, event.getID());
             statement.setInt(2, action.getID());
@@ -495,7 +514,7 @@ public class StorySQLLoader {
 
     public Event loadDB() throws SQLException {
         Event root = null;
-        PreparedStatement statement = connection.prepareStatement("SELECT * FROM "
+        PreparedStatement statement = getConnection().prepareStatement("SELECT * FROM "
                 + "aceobject ORDER BY id",
                 ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         ResultSet set = statement.executeQuery();
