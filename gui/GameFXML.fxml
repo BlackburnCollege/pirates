@@ -34,8 +34,16 @@
          <right>
             <VBox fx:id="controlContainer" spacing="15.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextFlow fx:id="gamePanel" />
-                  <TextFlow fx:id="menuPanel" textAlignment="CENTER" />
+                  <ScrollPane fx:id="gameScroll" fitToWidth="true">
+                     <content>
+                        <TextFlow fx:id="gamePanel" />
+                     </content>
+                  </ScrollPane>
+                  <ScrollPane fx:id="menuScroll" fitToWidth="true">
+                     <content>
+                        <TextFlow fx:id="menuPanel" textAlignment="CENTER" />
+                     </content>
+                  </ScrollPane>
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

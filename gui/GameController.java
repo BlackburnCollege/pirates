@@ -19,7 +19,6 @@ package gui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
@@ -34,16 +33,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Cursor;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Control;
-import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -60,15 +57,16 @@ import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 
 import world.*;
@@ -101,6 +99,10 @@ public class GameController implements Initializable {
     private StackPane mainPane;
     @FXML
     private Pane challengePane;
+    @FXML
+    private ScrollPane gameScroll;
+    @FXML
+    private ScrollPane menuScroll;
 
     private Scene scene;
 
@@ -128,6 +130,7 @@ public class GameController implements Initializable {
     private Text makeText(String text) {
         Text newText = new Text(text + "\n");
         newText.setFont(Font.font("Consolas", 24));
+        //newText.setFill(Paint.valueOf("White"));
         // newText.setFocusTraversable(false);
         return newText;
     }
@@ -209,15 +212,15 @@ public class GameController implements Initializable {
         //controlContainer.setPrefWidth(controlContainer.getScene().getWidth() / 3 - PADDING);
         //controlContainer.setPrefHeight(controlContainer.getScene().getHeight() / 2 - PADDING);
 
-        gamePanel.prefWidthProperty().bind(controlContainer.prefWidthProperty());
-        gamePanel.maxWidthProperty().bind(controlContainer.prefWidthProperty());
-
-        menuPanel.prefWidthProperty().bind(controlContainer.prefWidthProperty());
-        menuPanel.prefHeightProperty().bind(controlContainer.heightProperty().divide(3));
+        gameScroll.prefWidthProperty().bind(controlContainer.prefWidthProperty());
+        
+        menuScroll.prefWidthProperty().bind(controlContainer.prefWidthProperty());
+        menuScroll.prefHeightProperty().bind(controlContainer.heightProperty().divide(3));
+        menuPanel.minHeightProperty().bind(menuScroll.heightProperty());
         //menuControls.setPrefHeight(controlContainer.heightProperty().divide(3).get());
 
-        gamePanel.prefHeightProperty().bind(controlContainer.prefHeightProperty().subtract(menuPanel.prefHeightProperty()));
-
+        gameScroll.prefHeightProperty().bind(controlContainer.prefHeightProperty().subtract(menuScroll.prefHeightProperty()));
+        gamePanel.minHeightProperty().bind(gameScroll.heightProperty());
         gameImage.fitWidthProperty().bind(gameContainer.widthProperty().divide(2).subtract(PADDING));
         gameImage.fitHeightProperty().bind(gameContainer.heightProperty().subtract(PADDING));
         gameImage.setVisible(true);
@@ -241,58 +244,6 @@ public class GameController implements Initializable {
         gamePanel.getChildren().clear();
     }
 
-    //Taken from
-    //http://stackoverflow.com/questions/15593287/binding-textarea-height-to-its-content
-    class MyTextArea extends TextArea {
-
-        private Text helper = new Text();
-
-        @Override
-        protected void layoutChildren() {
-            super.layoutChildren();
-            ScrollBar scrollBarv = (ScrollBar) this.lookup(".scroll-bar:vertical");
-            if (scrollBarv != null) {
-                System.out.println("hiding vbar");
-                ((ScrollPane) scrollBarv.getParent()).setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-            }
-            ScrollBar scrollBarh = (ScrollBar) this.lookup(".scroll-bar:horizontal");
-            if (scrollBarh != null) {
-                System.out.println("hiding hbar");
-                ((ScrollPane) scrollBarh.getParent()).setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-            }
-        }
-
-        @Override
-        protected double computePrefWidth(double width) {
-            Bounds bounds = getTextBounds();
-            Insets insets = getInsets();
-            double w = Math.ceil(bounds.getWidth() + insets.getLeft() + insets.getRight());
-            return w;
-        }
-
-        @Override
-        protected double computePrefHeight(double height) {
-            Bounds bounds = getTextBounds();
-            Insets insets = getInsets();
-            double h = Math.ceil(bounds.getHeight() + insets.getLeft() + insets.getRight());
-            return h;
-        }
-
-        //from http://stackoverflow.com/questions/15593287/binding-textarea-height-to-its-content/19717901#19717901
-        public Bounds getTextBounds() {
-            //String text = (textArea.getText().equals("")) ? textArea.getPromptText() : textArea.getText();
-            String text = "";
-            text = this.getParagraphs().stream().map((p) -> p + "W\n").reduce(text, String::concat);
-            text += "W";
-            helper.setText(text);
-            helper.setFont(this.getFont());
-            // Note that the wrapping width needs to be set to zero before
-            // getting the text's real preferred width.
-            helper.setWrappingWidth(0);
-            return helper.getLayoutBounds();
-        }
-    }
-
     /**
      * Build a Hyperlink object to game text panel. The Hyperlinks are
      * click-able TextField on the screen.
@@ -300,7 +251,7 @@ public class GameController implements Initializable {
      * @param text The text of the Hyperlink
      * @return the Hyperlink
      */
-    private TextArea makeHyperlink(String text) {
+    private Label makeHyperlink(String text) {
         /*
         Hyperlink hyperLink = new Hyperlink(text);
         hyperLink.getStyleClass().add("textLink");
@@ -310,28 +261,29 @@ public class GameController implements Initializable {
         //hyperLink.setFocusTraversable(false);
         hyperLink.setFont(Font.font("Consolas", FontWeight.BOLD, 24));
          */
-        MyTextArea button = new MyTextArea();
+        Label button = new Label();
         button.setText(text);
-        button.setEditable(false);
+        //button.setEditable(false);
         button.getStyleClass().add("textlink");
         button.setFocusTraversable(false);
         button.setBackground(Background.EMPTY);
         button.setWrapText(true);
+        button.prefWidthProperty().bind(gamePanel.widthProperty());
+
+        //button.prefWidthProperty().bind(gamePanel.prefWidthProperty());
         
-        button.prefWidthProperty().bind(gamePanel.prefWidthProperty());
-        button.setPrefHeight(Control.USE_COMPUTED_SIZE);
-        button.setOnMouseEntered(new EventHandler<MouseEvent>(){
+        button.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 scene.setCursor(Cursor.HAND);
             }
         });
-        button.setOnMouseExited(new EventHandler<MouseEvent>(){
+        button.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 scene.setCursor(Cursor.DEFAULT);
             }
-            
+
         });
         //ScrollBar scrollBarv = (ScrollBar) button.lookup(".scroll-bar:vertical");
         //scrollBarv.setDisable(true);
@@ -344,7 +296,7 @@ public class GameController implements Initializable {
      *
      * @param link the Hyperlink to add.
      */
-    private void addHyperlinkToDisplay(TextArea link) {
+    private void addHyperlinkToDisplay(Label link) {
         gamePanel.getChildren().addAll(link, makeText(""));
     }
 
@@ -356,7 +308,7 @@ public class GameController implements Initializable {
      * @param choice
      */
     private void addChoiceToDisplay(Choice choice) {
-        TextArea hyperLink = makeHyperlink(choice.getText());
+        Label hyperLink = makeHyperlink(choice.getText());
         hyperLink.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -372,6 +324,7 @@ public class GameController implements Initializable {
      * Setup the inventory Hyperlink and add it to the menu panel.
      */
     private void setupInventoryButton() {
+        /*
         TextArea inventory = makeHyperlink("Inventory");
         inventory.setStyle("-fx-text-fill: black");
         inventory.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -412,14 +365,17 @@ public class GameController implements Initializable {
         });
 
         menuPanel.getChildren().addAll(inventory, makeText(""));
+        */
     }
 
     /**
      * setup the exit Hyperlink and add it to the menu panel.
      */
     private void setupExitButton() {
-        TextArea exit = makeHyperlink("Exit Game");
+        Label exit = makeHyperlink("Exit Game");
         exit.setStyle("-fx-text-fill: black");
+        exit.setAlignment(Pos.CENTER);
+        exit.setTextAlignment(TextAlignment.CENTER);
         exit.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -509,7 +465,7 @@ public class GameController implements Initializable {
         if (action.getText() != null) {
             addTextToDisplay(action.getText());
 
-            TextArea next = makeHyperlink("next");
+            Label next = makeHyperlink("next");
             action.doConditionalModifiers();
             next.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
@@ -587,9 +543,15 @@ public class GameController implements Initializable {
                 BorderStrokeStyle.SOLID, new CornerRadii(2),
                 new BorderWidths(10, 10, 10, 10)));
         gameContainer.setBorder(border);
-        gamePanel.setBorder(border);
-        menuPanel.setBorder(border);
-
+//        gamePanel.setBorder(border);
+//        menuPanel.setBorder(border);
+        gameScroll.setBorder(border);
+        menuScroll.setBorder(border);
+        gameScroll.getStyleClass().add("edge-to-edge");
+        gameScroll.setStyle("-fx-background-color: transparent");
+        menuScroll.getStyleClass().add("edge-to-edge");
+        menuScroll.setStyle("-fx-background-color: transparent");
+        
         // SET BACKGROUNDS
         setBackgrounds();
 
