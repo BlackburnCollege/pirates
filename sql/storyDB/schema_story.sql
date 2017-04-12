@@ -23,7 +23,6 @@ CREATE TABLE event (
     music varchar(64)
 );
 
-ALTER TABLE event add foreign key (id) references aceobject (id);
 
 CREATE TABLE choice (
     id integer not null primary key,
@@ -32,7 +31,6 @@ CREATE TABLE choice (
     actionid integer not null
 );
 
-ALTER TABLE choice add foreign key (id) references aceobject (id);
 
 CREATE TABLE actions (
     id integer not null primary key,
@@ -40,7 +38,6 @@ CREATE TABLE actions (
     text varchar(1024)
 );
 
-ALTER TABLE actions add foreign key (id) references aceobject (id);
 
 CREATE TABLE conditional(
     id integer not null primary key,
@@ -65,3 +62,9 @@ CREATE TABLE challenge(
     challengename varchar(64) not null,
     challengetype varchar(64) not null
 );
+
+CREATE TRIGGER EVENTTRIG AFTER INSERT ON event REFERENCING NEW AS UPDATEDROW FOR EACH ROW INSERT INTO aceobject VALUES (UPDATEDROW.id, 'event');
+CREATE TRIGGER ACTIONTRIG AFTER INSERT ON actions REFERENCING NEW AS UPDATEDROW FOR EACH ROW INSERT INTO aceobject VALUES (UPDATEDROW.id, 'action');
+CREATE TRIGGER CHOICETRIG AFTER INSERT ON choice REFERENCING NEW AS UPDATEDROW FOR EACH ROW INSERT INTO aceobject VALUES (UPDATEDROW.id, 'choice');
+CREATE TRIGGER CHALLENGETRIG AFTER INSERT ON challenge REFERENCING NEW AS UPDATEDROW FOR EACH ROW INSERT INTO aceobject VALUES (UPDATEDROW.challengeid, 'challenge');
+CREATE TRIGGER CONDITIONALTRIG AFTER INSERT ON conditional REFERENCING NEW AS UPDATEDROW FOR EACH ROW INSERT INTO aceobject VALUES (UPDATEDROW.id, 'conditional');
