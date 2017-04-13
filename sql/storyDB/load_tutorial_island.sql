@@ -124,7 +124,7 @@ INSERT INTO event(id, text) VALUES (38, 'While walking back home from the docks,
 
 insert into choice(id, eventid, text, actionid) values (39, 38, 'ready yourself' , 40);
 
-insert into actions(id) values (40);
+insert into actions(id, challengeid) values (40, 41);
 
 insert into actionsevent (actionid, eventid, eventposition) values (40, 43, 0);
 
