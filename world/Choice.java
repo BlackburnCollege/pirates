@@ -83,7 +83,7 @@ public class Choice extends ACEObject {
     /**
      * @return the conditions
      */
-    public Conditional[] getConditions() {
+    public Conditional[] getConditionals() {
         return conditions.toArray(new Conditional[1]);
     }
 

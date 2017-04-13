@@ -7,9 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import world.ACEObject;
@@ -27,7 +24,9 @@ public class StorySQLLoader {
 
     private SQLDatabaseManager manager = new SQLDatabaseManager("storyDB", true);
     private Connection connection = manager.getConnection();
-    private HashMap<Integer, ArrayList<ACEScaffold>> loadMap = new HashMap<>();
+    private HashMap<Integer, ArrayList<ACEScaffold>> awaitingMap = new HashMap<>();
+    private ACEScaffold[] objectArray;
+    //private Hash<Integer> awaitingIds = new ArrayList<>();
 
     /**
      * @return the connection
@@ -119,7 +118,9 @@ public class StorySQLLoader {
 
     private void handleEventNeededIds(ACEScaffold<Event> event) {
         try {
-            attachIds(event);
+            objectArray[event.getId()] = event;
+            checkAwaiting(event);
+            //attachIds(event);
 
             // check actions
             PreparedStatement statement = getConnection().prepareStatement("SELECT * FROM "
@@ -130,9 +131,12 @@ public class StorySQLLoader {
             while (set.next()) {
                 isEmpty = false;
                 int id = set.getInt("actionid");
+                /*
                 if (id > event.getId()) {
                     addNeededId(event, id);
                 }
+                 */
+                attachIds(event, id);
             }
             if (isEmpty) {
                 System.err.println("WARNING: " + event + " has no associated actions!");
@@ -147,9 +151,12 @@ public class StorySQLLoader {
             while (set.next()) {
                 isEmpty = false;
                 int id = set.getInt("id");
+                /*
                 if (id > event.getId()) {
                     addNeededId(event, id);
                 }
+                 */
+                attachIds(event, id);
             }
 
             if (isEmpty) {
@@ -185,7 +192,8 @@ public class StorySQLLoader {
 
     private void handleActionNeededIds(ACEScaffold<Action> action) {
         try {
-            attachIds(action);
+            objectArray[action.getId()] = action;
+            checkAwaiting(action);
 
             // check events
             PreparedStatement statement = getConnection().prepareStatement("SELECT * FROM "
@@ -196,13 +204,38 @@ public class StorySQLLoader {
             while (set.next()) {
                 isEmpty = false;
                 int id = set.getInt("eventid");
+                attachIds(action, id);
+                /*
                 if (id > action.getId()) {
                     addNeededId(action, id);
                 }
+                 */
             }
 
             if (isEmpty) {
                 throw new RuntimeException(action + " has no associated events!");
+            }
+
+            // check choices
+            statement = getConnection().prepareStatement("SELECT * FROM "
+                    + "choice WHERE actionid=?");
+            statement.setInt(1, action.getId());
+            set = statement.executeQuery();
+            isEmpty = true;
+            while (set.next()) {
+                isEmpty = false;
+                int id = set.getInt("id");
+                attachIds(action, id);
+                /*
+                if (id > choice.getId()) {
+                    addNeededId(choice, id);
+                }
+                 */
+
+            }
+
+            if (isEmpty) {
+                System.err.println(action + " has no associated choices!");
             }
 
             // check challenges
@@ -215,8 +248,8 @@ public class StorySQLLoader {
                 int id = set.getInt("challengeid");
                 if (id == 0) {
                     action.getObject().setChallenge(null);
-                } else if (id > action.getId()) {
-                    addNeededId(action, id);
+                } else {
+                    attachIds(action, id);
                 }
             }
 
@@ -228,9 +261,12 @@ public class StorySQLLoader {
 
             while (set.next()) {
                 int id = set.getInt("id");
+                attachIds(action, id);
+                /*
                 if (id > action.getId()) {
                     addNeededId(action, id);
                 }
+                 */
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
@@ -264,7 +300,8 @@ public class StorySQLLoader {
 
     private void handleChoiceNeededIds(ACEScaffold<Choice> choice) {
         try {
-            attachIds(choice);
+            objectArray[choice.getId()] = choice;
+            checkAwaiting(choice);
 
             // check events
             PreparedStatement statement = getConnection().prepareStatement("SELECT * FROM "
@@ -275,9 +312,12 @@ public class StorySQLLoader {
             while (set.next()) {
                 isEmpty = false;
                 int id = set.getInt("eventid");
+                /*
                 if (id > choice.getId()) {
                     addNeededId(choice, id);
                 }
+                 */
+                attachIds(choice, id);
             }
             if (isEmpty) {
                 System.err.println(choice + " has no associated events!");
@@ -292,9 +332,13 @@ public class StorySQLLoader {
             while (set.next()) {
                 isEmpty = false;
                 int id = set.getInt("actionid");
+                attachIds(choice, id);
+                /*
                 if (id > choice.getId()) {
                     addNeededId(choice, id);
                 }
+                 */
+
             }
 
             if (isEmpty) {
@@ -308,9 +352,12 @@ public class StorySQLLoader {
             set = statement.executeQuery();
             while (set.next()) {
                 int id = set.getInt("id");
+                attachIds(choice, id);
+                /*
                 if (id > choice.getId()) {
                     addNeededId(choice, id);
                 }
+                 */
             }
 
         } catch (SQLException ex) {
@@ -344,7 +391,8 @@ public class StorySQLLoader {
 
     private void handleChallengeNeededIds(ACEScaffold<Challenge> challenge) {
         try {
-            attachIds(challenge);
+            objectArray[challenge.getId()] = challenge;
+            checkAwaiting(challenge);
 
             // check actions
             PreparedStatement statement = getConnection().prepareStatement(""
@@ -357,9 +405,12 @@ public class StorySQLLoader {
             while (set.next()) {
                 isEmpty = false;
                 int id = set.getInt("id");
+                attachIds(challenge, id);
+                /*
                 if (id > challenge.getId()) {
                     addNeededId(challenge, id);
                 }
+                 */
             }
             if (isEmpty) {
                 System.err.println(challenge + " has no associated actions!");
@@ -396,7 +447,8 @@ public class StorySQLLoader {
 
     private void handleConditionalNeededIds(ACEScaffold<Conditional> conditional) {
         try {
-            attachIds(conditional);
+            objectArray[conditional.getId()] = conditional;
+            checkAwaiting(conditional);
 
             // get attached id
             PreparedStatement statement = getConnection().prepareStatement(
@@ -407,9 +459,12 @@ public class StorySQLLoader {
             while (set.next()) {
                 isEmpty = false;
                 int attachedId = set.getInt("attachedid");
+                /*
                 if (attachedId > conditional.getId()) {
                     addNeededId(conditional, attachedId);
                 }
+                 */
+                attachIds(conditional, attachedId);
             }
             if (isEmpty) {
                 System.err.println(conditional + " has no associated objects!");
@@ -421,10 +476,10 @@ public class StorySQLLoader {
     }
 
     private void addNeededId(ACEScaffold object, int neededId) {
-        ArrayList<ACEScaffold> list = loadMap.get(neededId);
+        ArrayList<ACEScaffold> list = awaitingMap.get(neededId);
         if (list == null) {
             list = new ArrayList<>();
-            loadMap.put(neededId, list);
+            awaitingMap.put(neededId, list);
         }
         list.add(object);
     }
@@ -439,128 +494,161 @@ public class StorySQLLoader {
             set.next();
             int position = set.getInt("eventposition");
             action.setEvent(event, position);
+            System.out.println("action " + action.getID() + " set event "
+                    + event.getID() + " to position " + position);
         } catch (SQLException ex) {
             Logger.getLogger(StorySQLLoader.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     private void attach(Event event, Choice choice) {
+        System.out.println("attaching event " + event.getID() + " to choice "
+                + choice.getID());
+        for (Choice choice1 : event.getChoices()) {
+            if (choice1 == choice) {
+                return;
+            }
+        }
         event.addChoice(choice);
     }
 
     private void attach(Choice choice, Action action) {
+        System.out.println("attaching choice " + choice.getID() + " to action "
+                + action.getID());
         choice.setAction(action);
     }
 
     private void attach(Choice choice, Conditional conditional) {
+        System.out.println("attaching choice " + choice.getID() + " to conditional "
+                + conditional.getID());
+        for (Conditional condition : choice.getConditionals()) {
+            if (condition == conditional) {
+                return;
+            }
+        }
         choice.addConditional(conditional);
     }
 
     private void attach(Action action, Conditional conditional) {
+        System.out.println("attaching action " + action.getID() + " to conditional "
+                + conditional.getID());
+        for (Conditional condition : action.getConditionals()) {
+            if (condition == conditional) {
+                return;
+            }
+        }
         action.addConditional(conditional);
     }
 
     private void attach(Action action, Challenge challenge) {
+        System.out.println("attaching action " + action.getID() + " to challenge "
+                + challenge.getID());
         action.setChallenge(challenge);
     }
 
-    private void attachIds(ACEScaffold newObject) {
-        ArrayList<ACEScaffold> list = loadMap.get(newObject.getId());
-        if (list == null) {
+    private void checkAwaiting(ACEScaffold newObject) {
+        if (awaitingMap.get(newObject.getId()) != null) {
+            for (ACEScaffold scaffold : awaitingMap.get(newObject.getId())) {
+                attachIds(newObject, scaffold.getId());
+            }
+            awaitingMap.remove(newObject.getId());
+        }
+    }
+
+    private void attachIds(ACEScaffold newObject, int newId) {
+        //ArrayList<ACEScaffold> list = loadMap.get(newObject.getId());
+        ACEScaffold scaffold = objectArray[newId];
+        if (scaffold == null) {
+            if (awaitingMap.get(newId) == null) {
+                ArrayList<ACEScaffold> list = new ArrayList<>();
+                list.add(newObject);
+                awaitingMap.put(newId, list);
+            } else {
+                awaitingMap.get(newId).add(newObject);
+            }
             return;
         }
+        ACEObject object = scaffold.getObject();
         if (newObject.getType() == ACEType.EVENT) {
             Event event = (Event) newObject.getObject();
-            for (ACEScaffold scaffold : list) {
-                ACEObject object = scaffold.getObject();
-                switch (scaffold.getType()) {
-                    case ACTION:
-                        attach((Action) object, event);
-                        break;
-                    case CHOICE:
-                        attach(event, (Choice) object);
-                        break;
-                    default:
-                        System.err.println(newObject
-                                + " mismatched with " + scaffold);
-                }
+            switch (scaffold.getType()) {
+                case ACTION:
+                    attach((Action) object, event);
+                    break;
+                case CHOICE:
+                    attach(event, (Choice) object);
+                    break;
+                default:
+                    System.err.println(newObject
+                            + " mismatched with " + scaffold);
             }
         } else if (newObject.getType() == ACEType.ACTION) {
             Action action = (Action) newObject.getObject();
-            for (ACEScaffold scaffold : list) {
-                ACEObject object = scaffold.getObject();
-                switch (scaffold.getType()) {
-                    case EVENT:
-                        attach(action, (Event) object);
-                        break;
-                    case CHOICE:
-                        attach((Choice) object, action);
-                        break;
-                    case CONDITIONAL:
-                        attach(action, (Conditional) object);
-                        break;
-                    case CHALLENGE:
-                        attach(action, (Challenge) object);
-                        break;
-                    default:
-                        System.err.println(newObject
-                                + " mismatched with " + scaffold);
-                }
+            switch (scaffold.getType()) {
+                case EVENT:
+                    attach(action, (Event) object);
+                    break;
+                case CHOICE:
+                    attach((Choice) object, action);
+                    break;
+                case CONDITIONAL:
+                    attach(action, (Conditional) object);
+                    break;
+                case CHALLENGE:
+                    attach(action, (Challenge) object);
+                    break;
+                default:
+                    System.err.println(newObject
+                            + " mismatched with " + scaffold);
             }
+
         } else if (newObject.getType() == ACEType.CHOICE) {
             Choice choice = (Choice) newObject.getObject();
-            for (ACEScaffold scaffold : list) {
-                ACEObject object = scaffold.getObject();
-                switch (scaffold.getType()) {
-                    case EVENT:
-                        attach((Event) object, choice);
-                        break;
-                    case ACTION:
-                        attach(choice, (Action) object);
-                        break;
-                    case CONDITIONAL:
-                        attach(choice, (Conditional) object);
-                        break;
-                    default:
-                        System.err.println(newObject
-                                + " mismatched with " + scaffold);
-                }
+            System.out.println("Checking object " + newId + " for choice " + choice.getID());
+            switch (scaffold.getType()) {
+                case EVENT:
+                    attach((Event) object, choice);
+                    break;
+                case ACTION:
+                    attach(choice, (Action) object);
+                    break;
+                case CONDITIONAL:
+                    attach(choice, (Conditional) object);
+                    break;
+                default:
+                    System.err.println(newObject
+                            + " mismatched with " + scaffold);
             }
         } else if (newObject.getType() == ACEType.CHALLENGE) {
             Challenge challenge = (Challenge) newObject.getObject();
-            for (ACEScaffold scaffold : list) {
-                ACEObject object = scaffold.getObject();
-                switch (scaffold.getType()) {
-                    case ACTION:
-                        attach((Action) object, challenge);
-                        break;
-                    default:
-                        System.err.println(newObject
-                                + " mismatched with " + scaffold);
-                }
+            switch (scaffold.getType()) {
+                case ACTION:
+                    attach((Action) object, challenge);
+                    break;
+                default:
+                    System.err.println(newObject
+                            + " mismatched with " + scaffold);
             }
         } else if (newObject.getType() == ACEType.CONDITIONAL) {
             Conditional conditional = (Conditional) newObject.getObject();
-            for (ACEScaffold scaffold : list) {
-                ACEObject object = scaffold.getObject();
-                switch (scaffold.getType()) {
-                    case ACTION:
-                        attach((Action) object, conditional);
-                        break;
-                    case CHOICE:
-                        attach((Choice) object, conditional);
-                        break;
-                    default:
-                        System.err.println(newObject
-                                + " mismatched with " + scaffold);
-                }
+            switch (scaffold.getType()) {
+                case ACTION:
+                    attach((Action) object, conditional);
+                    break;
+                case CHOICE:
+                    attach((Choice) object, conditional);
+                    break;
+                default:
+                    System.err.println(newObject
+                            + " mismatched with " + scaffold);
             }
         }
-        loadMap.remove(newObject.getId());
+        //loadMap.remove(newObject.getId());
     }
 
     public boolean loadedProperly() {
         boolean loaded = true;
+        /*
         for (Entry<Integer, ArrayList<ACEScaffold>> entry : loadMap.entrySet()) {
             loaded = false;
             System.err.println("ID " + entry.getKey() + " detected as missing!");
@@ -571,11 +659,25 @@ public class StorySQLLoader {
                 System.err.println("Entry for " + entry.getKey() + " was empty!");
             }
         }
+         */
         return loaded;
     }
 
     public Event loadDB() throws SQLException {
         Event root = null;
+
+        PreparedStatement getSize = getConnection().prepareStatement(
+                "SELECT MAX(aceobject.id) FROM aceobject",
+                ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        ResultSet size = getSize.executeQuery();
+        if (size.isBeforeFirst()) {
+            size.next();
+            objectArray = new ACEScaffold[size.getInt(1) + 1];
+            System.out.println("Number of ACE objects: " + objectArray.length);
+        } else {
+            throw new RuntimeException("Cannot determine number of ace objects!");
+        }
+
         PreparedStatement statement = getConnection().prepareStatement("SELECT * FROM "
                 + "aceobject ORDER BY id",
                 ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
