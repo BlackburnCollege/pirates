@@ -78,7 +78,7 @@ insert into actionsevent (actionid, eventid, eventposition) values (97, 22, 0);
 
 INSERT INTO event(id, text) VALUES (22, 'It’s already past sunrise. I’ve dawdled for too long; those fish won’t catch themselves!');
 
-insert into choice(id, eventid, text, actionid) values (23, 22, '“Good morning Ben!”' , 24);
+insert into choice(id, eventid, text, actionid) values (23, 22, 'Go to docks.' , 24);
 
 insert into actions(id, text) values (24, 'You bid your family goodbye and walk out the door. ');
 
@@ -98,13 +98,74 @@ insert into choice(id, eventid, text, actionid) values (29, 28, 'Paddle to the i
 
 insert into actions(id, challengeid) values (30, 31);
 
-insert into actionsevent (actionid, eventid, eventposition) values (30, 100, 0);
+insert into actionsevent (actionid, eventid, eventposition) values (30, 32, 1);
 
-insert into actionsevent (actionid, eventid, eventposition) values (30, 100, 1);
+insert into actionsevent (actionid, eventid, eventposition) values (30, 33, 0);
 
 insert into challenge(challengeid, challengename, challengetype) values (31, 'fish', 'puzzle');
 
+INSERT INTO event(id, text) VALUES (32, 'I caught a great amount of fish today! I might have enough to surprise Marjorie with a gift.');
 
+insert into choice(id, eventid, text, actionid) values (34, 32, 'Return to shore' , 35);
 
+insert into actions(id, text) values (35, 'You sell your catch for the day, and even manage to barter for an adorable sea-shell necklace while still buying food for the week.');
+
+insert into actionsevent (actionid, eventid, eventposition) values (35, 38, 0);
+
+INSERT INTO event(id, text) VALUES (33, 'I didn’t quite get enough fish today, but it’ll do. ');
+
+insert into choice(id, eventid, text, actionid) values (36, 33, 'return to shore' , 37);
+
+insert into actions(id, text) values (37, 'You sell what you caught for the day, and manage to get enough money to buy food for the day.');
+
+insert into actionsevent (actionid, eventid, eventposition) values (37, 38, 0);
+
+INSERT INTO event(id, text) VALUES (38, 'While walking back home from the docks, I notice that the birds are not chirping as they were in the morning. It seems quieter than usual. The bushes to my left begin rustling and growling; a hungry wolf jumps out! ');
+
+insert into choice(id, eventid, text, actionid) values (39, 38, 'ready yourself' , 40);
+
+insert into actions(id) values (40);
+
+insert into actionsevent (actionid, eventid, eventposition) values (40, 43, 0);
+
+insert into actionsevent (actionid, eventid, eventposition) values (40, 42, 1);
+
+insert into challenge(challengeid, challengename, challengetype) values (41, 'wolf', 'combat');
+
+INSERT INTO event(id, text) VALUES (42, 'I deliver one final blow to the wolf, and it quickly runs back into the forest yelping in pain.');
+
+insert into choice(id, eventid, text, actionid) values (44, 42, 'I gather my things and head back home.' , 45);
+
+insert into actions(id) values (46);
+
+insert into actionsevent (actionid, eventid, eventposition) values (46, 49, 0);
+
+INSERT INTO event(id, text) VALUES (43, 'The wolf knocks me to the ground. It stands above me, its face twisted with a nasty snarl. As I close my eyes and brace myself, I feel it jump off my body. When I get up, I notice that it ran off with my knapsack. The food I had brought for tonight’s dinner is gone, but I am at least I am still alive.');
+
+insert into choice(id, eventid, text, actionid) values (47, 43, 'I dust myself off and continue home.' , 48);
+
+insert into actions(id) values (48);
+
+insert into actionsevent (actionid, eventid, eventposition) values (48, 49, 0);
+
+INSERT INTO event(id, text) VALUES (49, 'When I arrive home, I notice the house is eerily dark and quiet. The door is left ajar. Sensing something is wrong, I rush inside to look for my family. The house is a mess: furniture is strewn about, the floor and walls torn up as if someone were looking for something.');
+
+insert into choice(id, eventid, text, actionid) values (50, 49, 'rush upstairs' , 51);
+
+insert into actions(id, text) values (51, 'I rush upstairs, yelling. 
+“MARJORIE??”
+“BEN?!?”
+No answer. I find no one. On the desk lay a lit candle and a handwritten note laying atop a journal.');
+
+insert into actionsevent (actionid, eventid, eventposition) values (51, 54, 0);
+
+insert into choice(id, eventid, text, actionid) values (52, 49, 'creep upstairs' , 53);
+
+insert into actions(id, text) values (53, 'As quietly as I can manage, I sneak up the stairs. My dagger at the ready for anything or anyone. 
+The door to the master bedroom is cracked open; I peer into the room. Everything is still the same as it was, except on the desk is a lit candle and a handwritten note laying atop a journal.'); 
+
+insert into actionsevent (actionid, eventid, eventposition) values (53, 54, 0);
+
+INSERT INTO event(id, text) VALUES (49, 'When I arrive home, I notice the house is eerily dark and quiet. The door is left ajar. Sensing something is wrong, I rush inside to look for my family. The house is a mess: furniture is strewn about, the floor and walls torn up as if someone were looking for something.');
 
 
