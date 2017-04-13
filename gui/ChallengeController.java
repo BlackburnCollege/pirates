@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import world.Challenge;
 import world.Player;
+import world.World;
 
 /**
  *
@@ -15,6 +16,7 @@ public abstract class ChallengeController {
     private ChallengeCallback onChallengeFinish;
     private String challengeInformation;
     private world.Player player;
+    private World world;
 
 
     /**
@@ -65,5 +67,20 @@ public abstract class ChallengeController {
 
     public void setPlayer(world.Player player) {
         this.player = player;
+    }
+
+    /**
+     * @return the world
+     */
+    public World getWorld() {
+        return world;
+    }
+
+    /**
+     * @param world the world to set
+     */
+    public void setWorld(World world) {
+        this.world = world;
+        this.setPlayer(world.getPlayer());
     }
 }

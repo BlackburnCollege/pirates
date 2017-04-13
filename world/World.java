@@ -20,6 +20,7 @@ public class World {
 
     // Player object for story. Currently only contains inventory and a name
     private Player player;
+    private String shipName;
 
     /* 
     NAMING SCHEME FOR EVENTS:
@@ -34,8 +35,8 @@ public class World {
     private HashMap<String, Event> events = new HashMap<>();
     private HashMap<String, Integer> storyFlags = new HashMap<>();
 
-    public World(){
-        this.player = new Player("Testing");
+    public World(String playerName){
+        this.player = new Player(playerName);
         StorySQLLoader loader = new StorySQLLoader();
         try {
             this.currentEvent = loader.loadDB();
@@ -44,6 +45,7 @@ public class World {
         }
     }
     
+    /*
     public World(String playerName) {
         this.player = new Player(playerName);
         //opening event, after convo, fish puzzle, wolf combat, closing event
@@ -158,7 +160,8 @@ public class World {
         this.currentEvent = events.get("tut_home_f_opening_family");
 
     }
-
+    */
+    
     /**
      *
      * @param eventName name of event to retrieve
@@ -195,5 +198,19 @@ public class World {
      */
     public HashMap<String, Integer> getStoryFlags() {
         return storyFlags;
+    }
+
+    /**
+     * @return the shipName
+     */
+    public String getShipName() {
+        return shipName;
+    }
+
+    /**
+     * @param shipName the shipName to set
+     */
+    public void setShipName(String shipName) {
+        this.shipName = shipName;
     }
 }

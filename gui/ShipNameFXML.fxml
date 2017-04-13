@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.media.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #00000000;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ShipNameFXMLController">
+   <children>
+      <TextField fx:id="shipNameField" layoutX="175.0" layoutY="270.0" maxWidth="-Infinity" prefHeight="60.0" prefWidth="450.0" promptText="ENTER SHIP NAME" AnchorPane.bottomAnchor="270.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="175.0" AnchorPane.topAnchor="270.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </TextField>
+      <Button fx:id="enterButton" defaultButton="true" layoutX="349.0" layoutY="355.0" mnemonicParsing="false" onAction="#enterShipName" style="-fx-text-fill: khaki; -fx-background-color: transparent;" text="ENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

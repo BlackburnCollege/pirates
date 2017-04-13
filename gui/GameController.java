@@ -213,14 +213,17 @@ public class GameController implements Initializable {
         //controlContainer.setPrefHeight(controlContainer.getScene().getHeight() / 2 - PADDING);
 
         gameScroll.prefWidthProperty().bind(controlContainer.prefWidthProperty());
-        
+
         menuScroll.prefWidthProperty().bind(controlContainer.prefWidthProperty());
         menuScroll.prefHeightProperty().bind(controlContainer.heightProperty().divide(3));
-        menuPanel.minHeightProperty().bind(menuScroll.heightProperty());
+        menuScroll.prefViewportHeightProperty().bind(menuScroll.prefHeightProperty());
+        
+        menuPanel.prefHeightProperty().bind(menuScroll.heightProperty().subtract(20));
         //menuControls.setPrefHeight(controlContainer.heightProperty().divide(3).get());
 
         gameScroll.prefHeightProperty().bind(controlContainer.prefHeightProperty().subtract(menuScroll.prefHeightProperty()));
-        gamePanel.minHeightProperty().bind(gameScroll.heightProperty());
+        gameScroll.prefViewportHeightProperty().bind(gameScroll.prefHeightProperty());
+        gamePanel.minHeightProperty().bind(gameScroll.heightProperty().subtract(20));
         gameImage.fitWidthProperty().bind(gameContainer.widthProperty().divide(2).subtract(PADDING));
         gameImage.fitHeightProperty().bind(gameContainer.heightProperty().subtract(PADDING));
         gameImage.setVisible(true);
@@ -271,7 +274,6 @@ public class GameController implements Initializable {
         button.prefWidthProperty().bind(gamePanel.widthProperty());
 
         //button.prefWidthProperty().bind(gamePanel.prefWidthProperty());
-        
         button.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -365,7 +367,7 @@ public class GameController implements Initializable {
         });
 
         menuPanel.getChildren().addAll(inventory, makeText(""));
-        */
+         */
     }
 
     /**
@@ -413,8 +415,17 @@ public class GameController implements Initializable {
                                 .getChallengeName())));
                 root = (Pane) loader.load();
                 controller = loader.getController();
-                controller.setChallengeInformation(action.getChallenge().getChallengeName());
-                controller.setPlayer(world.getPlayer());
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+            }
+        } else if (action.getChallenge().getType().equals("other")) {
+            try {
+                if (action.getChallenge().getChallengeName().equals("shipname")) {
+                    loader = new FXMLLoader(getClass().getResource(
+                            "/gui/ShipNameFXML.fxml"));
+                    root = (Pane) loader.load();
+                    controller = loader.getController();
+                }
             } catch (IOException ioe) {
                 ioe.printStackTrace();
             }
@@ -449,6 +460,7 @@ public class GameController implements Initializable {
 
         });
         finalController.setChallengeInformation(action.getChallenge().getChallengeName());
+        finalController.setWorld(world);
         finalController.onChallengeLoaded();
         finalController.setupListeners(GameController.this.mainPane.getScene());
 
@@ -531,9 +543,7 @@ public class GameController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //this.world = new World("PlayerName");
-        // WORLD TESTING
-        this.world = new World();
+        this.world = new World("Player");
 
         // close challenge pane
         this.challengePane.setDisable(true);
@@ -551,7 +561,7 @@ public class GameController implements Initializable {
         gameScroll.setStyle("-fx-background-color: transparent");
         menuScroll.getStyleClass().add("edge-to-edge");
         menuScroll.setStyle("-fx-background-color: transparent");
-        
+
         // SET BACKGROUNDS
         setBackgrounds();
 

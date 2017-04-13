@@ -226,7 +226,7 @@ insert into actions(id, challengeid) values (74, 76);
 
 insert into actionsevent (actionid, eventid, eventposition) values (74, 75, 0);
 
-insert into challenge(challengeid, challengename, challengetype) values (76, 'ship', 'other');
+insert into challenge(challengeid, challengename, challengetype) values (76, 'shipname', 'other');
 
 INSERT INTO event(id, text) VALUES (75, '“Aye cap’n, that be a fine name. We be ready now.”');
 
