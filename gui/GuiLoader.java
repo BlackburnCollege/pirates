@@ -16,7 +16,6 @@
  */
 package gui;
 
-import java.util.Random;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

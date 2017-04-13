@@ -1,9 +1,6 @@
 package gui;
 
 import javafx.scene.Scene;
-import javafx.stage.Stage;
-import world.Challenge;
-import world.Player;
 import world.World;
 
 /**
