@@ -166,6 +166,73 @@ The door to the master bedroom is cracked open; I peer into the room. Everything
 
 insert into actionsevent (actionid, eventid, eventposition) values (53, 54, 0);
 
-INSERT INTO event(id, text) VALUES (49, 'When I arrive home, I notice the house is eerily dark and quiet. The door is left ajar. Sensing something is wrong, I rush inside to look for my family. The house is a mess: furniture is strewn about, the floor and walls torn up as if someone were looking for something.');
+INSERT INTO event(id, text) VALUES (54, 'I have taken your family. They will be kept in good hands, but if you wish to see them again, you will find the legendary treasure of the greyhaven keys. You know where it is - this journal will remind you. If not, figure it out. PS: you might need what’s in the bundle on the bed. Don’t ever say I didn’t do anything for you.');
 
+insert into choice(id, eventid, text, actionid) values (55, 54, 'Look in the bundle' , 56);
+
+insert into actions(id, text) values (56, 'Unwrapping the linen, I find a dull cutlass and a rusty flintlock pistol. I return to examine the journal.'); 
+
+insert into actionsevent (actionid, eventid, eventposition) values (56, 57, 0);
+
+INSERT INTO event(id, text) VALUES (57, 'I skim through the journal, finding references to hidden map pieces among stories of plundering, pillaging and outright debauchery. The closest piece seems to be on the island of Knightstone. I’ll need a ship and crew to get there. I’ll need money; I’ve been saving for emergencies. I’d say this qualifies.');
+
+insert into choice(id, eventid, text, actionid) values (58, 57, 'gather savings.' , 59);
+
+insert into actions(id) values (59); 
+
+insert into actionsevent (actionid, eventid, eventposition) values (59, 60, 0);
+
+INSERT INTO event(id, text) VALUES (60, 'I go outside and open a secret compartment within the outhouse to retrieve my savings for the past few years. This should be enough for a small sloop and enough crew and supplies to get to Knightstone. ');
+
+insert into choice(id, eventid, text, actionid) values (61, 60, 'I head to the tavern to hire some crew.', 62);
+
+insert into actions(id) values (62); 
+
+insert into actionsevent (actionid, eventid, eventposition) values (62, 63, 0);
+
+INSERT INTO event(id, text) VALUES (63, 'If you’re going to find a crew for a ship, this would be the place to find it. I find a group of men who say they’ll help me for a price.');
+
+insert into choice(id, eventid, text, actionid) values (64, 63, 'sign on a crew.', 65);
+
+insert into actions(id) values (65); 
+
+insert into actionsevent (actionid, eventid, eventposition) values (65, 66, 0);
+
+INSERT INTO event(id, text) VALUES (66, 'I sign up a bunch of young lads; they seem trustworthy and able to handle themselves on the sea. Now to get a ship.');
+
+insert into choice(id, eventid, text, actionid) values (67, 66, 'go to the docks.', 68);
+
+insert into actions(id) values (68); 
+
+insert into actionsevent (actionid, eventid, eventposition) values (68, 69, 0);
+
+INSERT INTO event(id, text) VALUES (69, ' I manage to find the shipwright; he’s a little disgruntled that I’ve caught him while he’s about to close shop, but this is important. 
+“Do you have anything I can have today?” I ask, hoping for a yes.
+“Well, I have this old fishing schooner…”');
+
+insert into choice(id, eventid, text, actionid) values (70, 69, '“I’ll take it!”', 71);
+
+insert into actions(id) values (71);
+
+insert into actionsevent (actionid, eventid, eventposition) values (71, 72, 0);
+
+INSERT INTO event(id, text) VALUES (72, 'You and your crew step onto your ship; it’s old, crusty and poorly maintained, but still seaworthy. 
+A crew member walks up to you.
+“Cap’n, she needs a name!”');
+
+insert into choice(id, eventid, text, actionid) values (73, 72, '“Aye. I’ll call her…”', 74);
+
+insert into actions(id, challengeid) values (74, 76);
+
+insert into actionsevent (actionid, eventid, eventposition) values (74, 75, 0);
+
+insert into challenge(challengeid, challengename, challengetype) values (76, 'ship', 'other');
+
+INSERT INTO event(id, text) VALUES (75, '“Aye cap’n, that be a fine name. We be ready now.”');
+
+insert into choice(id, eventid, text, actionid) values (77, 75, 'set sail', 78);
+
+insert into actions(id) values (78);
+
+insert into actionsevent (actionid, eventid, eventposition) values (78, 100, 0);
 
