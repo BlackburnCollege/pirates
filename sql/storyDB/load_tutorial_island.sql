@@ -10,9 +10,9 @@ TUTORIAL STARTS AT ID 1
 INSERT INTO event(id, text, backgroundname, music) VALUES (1, 
 'I awake from a deep slumber. I had the nightmare again. The one where I was kidnapped by pirates. I am a humble fisherman, living with my wife and child living on the quiet island of Summer Shore. Summer Shore has been my home since the incident where I lost all my memory. I get out of bed and head downstairs...','cave', 'LIVING_VOYAGE');
 
-INSERT INTO choice(id, eventid, text, actionid) VALUES (2, 1, 'I greet my wife.', 3);
+INSERT INTO choice(id, eventid, text, actionid) VALUES (2, 1, 'next', 3);
 
-INSERT INTO actions(id, text) VALUES (3, 'She greets me back.');
+INSERT INTO actions(id) VALUES (3);
 
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (3, 4, 0);
 
@@ -64,11 +64,32 @@ INSERT INTO event(id, text) VALUES (19, 'I hear the patter of small, excited fee
 
 insert into choice(id, eventid, text, actionid) values (20, 19, '“Good morning Ben!”' , 21);
 
-insert into actions(id, text) values (21, 'Hug child');
+insert into actions(id, text) values (21, 'Hug Ben');
 
 /* THIS USED TO BE 21, 22, 0. I changed it to 100 to remove errors when loading.
  please to be changing of to a the correct value when the 22 is of being writing :)
 */
-insert into actionsevent (actionid, eventid, eventposition) values (21, 100, 0);
+insert into actionsevent (actionid, eventid, eventposition) values (21, 22, 0);
 
-INSERT INTO event(id, text) VALUES (19, 'It’s already past sunrise. I’ve dawdled for too long; those fish won’t catch themselves!');
+INSERT INTO event(id, text) VALUES (22, 'It’s already past sunrise. I’ve dawdled for too long; those fish won’t catch themselves!');
+
+insert into choice(id, eventid, text, actionid) values (23, 22, '“Good morning Ben!”' , 24);
+
+insert into actions(id, text) values (24, 'You bid your family goodbye and walk out the door. ');
+
+insert into actionsevent (actionid, eventid, eventposition) values (24, 25, 0);
+
+INSERT INTO event(id, text) VALUES (25, 'It’s a fairly pleasant morning. birds are chirping as they awake from their sleep. The trees rustle with the ocean breeze. On the way to the docks, I passed the usual crowd of fellow early-bird islanders heading to their daily activities. I wave and say hello to my friends.');
+
+insert into choice(id, eventid, text, actionid) values (26, 25, 'Continue to docks' , 27);
+
+insert into actions(id, text) values (27, 'I continue walking down the path to the docks.');
+
+insert into actionsevent (actionid, eventid, eventposition) values (27, 28, 0);
+
+INSERT INTO event(id, text) VALUES (28, 'I board and begin undocking my fishing boat. Once it is on the sea, I begin paddling out to my favorite fishing spot: a small inlet on the far side of the island.There is usually a big school of bluefin tunas swimming nearby.');
+
+insert into choice(id, eventid, text, actionid) values (29, 28, 'Paddle to the inlet' , 30);
+
+insert into actions(id, text) values (27, 'I continue walking down the path to the docks.');
+
