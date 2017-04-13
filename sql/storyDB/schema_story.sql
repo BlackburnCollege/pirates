@@ -52,11 +52,6 @@ CREATE TABLE actionsevent(
     eventposition integer not null
 );
 
-ALTER TABLE actionsevent
-   ADD CONSTRAINT actionsevent_pk Primary Key (
-      actionid,
-      eventid);
-
 CREATE TABLE challenge(
     challengeid integer not null primary key,
     challengename varchar(64) not null,

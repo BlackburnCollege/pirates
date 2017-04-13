@@ -66,9 +66,6 @@ insert into choice(id, eventid, text, actionid) values (20, 19, '“Good morning
 
 insert into actions(id, text) values (21, 'Hug Ben');
 
-/* THIS USED TO BE 21, 22, 0. I changed it to 100 to remove errors when loading.
- please to be changing of to a the correct value when the 22 is of being writing :)
-*/
 insert into actionsevent (actionid, eventid, eventposition) values (21, 22, 0);
 
 INSERT INTO event(id, text) VALUES (22, 'It’s already past sunrise. I’ve dawdled for too long; those fish won’t catch themselves!');
@@ -91,5 +88,14 @@ INSERT INTO event(id, text) VALUES (28, 'I board and begin undocking my fishing 
 
 insert into choice(id, eventid, text, actionid) values (29, 28, 'Paddle to the inlet' , 30);
 
-insert into actions(id, text) values (27, 'I continue walking down the path to the docks.');
+insert into actions(id, challengeid) values (30, 31);
+
+insert into actionsevent (actionid, eventid, eventposition) values (30, 100, 0);
+
+insert into actionsevent (actionid, eventid, eventposition) values (30, 100, 1);
+
+
+insert into challenge(challengeid, challengename, challengetype) values (31, 'fish', 'puzzle');
+
+
 
