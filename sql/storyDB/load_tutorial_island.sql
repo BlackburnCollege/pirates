@@ -64,9 +64,17 @@ INSERT INTO event(id, text) VALUES (19, 'I hear the patter of small, excited fee
 
 insert into choice(id, eventid, text, actionid) values (20, 19, '“Good morning Ben!”' , 21);
 
-insert into actions(id, text) values (21, 'Hug Ben');
+insert into actions(id) values (21);
 
-insert into actionsevent (actionid, eventid, eventposition) values (21, 22, 0);
+insert into actionsevent (actionid, eventid, eventposition) values (21, 99, 0);
+
+INSERT INTO event(id, text) VALUES (99, '“Good morning"');
+
+insert into choice(id, eventid, text, actionid) values (98, 99, 'Hug Ben' , 97);
+
+insert into actions(id) values (97);
+
+insert into actionsevent (actionid, eventid, eventposition) values (97, 22, 0);
 
 INSERT INTO event(id, text) VALUES (22, 'It’s already past sunrise. I’ve dawdled for too long; those fish won’t catch themselves!');
 
@@ -94,8 +102,9 @@ insert into actionsevent (actionid, eventid, eventposition) values (30, 100, 0);
 
 insert into actionsevent (actionid, eventid, eventposition) values (30, 100, 1);
 
-
 insert into challenge(challengeid, challengename, challengetype) values (31, 'fish', 'puzzle');
+
+
 
 
 
