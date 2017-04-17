@@ -16,6 +16,9 @@
  */
 package gui;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,7 +33,7 @@ import javafx.stage.Stage;
 public class GuiLoader extends Application {
 
     private static final String gameTitle = "Treasure and Plunder";
-    
+
     /**
      * @return the singleton
      */
@@ -41,21 +44,37 @@ public class GuiLoader extends Application {
     private Stage mainStage;
     private static GuiLoader singleton;
 
+    public void loadGame() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("GameFXML.fxml"));
+            Parent root = loader.load();
+            GameController controller = loader.getController();
+            
+            Scene scene = new Scene(root);
+            controller.setScene(scene);
+            String css = this.getClass().getResource("GuiStyle.css").toExternalForm();
+            scene.getStylesheets().add(css);
+            mainStage.setScene(scene);
+        } catch (IOException ex) {
+            Logger.getLogger(GuiLoader.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("GameFXML.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("LoaderFXML.fxml"));
         Parent root = loader.load();
-        GameController controller = loader.getController();
 
         Scene scene = new Scene(root);
-        controller.setScene(scene);
         String css = this.getClass().getResource("GuiStyle.css").toExternalForm();
         scene.getStylesheets().add(css);
-        
 
         stage.setScene(scene);
-        stage.setFullScreen(true);
-        stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+        stage.setResizable(false);
+        stage.setX(800);
+        stage.setY(600);
+        //stage.setFullScreen(true);
+        //stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         stage.setTitle(gameTitle);
         stage.show();
         setMainStage(stage);

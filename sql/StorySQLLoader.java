@@ -22,7 +22,7 @@ import world.Event;
  */
 public class StorySQLLoader {
 
-    private SQLDatabaseManager manager = new SQLDatabaseManager("storyDB", true);
+    private SQLDatabaseManager manager = SQLDatabaseManager.getManager("storyDB");
     private Connection connection = manager.getConnection();
     private HashMap<Integer, ArrayList<ACEScaffold>> awaitingMap = new HashMap<>();
     private ACEScaffold[] objectArray;

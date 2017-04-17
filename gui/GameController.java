@@ -18,8 +18,11 @@ package gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.Transition;
@@ -54,6 +57,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.scene.text.Font;
@@ -114,16 +118,71 @@ public class GameController implements Initializable {
         this.puzzleControllers.put("final", "/puzzle/PuzzleFinalGUI.fxml");
     }
 
+    // TEXT PATTERNS
+    // special pattern
+    Pattern specialPattern = Pattern.compile("\\$(.*?)\\$");
+    
+    Pattern shipNamePattern = Pattern.compile("SHIP_NAME");
+    Pattern playerNamePattern = Pattern.compile("PLAYER_NAME");
+    Pattern redPattern = Pattern.compile("RED\\{(.*?)\\}");
+
     /**
      *
      * @param text create a text to display
      * @return return the Text object
      */
-    private Text makeText(String text) {
-        Text newText = new Text(text + "\n");
+    private Text[] buildText(String text) {
+        ArrayList<Text> texts = new ArrayList<>();
+        Matcher specialCheck = specialPattern.matcher(text);
+        if (specialCheck.find()) {
+            //System.out.println("MATCHED");
+            // check for patterns
+            specialCheck.reset();
+            int previousTextEnd = 0;
+            while (specialCheck.find()) {
+                // do previous
+                String previousText = text.substring(previousTextEnd, specialCheck.start());
+                //System.out.println(previousText);
+                texts.add(makeTextObject(previousText));
+                previousTextEnd = specialCheck.end();
+
+                //start checks
+                String special = specialCheck.group(1);
+                Matcher redMatcher = redPattern.matcher(special);
+                Matcher shipMatcher = shipNamePattern.matcher(special);
+                Matcher playerMatcher = playerNamePattern.matcher(special);
+
+                if (redMatcher.find()) {
+                    String matchedText = redMatcher.group(1);
+                    Text matchedTextObject = makeTextObject(matchedText);
+                    matchedTextObject.setFill(Paint.valueOf("red"));
+                    texts.add(matchedTextObject);
+                } else if (shipMatcher.find()) {
+                    texts.add(makeTextObject(world.getShipName()));
+                } else if (playerMatcher.find()) {
+                    texts.add(makeTextObject(world.getPlayer().getName()));
+                } else {
+                    texts.add(makeTextObject(special));
+                }
+            }
+
+            if (previousTextEnd < text.length() - 1) {
+                String remainingText = text.substring(previousTextEnd, text.length() - 1);
+                texts.add(makeTextObject(remainingText + "\n"));
+
+            }
+
+        } else {
+            //System.out.println("no match");
+            Text newText = makeTextObject(text + "\n");
+            texts.add(newText);
+        }
+        return texts.toArray(new Text[texts.size()]);
+    }
+
+    private Text makeTextObject(String text) {
+        Text newText = new Text(text);
         newText.setFont(Font.font("Consolas", 24));
-        //newText.setFill(Paint.valueOf("White"));
-        // newText.setFocusTraversable(false);
         return newText;
     }
 
@@ -209,7 +268,7 @@ public class GameController implements Initializable {
         menuScroll.prefWidthProperty().bind(controlContainer.prefWidthProperty());
         menuScroll.prefHeightProperty().bind(controlContainer.heightProperty().divide(3));
         menuScroll.prefViewportHeightProperty().bind(menuScroll.prefHeightProperty());
-        
+
         menuPanel.prefHeightProperty().bind(menuScroll.heightProperty().subtract(20));
         //menuControls.setPrefHeight(controlContainer.heightProperty().divide(3).get());
 
@@ -228,8 +287,8 @@ public class GameController implements Initializable {
      * @param text the text to add
      */
     private void addTextToDisplay(String text) {
-        Text textObject = makeText(text);
-        gamePanel.getChildren().add(textObject);
+        Text[] textObject = buildText(text);
+        gamePanel.getChildren().addAll(textObject);
     }
 
     /**
@@ -291,7 +350,8 @@ public class GameController implements Initializable {
      * @param link the Hyperlink to add.
      */
     private void addHyperlinkToDisplay(Label link) {
-        gamePanel.getChildren().addAll(link, makeText(""));
+        gamePanel.getChildren().add(link);
+        gamePanel.getChildren().addAll(buildText(""));
     }
 
     /**

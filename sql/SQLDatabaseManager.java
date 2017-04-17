@@ -20,6 +20,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,12 +42,26 @@ public class SQLDatabaseManager {
     private boolean create;
     private Connection connection;
     //private static final String databaseCreationURL = databaseURL + ";create=true";
-
-    public SQLDatabaseManager(String databaseName) {
-        this(databaseName, false);
+    
+    private static final HashMap<String, Boolean> MANAGERS = new HashMap<>();
+    
+    public static SQLDatabaseManager getManager(String databaseName) {
+        Boolean isMade = MANAGERS.getOrDefault(databaseName, false);
+        SQLDatabaseManager manager;
+        if (!isMade) {
+            manager = new SQLDatabaseManager(databaseName, true);
+            MANAGERS.put(databaseName, true);
+        } else {
+            manager = new SQLDatabaseManager(databaseName, false);
+        }
+        return manager;
     }
 
-    public SQLDatabaseManager(String databaseName, boolean create) {
+    private SQLDatabaseManager(String databaseName) {
+        this(databaseName, true);
+    }
+
+    private SQLDatabaseManager(String databaseName, boolean create) {
         this.databaseName = databaseName;
         this.databaseURL = this.databaseURL + this.databaseName;
         this.create = create;
@@ -146,25 +161,7 @@ public class SQLDatabaseManager {
 
     // MAIN METHOD USED FOR TESTING ONLY
     // TODO: REMOVE METHOD
-    public static void main(String[] args) throws Exception {
-        //SQLDatabaseManager loader = new SQLDatabaseManager("storyDB", true);
-        //loader.rebuild();
-        StorySQLLoader loader = new StorySQLLoader();
-        Event root = loader.loadDB();
-        System.out.println("");
-        System.out.println("LOADED DB. OUTPUT:");
-        System.out.println(root.getID() + ": " + root.getText());
-        System.out.println(root.getPicture());
-        System.out.println(root.getMusic());
-        try {
-            PreparedStatement statement = loader.getConnection().prepareStatement("SELECT * FROM aceobject");
-            ResultSet set = statement.executeQuery();
-            while (set.next()) {
-                System.out.println(set.getInt("id") + ": " + set.getString("acetype"));
-            }
-        } catch (Exception ie) {
 
-        }
 
         /*
         SQLDatabaseManager loader = new SQLDatabaseManager("combatDB", true);
@@ -206,7 +203,7 @@ public class SQLDatabaseManager {
 //
 //        connCS.close();
 //        System.out.println("Closed connection");
-    }
+    
 
     /**
      * @return the create

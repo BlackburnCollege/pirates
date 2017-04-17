@@ -8,27 +8,27 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane fx:id="mainPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="combat.CombatController">
+<Pane fx:id="mainPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="combat.CombatController">
    <children>
-      <ImageView fx:id="enemyImage" fitHeight="317.0" fitWidth="324.0" layoutX="1366.0" layoutY="432.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="playerImage" fitHeight="385.0" fitWidth="387.0" layoutX="119.0" layoutY="638.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="enemyImage" fitHeight="189.0" fitWidth="154.0" layoutX="520.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="playerImage" fitHeight="248.0" fitWidth="196.0" layoutX="14.0" layoutY="317.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/player_male_combat_0.png" />
          </image>
       </ImageView>
-      <VBox layoutX="222.0" layoutY="159.0" prefHeight="55.0" prefWidth="258.0">
+      <VBox layoutX="14.0" layoutY="227.0" prefHeight="55.0" prefWidth="258.0">
          <children>
             <Label text="Player health:" />
             <ProgressBar fx:id="playerHealth" prefHeight="23.0" prefWidth="252.0" progress="1.0" style="-fx-accent: firebrick;" />
          </children>
       </VBox>
-      <VBox layoutX="1366.0" layoutY="159.0" prefHeight="55.0" prefWidth="258.0">
+      <VBox layoutX="528.0" layoutY="14.0" prefHeight="55.0" prefWidth="258.0">
          <children>
             <Label text="Enemy Health:" />
             <ProgressBar fx:id="enemyHealth" prefHeight="23.0" prefWidth="252.0" progress="1.0" style="-fx-accent: firebrick;" />
          </children>
       </VBox>
-      <HBox layoutX="695.0" layoutY="901.0" prefHeight="165.0" prefWidth="530.0">
+      <HBox layoutX="240.0" layoutY="391.0" prefHeight="165.0" prefWidth="530.0">
          <children>
             <VBox prefHeight="164.0" prefWidth="158.0">
                <children>

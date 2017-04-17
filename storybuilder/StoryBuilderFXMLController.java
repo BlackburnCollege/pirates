@@ -64,6 +64,7 @@ public class StoryBuilderFXMLController implements Initializable {
             }
         }
         //choiceTemplate.setVisible(true);
+        /*
         canvasPane.setOnMouseClicked(new EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent event) {
@@ -91,7 +92,7 @@ public class StoryBuilderFXMLController implements Initializable {
                 }
             }
             
-        });
+        });*/
     }
 
 }

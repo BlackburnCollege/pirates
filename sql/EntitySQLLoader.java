@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 public class EntitySQLLoader {
 
     private final SQLDatabaseManager manager
-            = new SQLDatabaseManager("combatDB", false);
+            = SQLDatabaseManager.getManager("combatDB");
 
     private final Connection connection = manager.getConnection();
 

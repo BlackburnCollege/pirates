@@ -8,7 +8,7 @@ TUTORIAL STARTS AT ID 1
 */
 # INSERT INTO aceobject(id, acetype) VALUES (1, 'event');
 INSERT INTO event(id, text, backgroundname, music) VALUES (1, 
-'I awake from a deep slumber. I had the nightmare again. The one where I was kidnapped by pirates. I am a humble fisherman, living with my wife and child living on the quiet island of Summer Shore. Summer Shore has been my home since the incident where I lost all my memory. I get out of bed and head downstairs...','cave', 'LIVING_VOYAGE');
+'My name is $PLAYER_NAME$. I awake from a deep slumber. I had the nightmare again. The one where I was kidnapped by $RED{pirates.}$ I am a humble fisherman, living with my wife and child living on the quiet island of Summer Shore. Summer Shore has been my home since the incident where I lost all my memory. I get out of bed and head downstairs...','cave', 'LIVING_VOYAGE');
 
 INSERT INTO choice(id, eventid, text, actionid) VALUES (2, 1, 'next', 3);
 
@@ -32,7 +32,7 @@ insert into actions(id, text) values (9, '“That’s great, dear” she gives a
 
 insert into actionsevent (actionid, eventid, eventposition) values (9, 19, 0);
 
-insert into choice(id, eventid, text, actionid) values (10, 7, '“I didn’t sleep well last night; I had that nightmare again.” You grimace at the thought of it.', 11);
+insert into choice(id, eventid, text, actionid) values (10, 7, '“I didn’t sleep well last night; I had that nightmare again.” I grimace at the thought of it.', 11);
 
 insert into actions(id, text) values (11, '“I’m sorry to hear that, dear. I wish there were something I could do to help...”');
 
@@ -80,7 +80,7 @@ INSERT INTO event(id, text) VALUES (22, 'It’s already past sunrise. I’ve daw
 
 insert into choice(id, eventid, text, actionid) values (23, 22, 'Go to docks.' , 24);
 
-insert into actions(id, text) values (24, 'You bid your family goodbye and walk out the door. ');
+insert into actions(id, text) values (24, 'I bid my family goodbye and walk out the door. ');
 
 insert into actionsevent (actionid, eventid, eventposition) values (24, 25, 0);
 
@@ -108,7 +108,7 @@ INSERT INTO event(id, text) VALUES (32, 'I caught a great amount of fish today! 
 
 insert into choice(id, eventid, text, actionid) values (34, 32, 'Return to shore' , 35);
 
-insert into actions(id, text) values (35, 'You sell your catch for the day, and even manage to barter for an adorable sea-shell necklace while still buying food for the week.');
+insert into actions(id, text) values (35, 'I sell your catch for the day, and even manage to barter for an adorable sea-shell necklace while still buying food for the week.');
 
 insert into actionsevent (actionid, eventid, eventposition) values (35, 38, 0);
 
@@ -116,7 +116,7 @@ INSERT INTO event(id, text) VALUES (33, 'I didn’t quite get enough fish today,
 
 insert into choice(id, eventid, text, actionid) values (36, 33, 'return to shore' , 37);
 
-insert into actions(id, text) values (37, 'You sell what you caught for the day, and manage to get enough money to buy food for the day.');
+insert into actions(id, text) values (37, 'I sell what I caught for the day, and manage to get enough money to buy a week''s worth of food.');
 
 insert into actionsevent (actionid, eventid, eventposition) values (37, 38, 0);
 
@@ -166,7 +166,7 @@ The door to the master bedroom is cracked open; I peer into the room. Everything
 
 insert into actionsevent (actionid, eventid, eventposition) values (53, 54, 0);
 
-INSERT INTO event(id, text) VALUES (54, 'I have taken your family. They will be kept in good hands, but if you wish to see them again, you will find the legendary treasure of the greyhaven keys. You know where it is - this journal will remind you. If not, figure it out. PS: you might need what’s in the bundle on the bed. Don’t ever say I didn’t do anything for you.');
+INSERT INTO event(id, text) VALUES (54, '"I have taken your family. They will be kept in good hands, but if you wish to see them again, you will find the legendary treasure of the greyhaven keys. I know where it is - this journal will remind you. If not, figure it out. PS: you might need what’s in the bundle on the bed. Don’t ever say I didn’t do anything for you."');
 
 insert into choice(id, eventid, text, actionid) values (55, 54, 'Look in the bundle' , 56);
 
@@ -216,7 +216,7 @@ insert into actions(id) values (71);
 
 insert into actionsevent (actionid, eventid, eventposition) values (71, 72, 0);
 
-INSERT INTO event(id, text) VALUES (72, 'You and your crew step onto your ship; it’s old, crusty and poorly maintained, but still seaworthy. 
+INSERT INTO event(id, text) VALUES (72, 'I and your crew step onto your ship; it’s old, crusty and poorly maintained, but still seaworthy. 
 A crew member walks up to you.
 “Cap’n, she needs a name!”');
 
@@ -228,7 +228,7 @@ insert into actionsevent (actionid, eventid, eventposition) values (74, 75, 0);
 
 insert into challenge(challengeid, challengename, challengetype) values (76, 'shipname', 'other');
 
-INSERT INTO event(id, text) VALUES (75, '“Aye cap’n, that be a fine name. We be ready now.”');
+INSERT INTO event(id, text) VALUES (75, '“Aye cap’n, $SHIP_NAME$ be a fine name. We be ready now.”');
 
 insert into choice(id, eventid, text, actionid) values (77, 75, 'set sail', 78);
 
