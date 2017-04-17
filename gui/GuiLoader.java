@@ -85,7 +85,7 @@ public class GuiLoader extends Application {
         
         stage.setFullScreen(true);
         stage.setFullScreenExitKeyCombination(KeyCombination.keyCombination("F11"));
-        stage.setFullScreenExitHint("Press F11 to Toggle Fullscreen");
+        stage.setFullScreenExitHint("");
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
             private boolean isFullscreen = stage.isFullScreen();

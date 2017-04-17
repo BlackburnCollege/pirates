@@ -169,7 +169,7 @@ public class GameController implements Initializable {
             }
 
             if (previousTextEnd < text.length() - 1) {
-                String remainingText = text.substring(previousTextEnd, text.length() - 1);
+                String remainingText = text.substring(previousTextEnd, text.length());
                 texts.add(makeTextObject(remainingText + "\n"));
 
             }
@@ -222,14 +222,14 @@ public class GameController implements Initializable {
      */
     private void setBackgrounds() {
 
-        BackgroundSize properSizing = new BackgroundSize(1, 1, true, true, true, false);
+        BackgroundSize properSizing = new BackgroundSize(1, 1, true, true, true, true);
 
         gameContainer.setBackground(
                 new Background(
                         new BackgroundImage(
                                 images.getImage("game_background"),
-                                BackgroundRepeat.REPEAT,
-                                BackgroundRepeat.REPEAT,
+                                BackgroundRepeat.NO_REPEAT,
+                                BackgroundRepeat.NO_REPEAT,
                                 BackgroundPosition.CENTER,
                                 properSizing
                         )
@@ -238,8 +238,8 @@ public class GameController implements Initializable {
         gamePanel.setBackground(new Background(
                 new BackgroundImage(
                         images.getImage("menu-text-background"),
-                        BackgroundRepeat.REPEAT,
-                        BackgroundRepeat.REPEAT,
+                        BackgroundRepeat.NO_REPEAT,
+                        BackgroundRepeat.NO_REPEAT,
                         BackgroundPosition.CENTER,
                         properSizing
                 )
@@ -247,8 +247,8 @@ public class GameController implements Initializable {
         menuPanel.setBackground(new Background(
                 new BackgroundImage(
                         images.getImage("menu-text-background"),
-                        BackgroundRepeat.REPEAT,
-                        BackgroundRepeat.REPEAT,
+                        BackgroundRepeat.NO_REPEAT,
+                        BackgroundRepeat.NO_REPEAT,
                         BackgroundPosition.CENTER,
                         properSizing
                 )

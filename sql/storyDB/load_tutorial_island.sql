@@ -54,7 +54,7 @@ insert into actions(id) values (16);
 
 insert into actionsevent (actionid, eventid, eventposition) values (16, 7, 0);
 
-insert into choice(id, eventid, text, actionid) values (17, 14, 'Continue staring.', 16);
+insert into choice(id, eventid, text, actionid) values (17, 14, 'Continue staring.', 18);
 
 insert into actions(id) values (18);
 
@@ -134,7 +134,7 @@ insert into challenge(challengeid, challengename, challengetype) values (41, 'wo
 
 INSERT INTO event(id, text) VALUES (42, 'I deliver one final blow to the wolf, and it quickly runs back into the forest yelping in pain.');
 
-insert into choice(id, eventid, text, actionid) values (44, 42, 'I gather my things and head back home.' , 45);
+insert into choice(id, eventid, text, actionid) values (44, 42, 'I gather my things and head back home.' , 46);
 
 insert into actions(id) values (46);
 
@@ -228,7 +228,7 @@ insert into actionsevent (actionid, eventid, eventposition) values (74, 75, 0);
 
 insert into challenge(challengeid, challengename, challengetype) values (76, 'shipname', 'other');
 
-INSERT INTO event(id, text) VALUES (75, '“Aye cap’n, $SHIP_NAME$ be a fine name. We be ready now.”');
+INSERT INTO event(id, text) VALUES (75, '"Aye cap’n, ''$SHIP_NAME$'' be a fine name. We be ready now."');
 
 insert into choice(id, eventid, text, actionid) values (77, 75, 'set sail', 78);
 
