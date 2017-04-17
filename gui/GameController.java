@@ -99,6 +99,8 @@ public class GameController implements Initializable {
     private ScrollPane gameScroll;
     @FXML
     private ScrollPane menuScroll;
+    @FXML
+    private ImageView diaryImage;
 
     private Scene scene;
 
@@ -121,7 +123,7 @@ public class GameController implements Initializable {
     // TEXT PATTERNS
     // special pattern
     Pattern specialPattern = Pattern.compile("\\$(.*?)\\$");
-    
+
     Pattern shipNamePattern = Pattern.compile("SHIP_NAME");
     Pattern playerNamePattern = Pattern.compile("PLAYER_NAME");
     Pattern redPattern = Pattern.compile("RED\\{(.*?)\\}");
@@ -275,9 +277,19 @@ public class GameController implements Initializable {
         gameScroll.prefHeightProperty().bind(controlContainer.prefHeightProperty().subtract(menuScroll.prefHeightProperty()));
         gameScroll.prefViewportHeightProperty().bind(gameScroll.prefHeightProperty());
         gamePanel.minHeightProperty().bind(gameScroll.heightProperty().subtract(20));
-        gameImage.fitWidthProperty().bind(gameContainer.widthProperty().divide(2).subtract(PADDING));
-        gameImage.fitHeightProperty().bind(gameContainer.heightProperty().subtract(PADDING));
+        
+        mediaPane.prefWidthProperty().bind(gameContainer.widthProperty().divide(2).subtract(PADDING));
+        mediaPane.prefHeightProperty().bind(gameContainer.heightProperty().subtract(PADDING));
+        
+        //gameImage.fitWidthProperty().bind(mediaPane.widthProperty().divide(2).subtract(PADDING));
+        gameImage.fitHeightProperty().bind(mediaPane.prefHeightProperty().subtract(PADDING * 4));
+        gameImage.fitWidthProperty().bind(mediaPane.prefWidthProperty().subtract(PADDING * 4));
+        //gameImage.fitHeightProperty().bind(mediaPane.heightProperty().subtract(PADDING));
         gameImage.setVisible(true);
+        diaryImage.fitHeightProperty().bind(mediaPane.prefHeightProperty());
+        diaryImage.fitWidthProperty().bind(mediaPane.prefWidthProperty());
+        
+        diaryImage.setVisible(true);
     }
 
     /**
@@ -604,7 +616,7 @@ public class GameController implements Initializable {
         Border border = new Border(new BorderStroke(Color.BLACK,
                 BorderStrokeStyle.SOLID, new CornerRadii(2),
                 new BorderWidths(10, 10, 10, 10)));
-        gameContainer.setBorder(border);
+        //gameContainer.setBorder(border);
 //        gamePanel.setBorder(border);
 //        menuPanel.setBorder(border);
         gameScroll.setBorder(border);
@@ -616,6 +628,8 @@ public class GameController implements Initializable {
 
         // SET BACKGROUNDS
         setBackgrounds();
+        
+        diaryImage.setImage(images.getImage("diary_page_0"));
 
         // SET BINDS
         setBinds();

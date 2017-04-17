@@ -20,11 +20,15 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -49,8 +53,9 @@ public class GuiLoader extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("GameFXML.fxml"));
             Parent root = loader.load();
             GameController controller = loader.getController();
-            
-            Scene scene = new Scene(root);
+
+            Scene scene = mainStage.getScene();
+            scene.setRoot(root);
             controller.setScene(scene);
             String css = this.getClass().getResource("GuiStyle.css").toExternalForm();
             scene.getStylesheets().add(css);
@@ -62,6 +67,7 @@ public class GuiLoader extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        stage.initStyle(StageStyle.UNIFIED);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("LoaderFXML.fxml"));
         Parent root = loader.load();
 
@@ -71,10 +77,33 @@ public class GuiLoader extends Application {
 
         stage.setScene(scene);
         stage.setResizable(false);
-        stage.setX(800);
-        stage.setY(600);
-        //stage.setFullScreen(true);
-        //stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+        
+        stage.setIconified(false);
+        
+        stage.setWidth(800);
+        stage.setHeight(600);
+        
+        stage.setFullScreen(true);
+        stage.setFullScreenExitKeyCombination(KeyCombination.keyCombination("F11"));
+        stage.setFullScreenExitHint("Press F11 to Toggle Fullscreen");
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+            private boolean isFullscreen = stage.isFullScreen();
+
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode() == KeyCode.F11) {
+                    if (this.isFullscreen) {
+                        this.isFullscreen = false;
+                        stage.setFullScreenExitHint("");
+                    } else {
+                        this.isFullscreen = true;
+                        stage.setFullScreen(true);
+                    }
+                }
+            }
+
+        });
         stage.setTitle(gameTitle);
         stage.show();
         setMainStage(stage);
