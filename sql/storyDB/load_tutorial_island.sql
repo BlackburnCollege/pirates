@@ -8,7 +8,7 @@ TUTORIAL STARTS AT ID 1
 */
 # INSERT INTO aceobject(id, acetype) VALUES (1, 'event');
 INSERT INTO event(id, text, backgroundname, music) VALUES (1, 
-'My name is $PLAYER_NAME$. I awake from a deep slumber. I had the nightmare again. The one where I was kidnapped by $RED{pirates.}$ I am a humble fisherman, living with my wife and child living on the quiet island of Summer Shore. Summer Shore has been my home since the incident where I lost all my memory. I get out of bed and head downstairs...','cave', 'LIVING_VOYAGE');
+'My name is $PLAYER_NAME$. I awake from a deep slumber. I had the nightmare again. The one where I was kidnapped by $RED{pirates.}$ I am a humble fisherman, living with my wife and child living on the quiet island of Summer Shore. Summer Shore has been my home since the incident where I lost all my memory. I get out of bed and head downstairs...', 'summershore_0', 'LIVING_VOYAGE');
 
 INSERT INTO choice(id, eventid, text, actionid) VALUES (2, 1, 'next', 3);
 
@@ -120,7 +120,7 @@ insert into actions(id, text) values (37, 'I sell what I caught for the day, and
 
 insert into actionsevent (actionid, eventid, eventposition) values (37, 38, 0);
 
-INSERT INTO event(id, text) VALUES (38, 'While walking back home from the docks, I notice that the birds are not chirping as they were in the morning. It seems quieter than usual. The bushes to my left begin rustling and growling; a hungry wolf jumps out! ');
+INSERT INTO event(id, backgroundname, text) VALUES (38,'wolf_0','While walking back home from the docks, I notice that the birds are not chirping as they were in the morning. It seems quieter than usual. The bushes to my left begin rustling and growling; a hungry wolf jumps out! ');
 
 insert into choice(id, eventid, text, actionid) values (39, 38, 'ready yourself' , 40);
 

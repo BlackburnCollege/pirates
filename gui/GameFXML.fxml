@@ -16,20 +16,31 @@
          <left>
             <StackPane fx:id="mediaPane" prefHeight="350.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
+                  <ImageView fx:id="diaryImage" fitHeight="370.0" fitWidth="220.0" pickOnBounds="true" visible="false">
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                     <StackPane.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </StackPane.margin>
+                  </ImageView>
                   <MediaView fx:id="gameMedia" fitHeight="350.0" fitWidth="200.0" visible="false" />
                   <ImageView fx:id="gameImage" fitHeight="350.0" fitWidth="200.0" pickOnBounds="true" visible="false">
                      <viewport>
                         <Rectangle2D />
                      </viewport>
+                     <StackPane.margin>
+                        <Insets />
+                     </StackPane.margin>
                   </ImageView>
                </children>
                <BorderPane.margin>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                  <Insets />
                </BorderPane.margin>
             </StackPane>
          </left>
          <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            <Insets bottom="20.0" right="20.0" top="20.0" />
          </padding>
          <right>
             <VBox fx:id="controlContainer" spacing="15.0" BorderPane.alignment="CENTER">
