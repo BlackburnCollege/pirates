@@ -50,7 +50,6 @@ INSERT INTO choice(id, eventid, text, actionid) VALUES (1101, 1100, 'next', 1102
 INSERT INTO actions(id) VALUES (1102);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1102, 1103, 0);
 --
---
 ------------------------------------------------------------------------------------------------------------------------
 --
 -- Display Text with "Next" Choice only (do not change background and music)
@@ -58,7 +57,6 @@ INSERT INTO event(id, text) VALUES (1103, 'You have come so far and now you are 
 INSERT INTO choice(id, eventid, text, actionid) VALUES (1104, 1103, 'next', 1105);
 INSERT INTO actions(id) VALUES (1105);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1105, 1106, 0);
---
 --
 ------------------------------------------------------------------------------------------------------------------------
 --
@@ -68,7 +66,6 @@ INSERT INTO choice(id, eventid, text, actionid) VALUES (1107, 1106, 'next', 1108
 INSERT INTO actions(id) VALUES (1108);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1108, 1109, 0);
 --
---
 ------------------------------------------------------------------------------------------------------------------------
 --
 -- Display Text with "Next" Choice only (do not change background and music)
@@ -76,7 +73,6 @@ INSERT INTO event(id, text) VALUES (1109, 'As your ship gets closer you begin to
 INSERT INTO choice(id, eventid, text, actionid) VALUES (1110, 1109, 'next', 1111);
 INSERT INTO actions(id) VALUES (1111);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1111, 1112, 0);
---
 --
 ------------------------------------------------------------------------------------------------------------------------
 --
@@ -86,7 +82,6 @@ INSERT INTO choice(id, eventid, text, actionid) VALUES (1113, 1112, 'next', 1114
 INSERT INTO actions(id) VALUES (1114);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1114, 1115, 0);
 --
---
 ------------------------------------------------------------------------------------------------------------------------
 --
 -- Display Text with "Next" Choice only (do not change background and music)
@@ -94,7 +89,6 @@ INSERT INTO event(id, text) VALUES (1115, 'The land mass appears to be a large i
 INSERT INTO choice(id, eventid, text, actionid) VALUES (1116, 1115, 'next', 1117);
 INSERT INTO actions(id) VALUES (1117);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1117, 1118, 0);
---
 --
 ------------------------------------------------------------------------------------------------------------------------
 --
@@ -104,7 +98,6 @@ INSERT INTO choice(id, eventid, text, actionid) VALUES (1119, 1118, 'next', 1120
 INSERT INTO actions(id) VALUES (1120);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1120, 1121, 0);
 --
---
 ------------------------------------------------------------------------------------------------------------------------
 --
 -- Display Text with "Next" Choice only (do not change background and music)
@@ -112,7 +105,6 @@ INSERT INTO event(id, text) VALUES (1121, 'You check the coordinantes on the map
 INSERT INTO choice(id, eventid, text, actionid) VALUES (1122, 1121, 'next', 1123);
 INSERT INTO actions(id) VALUES (1123);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1123, 1124, 0);
---
 --
 ------------------------------------------------------------------------------------------------------------------------
 --
@@ -122,7 +114,6 @@ INSERT INTO choice(id, eventid, text, actionid) VALUES (1125, 1124, 'next', 1126
 INSERT INTO actions(id) VALUES (1126);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1126, 1127, 0);
 --
---
 ------------------------------------------------------------------------------------------------------------------------
 --
 -- Display Text with "Next" Choice only (do not change background and music)
@@ -131,21 +122,336 @@ INSERT INTO choice(id, eventid, text, actionid) VALUES (1128, 1127, 'next', 1129
 INSERT INTO actions(id) VALUES (1129);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1129, 1130, 0);
 --
---
 ------------------------------------------------------------------------------------------------------------------------
 --
--- Display Text with two Choices (do not change background or music)
+-- Display Text with two Choices that both lead to same event (do not change background or music)
 -- Question Text 
--- INSERT INTO event(id, text) VALUES (11AA, 'QUESTION');
+INSERT INTO event(id, text) VALUES (1130, 'Once you arrive you step onto the beach and look around.  You see what appears to be a path into the jungle.');
 --
 -- Choice 1
--- INSERT INTO choice(id, eventid, text, actionid) VALUES (11BB, 11AA, 'Choice #1', 11CC);
--- INSERT INTO actions(id, text) VALUES (11CC, 'ChoiceResult1');
--- INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (11CC, 11YY, 0);  -- jump to 11YY
+  INSERT INTO choice(id, eventid, text, actionid) VALUES (1131, 1130, 'Look around some more.', 1132);
+  INSERT INTO actions(id, text) VALUES (1132, 'You look around some more but there appears to be nothing significant on the beach.  You decide to follow the path to see where it leads.');
+  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1132, 1135, 0);  -- jump to 1135
 --
 -- Choice 2
--- INSERT INTO choice(id, eventid, text, actionid) VALUES (11DD, 11AA, 'Choice #2', 11EE);
--- INSERT INTO actions(id, text) VALUES (11EE, 'ChoiceResult2');
--- INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (11EE, 11ZZ, 0);  -- jump to 11ZZ
+  INSERT INTO choice(id, eventid, text, actionid) VALUES (1133, 1130, 'Follow the path.', 1134);
+  INSERT INTO actions(id, text) VALUES (1134, 'You decide to follow the path to see where it leads.');
+  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1134, 1135, 0);  -- jump to 1135
 --
 ------------------------------------------------------------------------------------------------------------------------
+--
+-- Jungle Maze - 1st Fork In The Path
+INSERT INTO event(id, text) VALUES (1135, 'After a few minutes you come across a fork in the path.');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1136, 1135, 'next', 1137);
+INSERT INTO actions(id) VALUES (1137);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1137, 1138, 0);  -- jump to 1138
+--
+-- The Sign Between The Fork (note: CHAR(13) is a newline)
+   INSERT INTO event(id, text) VALUES (1138, 
+   'Between the fork is a sign.' + CHAR(13) + 
+   '+---------+' + CHAR(13) + 
+   '| <- M    |' + CHAR(13) + 
+   '|         |' + CHAR(13) + 
+   '|    Z -> |' + CHAR(13) + 
+   '+---------+');
+--
+-- Choice 1
+   INSERT INTO choice(id, eventid, text, actionid) VALUES (1139, 1138, 'Go right (down the path labeled Z)', 1140);
+   INSERT INTO actions(id, text) VALUES (1140, 'You follow the path labeled Z.');
+   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1140, 1141, 0);  -- jump to 1141
+--
+---- Choice 1 Results (Dead End Path)
+     INSERT INTO event(id, text) VALUES (1141, 'After following the path for some time you end up at a beach different from the one you started at.  You look around but nothing is here.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1142, 1141, 'next', 1143);
+     INSERT INTO actions(id) VALUES (1143);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1143, 1144, 0);  -- jump to 1144
+
+     INSERT INTO event(id, text) VALUES (1144, 'You can see $SHIP_NAME$ off in the distance.  You decide to go back to the previous fork in the path.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1145, 1144, 'next', 1146);
+     INSERT INTO actions(id) VALUES (1146);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1146, 1149, 0);  -- jump to 1149
+----
+-- Choice 2
+   INSERT INTO choice(id, eventid, text, actionid) VALUES (1147, 1138, 'Go left (down the path labeled M)', 1148);
+   INSERT INTO actions(id, text) VALUES (1148, 'You follow the path labeled M.');
+   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1148, 1149, 0);  -- jump to 1149
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Jungle Maze - 2nd Fork In The Path
+INSERT INTO event(id, text) VALUES (1149, 'After following the M path for some time you reach another fork in the path.');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1150, 1149, 'next', 1151);
+INSERT INTO actions(id) VALUES (1151);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1151, 1152, 0);  -- jump to 1152
+--
+-- The Sign Between The Fork (note: CHAR(13) is a newline)
+   INSERT INTO event(id, text) VALUES (1152, 
+   'Between the fork is a sign.' + CHAR(13) + 
+   '+---------+' + CHAR(13) + 
+   '| <- Y    |' + CHAR(13) + 
+   '|         |' + CHAR(13) + 
+   '|    A -> |' + CHAR(13) + 
+   '+---------+');
+--
+-- Choice 1
+   INSERT INTO choice(id, eventid, text, actionid) VALUES (1153, 1152, 'Go left (down the path labeled Y)', 1154);
+   INSERT INTO actions(id, text) VALUES (1154, 'You follow the path labeled Y.');
+   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1154, 1155, 0);  -- jump to 1155
+--
+---- Choice 1 Results (Dead End Path)
+     INSERT INTO event(id, text) VALUES (1155, 'After following the path for some time you end up at a beach different from the one you started at.  You look around but nothing is here.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1156, 1155, 'next', 1157);
+     INSERT INTO actions(id) VALUES (1157);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1157, 1158, 0);  -- jump to 1158
+
+     INSERT INTO event(id, text) VALUES (1158, 'You can see $SHIP_NAME$ off in the distance.  You decide to go back to the previous fork in the path.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1159, 1158, 'next', 1160);
+     INSERT INTO actions(id) VALUES (1160);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1160, 1163, 0);  -- jump to 1163
+----
+-- Choice 2
+   INSERT INTO choice(id, eventid, text, actionid) VALUES (1161, 1152, 'Go right (down the path labeled A)', 1162);
+   INSERT INTO actions(id, text) VALUES (1162, 'You follow the path labeled A.');
+   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1162, 1163, 0);  -- jump to 1163
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Jungle Maze - 3th Fork In The Path
+INSERT INTO event(id, text) VALUES (1163, 'After following the A path for some time you reach another fork in the path.');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1164, 1163, 'next', 1165);
+INSERT INTO actions(id) VALUES (1165);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1165, 1166, 0);  -- jump to 1166
+--
+-- The Sign Between The Fork (note: CHAR(13) is a newline)
+   INSERT INTO event(id, text) VALUES (1166, 
+   'Between the fork is a sign.' + CHAR(13) + 
+   '+---------+' + CHAR(13) + 
+   '| <- R    |' + CHAR(13) + 
+   '|         |' + CHAR(13) + 
+   '|    X -> |' + CHAR(13) + 
+   '+---------+');
+--
+-- Choice 1
+   INSERT INTO choice(id, eventid, text, actionid) VALUES (1167, 1166, 'Go right (down the path labeled X)', 1168);
+   INSERT INTO actions(id, text) VALUES (1168, 'You follow the path labeled X.');
+   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1168, 1169, 0);  -- jump to 1169
+--
+---- Choice 1 Results (Dead End Path)
+     INSERT INTO event(id, text) VALUES (1169, 'After following the path for some time you end up at a beach different from the one you started at.  You look around but nothing is here.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1170, 1169, 'next', 1171);
+     INSERT INTO actions(id) VALUES (1171);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1171, 1172, 0);  -- jump to 1172
+
+     INSERT INTO event(id, text) VALUES (1172, 'You can see $SHIP_NAME$ off in the distance.  You decide to go back to the previous fork in the path.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1173, 1172, 'next', 1174);
+     INSERT INTO actions(id) VALUES (1174);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1174, 1177, 0);  -- jump to 1177
+----
+-- Choice 2
+   INSERT INTO choice(id, eventid, text, actionid) VALUES (1175, 1166, 'Go left (down the path labeled R)', 1176);
+   INSERT INTO actions(id, text) VALUES (1176, 'You follow the path labeled R.');
+   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1176, 1177, 0);  -- jump to 1177
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Jungle Maze - 4th Fork In The Path
+INSERT INTO event(id, text) VALUES (1177, 'After following the R path for some time you reach another fork in the path.');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1178, 1177, 'next', 1179);
+INSERT INTO actions(id) VALUES (1179);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1179, 1180, 0);  -- jump to 1180
+--
+-- The Sign Between The Fork (note: CHAR(13) is a newline)
+   INSERT INTO event(id, text) VALUES (1180, 
+   'Between the fork is a sign.' + CHAR(13) + 
+   '+---------+' + CHAR(13) + 
+   '| <- G    |' + CHAR(13) + 
+   '|         |' + CHAR(13) + 
+   '|    W -> |' + CHAR(13) + 
+   '+---------+');
+--
+-- Choice 1
+   INSERT INTO choice(id, eventid, text, actionid) VALUES (1181, 1180, 'Go right (down the path labeled W)', 1182);
+   INSERT INTO actions(id, text) VALUES (1182, 'You follow the path labeled W.');
+   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1182, 1183, 0);  -- jump to 1183
+--
+---- Choice 1 Results (Dead End Path)
+     INSERT INTO event(id, text) VALUES (1183, 'After following the path for some time you end up at a beach different from the one you started at.  You look around but nothing is here.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1184, 1183, 'next', 1185);
+     INSERT INTO actions(id) VALUES (1185);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1185, 1186, 0);  -- jump to 1186
+
+     INSERT INTO event(id, text) VALUES (1186, 'You can see $SHIP_NAME$ off in the distance.  You decide to go back to the previous fork in the path.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1187, 1186, 'next', 1188);
+     INSERT INTO actions(id) VALUES (1188);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1188, 1191, 0);  -- jump to 1191
+----
+-- Choice 2
+   INSERT INTO choice(id, eventid, text, actionid) VALUES (1189, 1180, 'Go left (down the path labeled G)', 1190);
+   INSERT INTO actions(id, text) VALUES (1190, 'You follow the path labeled G.');
+   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1190, 1191, 0);  -- jump to 1191
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Jungle Maze - 5th Fork In The Path
+INSERT INTO event(id, text) VALUES (1191, 'After following the G path for some time you reach another fork in the path.');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1192, 1191, 'next', 1193);
+INSERT INTO actions(id) VALUES (1193);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1193, 1194, 0);  -- jump to 1194
+--
+-- The Sign Between The Fork (note: CHAR(13) is a newline)
+   INSERT INTO event(id, text) VALUES (1194, 
+   'Between the fork is a sign.' + CHAR(13) + 
+   '+---------+' + CHAR(13) + 
+   '| <- V    |' + CHAR(13) + 
+   '|         |' + CHAR(13) + 
+   '|    E -> |' + CHAR(13) + 
+   '+---------+');
+--
+-- Choice 1
+   INSERT INTO choice(id, eventid, text, actionid) VALUES (1195, 1194, 'Go left (down the path labeled V)', 1196);
+   INSERT INTO actions(id, text) VALUES (1196, 'You follow the path labeled V.');
+   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1196, 1197, 0);  -- jump to 1197
+--
+---- Choice 1 Results (Dead End Path)
+     INSERT INTO event(id, text) VALUES (1197, 'After following the path for some time you end up at a beach different from the one you started at.  You look around but nothing is here.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1198, 1197, 'next', 1199);
+     INSERT INTO actions(id) VALUES (1199);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1199, 1200, 0);  -- jump to 1200
+
+     INSERT INTO event(id, text) VALUES (1200, 'You can see $SHIP_NAME$ off in the distance.  You decide to go back to the previous fork in the path.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1201, 1200, 'next', 1202);
+     INSERT INTO actions(id) VALUES (1202);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1202, 1205, 0);  -- jump to 1205
+----
+-- Choice 2
+   INSERT INTO choice(id, eventid, text, actionid) VALUES (1203, 1194, 'Go right (down the path labeled E)', 1204);
+   INSERT INTO actions(id, text) VALUES (1204, 'You follow the path labeled E.');
+   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1204, 1205, 0);  -- jump to 1205
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Jungle Maze - 6th Fork In The Path
+INSERT INTO event(id, text) VALUES (1205, 'After following the E path for some time you reach another fork in the path.');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1206, 1205, 'next', 1207);
+INSERT INTO actions(id) VALUES (1207);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1207, 1208, 0);  -- jump to 1208
+--
+-- The Sign Between The Fork (note: CHAR(13) is a newline)
+   INSERT INTO event(id, text) VALUES (1208, 
+   'Between the fork is a sign.' + CHAR(13) + 
+   '+---------+' + CHAR(13) + 
+   '| <- R    |' + CHAR(13) + 
+   '|         |' + CHAR(13) + 
+   '|    U -> |' + CHAR(13) + 
+   '+---------+');
+--
+-- Choice 1
+   INSERT INTO choice(id, eventid, text, actionid) VALUES (1209, 1208, 'Go right (down the path labeled U)', 1210);
+   INSERT INTO actions(id, text) VALUES (1210, 'You follow the path labeled U.');
+   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1210, 1211, 0);  -- jump to 1211
+--
+---- Choice 1 Results (Dead End Path)
+     INSERT INTO event(id, text) VALUES (1211, 'After following the path for some time you end up at a beach different from the one you started at.  You look around but nothing is here.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1212, 1211, 'next', 1213);
+     INSERT INTO actions(id) VALUES (1213);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1213, 1214, 0);  -- jump to 1214
+
+     INSERT INTO event(id, text) VALUES (1214, 'You can see $SHIP_NAME$ off in the distance.  You decide to go back to the previous fork in the path.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1215, 1214, 'next', 1216);
+     INSERT INTO actions(id) VALUES (1216);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1216, 1219, 0);  -- jump to 1119
+----
+-- Choice 2
+   INSERT INTO choice(id, eventid, text, actionid) VALUES (1217, 1208, 'Go left (down the path labeled R)', 1218);
+   INSERT INTO actions(id, text) VALUES (1218, 'You follow the path labeled R.');
+   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1218, 1219, 0);  -- jump to 1119
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Jungle Maze - 7th Fork In The Path
+INSERT INTO event(id, text) VALUES (11AA, 'After following the # path for some time you reach another fork in the path.');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (11BB, 11AA, 'next', 11CC);
+INSERT INTO actions(id) VALUES (11CC);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (11CC, 11DD, 0);  -- jump to 11DD
+--
+-- The Sign Between The Fork (note: CHAR(13) is a newline)
+   INSERT INTO event(id, text) VALUES (11DD, 
+   'Between the fork is a sign.' + CHAR(13) + 
+   '+---------+' + CHAR(13) + 
+   '| <- #    |' + CHAR(13) + 
+   '|         |' + CHAR(13) + 
+   '|    # -> |' + CHAR(13) + 
+   '+---------+');
+--
+-- Choice 1
+   INSERT INTO choice(id, eventid, text, actionid) VALUES (11EE, 11DD, 'Go left (down the path labeled #)', 11FF);
+   INSERT INTO actions(id, text) VALUES (11FF, 'You follow the path labeled #.');
+   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (11FF, 11GG, 0);  -- jump to 11GG
+--
+---- Choice 1 Results (Dead End Path)
+     INSERT INTO event(id, text) VALUES (11GG, 'After following the path for some time you end up at a beach different from the one you started at.  You look around but nothing is here.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (11HH, 11GG, 'next', 11II);
+     INSERT INTO actions(id) VALUES (11II);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (11II, 11JJ, 0);  -- jump to 11JJ
+
+     INSERT INTO event(id, text) VALUES (11JJ, 'You can see $SHIP_NAME$ off in the distance.  You decide to go back to the previous fork in the path.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (11KK, 11JJ, 'next', 11LL);
+     INSERT INTO actions(id) VALUES (11LL);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (11LL, 11ZZ, 0);  -- jump to 11ZZ
+----
+-- Choice 2
+   INSERT INTO choice(id, eventid, text, actionid) VALUES (11MM, 11DD, 'Go right (down the path labeled #)', 11NN);
+   INSERT INTO actions(id, text) VALUES (11NN, 'You follow the path labeled #.');
+   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (11NN, 11ZZ, 0);  -- jump to 11ZZ
+--
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+/*
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Jungle Maze - #th Fork In The Path
+INSERT INTO event(id, text) VALUES (11AA, 'After following the # path for some time you reach another fork in the path.');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (11BB, 11AA, 'next', 11CC);
+INSERT INTO actions(id) VALUES (11CC);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (11CC, 11DD, 0);  -- jump to 11DD
+--
+-- The Sign Between The Fork (note: CHAR(13) is a newline)
+   INSERT INTO event(id, text) VALUES (11DD, 
+   'Between the fork is a sign.' + CHAR(13) + 
+   '+---------+' + CHAR(13) + 
+   '| <- #    |' + CHAR(13) + 
+   '|         |' + CHAR(13) + 
+   '|    # -> |' + CHAR(13) + 
+   '+---------+');
+--
+-- Choice 1
+   INSERT INTO choice(id, eventid, text, actionid) VALUES (11EE, 11DD, 'Go left (down the path labeled #)', 11FF);
+   INSERT INTO actions(id, text) VALUES (11FF, 'You follow the path labeled #.');
+   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (11FF, 11GG, 0);  -- jump to 11GG
+--
+---- Choice 1 Results (Dead End Path)
+     INSERT INTO event(id, text) VALUES (11GG, 'After following the path for some time you end up at a beach different from the one you started at.  You look around but nothing is here.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (11HH, 11GG, 'next', 11II);
+     INSERT INTO actions(id) VALUES (11II);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (11II, 11JJ, 0);  -- jump to 11JJ
+
+     INSERT INTO event(id, text) VALUES (11JJ, 'You can see $SHIP_NAME$ off in the distance.  You decide to go back to the previous fork in the path.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (11KK, 11JJ, 'next', 11LL);
+     INSERT INTO actions(id) VALUES (11LL);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (11LL, 11ZZ, 0);  -- jump to 11ZZ
+----
+-- Choice 2
+   INSERT INTO choice(id, eventid, text, actionid) VALUES (11MM, 11DD, 'Go right (down the path labeled #)', 11NN);
+   INSERT INTO actions(id, text) VALUES (11NN, 'You follow the path labeled #.');
+   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (11NN, 11ZZ, 0);  -- jump to 11ZZ
+--
+------------------------------------------------------------------------------------------------------------------------
+*/
