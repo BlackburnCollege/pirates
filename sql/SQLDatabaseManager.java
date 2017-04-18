@@ -42,9 +42,9 @@ public class SQLDatabaseManager {
     private boolean create;
     private Connection connection;
     //private static final String databaseCreationURL = databaseURL + ";create=true";
-    
+
     private static final HashMap<String, Boolean> MANAGERS = new HashMap<>();
-    
+
     public static SQLDatabaseManager getManager(String databaseName) {
         Boolean isMade = MANAGERS.getOrDefault(databaseName, false);
         SQLDatabaseManager manager;
@@ -99,7 +99,12 @@ public class SQLDatabaseManager {
         URI uri = SQLDatabaseManager.class.getResource("/" + databaseFilePath).toURI();
         Path myPath;
         if (uri.getScheme().equals("jar")) {
-            FileSystem fileSystem = FileSystems.newFileSystem(uri, Collections.<String, Object>emptyMap());
+            FileSystem fileSystem;
+            try {
+                fileSystem = FileSystems.getFileSystem(uri);
+            } catch (Exception e) {
+                fileSystem = FileSystems.newFileSystem(uri, Collections.<String, Object>emptyMap());
+            }
             myPath = fileSystem.getPath(databaseFilePath);
         } else {
             myPath = Paths.get(uri);
@@ -161,9 +166,7 @@ public class SQLDatabaseManager {
 
     // MAIN METHOD USED FOR TESTING ONLY
     // TODO: REMOVE METHOD
-
-
-        /*
+    /*
         SQLDatabaseManager loader = new SQLDatabaseManager("combatDB", true);
         loader.rebuild();
         
@@ -180,7 +183,7 @@ public class SQLDatabaseManager {
         System.out.println(entity.isInsultImmune());
         System.out.println(entity.getHealth());
         System.out.println(entity.getMeleeModifier());
-         */
+     */
 //        System.out.println("Loading the Derby jdbc driver...");
 //        Class<?> clazz = Class.forName(databaseDriver);
 //        clazz.getConstructor().newInstance();
@@ -203,8 +206,6 @@ public class SQLDatabaseManager {
 //
 //        connCS.close();
 //        System.out.println("Closed connection");
-    
-
     /**
      * @return the create
      */

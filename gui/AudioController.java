@@ -71,7 +71,12 @@ public class AudioController {
             URI uri = AudioController.class.getResource("/" + AUDIO_LOCATION).toURI();
             Path myPath;
             if (uri.getScheme().equals("jar")) {
-                FileSystem fileSystem = FileSystems.newFileSystem(uri, Collections.<String, Object>emptyMap());
+                FileSystem fileSystem;
+                try {
+                    fileSystem = FileSystems.getFileSystem(uri);
+                } catch (Exception e) {
+                    fileSystem = FileSystems.newFileSystem(uri, Collections.<String, Object>emptyMap());
+                }
                 myPath = fileSystem.getPath(AUDIO_LOCATION);
             } else {
                 myPath = Paths.get(uri);
@@ -343,7 +348,7 @@ public class AudioController {
                                 .getClassLoader().getResource(AUDIO_LOCATION + name).toString());
                         names.put(name, media);
                     } catch (Exception e) {
-                        System.err.println("Audio controller: could not find " 
+                        System.err.println("Audio controller: could not find "
                                 + name);
                         return;
                     }

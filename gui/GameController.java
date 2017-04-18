@@ -138,6 +138,9 @@ public class GameController implements Initializable {
 
     Pattern shipNamePattern = Pattern.compile("SHIP_NAME");
     Pattern playerNamePattern = Pattern.compile("PLAYER_NAME");
+    Pattern spouseNamePattern = Pattern.compile("SPOUSE_NAME");
+    Pattern spousePronounPattern = Pattern.compile("SPOUSE_PRONOUN");
+    Pattern spouseTitlePattern = Pattern.compile("SPOUSE_MARITAL_TITLE");
     Pattern redPattern = Pattern.compile("RED\\{(.*?)\\}");
 
     /**
@@ -165,6 +168,9 @@ public class GameController implements Initializable {
                 Matcher redMatcher = redPattern.matcher(special);
                 Matcher shipMatcher = shipNamePattern.matcher(special);
                 Matcher playerMatcher = playerNamePattern.matcher(special);
+                Matcher spouseMatcher = spouseNamePattern.matcher(special);
+                Matcher spousePronounMatcher = spousePronounPattern.matcher(special);
+                Matcher spouseTitleMatcher = spouseTitlePattern.matcher(special);
 
                 if (redMatcher.find()) {
                     String matchedText = redMatcher.group(1);
@@ -175,6 +181,12 @@ public class GameController implements Initializable {
                     texts.add(makeTextObject(world.getShipName()));
                 } else if (playerMatcher.find()) {
                     texts.add(makeTextObject(world.getPlayer().getName()));
+                } else if (spouseMatcher.find()) {
+                    texts.add(makeTextObject(world.getSpouseName()));
+                } else if (spousePronounMatcher.find()) {
+                    texts.add(makeTextObject(world.getSpousePronoun()));
+                } else if (spouseTitleMatcher.find()) {
+                    texts.add(makeTextObject(world.getSpouseMaritalTitle()));
                 } else {
                     texts.add(makeTextObject(special));
                 }
@@ -410,48 +422,7 @@ public class GameController implements Initializable {
      * Setup the inventory Hyperlink and add it to the menu panel.
      */
     private void setupInventoryButton() {
-        /*
-        TextArea inventory = makeHyperlink("Inventory");
-        inventory.setStyle("-fx-text-fill: black");
-        inventory.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if (inventoryMoving) {
-                    return;
-                }
 
-                menuPanel.prefHeightProperty().unbind();
-
-                double newHeight;
-                if (!inventoryOpen) {
-                    newHeight = menuPanel.prefHeightProperty().multiply(2).get();
-                } else {
-                    //menuControls.prefHeightProperty().bind(controlContainer.heightProperty().divide(3));
-                    newHeight = controlContainer.heightProperty().divide(3).get();
-                }
-
-                inventoryMoving = true;
-                menuPanel.prefHeightProperty().unbind();
-                Timeline inventoryTimeline = new Timeline();
-                inventoryTimeline.setCycleCount(1);
-                inventoryTimeline.setAutoReverse(false);
-                inventoryTimeline.getKeyFrames().add(new KeyFrame(Duration.millis(500),
-                        new KeyValue(menuPanel.prefHeightProperty(),
-                                newHeight)));
-                // TODO: INSERT A GRIDPANE AND RESIZE IT AS WELL AS THE MENU CONTROL PANEL
-                inventoryTimeline.setOnFinished(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        inventoryMoving = false;
-                        inventoryOpen = !inventoryOpen;
-                    }
-                });
-                inventoryTimeline.play();
-            }
-        });
-
-        menuPanel.getChildren().addAll(inventory, makeText(""));
-         */
     }
 
     /**
@@ -693,12 +664,10 @@ public class GameController implements Initializable {
         st.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("done animating");
                 mediaPane1.setVisible(false);
                 mediaPane1.setScaleX(1.0);
             }
         });
-        System.out.println("starting animation");
         st.play();
         //st.setByY(1.5f);
         //st.setCycleCount(4f);
