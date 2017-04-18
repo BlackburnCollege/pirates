@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.media.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MapFXMLController">
+   <children>
+      <ImageView fx:id="diaryImage" fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../resources/whole_diary_0.png" />
+         </image>
+      </ImageView>
+      <Pane pickOnBounds="false" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #00000016;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane fx:id="mapPane" style="-fx-background-color: #00000000;">
+               <children>
+                  <ImageView fx:id="tribalIsland" fitHeight="177.0" fitWidth="181.0" layoutX="160.0" layoutY="34.0" onMouseClicked="#onMouseClick" onMouseEntered="#onMouseEnter" onMouseExited="#onMouseExit" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/tribal_island_0.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="caveIsland" fitHeight="60.0" fitWidth="41.0" layoutX="160.0" layoutY="93.0" onMouseClicked="#onMouseClick" onMouseEntered="#onMouseEnter" onMouseExited="#onMouseExit" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/cave_island_0.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="englishIsland" fitHeight="405.0" fitWidth="197.0" layoutX="539.0" layoutY="28.0" onMouseClicked="#onMouseClick" onMouseEntered="#onMouseEnter" onMouseExited="#onMouseExit" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/english_island_0.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="tutorialIsland" fitHeight="134.0" fitWidth="126.0" layoutX="406.0" layoutY="181.0" onMouseClicked="#onMouseClick" onMouseEntered="#onMouseEnter" onMouseExited="#onMouseExit" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/tutorial_island_0.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="spanishIsland" fitHeight="229.0" fitWidth="298.0" layoutX="241.0" layoutY="311.0" onMouseClicked="#onMouseClick" onMouseEntered="#onMouseEnter" onMouseExited="#onMouseExit" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/spanish_island_0.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="finalIsland" fitHeight="127.0" fitWidth="95.0" layoutX="86.0" layoutY="220.0" onMouseClicked="#onMouseClick" onMouseEntered="#onMouseEnter" onMouseExited="#onMouseExit" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/final_island_0.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="pirateIsland" fitHeight="127.0" fitWidth="95.0" layoutX="600.0" layoutY="445.0" onMouseClicked="#onMouseClick" onMouseEntered="#onMouseEnter" onMouseExited="#onMouseExit" pickOnBounds="true" preserveRatio="true" rotate="45.0">
+                     <image>
+                        <Image url="@../resources/pirate_den_island_0.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Label layoutX="305.0" layoutY="25.0" mouseTransparent="true" rotate="13.0" text="Tribals">
+               <font>
+                  <Font name="Papyrus" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="334.0" layoutY="137.0" mouseTransparent="true" rotate="45.0" text="cannibals?">
+               <font>
+                  <Font name="Papyrus" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="197.0" layoutY="359.0" mouseTransparent="true" rotate="-53.7" text="perfidious Spanish">
+               <font>
+                  <Font name="Papyrus" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="227.0" layoutY="268.0" mouseTransparent="true" rotate="-4.4" text="Puerto Espadaña">
+               <font>
+                  <Font name="Papyrus" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="550.0" layoutY="1.0" mouseTransparent="true" text="Knightstone Harbor">
+               <font>
+                  <Font name="Papyrus" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="487.0" layoutY="64.0" mouseTransparent="true" rotate="-17.4" text="pompous English">
+               <font>
+                  <Font name="Papyrus" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="400.0" layoutY="151.0" mouseTransparent="true" text="Summershore">
+               <font>
+                  <Font name="Papyrus" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="463.0" layoutY="257.0" mouseTransparent="true" rotate="-54.5" text="home sweet home">
+               <font>
+                  <Font name="Papyrus" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="520.0" layoutY="395.0" mouseTransparent="true" text="Black Water Anchorage">
+               <font>
+                  <Font name="Papyrus" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="579.0" layoutY="431.0" mouseTransparent="true" text="Last free port in the Carribean">
+               <font>
+                  <Font name="Papyrus" size="12.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="70.0" fitWidth="79.0" layoutX="699.0" layoutY="457.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/pirate_flag.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="finalIslandLabel" layoutX="84.0" layoutY="189.0" mouseTransparent="true" text="Widow's Rock">
+               <font>
+                  <Font name="Papyrus" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="finalIslandLabel2" layoutX="22.0" layoutY="257.0" mouseTransparent="true" rotate="-45.0" text="Final destination">
+               <font>
+                  <Font name="Papyrus" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="35.0" layoutY="53.0" mouseTransparent="true" text="Sailor's End">
+               <font>
+                  <Font name="Papyrus" size="24.0" />
+               </font>
+            </Label>
+            <Text fx:id="tribalFragmentLabel" layoutX="329.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fragment here!" visible="false">
+               <font>
+                  <Font name="Papyrus" size="12.0" />
+               </font>
+            </Text>
+            <Text fx:id="spanishFragmentLabel" layoutX="305.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fragment here!">
+               <font>
+                  <Font name="Papyrus" size="12.0" />
+               </font>
+            </Text>
+            <Text fx:id="caveFragmentLabel" layoutX="90.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fragment here!">
+               <font>
+                  <Font name="Papyrus" size="12.0" />
+               </font>
+            </Text>
+            <Text fx:id="pirateFragmentLabel" layoutX="685.0" layoutY="544.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fragment here!">
+               <font>
+                  <Font name="Papyrus" size="12.0" />
+               </font>
+            </Text>
+            <Text fx:id="englishFragmentLabel" layoutX="694.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fragment here!">
+               <font>
+                  <Font name="Papyrus" size="12.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -25,12 +25,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
+import javafx.animation.ScaleTransition;
+import javafx.animation.SequentialTransition;
 import javafx.animation.Transition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -40,6 +45,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
@@ -86,7 +92,7 @@ public class GameController implements Initializable {
     @FXML
     private TextFlow menuPanel;
     @FXML
-    private StackPane mediaPane;
+    private AnchorPane mediaPane;
     @FXML
     private MediaView gameMedia;
     @FXML
@@ -111,6 +117,12 @@ public class GameController implements Initializable {
     private HashMap<String, String> puzzleControllers = new HashMap<>();
     private final AudioController musicController = AudioController.get();
     private final ImageController images = ImageController.get();
+    @FXML
+    private AnchorPane mediaPane1;
+    @FXML
+    private ImageView diaryPageImage;
+    @FXML
+    private ImageView fakeGameImage;
 
     private void buildPuzzleControllerMappings() {
         this.puzzleControllers.put("safecrack", "/puzzle/PuzzleSafeCrackGUI.fxml");
@@ -277,18 +289,26 @@ public class GameController implements Initializable {
         gameScroll.prefHeightProperty().bind(controlContainer.prefHeightProperty().subtract(menuScroll.prefHeightProperty()));
         gameScroll.prefViewportHeightProperty().bind(gameScroll.prefHeightProperty());
         gamePanel.minHeightProperty().bind(gameScroll.heightProperty().subtract(20));
-        
+
         mediaPane.prefWidthProperty().bind(gameContainer.widthProperty().divide(2).subtract(PADDING));
         mediaPane.prefHeightProperty().bind(gameContainer.heightProperty().subtract(PADDING));
-        
+        mediaPane1.prefWidthProperty().bind(gameContainer.widthProperty().divide(2).subtract(PADDING));
+        mediaPane1.prefHeightProperty().bind(gameContainer.heightProperty().subtract(PADDING));
+
         //gameImage.fitWidthProperty().bind(mediaPane.widthProperty().divide(2).subtract(PADDING));
         gameImage.fitHeightProperty().bind(mediaPane.prefHeightProperty().subtract(PADDING * 4));
         gameImage.fitWidthProperty().bind(mediaPane.prefWidthProperty().subtract(PADDING * 4));
+
+        fakeGameImage.fitHeightProperty().bind(mediaPane1.prefHeightProperty().subtract(PADDING * 4));
+        fakeGameImage.fitWidthProperty().bind(mediaPane1.prefWidthProperty().subtract(PADDING * 4));
+
         //gameImage.fitHeightProperty().bind(mediaPane.heightProperty().subtract(PADDING));
         gameImage.setVisible(true);
         diaryImage.fitHeightProperty().bind(mediaPane.prefHeightProperty());
         diaryImage.fitWidthProperty().bind(mediaPane.prefWidthProperty());
-        
+        diaryPageImage.fitHeightProperty().bind(mediaPane1.prefHeightProperty());
+        diaryPageImage.fitWidthProperty().bind(mediaPane1.prefWidthProperty());
+
         diaryImage.setVisible(true);
     }
 
@@ -489,6 +509,11 @@ public class GameController implements Initializable {
                             "/gui/ShipNameFXML.fxml"));
                     root = (Pane) loader.load();
                     controller = loader.getController();
+                } else if (action.getChallenge().getChallengeName().equals("map")) {
+                    loader = new FXMLLoader(getClass().getResource(
+                            "/gui/MapFXML.fxml"));
+                    root = (Pane) loader.load();
+                    controller = loader.getController();
                 }
             } catch (IOException ioe) {
                 ioe.printStackTrace();
@@ -514,11 +539,16 @@ public class GameController implements Initializable {
         finalController.setOnChallengeFinish(new ChallengeCallback() {
             @Override
             public void challengeCompleted(ChallengeStatus status) {
+                this.challengeCompleted(status.ordinal());
+            }
+
+            @Override
+            public void challengeCompleted(int status) {
                 challengePane.getChildren().clear();
                 challengePane.setDisable(true);
                 //challengePane.setStyle("-fx-background-color: #00000000");
                 fadeOutAnimation.play();
-                processGameEvent(action.getEvents()[status.ordinal()]);
+                processGameEvent(action.getEvents()[status]);
                 finalController.teardownListeners(sceneRef);
             }
 
@@ -584,12 +614,17 @@ public class GameController implements Initializable {
         clearDisplay();
         addTextToDisplay(event.getText());
         Image picture;
+        world.setCurrentEvent(event);
         try {
             picture = images.getImage(event.getPicture());
         } catch (Exception e) {
-            picture = images.getImage("player_male_front_0");
+            picture = null;
         }
-        gameImage.setImage(picture);
+        //gameImage.setImage(picture);
+        if (picture == null) {
+            picture = gameImage.getImage(); // use last image
+        }
+        changeImage(picture);
 
         addDividerToDisplay();
 
@@ -628,8 +663,17 @@ public class GameController implements Initializable {
 
         // SET BACKGROUNDS
         setBackgrounds();
-        
+        diaryPageImage.setImage(images.getImage("diary_page_without_border_0"));
         diaryImage.setImage(images.getImage("diary_page_0"));
+
+        
+        mediaPane1.scaleXProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                mediaPane1.setTranslateX(-mediaPane.getPrefWidth() * (1 - mediaPane1.getScaleX()));
+            }
+
+        });
 
         // SET BINDS
         setBinds();
@@ -637,6 +681,29 @@ public class GameController implements Initializable {
         setupExitButton();
         buildPuzzleControllerMappings();
         processGameEvent(world.getCurrentEvent());
+    }
+
+    public void changeImage(Image image) {
+        ScaleTransition st = new ScaleTransition(Duration.millis(1000), mediaPane1);
+        fakeGameImage.setImage(gameImage.getImage());
+        mediaPane1.setVisible(true);
+        gameImage.setImage(image);
+
+        st.setToX(-1f);
+        st.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("done animating");
+                mediaPane1.setVisible(false);
+                mediaPane1.setScaleX(1.0);
+            }
+        });
+        System.out.println("starting animation");
+        st.play();
+        //st.setByY(1.5f);
+        //st.setCycleCount(4f);
+        //st.setAutoReverse(true);
+
     }
 
     /**

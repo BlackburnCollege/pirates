@@ -213,4 +213,12 @@ public class World {
     public void setShipName(String shipName) {
         this.shipName = shipName;
     }
+    
+    public int getFlag(String flagName) {
+        return this.storyFlags.getOrDefault(flagName, 0);
+    }
+    
+    public void setFlag(String flagName, int value) {
+        this.storyFlags.put(flagName, value);
+    }
 }

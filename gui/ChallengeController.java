@@ -8,13 +8,11 @@ import world.World;
  * @author lucas.burdell
  */
 public abstract class ChallengeController {
-    
-    
+
     private ChallengeCallback onChallengeFinish;
     private String challengeInformation;
     private world.Player player;
     private World world;
-
 
     /**
      * @return the callable
@@ -22,9 +20,9 @@ public abstract class ChallengeController {
     public ChallengeCallback getOnChallengeFinish() {
         return onChallengeFinish;
     }
-    
+
     public abstract void setupListeners(Scene scene);
-    
+
     public abstract void teardownListeners(Scene scene);
 
     /**
@@ -35,11 +33,16 @@ public abstract class ChallengeController {
     }
 
     /**
-     * This method will be called after the Challenge object is loaded into the controller.
+     * This method will be called after the Challenge object is loaded into the
+     * controller.
      */
     public abstract void onChallengeLoaded();
 
     public void finishChallenge(ChallengeStatus status) {
+        this.onChallengeFinish.challengeCompleted(status);
+    }
+
+    public void finishChallenge(int status) {
         this.onChallengeFinish.challengeCompleted(status);
     }
 
@@ -56,7 +59,6 @@ public abstract class ChallengeController {
     public void setChallengeInformation(String challengeInformation) {
         this.challengeInformation = challengeInformation;
     }
-
 
     public world.Player getPlayer() {
         return player;

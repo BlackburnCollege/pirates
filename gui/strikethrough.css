@@ -1,0 +1,8 @@
+/* 
+    Created on : Apr 18, 2017, 2:05:57 AM
+    Author     : lucas.burdell
+*/
+
+.label .text {
+    -fx-strikethrough: true;
+}

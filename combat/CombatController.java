@@ -42,6 +42,10 @@ public class CombatController extends ChallengeController
     private ImageView playerImage;
 
     private ImageController images = ImageController.get();
+    @FXML
+    private ImageView battleImage;
+    @FXML
+    private ImageView diaryImage;
 
     @FXML
     private void attack(ActionEvent event) {
@@ -83,16 +87,19 @@ public class CombatController extends ChallengeController
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-// maybe load background according to enemy type?
+
+        /*
         mainPane.setBackground(new Background(
                 new BackgroundImage(
-                        new Image("resources/woods_background.png"),
-                        BackgroundRepeat.ROUND,
-                        BackgroundRepeat.ROUND,
+                        images.getImage("diary_page_0"),
+                        BackgroundRepeat.NO_REPEAT,
+                        BackgroundRepeat.NO_REPEAT,
                         BackgroundPosition.CENTER,
                         new BackgroundSize(1, 1, true, true, true, true)
                 )
         ));
+        */
+        diaryImage.setImage(images.getImage("whole_diary_0"));
     }
 
     @Override
@@ -101,17 +108,15 @@ public class CombatController extends ChallengeController
         EntitySQLLoader load;
 
         load = new EntitySQLLoader("Demo Drew");
+        
+        
+        
 
         CombatPlayer player = new CombatPlayer(load.getName(), load.getHealth(), load.getMeleeModifier(), load.getRangedModifier(), load.getVerbalModifier(), load.isInsultImmune());
-        //TODO: LOAD ENEMY DATA FROM SOMEWHERE
-        // pseudo example of what that might look like: 
-        /* if nameOfChallenger.equals("wolf") {
-            enemy.setHealth(wolfHealth)
-            enemy.setAttacks(getWolfAttacks())
-        }
-         */
 
         enemyImage.setImage(images.getImage(nameOfChallenger));
+        Image enemyBackground = images.getImage(nameOfChallenger + "_background");
+        battleImage.setImage(enemyBackground);
         load = new EntitySQLLoader(nameOfChallenger);
 
         Enemy enemy = new Enemy(load.getName(), load.getHealth(), load.getMeleeModifier(), load.getRangedModifier(), load.getVerbalModifier(), load.isInsultImmune());

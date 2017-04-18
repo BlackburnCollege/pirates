@@ -120,7 +120,7 @@ insert into actions(id, text) values (37, 'I sell what I caught for the day, and
 
 insert into actionsevent (actionid, eventid, eventposition) values (37, 38, 0);
 
-INSERT INTO event(id, backgroundname, text) VALUES (38,'wolf_0','While walking back home from the docks, I notice that the birds are not chirping as they were in the morning. It seems quieter than usual. The bushes to my left begin rustling and growling; a hungry wolf jumps out! ');
+INSERT INTO event(id, backgroundname, text) VALUES (38,'wolf','While walking back home from the docks, I notice that the birds are not chirping as they were in the morning. It seems quieter than usual. The bushes to my left begin rustling and growling; a hungry wolf jumps out! ');
 
 insert into choice(id, eventid, text, actionid) values (39, 38, 'ready yourself' , 40);
 
@@ -230,9 +230,16 @@ insert into challenge(challengeid, challengename, challengetype) values (76, 'sh
 
 INSERT INTO event(id, text) VALUES (75, '"Aye cap’n, ''$SHIP_NAME$'' be a fine name. We be ready now."');
 
-insert into choice(id, eventid, text, actionid) values (77, 75, 'set sail', 78);
+insert into choice(id, eventid, text, actionid) values (77, 75, 'set sail', 1500);
+
+/*
 
 insert into actions(id) values (78);
 
-insert into actionsevent (actionid, eventid, eventposition) values (78, 100, 0);
+insert into actionsevent (actionid, eventid, eventposition) values (78, 1500, 0);
+*/
+
+insert into event(id, text) values (79, 'I return to my home port, but it just doesn''t feel the same without my family.');
+
+insert into choice(id, eventid, text, actionid) values (80, 79, 'set sail', 1500);
 

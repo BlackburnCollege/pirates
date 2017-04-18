@@ -13,32 +13,6 @@
 <StackPane fx:id="mainPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GameController">
    <children>
       <BorderPane fx:id="gameContainer" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0">
-         <left>
-            <StackPane fx:id="mediaPane" prefHeight="350.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <ImageView fx:id="diaryImage" fitHeight="370.0" fitWidth="220.0" pickOnBounds="true" visible="false">
-                     <viewport>
-                        <Rectangle2D />
-                     </viewport>
-                     <StackPane.margin>
-                        <Insets bottom="10.0" top="10.0" />
-                     </StackPane.margin>
-                  </ImageView>
-                  <MediaView fx:id="gameMedia" fitHeight="350.0" fitWidth="200.0" visible="false" />
-                  <ImageView fx:id="gameImage" fitHeight="350.0" fitWidth="200.0" pickOnBounds="true" visible="false">
-                     <viewport>
-                        <Rectangle2D />
-                     </viewport>
-                     <StackPane.margin>
-                        <Insets />
-                     </StackPane.margin>
-                  </ImageView>
-               </children>
-               <BorderPane.margin>
-                  <Insets />
-               </BorderPane.margin>
-            </StackPane>
-         </left>
          <right>
             <VBox fx:id="controlContainer" spacing="15.0" BorderPane.alignment="CENTER">
                <children>
@@ -64,6 +38,40 @@
          <top>
             <Label alignment="TOP_LEFT" contentDisplay="RIGHT" focusTraversable="false" prefHeight="12.0" style="-fx-background-color: transparent;" text="Press F11 to Toggle Fullscreen" textFill="#b5b5b5" BorderPane.alignment="TOP_LEFT" />
          </top>
+         <left>
+            <AnchorPane fx:id="mediaPane" prefHeight="350.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fx:id="diaryImage" fitHeight="370.0" fitWidth="220.0" pickOnBounds="true" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+                  <MediaView fx:id="gameMedia" fitHeight="350.0" fitWidth="200.0" visible="false" />
+                  <ImageView fx:id="gameImage" fitHeight="330.0" fitWidth="180.0" pickOnBounds="true" visible="false">
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+                  <AnchorPane fx:id="mediaPane1" prefHeight="350.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ImageView fx:id="diaryPageImage" fitHeight="370.0" fitWidth="220.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../resources/diary_page_without_border_0.png" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                        </ImageView>
+                        <ImageView fx:id="fakeGameImage" fitHeight="350.0" fitWidth="200.0" pickOnBounds="true">
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </left>
       </BorderPane>
       <StackPane fx:id="challengePane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="600.0" prefWidth="800.0" StackPane.alignment="CENTER" />
    </children>
