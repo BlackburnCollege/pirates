@@ -378,9 +378,9 @@ INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (11CC, 11DD, 
    INSERT INTO event(id, text) VALUES (11DD, 
    'Between the fork is a sign.' + CHAR(13) + 
    '+---------+' + CHAR(13) + 
-   '| <- #    |' + CHAR(13) + 
+   '| <- T    |' + CHAR(13) + 
    '|         |' + CHAR(13) + 
-   '|    # -> |' + CHAR(13) + 
+   '|    Y -> |' + CHAR(13) + 
    '+---------+');
 --
 -- Choice 1
