@@ -5,44 +5,7 @@
  * @created: April 14, 2017
  */
 
-------------------------------------------------------------------------------------------------------------------------
---
--- Display Text with "Next" Choice only (set background and music)
--- INSERT INTO event(id, text, backgroundname, music) VALUES (11AA, 'TEXTGOESHERE', 'cave', 'LIVING_VOYAGE');
--- INSERT INTO choice(id, eventid, text, actionid) VALUES (11BB, 11AA, 'next', 11CC);
--- INSERT INTO actions(id) VALUES (11CC);
--- INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (11CC, 11DD, 0); -- jump to event with id 11DD
---
-------------------------------------------------------------------------------------------------------------------------
---
--- Display Text with "Next" Choice only (do not change background and music)
--- INSERT INTO event(id, text) VALUES (11AA, 'TEXTGOESHERE');
--- INSERT INTO choice(id, eventid, text, actionid) VALUES (11BB, 11AA, 'next', 11CC);
--- INSERT INTO actions(id) VALUES (11CC);
--- INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (11CC, 11DD, 0);  -- jump to event with id 11DD
---
-------------------------------------------------------------------------------------------------------------------------
---
--- Display Text with two Choices (do not change background or music)
---
--- Question Text 
--- INSERT INTO event(id, text) VALUES (11AA, 'QUESTION');
---
--- Choice 1
--- INSERT INTO choice(id, eventid, text, actionid) VALUES (11BB, 11AA, 'Choice #1', 11CC);
--- INSERT INTO actions(id, text) VALUES (11CC, 'ChoiceResult1');
--- INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (11CC, 11YY, 0);  -- jump to 11YY
---
--- Choice 2
--- INSERT INTO choice(id, eventid, text, actionid) VALUES (11DD, 11AA, 'Choice #2', 11EE);
--- INSERT INTO actions(id, text) VALUES (11EE, 'ChoiceResult2');
--- INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (11EE, 11ZZ, 0);  -- jump to 11ZZ
---
-------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------
 -------------------------------------- SQL Insert Statements Below -----------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------
 --
 -- Display Text with "Next" Choice only (set background and music)
 INSERT INTO event(id, text, backgroundname, music) VALUES (1100, 'You set sail towards the final island and thinking back on your journey so far.', 'cave', 'LIVING_VOYAGE');
