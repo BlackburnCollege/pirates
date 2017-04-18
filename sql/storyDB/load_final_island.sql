@@ -421,3 +421,197 @@ INSERT INTO event(id, text) VALUES (1233, 'After following the Y path for some t
   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1237, 1238, 0);  -- jump to 1238
 --
 ------------------------------------------------------------------------------------------------------------------------
+--
+-- Display Text with "Next" Choice only (do not change background and music)
+INSERT INTO event(id, text) VALUES (1238, 'You hear the wet gravel crunch under your feet as you walk into the cave.');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1239, 1238, 'next', 1240);
+INSERT INTO actions(id) VALUES (1240);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1240, 1241, 0);  -- jump to 1241
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Display Text with "Next" Choice only (do not change background and music)
+INSERT INTO event(id, text) VALUES (1241, 'The torch lights up the walls and ceiling inside the darkness and you can see that there is a rock path leading deeper into the cave.');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1242, 1241, 'next', 1243);
+INSERT INTO actions(id) VALUES (1243);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1243, 1244, 0);  -- jump to 1244
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Display Text with "Next" Choice only (do not change background and music)
+INSERT INTO event(id, text) VALUES (1244, 'As you go deeper into the cave the walls and ceiling start to narrow.');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1245, 1244, 'next', 1246);
+INSERT INTO actions(id) VALUES (1246);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1246, 1247, 0);  -- jump to 1247
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Display Text with "Next" Choice only (do not change background and music)
+INSERT INTO event(id, text) VALUES (1247, 'After several minutes the ceiling is in arm’s reach and the walls are slightly further apart than shoulder length.');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1248, 1247, 'next', 1249);
+INSERT INTO actions(id) VALUES (1249);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1249, 1250, 0);  -- jump to 1250
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Display Text with "Next" Choice only (do not change background and music)
+INSERT INTO event(id, text) VALUES (1250, 'When you reach the deepest depths of the cave you see a solid steel door.');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1251, 1250, 'next', 1252);
+INSERT INTO actions(id) VALUES (1252);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1252, 1253, 0);  -- jump to 1253
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Display Text with two Choices that both lead to same event (do not change background or music)
+-- Question Text 
+INSERT INTO event(id, text) VALUES (1253, 'You approach the door.');
+--
+-- Choice 1
+  INSERT INTO choice(id, eventid, text, actionid) VALUES (1254, 1253, 'Try to open the door.', 1255);
+  INSERT INTO actions(id, text) VALUES (1255, 'You try to open the door but it doesn’t budge.  ');
+  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1255, 1258, 0);  -- jump to 1258
+--
+-- Choice 2
+  INSERT INTO choice(id, eventid, text, actionid) VALUES (1256, 1253, 'Inspect the door.', 1257);
+  INSERT INTO actions(id, text) VALUES (1257, 'You decided to inspect the door.');
+  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1257, 1258, 0);  -- jump to 1258
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Final Puzzle Challenge
+INSERT INTO event(id, text) VALUES (1258, 'You inspect the door and see that there are 7 rusty wheels with letters from the alphabet on them.  There doesn’t appear to be any keyholes so these wheels must have something to do with unlocking the door.');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1259, 1258, 'Begin puzzle challenge.', 1260);
+INSERT INTO actions(id, challengeid) VALUES (1260, 1261);
+INSERT INTO challenge(challengeid, challengename, challengetype) VALUES (1261, 'final', 'puzzle');
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1260, 1262, 0);  -- jump to 1262 on puzzle fail
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1260, 1263, 1);  -- jump to 1263 on puzzle solve
+--
+-- On Puzzle Fail
+   INSERT INTO event(id, text) VALUES (1262, 'After attempting to decode the passpharse you give up.  There has to be something you are missing.  You remember the signs on the path you took through the forest had letters on them.  Maybe they hold a clue.');
+   INSERT INTO choice(id, eventid, text, actionid) VALUES (1264, 1262, 'next', 1265);
+   INSERT INTO actions(id) VALUES (1265);
+   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1265, 1258, 0);  -- jump back to 1258 and try puzzle again
+--
+-- On Puzzle Solve
+   INSERT INTO event(id, text) VALUES (1263, 'The passphrase Margery unlocks the door and it starts to slide open.');
+   INSERT INTO choice(id, eventid, text, actionid) VALUES (1266, 1263, 'next', 1267);
+   INSERT INTO actions(id) VALUES (1267);
+   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1267, 1268, 0);  -- jump to 1268
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Display Text with "Next" Choice only (do not change background and music)
+INSERT INTO event(id, text) VALUES (1268, '“Margery… why is the name of my wife the passphrase?  Is it coincidence?  No, it can’t be.  Think…”');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1269, 1268, 'next', 1270);
+INSERT INTO actions(id) VALUES (1270);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1270, 1271, 0);  -- jump to 1271
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Display Text with "Next" Choice only (do not change background and music)
+INSERT INTO event(id, text) VALUES (1271, 'As the door slides open the light from the torch illuminates the room.');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1272, 1271, 'next', 1273);
+INSERT INTO actions(id) VALUES (1273);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1273, 1274, 0);  -- jump to 1274
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Display Text with "Next" Choice only (do not change background and music)
+INSERT INTO event(id, text) VALUES (1274, 'Suddenly your memories of the past come rushing back.');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1275, 1274, 'next', 1276);
+INSERT INTO actions(id) VALUES (1276);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1276, 1277, 0);  -- jump to 1277
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Display Text with "Next" Choice only (do not change background and music)
+INSERT INTO event(id, text) VALUES (1277, '“The treasure… I remember now… “');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1278, 1277, 'next', 1279);
+INSERT INTO actions(id) VALUES (1279);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1279, 1280, 0);  -- jump to 1280
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Display Text with "Next" Choice only (do not change background and music)
+INSERT INTO event(id, text) VALUES (1280, 'You recall your life before the <accident>... your life as <Legendary Pirate name here>.');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1281, 1280, 'next', 1282);
+INSERT INTO actions(id) VALUES (1282);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1282, 1283, 0);  -- jump to 1283
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Display Text with "Next" Choice only (do not change background and music)
+INSERT INTO event(id, text) VALUES (1283, 'You remember the ship battles, the treasure hunts, the rum, your crew, and your first-mate.');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1284, 1283, 'next', 1285);
+INSERT INTO actions(id) VALUES (1285);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1285, 1286, 0);  -- jump to 1286
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Display Text with "Next" Choice only (do not change background and music)
+INSERT INTO event(id, text) VALUES (1286, 'You remember your origin starting out with a small crew on a small ship and the trill of stealing your first big treasure... the trill of getting away with it.');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1287, 1286, 'next', 1288);
+INSERT INTO actions(id) VALUES (1288);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1288, 1289, 0);  -- jump to 1289
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Display Text with "Next" Choice only (do not change background and music)
+INSERT INTO event(id, text) VALUES (1289, 'You remember becoming notorious <Legendary Pirate name here>.');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1290, 1289, 'next', 1291);
+INSERT INTO actions(id) VALUES (1291);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1291, 1292, 0);  -- jump to 1292
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Display Text with "Next" Choice only (do not change background and music)
+INSERT INTO event(id, text) VALUES (1292, 'You remember meeting your love, Margery…');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1293, 1292, 'next', 1294);
+INSERT INTO actions(id) VALUES (1294);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1294, 1295, 0);  -- jump to 1295
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Display Text with "Next" Choice only (do not change background and music)
+INSERT INTO event(id, text) VALUES (1295, 'You remember hiding the treasure on this obscure island.  You remember tearing up the map.');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1296, 1295, 'next', 1297);
+INSERT INTO actions(id) VALUES (1297);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1297, 1298, 0);  -- jump to 1298
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Display Text with "Next" Choice only (do not change background and music)
+INSERT INTO event(id, text) VALUES (1298, 'You remember telling Conrad you were leaving.  You remember the arguing, the fighting, and waking up in the hospital with no memory of yourself afterward.');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1299, 1298, 'next', 1300);
+INSERT INTO actions(id) VALUES (1300);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1300, 1301, 0);  -- jump to 1301
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Display Text with "Next" Choice only (do not change background and music)
+INSERT INTO event(id, text) VALUES (1301, 'You look past the unlocked door and see a room filled with gold treasure.');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1302, 1301, 'next', 1303);
+INSERT INTO actions(id) VALUES (1303);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1303, 1304, 0);  -- jump to 1304
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Display Text with "Next" Choice only (do not change background and music)
+INSERT INTO event(id, text) VALUES (1304, 'There is so much gold that a person could live two life-times over and not spend it all.');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1305, 1304, 'next', 1306);
+INSERT INTO actions(id) VALUES (1306);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1306, 1307, 0);  -- jump to 1307
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Display Text with "Next" Choice only (do not change background and music)
+INSERT INTO event(id, text) VALUES (1307, 'You remember hiding the treasure here for safe-keeping because there was no other place large enough to hold it.');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1308, 1307, 'next', 1309);
+INSERT INTO actions(id) VALUES (1309);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1309, 1310, 0);  -- jump to 1310
+--
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
