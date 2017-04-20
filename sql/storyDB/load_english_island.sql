@@ -72,7 +72,7 @@ INSERT INTO event(id, text, music) VALUES (128, 'You arrive at a local Tavern ca
 INSERT INTO event(id, backgroundname, text) VALUES (140,'Drunken Sailor','As you approach the table one of drunken sailors notices you and shouts “Oi! What’re you lookin at you salty old mutt!”');
   INSERT INTO choice(id, eventid, text, actionid) VALUES (141, 140, '“Tell me about this crazy old pirate you were talking about.”', 142);
   INSERT INTO actions(id) VALUES (142);
-  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (142, 143, 0);  -- jump to 140 || COMBAT
+  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (142, 143, 0);  -- jump to 143 || COMBAT
 
 INSERT INTO event(id, text, music) VALUES (143, '“We ain’t tellin you nothin you washed up whale!” One of them breaks a bottle and attacks you.', 'CORRUPTION');
 insert into choice(id, eventid, text, actionid) values (144, 143, 'It’s a brawl!' , 145);
@@ -88,7 +88,13 @@ INSERT INTO event(id, text, music) VALUES (148, 'The town guards burst in as you
 
 INSERT INTO event(id, text, music) VALUES (147, 'The Sailor throws one final punch that throws you to the ground. You wake up sometime later in jail.', 'LIVING_VOYAGE');
 
-INSERT INTO event(id, backgroundname, text) VALUES (150,'new-pirate-ship','You depart the tavern and head back towards the dock intent on questioning the Dockmaster.');
-  INSERT INTO choice(id, eventid, actionid) VALUES (151, 150, 152);
-  INSERT INTO actions(id) VALUES (152);
-  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (152, 153, 0);  -- jump to 140 || COMBAT
+INSERT INTO event (id, text, backgroundname, music) VALUES (150, 'You depart the tavern and head back towards the dock intent on questioning the Dockmaster.','new-pirate-ship','CRUSADE');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (151, 150, 'next', 152);
+INSERT INTO actions(id) VALUES (152);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (152, 153, 0);
+
+INSERT INTO event(id, text) VALUES (153, 'You survey the docks and spot the Lieutenant from earlier. You approach the Lieutenant and ask about the crazy old pirate you overheard about. The Lieutenant states that he was dragged off to jail for being unable to pay the Harbour tax. He reminds you that you still need to pay before you’ll be allowed to depart and returns to his business.');
+
+  INSERT INTO choice(id, eventid, text, actionid) VALUES (154, 153, 'You leave the Dockmaster to his papers and head off back into town looking for the jail.', 155);
+  INSERT INTO actions(id) VALUES (155);
+  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (155, 156, 0);  
