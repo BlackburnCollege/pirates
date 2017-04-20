@@ -120,7 +120,7 @@ insert into actions(id, text) values (37, 'I sell what I caught for the day, and
 
 insert into actionsevent (actionid, eventid, eventposition) values (37, 38, 0);
 
-INSERT INTO event(id, backgroundname, text) VALUES (38,'wolf','While walking back home from the docks, I notice that the birds are not chirping as they were in the morning. It seems quieter than usual. The bushes to my left begin rustling and growling; a hungry wolf jumps out! ');
+INSERT INTO event(id, backgroundname, text, music) VALUES (38,'wolf','While walking back home from the docks, I notice that the birds are not chirping as they were in the morning. It seems quieter than usual. The bushes to my left begin rustling and growling; a hungry wolf jumps out! ', 'CORRUPTION');
 
 insert into choice(id, eventid, text, actionid) values (39, 38, 'ready yourself' , 40);
 
@@ -132,7 +132,7 @@ insert into actionsevent (actionid, eventid, eventposition) values (40, 42, 1);
 
 insert into challenge(challengeid, challengename, challengetype) values (41, 'wolf', 'combat');
 
-INSERT INTO event(id, text) VALUES (42, 'I deliver one final blow to the wolf, and it quickly runs back into the forest yelping in pain.');
+INSERT INTO event(id, text, music) VALUES (42, 'I deliver one final blow to the wolf, and it quickly runs back into the forest yelping in pain.', 'LIVING_VOYAGE');
 
 insert into choice(id, eventid, text, actionid) values (44, 42, 'I gather my things and head back home.' , 46);
 
@@ -140,7 +140,7 @@ insert into actions(id) values (46);
 
 insert into actionsevent (actionid, eventid, eventposition) values (46, 49, 0);
 
-INSERT INTO event(id, text) VALUES (43, 'The wolf knocks me to the ground. It stands above me, its face twisted with a nasty snarl. As I close my eyes and brace myself, I feel it jump off my body. When I get up, I notice that it ran off with my knapsack. The food I had brought for tonight’s dinner is gone, but I am at least I am still alive.');
+INSERT INTO event(id, text, music) VALUES (43, 'The wolf knocks me to the ground. It stands above me, its face twisted with a nasty snarl. As I close my eyes and brace myself, I feel it jump off my body. When I get up, I notice that it ran off with my knapsack. The food I had brought for tonight’s dinner is gone, but I am at least I am still alive.', 'LIVING_VOYAGE');
 
 insert into choice(id, eventid, text, actionid) values (47, 43, 'I dust myself off and continue home.' , 48);
 
