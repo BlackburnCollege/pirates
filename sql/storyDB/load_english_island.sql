@@ -9,15 +9,14 @@ INSERT INTO choice(id, eventid, text, actionid) VALUES (101, 100, 'next', 102);
 INSERT INTO actions(id) VALUES (102);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (102, 103, 0);
 
-INSERT INTO event(id, text, backgroundname) VALUES (103, 'The Lieutenant asks "Who is in charge of this vessel?"', 'pirate_ship');
+INSERT INTO event(id, text, backgroundname) VALUES (103, 'The Lieutenant asks "Who is in charge of this vessel?"', 'new-pirate-ship');
 
   INSERT INTO choice(id, eventid, text, actionid) VALUES (104, 103, 'That would be me.', 105);
   INSERT INTO actions(id) VALUES (105);
   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (105, 106, 0);  
 
 
-INSERT INTO event(id, text) VALUES (106, '“Ah, Welcome to Knightstone. It’s my job to inform all inbound ships of the docking tax.
- You will pay 10 gold shillings for each day you are docked here.”');
+INSERT INTO event(id, text) VALUES (106, '“Ah, Welcome to Knightstone. It’s my job to inform all inbound ships of the docking tax. You will pay 10 gold shillings for each day you are docked here.”');
 --
 -- Choice 1
   INSERT INTO choice(id, eventid, text, actionid) VALUES (107, 106, '“Fair enough, I’ll pay when I’m ready to depart.”', 108);
@@ -58,14 +57,33 @@ INSERT INTO choice(id, eventid, text, actionid) VALUES (126, 125, 'next', 127);
 INSERT INTO actions(id) VALUES (127);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (127, 128, 0);  
 
-INSERT INTO event(id, text) VALUES (128, 'You arrive at a local Tavern called the Golden Oak. The tavern is bustling with all sorts of people. You approach the bartender and order a drink. You overhear a group of sailors laughing and shouting in the back about some crazy old pirate trying to sell some scrap of a map to the local Dockmaster.');
+INSERT INTO event(id, text, music) VALUES (128, 'You arrive at a local Tavern called the Golden Oak. The tavern is bustling with all sorts of people. You approach the bartender and order a drink. You overhear a group of sailors laughing and shouting in the back about some crazy old pirate trying to sell some scrap of a map to the local Dockmaster.', 'LORD_OF_THE_LAND');
 
 -- Choice 1
   INSERT INTO choice(id, eventid, text, actionid) VALUES (129, 128, 'Approach the group.', 130);
   INSERT INTO actions(id) VALUES (130);
-  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (130, 140, 0);  -- jump to 140
+  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (130, 140, 0);  -- jump to 140 || COMBAT PATH
 --
 -- Choice 2
   INSERT INTO choice(id, eventid, text, actionid) VALUES (131, 128, 'Finish your drink and look for the Dockmaster.', 132);
   INSERT INTO actions(id) VALUES (132);
   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (132, 150, 0);  -- jump to 150
+
+INSERT INTO event(id, backgroundname, text) VALUES (140,'Drunken Sailor','As you approach the table one of drunken sailors notices you and shouts “Oi! What’re you lookin at you salty old mutt!”');
+  INSERT INTO choice(id, eventid, text, actionid) VALUES (141, 140, '“Tell me about this crazy old pirate you were talking about.”', 142);
+  INSERT INTO actions(id) VALUES (142);
+  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (142, 143, 0);  -- jump to 140 || COMBAT
+
+INSERT INTO event(id, text, music) VALUES (143, '“We ain’t tellin you nothin you washed up whale!” One of them breaks a bottle and attacks you.', 'CORRUPTION');
+insert into choice(id, eventid, text, actionid) values (144, 143, 'It’s a brawl!' , 145);
+insert into actions(id, challengeid) values (145, 146);
+
+insert into actionsevent (actionid, eventid, eventposition) values (145, 148, 0);
+
+insert into actionsevent (actionid, eventid, eventposition) values (145, 147, 1);
+
+insert into challenge(challengeid, challengename, challengetype) values (146, 'Drunken Sailor', 'combat');
+
+INSERT INTO event(id, text, music) VALUES (148, 'The town guards burst in as you knock the drunken sailor out. They shout as they rush at you and drag you off to jail.', 'LIVING_VOYAGE');
+
+INSERT INTO event(id, text, music) VALUES (147, 'The Sailor throws one final punch that throws you to the ground. You wake up sometime later in jail.', 'LIVING_VOYAGE');

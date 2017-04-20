@@ -24,6 +24,16 @@ RANGED_MODIFIER, VERBAL_MODIFIER, INSULT_IMMUNITY) VALUES (
     false
 );
 
+INSERT INTO entitydata (ENTITY_NAME, HEALTH, MELEE_MODIFIER, 
+RANGED_MODIFIER, VERBAL_MODIFIER, INSULT_IMMUNITY) VALUES (
+    'Drunken Sailor', 
+    100, 
+    2.5, 
+    6.25, 
+    0.0,
+    false
+);
+
 INSERT INTO insults (INSULT) VALUES(
     'Go VERB yourself, you ADJECTIVE NOUN'
 )
