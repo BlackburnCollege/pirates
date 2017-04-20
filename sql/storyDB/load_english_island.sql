@@ -87,3 +87,8 @@ insert into challenge(challengeid, challengename, challengetype) values (146, 'D
 INSERT INTO event(id, text, music) VALUES (148, 'The town guards burst in as you knock the drunken sailor out. They shout as they rush at you and drag you off to jail.', 'LIVING_VOYAGE');
 
 INSERT INTO event(id, text, music) VALUES (147, 'The Sailor throws one final punch that throws you to the ground. You wake up sometime later in jail.', 'LIVING_VOYAGE');
+
+INSERT INTO event(id, backgroundname, text) VALUES (150,'new-pirate-ship','You depart the tavern and head back towards the dock intent on questioning the Dockmaster.');
+  INSERT INTO choice(id, eventid, actionid) VALUES (151, 150, 152);
+  INSERT INTO actions(id) VALUES (152);
+  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (152, 153, 0);  -- jump to 140 || COMBAT
