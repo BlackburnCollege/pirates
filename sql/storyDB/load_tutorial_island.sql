@@ -148,7 +148,7 @@ insert into actions(id) values (48);
 
 insert into actionsevent (actionid, eventid, eventposition) values (48, 49, 0);
 
-INSERT INTO event(id, text) VALUES (49, 'When I arrive home, I notice the house is eerily dark and quiet. The door is left ajar. Sensing something is wrong, I rush inside to look for my family. The house is a mess: furniture is strewn about, the floor and walls torn up as if someone were looking for something.');
+INSERT INTO event(id, backgroundname, text) VALUES (49, 'summershore_0', 'When I arrive home, I notice the house is eerily dark and quiet. The door is left ajar. Sensing something is wrong, I rush inside to look for my family. The house is a mess: furniture is strewn about, the floor and walls torn up as if someone were looking for something.');
 
 insert into choice(id, eventid, text, actionid) values (50, 49, 'rush upstairs' , 51);
 
