@@ -84,12 +84,12 @@ insert into actionsevent (actionid, eventid, eventposition) values (145, 147, 1)
 
 insert into challenge(challengeid, challengename, challengetype) values (146, 'Drunken Sailor', 'combat');
 
-INSERT INTO event(id, text, music) VALUES (148, 'The town guards burst in as you knock the drunken sailor out. They shout as they rush at you and drag you off to jail.', 'LIVING_VOYAGE');
+INSERT INTO event(id, text, music) VALUES (147, 'The town guards burst in as you knock the drunken sailor out. They shout as they rush at you and drag you off to jail.', 'LIVING_VOYAGE');
   INSERT INTO choice(id, eventid, text, actionid) VALUES (151, 148, 'next', 152);
   INSERT INTO actions(id) VALUES (152);
   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (152, 190, 0);  -- jump to 150
 
-INSERT INTO event(id, text, music) VALUES (147, 'The Sailor throws one final punch that throws you to the ground. You wake up sometime later in jail.', 'LIVING_VOYAGE');
+INSERT INTO event(id, text, music) VALUES (148, 'The Sailor throws one final punch that throws you to the ground. You wake up sometime later in jail.', 'LIVING_VOYAGE');
   INSERT INTO choice(id, eventid, text, actionid) VALUES (150, 147, 'next', 152);
   INSERT INTO actions(id) VALUES (152);
   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (152, 190, 0);  -- jump to 150
@@ -124,16 +124,15 @@ insert into actionsevent (actionid, eventid, eventposition) values (175, 177, 1)
 
 insert into challenge(challengeid, challengename, challengetype) values (176, 'Drunken Sailor', 'combat');
 
-INSERT INTO event(id, text, music) VALUES (178, 'As the thief falls to the ground he shouts out “Help I’m being robbed!” The Town guard surrounds you and shouts at you “Get away from the Governor’s son!” A smug look appears on the thief’s face as they clasp you in irons and drag you to jail while you protest loudly.', 'LIVING_VOYAGE');
+INSERT INTO event(id, text, music) VALUES (177, 'As the thief falls to the ground he shouts out “Help I’m being robbed!” The Town guard surrounds you and shouts at you “Get away from the Governor’s son!” A smug look appears on the thief’s face as they clasp you in irons and drag you to jail while you protest loudly.', 'LIVING_VOYAGE');
   INSERT INTO choice(id, eventid, text, actionid) VALUES (181, 178, 'next', 182);
   INSERT INTO actions(id) VALUES (182);
   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (182, 190, 0);  -- jump to 190
 
-INSERT INTO event(id, text, music) VALUES (177, 'The Thief knocks you out and sprints off. The Town guard spots you unconscious in the alley and drags you to jail assuming that you’re drunk.', 'LIVING_VOYAGE');
+INSERT INTO event(id, text, music) VALUES (178, 'The Thief knocks you out and sprints off. The Town guard spots you unconscious in the alley and drags you to jail assuming that you’re drunk.', 'LIVING_VOYAGE');
   INSERT INTO choice(id, eventid, text, actionid) VALUES (180, 177, 'next', 182);
   INSERT INTO actions(id) VALUES (182);
   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (182, 190, 0);  -- jump to 190
-
 
 ---------------------------------------------------------------------JAIL----------------------------------------------------------
 INSERT INTO event(id, text) VALUES (190, 'You wake up in a dusty cell and sigh and chuckle to yourself as you realize where you are. “So much for keeping a low profile” you say to yourself. You look around your new surroundings. You see a young guard reading the journal from your bag with enthusiasm. You also spot a decrepit old man in the corner of your cell.');
@@ -153,15 +152,61 @@ INSERT INTO event(id, text) VALUES (196, 'You startle the young guard. “S-Sorr
   INSERT INTO actions(id) VALUES (198);
   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (198, 199, 0); 
 
-INSERT INTO event(id, text) VALUES (199, 'The Guard expresses his sympathy for you and says “Look I can understand your position and I can’t say I wouldn’t do the same for my family if I were in your shoes.” He looks around the jail before he looks you in the eyes and states “But I’m a member of the English Colonial Guard and I’m not allowed to tell you that part of the map you’re looking for is in our safe” he winks at you. He approaches you and unlocks your cell and says “and I certainly didn’t know you had a lockpick hidden on your person. I’m leaving you completely locked up and taking my lunch break.” He leaves the room with your journal on his desk next to the contraband safe.');
 
-  INSERT INTO choice(id, eventid, text, actionid) VALUES (200, 199, 'next', 201);
-  INSERT INTO actions(id) VALUES (201);
-  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (201, 202, 0);
+INSERT INTO event(id, text, music) VALUES (199, 'The Guard expresses his sympathy for you and says “Look I can understand your position and I can’t say I wouldn’t do the same for my family if I were in your shoes.” He looks around the jail before he looks you in the eyes and states “But I’m a member of the English Colonial Guard and I’m not allowed to tell you that part of the map you’re looking for is in our safe” he winks at you. He approaches you and unlocks your cell and says “and I certainly didn’t know you had a lockpick hidden on your person. I’m leaving you completely locked up and taking my lunch break.” He leaves the room with your journal on his desk next to the contraband safe.', 'NOTHING');
 
-INSERT INTO event(id, text) VALUES (202, 'AYY BE A PLACEHOLDER');
+insert into choice(id, eventid, text, actionid) values (200, 199, 'next' , 201);
 
-  INSERT INTO choice(id, eventid, text, actionid) VALUES (203, 202, 'next', 204);
-  INSERT INTO actions(id) VALUES (204);
-  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (204, 205, 0);
+insert into actions(id, challengeid) values (201, 202);
+
+insert into actionsevent (actionid, eventid, eventposition) values (201, 208, 1);
+
+insert into actionsevent (actionid, eventid, eventposition) values (201, 207, 0);
+
+insert into challenge(challengeid, challengename, challengetype) values (202, 'safecrack', 'puzzle');
+
+INSERT INTO event(id, text, music) VALUES (208, 'You successfully open the safe and spot some gold and the map piece you’ve been hearing so much about. You grab the map piece and gold and lock the safe. You leave the jail and head back to the Docks.', 'LIVING_VOYAGE');
+  INSERT INTO choice(id, eventid, text, actionid) VALUES (211, 208, 'next', 212);
+  INSERT INTO actions(id) VALUES (212);
+  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (212, 220, 0);  
+
+
+INSERT INTO event(id, text, music) VALUES (207, 'You fail to crack the safe. Frustrated you look around and spot some tools inside the desk and force your way inside the safe. "Safe cracking indeed!" You laugh to yourself as the old man covers his face with his palm.', 'LIVING_VOYAGE');
+  INSERT INTO choice(id, eventid, text, actionid) VALUES (210, 207, 'next', 212);
+  INSERT INTO actions(id) VALUES (212);
+  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (212, 220, 0);  
+
+
+INSERT INTO event(id, text) VALUES (220, 'As you walk back towards $SHIP_NAME$ you spot your crew finishing loading up some supplies. Your first mate meets you “We acquired those supplies ye asked us to get Cap’n, are we ready to weigh anchor?” You nod at him as the Dockmaster approaches you.');
+
+  INSERT INTO choice(id, eventid, text, actionid) VALUES (221, 220, 'next', 222);
+  INSERT INTO actions(id) VALUES (222);
+  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (222, 223, 0);  
+
+INSERT INTO event(id, text) VALUES (223, 'The Lieutenant states “I hope you weren’t planning on going anywhere without paying the Harbor tax.” ');
+
+-- Choice 1
+  INSERT INTO choice(id, eventid, text, actionid) VALUES (224, 223, 'You sigh and say “Of course I was always going to pay your tax.” You toss him some of the gold you collected from the jail.', 225);
+  INSERT INTO actions(id) VALUES (225);
+  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (225, 226, 0);  -- jump to 111
+--
+-- Choice 2
+  INSERT INTO choice(id, eventid, text, actionid) VALUES (226, 223, 'You Laugh and whistle to your crew. You and your crew push the guards into the bay and jump onto your ship. “I ain’t giving no Redcoat my money! Give the greedy old King my regards would ye?” ', 227);
+  INSERT INTO actions(id) VALUES (227);
+  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (227, 226, 0);  -- jump to 111
+
+INSERT INTO event(id, text) VALUES (226, '"Let’s sail lads!"');
+
+insert into choice(id, eventid, text, actionid) values (227, 226, 'set sail', 1500);
+
+/*
+
+insert into actions(id) values (78);
+
+insert into actionsevent (actionid, eventid, eventposition) values (78, 1500, 0);
+*/
+
+insert into event(id, text) values (229, 'I return to Knightstone, but it doesn’t feel I’m welcome here after that fight.');
+
+insert into choice(id, eventid, text, actionid) values (230, 229, 'set sail', 1500);
 -----------------------------------------------------------------------------------------------------------------------------------
