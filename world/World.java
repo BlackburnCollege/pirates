@@ -8,7 +8,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import sql.StorySQLLoader;
 
-
 /**
  *
  * @author lucas.burdell
@@ -22,20 +21,11 @@ public class World {
     private Player player;
     private String shipName;
 
-    /* 
-    NAMING SCHEME FOR EVENTS:
-    island-initials_location_visit-type_event-identifier
-    
-    island-initials: three letter initials for the island names
-    location: the location on the island or in an event chain
-    visit-type: type of visit to this event; i.e. f for first time, r for returning, ae for after event or after an event
-    event-identifier: identifier for the event; arbitrary name to refer to event
-     */
     // HashMap that tracks events using an event's name as the key.
     private HashMap<String, Event> events = new HashMap<>();
     private HashMap<String, Integer> storyFlags = new HashMap<>();
 
-    public World(String playerName){
+    public World(String playerName) {
         this.player = new Player(playerName);
         StorySQLLoader loader = new StorySQLLoader();
         try {
@@ -45,19 +35,12 @@ public class World {
         }
     }
     
-    public String getSpouseName() {
-        // TODO
-        return "Margery";
+    public World(Player player, Event root) {
+        this.player = player;
+        this.currentEvent = root;
     }
-    
-    public String getSpousePronoun() {
-        return "she";
-    }
-    
-    public String getSpouseMaritalTitle() {
-        return "wife";
-    }
-    
+
+
     /**
      *
      * @param eventName name of event to retrieve
@@ -109,11 +92,11 @@ public class World {
     public void setShipName(String shipName) {
         this.shipName = shipName;
     }
-    
+
     public int getFlag(String flagName) {
         return this.storyFlags.getOrDefault(flagName, 0);
     }
-    
+
     public void setFlag(String flagName, int value) {
         this.storyFlags.put(flagName, value);
     }

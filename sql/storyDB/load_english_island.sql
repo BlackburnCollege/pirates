@@ -78,9 +78,9 @@ INSERT INTO event(id, text, music) VALUES (143, '“We ain’t tellin you nothin
 insert into choice(id, eventid, text, actionid) values (144, 143, 'It’s a brawl!' , 145);
 insert into actions(id, challengeid) values (145, 146);
 
-insert into actionsevent (actionid, eventid, eventposition) values (145, 148, 0);
+insert into actionsevent (actionid, eventid, eventposition) values (145, 147, 0);
 
-insert into actionsevent (actionid, eventid, eventposition) values (145, 147, 1);
+insert into actionsevent (actionid, eventid, eventposition) values (145, 148, 1);
 
 insert into challenge(challengeid, challengename, challengetype) values (146, 'Drunken Sailor', 'combat');
 

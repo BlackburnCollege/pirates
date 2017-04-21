@@ -230,7 +230,11 @@ insert into challenge(challengeid, challengename, challengetype) values (76, 'sh
 
 INSERT INTO event(id, text) VALUES (75, '"Aye cap’n, ''$SHIP_NAME$'' be a fine name. We be ready now."');
 
-insert into choice(id, eventid, text, actionid) values (77, 75, 'set sail', 1500);
+insert into choice(id, eventid, text, actionid) values (77, 75, 'set sail', 81);
+
+insert into actions(id) values (81);
+
+insert into actionsevent (actionid, eventid, eventposition) values (81, 100, 0);
 
 /*
 
