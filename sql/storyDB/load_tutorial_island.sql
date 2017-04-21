@@ -16,9 +16,9 @@ INSERT INTO actions(id) VALUES (3);
 
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (3, 4, 0);
 
-insert into event(id, text, backgroundname) values(4,'As I go downstairs, I see my wife, Marjorie. She’s in a beautiful summer dress, sitting in her cozy chair sipping green tea while watching the sunrise.  I greet her...', '');
+insert into event(id, text, backgroundname) values(4,'As I go downstairs, I see my $SPOUSE_MARITAL_TITLE$, $SPOUSE_NAME$. $SPOUSE_NAME$ looks absolutely beautiful, sitting in $SPOUSE_POSESSIVE$ cozy chair sipping green tea while watching the sunrise.  I greet them...', '');
 
-insert into choice(id, eventid, text, actionid) values (5, 4, '“Hello, my darling.” I kneel down and gently kiss her forehead.', 6);
+insert into choice(id, eventid, text, actionid) values (5, 4, '“Hello, my darling.” I kneel down and gently kiss $SPOUSE_POSESSIVE$ forehead.', 6);
 
 insert into actions(id) values (6);
 
@@ -28,7 +28,7 @@ insert into event(id, text) values(7,'“Hello love. How did you sleep?”');
 
 insert into choice(id, eventid, text, actionid) values (8, 7, ' “I slept well, thank you." you lie; not wanting to talk about your nightmares.', 9);
 
-insert into actions(id, text) values (9, '“That’s great, dear” she gives a thin smile. She knows you lied.');
+insert into actions(id, text) values (9, '“That’s great, dear” $SPOUSE_PRONOUN$ gives a thin smile. $SPOUSE_PRONOUN$ knows you lied.');
 
 insert into actionsevent (actionid, eventid, eventposition) values (9, 19, 0);
 
@@ -38,7 +38,7 @@ insert into actions(id, text) values (11, '“I’m sorry to hear that, dear. I 
 
 insert into actionsevent (actionid, eventid, eventposition) values (11, 19, 0);
 
-insert into choice(id, eventid, text, actionid) values (12, 4, 'I stand back and stare at her.', 13);
+insert into choice(id, eventid, text, actionid) values (12, 4, 'I stand back and stare at $SPOUSE_NAME$.', 13);
 
 insert into actions(id) values (13);
 
@@ -46,9 +46,9 @@ insert into actionsevent (actionid, eventid, eventposition) values (13, 14, 0);
 
 insert into actionsevent (actionid, eventid, eventposition) values (11, 14, 0);
 
-insert into event(id, text) values(14,'She continues to sip her tea while staring at the sunset. Her beautiful, black hair gently flowing in the slight breeze. ');
+insert into event(id, text) values(14,'$SPOUSE_PRONOUN$ continues to sip $SPOUSE_POSESSIVE$ tea while staring at the sunset. Gently flowing in the breeze is $SPOUSE_POSESSIVE$ beautiful, black hair. ');
 
-insert into choice(id, eventid, text, actionid) values (15, 14, 'I greet her...', 16);
+insert into choice(id, eventid, text, actionid) values (15, 14, 'I greet $SPOUSE_NAME$...', 16);
 
 insert into actions(id) values (16);
 
@@ -152,10 +152,9 @@ INSERT INTO event(id, backgroundname, text) VALUES (49, 'summershore_0', 'When I
 
 insert into choice(id, eventid, text, actionid) values (50, 49, 'rush upstairs' , 51);
 
-insert into actions(id, text) values (51, 'I rush upstairs, yelling. 
-“MARJORIE??”
-“BEN?!?”
-No answer. I find no one. On the desk lay a lit candle and a handwritten note laying atop a journal.');
+insert into actions(id, text) values (51, 'I rush upstairs in a panic, crashing loudly through the bedroom doorway.
+
+I find no one. On the desk lay a lit candle and a handwritten note laying atop a journal.');
 
 insert into actionsevent (actionid, eventid, eventposition) values (51, 54, 0);
 
@@ -174,7 +173,7 @@ insert into actions(id, text) values (56, 'Unwrapping the linen, I find a dull c
 
 insert into actionsevent (actionid, eventid, eventposition) values (56, 57, 0);
 
-INSERT INTO event(id, text) VALUES (57, 'I skim through the journal, finding references to hidden map pieces among stories of plundering, pillaging and outright debauchery. The closest piece seems to be on the island of Knightstone. I’ll need a ship and crew to get there. I’ll need money; I’ve been saving for emergencies. I’d say this qualifies.');
+INSERT INTO event(id, text) VALUES (57, 'I skim through the journal, finding references to hidden map pieces among stories of plundering, pillaging and outright debauchery. The closest piece seems to be on the island of Knightstone. I’ll need a ship and crew to get there. I’ll also need money; luckily, I’ve been saving for emergencies. I’d say this qualifies.');
 
 insert into choice(id, eventid, text, actionid) values (58, 57, 'gather savings.' , 59);
 

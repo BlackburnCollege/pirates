@@ -79,33 +79,48 @@ public class Player {
 
     public String getSpouseName() {
         if (this.isSpouseMale()) {
-            return "Margery";
-        } else {
             return "Mathias";
+        } else {
+            return "Margery";
         }
     }
 
     public String getSpousePronoun() {
         if (this.isSpouseMale()) {
-            return "she";
-        } else {
             return "he";
+        } else {
+            return "she";
+        }
+    }
+    public String getSpousePosessivePronoun() {
+        if (this.isSpouseMale()) {
+            return "his";
+        } else {
+            return "her";
         }
     }
 
     public String getSpouseMaritalTitle() {
         if (this.isSpouseMale()) {
-            return "wife";
-        } else {
             return "husband";
+        } else {
+            return "wife";
         }
     }
-    
+
     public String getPronoun() {
         if (this.isMale()) {
             return "he";
         } else {
             return "she";
+        }
+    }
+
+    public String getPosessivePronoun() {
+        if (this.isMale()) {
+            return "his";
+        } else {
+            return "her";
         }
     }
 

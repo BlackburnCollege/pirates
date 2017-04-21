@@ -40,7 +40,9 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
+import javafx.scene.control.OverrunStyle;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -59,6 +61,7 @@ import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.MediaView;
@@ -140,8 +143,75 @@ public class GameController implements Initializable {
     Pattern playerNamePattern = Pattern.compile("PLAYER_NAME");
     Pattern spouseNamePattern = Pattern.compile("SPOUSE_NAME");
     Pattern spousePronounPattern = Pattern.compile("SPOUSE_PRONOUN");
+    Pattern spousePosessivePronounPattern = Pattern.compile("SPOUSE_POSESSIVE");
     Pattern spouseTitlePattern = Pattern.compile("SPOUSE_MARITAL_TITLE");
+    Pattern playerPronounPattern = Pattern.compile("PLAYER_PRONOUN");
+    Pattern playerPosessivePronounPattern = Pattern.compile("PLAYER_POSESSIVE");
     Pattern redPattern = Pattern.compile("RED\\{(.*?)\\}");
+
+    private String parseText(String text) {
+        StringBuilder output = new StringBuilder();
+        Matcher specialCheck = specialPattern.matcher(text);
+        if (specialCheck.find()) {
+            //System.out.println("MATCHED");
+            // check for patterns
+            specialCheck.reset();
+            int previousTextEnd = 0;
+            while (specialCheck.find()) {
+                // do previous
+                String previousText = text.substring(previousTextEnd, specialCheck.start());
+                //System.out.println(previousText);
+                output.append(previousText);
+                previousTextEnd = specialCheck.end();
+
+                //start checks
+                String special = specialCheck.group(1);
+                Matcher redMatcher = redPattern.matcher(special);
+                Matcher shipMatcher = shipNamePattern.matcher(special);
+                Matcher playerMatcher = playerNamePattern.matcher(special);
+                Matcher spouseMatcher = spouseNamePattern.matcher(special);
+                Matcher spousePronounMatcher = spousePronounPattern.matcher(special);
+                Matcher spousePosessivePronounMatcher = spousePosessivePronounPattern.matcher(special);
+                Matcher playerPronounMatcher = playerPronounPattern.matcher(special);
+                Matcher playerPosessivePronounMatcher = playerPosessivePronounPattern.matcher(special);
+                Matcher spouseTitleMatcher = spouseTitlePattern.matcher(special);
+
+                if (redMatcher.find()) {
+                    String matchedText = redMatcher.group(1);
+                   output.append(matchedText);
+                } else if (shipMatcher.find()) {
+                    output.append((world.getShipName()));
+                } else if (playerMatcher.find()) {
+                  output.append((world.getPlayer().getName()));
+                } else if (playerPronounMatcher.find()) {
+                  output.append((world.getPlayer().getPronoun()));
+                } else if (playerPosessivePronounMatcher.find()) {
+                    output.append((world.getPlayer().getPosessivePronoun()));
+                } else if (spouseMatcher.find()) {
+                    output.append((world.getPlayer().getSpouseName()));
+                } else if (spousePronounMatcher.find()) {
+                    output.append((world.getPlayer().getSpousePronoun()));
+                } else if (spousePosessivePronounMatcher.find()) {
+                   output.append((world.getPlayer().getSpousePosessivePronoun()));
+                } else if (spouseTitleMatcher.find()) {
+                    output.append((world.getPlayer().getSpouseMaritalTitle()));
+                } else {
+                    output.append((special));
+                }
+            }
+
+            if (previousTextEnd <= text.length() - 1) {
+                String remainingText = text.substring(previousTextEnd, text.length());
+                output.append((remainingText));
+
+            }
+
+        } else {
+            //System.out.println("no match");
+            output.append(text);
+        }
+        return output.toString();
+    }
 
     /**
      *
@@ -170,6 +240,9 @@ public class GameController implements Initializable {
                 Matcher playerMatcher = playerNamePattern.matcher(special);
                 Matcher spouseMatcher = spouseNamePattern.matcher(special);
                 Matcher spousePronounMatcher = spousePronounPattern.matcher(special);
+                Matcher spousePosessivePronounMatcher = spousePosessivePronounPattern.matcher(special);
+                Matcher playerPronounMatcher = playerPronounPattern.matcher(special);
+                Matcher playerPosessivePronounMatcher = playerPosessivePronounPattern.matcher(special);
                 Matcher spouseTitleMatcher = spouseTitlePattern.matcher(special);
 
                 if (redMatcher.find()) {
@@ -181,10 +254,16 @@ public class GameController implements Initializable {
                     texts.add(makeTextObject(world.getShipName()));
                 } else if (playerMatcher.find()) {
                     texts.add(makeTextObject(world.getPlayer().getName()));
+                } else if (playerPronounMatcher.find()) {
+                    texts.add(makeTextObject(world.getPlayer().getPronoun()));
+                } else if (playerPosessivePronounMatcher.find()) {
+                    texts.add(makeTextObject(world.getPlayer().getPosessivePronoun()));
                 } else if (spouseMatcher.find()) {
                     texts.add(makeTextObject(world.getPlayer().getSpouseName()));
                 } else if (spousePronounMatcher.find()) {
                     texts.add(makeTextObject(world.getPlayer().getSpousePronoun()));
+                } else if (spousePosessivePronounMatcher.find()) {
+                    texts.add(makeTextObject(world.getPlayer().getSpousePosessivePronoun()));
                 } else if (spouseTitleMatcher.find()) {
                     texts.add(makeTextObject(world.getPlayer().getSpouseMaritalTitle()));
                 } else {
@@ -192,7 +271,7 @@ public class GameController implements Initializable {
                 }
             }
 
-            if (previousTextEnd < text.length() - 1) {
+            if (previousTextEnd <= text.length() - 1) {
                 String remainingText = text.substring(previousTextEnd, text.length());
                 texts.add(makeTextObject(remainingText + "\n"));
 
@@ -360,13 +439,16 @@ public class GameController implements Initializable {
         hyperLink.setFont(Font.font("Consolas", FontWeight.BOLD, 24));
          */
         Label button = new Label();
-        button.setText(text);
+        button.setText(parseText(text));
         //button.setEditable(false);
         button.getStyleClass().add("textlink");
         button.setFocusTraversable(false);
         button.setBackground(Background.EMPTY);
         button.setWrapText(true);
+        button.setTextAlignment(TextAlignment.JUSTIFY);
         button.prefWidthProperty().bind(gamePanel.widthProperty());
+        button.setPrefHeight(Control.USE_COMPUTED_SIZE);
+        button.requestLayout();
 
         //button.prefWidthProperty().bind(gamePanel.prefWidthProperty());
         button.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -611,8 +693,7 @@ public class GameController implements Initializable {
         }
 
     }
-    
-    
+
     public void startGame(World world) {
         this.world = world;
         processGameEvent(world.getCurrentEvent());
@@ -643,7 +724,6 @@ public class GameController implements Initializable {
         diaryPageImage.setImage(images.getImage("diary_page_without_border_0"));
         diaryImage.setImage(images.getImage("diary_page_0"));
 
-        
         mediaPane1.scaleXProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
