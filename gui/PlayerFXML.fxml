@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.media.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane fx:id="mainPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.PlayerFXMLController">
+   <children>
+      <BorderPane fx:id="gameContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0">
+         <left>
+            <AnchorPane fx:id="mediaPane" BorderPane.alignment="CENTER_LEFT">
+               <children>
+                  <ImageView fx:id="diaryImage" fitHeight="370.0" fitWidth="220.0" pickOnBounds="true">
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                     <image>
+                        <Image url="@../resources/diary_page_0.png" />
+                     </image>
+                  </ImageView>
+                  <MediaView fx:id="gameMedia" fitHeight="350.0" fitWidth="200.0" visible="false" />
+                  <ImageView fx:id="gameImage" fitHeight="330.0" fitWidth="180.0" pickOnBounds="true">
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+                  <AnchorPane fx:id="mediaPane1" visible="false">
+                     <children>
+                        <ImageView fx:id="diaryPageImage" fitHeight="370.0" fitWidth="220.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../resources/diary_page_without_border_0.png" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                        </ImageView>
+                        <ImageView fx:id="fakeGameImage" fitHeight="350.0" fitWidth="200.0" pickOnBounds="true">
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </left>
+         <top>
+            <Label alignment="TOP_LEFT" contentDisplay="RIGHT" focusTraversable="false" prefHeight="12.0" style="-fx-background-color: transparent;" text="Press F11 to Toggle Fullscreen" textFill="#b5b5b5" BorderPane.alignment="TOP_LEFT" />
+         </top>
+         <right>
+            <VBox fx:id="gamePane" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="15.0" BorderPane.alignment="CENTER_RIGHT">
+               <children>
+                  <TextField fx:id="playerNameField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="72.0" prefWidth="346.0" promptText="ENTER YOUR CHARACTER'S NAME">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </TextField>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: khaki;" text="Your character is a..." textAlignment="CENTER">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <HBox alignment="CENTER" spacing="20.0">
+                     <children>
+                        <RadioButton fx:id="playerMale" mnemonicParsing="false" selected="true" style="-fx-text-fill: khaki;" text="Male">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="playerGender" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="playerFemale" mnemonicParsing="false" style="-fx-text-fill: khaki;" text="Female" toggleGroup="$playerGender" />
+                     </children>
+                  </HBox>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: khaki;" text="Your character has a loving..." textAlignment="CENTER">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <HBox alignment="CENTER" spacing="20.0">
+                     <children>
+                        <RadioButton fx:id="spouseMale" mnemonicParsing="false" style="-fx-text-fill: khaki;" text="Husband">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="spouseGender" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="spouseFemale" mnemonicParsing="false" selected="true" style="-fx-text-fill: khaki;" text="Wife" toggleGroup="$spouseGender" />
+                     </children>
+                  </HBox>
+                  <Button fx:id="enterButton" alignment="CENTER" defaultButton="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#startGame" style="-fx-text-fill: khaki; -fx-background-color: #222222; -fx-border-radius: 20;" text="BEGIN" textAlignment="CENTER">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </BorderPane.margin>
+            </VBox>
+         </right>
+      </BorderPane>
+   </children>
+</StackPane>

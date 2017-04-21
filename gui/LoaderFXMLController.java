@@ -6,6 +6,7 @@
 package gui;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +16,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import sql.SQLDatabaseManager;
+import sql.StorySQLLoader;
+import world.Event;
+import world.Player;
+import world.World;
 
 /**
  * FXML Controller class
@@ -28,6 +33,8 @@ public class LoaderFXMLController implements Initializable {
     @FXML
     private Label loadingStatus;
 
+    private Player player;
+
     private void setGUIText(Label label, String text) {
         if (!Platform.isFxApplicationThread()) {
             Platform.runLater(new Runnable() {
@@ -39,6 +46,20 @@ public class LoaderFXMLController implements Initializable {
             return;
         }
         label.setText(text);
+    }
+
+    /**
+     * @return the player
+     */
+    public Player getPlayer() {
+        return player;
+    }
+
+    /**
+     * @param player the player to set
+     */
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     private class LoadingTimer extends AnimationTimer {
@@ -70,9 +91,11 @@ public class LoaderFXMLController implements Initializable {
         }
 
     }
-    
-    private void loadGame() {
-        GuiLoader.getSingleton().loadGame();
+
+    private void loadGame(Event gameRoot) {
+
+        World world = new World(this.getPlayer(), gameRoot);
+        GuiLoader.getSingleton().loadGame(world);
     }
 
     /**
@@ -97,19 +120,27 @@ public class LoaderFXMLController implements Initializable {
                 setGUIText(loadingStatus, "Extracting audio");
                 AudioController.get();
                 setGUIText(loadingStatus, "Building story tree");
+                /*
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(LoaderFXMLController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                Platform.runLater(new Runnable(){
-                    @Override
-                    public void run() {
-                        timer.stop();
-                        loadGame();
-                    }
-                    
-                });
+                 */
+                StorySQLLoader loader = new StorySQLLoader();
+                try {
+                    Event root = loader.loadDB();
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            timer.stop();
+                            loadGame(root);
+                        }
+                    });
+                } catch (SQLException ex) {
+                    setGUIText(loadingStatus, "An error occured: " + 
+                            ex.getMessage());
+                }
 
             }
         });

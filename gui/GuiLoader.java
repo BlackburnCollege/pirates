@@ -29,6 +29,8 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import world.Player;
+import world.World;
 
 /**
  *
@@ -48,7 +50,7 @@ public class GuiLoader extends Application {
     private Stage mainStage;
     private static GuiLoader singleton;
 
-    public void loadGame() {
+    public void loadGame(World world) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("GameFXML.fxml"));
             Parent root = loader.load();
@@ -60,6 +62,24 @@ public class GuiLoader extends Application {
             String css = this.getClass().getResource("GuiStyle.css").toExternalForm();
             scene.getStylesheets().add(css);
             mainStage.setScene(scene);
+            controller.startGame(world);
+        } catch (IOException ex) {
+            Logger.getLogger(GuiLoader.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void showLoadingScreen(Player player) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("LoaderFXML.fxml"));
+            Parent root = loader.load();
+            LoaderFXMLController controller = loader.getController();
+            controller.setPlayer(player);
+            Scene scene = mainStage.getScene();
+            scene.setRoot(root);
+            
+            String css = this.getClass().getResource("GuiStyle.css").toExternalForm();
+            scene.getStylesheets().add(css);
+            mainStage.setScene(scene);
         } catch (IOException ex) {
             Logger.getLogger(GuiLoader.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -68,21 +88,24 @@ public class GuiLoader extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         stage.initStyle(StageStyle.UNIFIED);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("LoaderFXML.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("PlayerFXML.fxml"));
         Parent root = loader.load();
 
+ 
+        
         Scene scene = new Scene(root);
         String css = this.getClass().getResource("GuiStyle.css").toExternalForm();
         scene.getStylesheets().add(css);
 
         stage.setScene(scene);
         stage.setResizable(false);
-        
+
         stage.setIconified(false);
+
         
         stage.setWidth(800);
         stage.setHeight(600);
-        
+
         stage.setFullScreen(true);
         stage.setFullScreenExitKeyCombination(KeyCombination.keyCombination("F11"));
         stage.setFullScreenExitHint("");

@@ -182,11 +182,11 @@ public class GameController implements Initializable {
                 } else if (playerMatcher.find()) {
                     texts.add(makeTextObject(world.getPlayer().getName()));
                 } else if (spouseMatcher.find()) {
-                    texts.add(makeTextObject(world.getSpouseName()));
+                    texts.add(makeTextObject(world.getPlayer().getSpouseName()));
                 } else if (spousePronounMatcher.find()) {
-                    texts.add(makeTextObject(world.getSpousePronoun()));
+                    texts.add(makeTextObject(world.getPlayer().getSpousePronoun()));
                 } else if (spouseTitleMatcher.find()) {
-                    texts.add(makeTextObject(world.getSpouseMaritalTitle()));
+                    texts.add(makeTextObject(world.getPlayer().getSpouseMaritalTitle()));
                 } else {
                     texts.add(makeTextObject(special));
                 }
@@ -594,8 +594,9 @@ public class GameController implements Initializable {
         //gameImage.setImage(picture);
         if (picture == null) {
             picture = gameImage.getImage(); // use last image
+        } else {
+            changeImage(picture);
         }
-        changeImage(picture);
 
         addDividerToDisplay();
 
@@ -610,10 +611,15 @@ public class GameController implements Initializable {
         }
 
     }
+    
+    
+    public void startGame(World world) {
+        this.world = world;
+        processGameEvent(world.getCurrentEvent());
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.world = new World("Player");
 
         // close challenge pane
         this.challengePane.setDisable(true);
@@ -651,7 +657,6 @@ public class GameController implements Initializable {
         setupInventoryButton();
         setupExitButton();
         buildPuzzleControllerMappings();
-        processGameEvent(world.getCurrentEvent());
     }
 
     public void changeImage(Image image) {
