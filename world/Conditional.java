@@ -32,12 +32,19 @@ public class Conditional extends ACEObject {
         this(flags, flagName, value ? 1 : 0);
     }
     
-    public boolean checkCondition() {
-        return flags.getOrDefault(this.getFlagName(), 0) == this.getValue();
+    public boolean checkCondition(HashMap<String, Integer> flags) {
+        System.out.println("CHECKING CONDITION: " + this.getFlagName());
+        System.out.println(this.getValue());
+        System.out.println(flags.getOrDefault(this.getFlagName(), 0) == this.getValue());
+        return (flags.getOrDefault(this.getFlagName(), 0) == this.getValue());
     };
 
-    public void setCondition() {
+    public void setCondition(HashMap<String, Integer> flags) {
+        System.out.println("SETTING CONDITION: " + this.getFlagName());
+        System.out.println(this.getValue());
+        System.out.println(flags.getOrDefault(this.getFlagName(), 0));
         flags.put(this.getFlagName(), this.getValue());
+        System.out.println(flags.getOrDefault(this.getFlagName(), 0));
     }
 
     /**
@@ -66,6 +73,20 @@ public class Conditional extends ACEObject {
      */
     public void setValue(int value) {
         this.value = value;
+    }
+
+    /**
+     * @return the flags
+     */
+    public HashMap<String, Integer> getFlags() {
+        return flags;
+    }
+
+    /**
+     * @param flags the flags to set
+     */
+    public void setFlags(HashMap<String, Integer> flags) {
+        this.flags = flags;
     }
         
     

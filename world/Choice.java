@@ -2,6 +2,7 @@ package world;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  *
@@ -39,9 +40,9 @@ public class Choice extends ACEObject {
         this.conditions = conditionals;
     }
     
-    public boolean checkConditions() {
+    public boolean checkConditions(HashMap<String, Integer> flags) {
         for (Conditional c : conditions) {
-            if (!c.checkCondition()) {
+            if (!c.checkCondition(flags)) {
                 return false;
             }
         }

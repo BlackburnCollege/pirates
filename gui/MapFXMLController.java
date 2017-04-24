@@ -105,7 +105,7 @@ public class MapFXMLController extends ChallengeController implements Initializa
             englishFragmentLabel.setStrikethrough(true);
             piecesFound++;
         }
-        if (!mapPiecesFound[1]) {
+        if (mapPiecesFound[1]) {
             //spanishFragmentLabel.getStyleClass().add(strikethrough);
             spanishFragmentLabel.setStrikethrough(true);
             piecesFound++;

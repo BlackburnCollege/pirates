@@ -8,7 +8,7 @@ fisherman, and soldiers. As you dock $SHIP_NAME$ a Lieutenant flanked by two gua
 INSERT INTO choice(id, eventid, text, actionid) VALUES (101, 100, 'next', 102);
 INSERT INTO choice(id, eventid, text, actionid) VALUES (295, 100, 'next', 1500);
 INSERT INTO conditional(id, attachedid, flag, flagstate) VALUES (293, 101, 'mappiece1found', 0);
-INSERT INTO conditional(id, attachedid, flag, flagstate) VALUES (294, 102, 'mappiece1found', 1);
+INSERT INTO conditional(id, attachedid, flag, flagstate) VALUES (294, 295, 'mappiece1found', 1);
 
 INSERT INTO actions(id) VALUES (102);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (102, 103, 0);
@@ -179,7 +179,7 @@ INSERT INTO event(id, text, music) VALUES (208, 'You successfully open the safe 
 INSERT INTO event(id, text, music) VALUES (207, 'You fail to crack the safe. Frustrated you look around and spot some tools inside the desk and force your way inside the safe. "Safe cracking indeed!" You laugh to yourself as the old man covers his face with his palm.', 'LIVING_VOYAGE');
   INSERT INTO choice(id, eventid, text, actionid) VALUES (210, 207, 'next', 213);
   INSERT INTO actions(id) VALUES (213);
-  INSERT INTO conditional(id, attachedid, flag, flagstate) VALUES (213, 212, 'mappiece1found', 1);
+  INSERT INTO conditional(id, attachedid, flag, flagstate) VALUES (215, 213, 'mappiece1found', 1);
   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (213, 220, 0);  
 
 

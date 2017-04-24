@@ -2,6 +2,7 @@ package world;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  *
@@ -159,9 +160,11 @@ public class Action extends ACEObject {
         return this;
     }
 
-    public void doConditionalModifiers() {
+    public void doConditionalModifiers(HashMap<String, Integer> flags) {
+        System.out.println("Doing modifiers for action " + this.getID());
         for (Conditional c : this.modifiers) {
-            c.setCondition();
+            System.out.println("Setting condition for condition " + c.getID());
+            c.setCondition(flags);
         }
     }
     

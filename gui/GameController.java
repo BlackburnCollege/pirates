@@ -625,7 +625,7 @@ public class GameController implements Initializable {
             addTextToDisplay(action.getText());
 
             Label next = makeHyperlink("next");
-            action.doConditionalModifiers();
+            action.doConditionalModifiers(this.world.getStoryFlags());
             next.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
@@ -646,6 +646,7 @@ public class GameController implements Initializable {
             loadChallenge(action);
             //processGameEvent(action.getEvents()[action.getDefaultEventIndex()]);
         } else {
+            action.doConditionalModifiers(this.world.getStoryFlags());
             processGameEvent(action.getEvents()[action.getDefaultEventIndex()]);
         }
     }
@@ -683,7 +684,8 @@ public class GameController implements Initializable {
         addDividerToDisplay();
 
         for (Choice c : event.getChoices()) {
-            if (c.checkConditions()) {
+            if (c.checkConditions(this.world.getStoryFlags())) {
+                System.out.println("Displaying " + c.getID() + " " + c.getText());
                 addChoiceToDisplay(c);
             }
         }
