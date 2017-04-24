@@ -6,6 +6,10 @@ INSERT INTO event (id, text, backgroundname, music) VALUES (100, 'After a few da
 You sail past warships bearing an english crest as they eye your ship. As you sail into the port of the island you can see it’s full of merchants, 
 fisherman, and soldiers. As you dock $SHIP_NAME$ a Lieutenant flanked by two guards approaches you.','english_island_0', 'CRUSADE');
 INSERT INTO choice(id, eventid, text, actionid) VALUES (101, 100, 'next', 102);
+INSERT INTO choice(id, eventid, text, actionid) VALUES (295, 100, 'next', 1500);
+INSERT INTO conditional(id, attachedid, flag, flagstate) VALUES (293, 101, 'mappiece1found', 0);
+INSERT INTO conditional(id, attachedid, flag, flagstate) VALUES (294, 102, 'mappiece1found', 1);
+
 INSERT INTO actions(id) VALUES (102);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (102, 103, 0);
 
@@ -90,9 +94,9 @@ INSERT INTO event(id, text, music) VALUES (147, 'The town guards burst in as you
   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (152, 190, 0);  -- jump to 150
 
 INSERT INTO event(id, text, music) VALUES (148, 'The Sailor throws one final punch that throws you to the ground. You wake up sometime later in jail.', 'LIVING_VOYAGE');
-  INSERT INTO choice(id, eventid, text, actionid) VALUES (150, 147, 'next', 152);
-  INSERT INTO actions(id) VALUES (152);
-  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (152, 190, 0);  -- jump to 150
+  INSERT INTO choice(id, eventid, text, actionid) VALUES (150, 147, 'next', 153);
+  INSERT INTO actions(id) VALUES (153);
+  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (153, 190, 0);  -- jump to 150
 
 ------------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------DOCKS---------------------------------------------------------
@@ -130,9 +134,9 @@ INSERT INTO event(id, text, music) VALUES (177, 'As the thief falls to the groun
   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (182, 190, 0);  -- jump to 190
 
 INSERT INTO event(id, text, music) VALUES (178, 'The Thief knocks you out and sprints off. The Town guard spots you unconscious in the alley and drags you to jail assuming that you’re drunk.', 'LIVING_VOYAGE');
-  INSERT INTO choice(id, eventid, text, actionid) VALUES (180, 177, 'next', 182);
-  INSERT INTO actions(id) VALUES (182);
-  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (182, 190, 0);  -- jump to 190
+  INSERT INTO choice(id, eventid, text, actionid) VALUES (180, 177, 'next', 183);
+  INSERT INTO actions(id) VALUES (183);
+  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (183, 190, 0);  -- jump to 190
 
 ---------------------------------------------------------------------JAIL----------------------------------------------------------
 INSERT INTO event(id, text) VALUES (190, 'You wake up in a dusty cell and sigh and chuckle to yourself as you realize where you are. “So much for keeping a low profile” you say to yourself. You look around your new surroundings. You see a young guard reading the journal from your bag with enthusiasm. You also spot a decrepit old man in the corner of your cell.');
@@ -168,13 +172,15 @@ insert into challenge(challengeid, challengename, challengetype) values (202, 's
 INSERT INTO event(id, text, music) VALUES (208, 'You successfully open the safe and spot some gold and the map piece you’ve been hearing so much about. You grab the map piece and gold and lock the safe. You leave the jail and head back to the Docks.', 'LIVING_VOYAGE');
   INSERT INTO choice(id, eventid, text, actionid) VALUES (211, 208, 'next', 212);
   INSERT INTO actions(id) VALUES (212);
+  INSERT INTO conditional(id, attachedid, flag, flagstate) VALUES (214, 212, 'mappiece1found', 1);
   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (212, 220, 0);  
 
 
 INSERT INTO event(id, text, music) VALUES (207, 'You fail to crack the safe. Frustrated you look around and spot some tools inside the desk and force your way inside the safe. "Safe cracking indeed!" You laugh to yourself as the old man covers his face with his palm.', 'LIVING_VOYAGE');
-  INSERT INTO choice(id, eventid, text, actionid) VALUES (210, 207, 'next', 212);
-  INSERT INTO actions(id) VALUES (212);
-  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (212, 220, 0);  
+  INSERT INTO choice(id, eventid, text, actionid) VALUES (210, 207, 'next', 213);
+  INSERT INTO actions(id) VALUES (213);
+  INSERT INTO conditional(id, attachedid, flag, flagstate) VALUES (213, 212, 'mappiece1found', 1);
+  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (213, 220, 0);  
 
 
 INSERT INTO event(id, text) VALUES (220, 'As you walk back towards $SHIP_NAME$ you spot your crew finishing loading up some supplies. Your first mate meets you “We acquired those supplies ye asked us to get Cap’n, are we ready to weigh anchor?” You nod at him as the Dockmaster approaches you.');
@@ -188,16 +194,16 @@ INSERT INTO event(id, text) VALUES (223, 'The Lieutenant states “I hope you we
 -- Choice 1
   INSERT INTO choice(id, eventid, text, actionid) VALUES (224, 223, 'You sigh and say “Of course I was always going to pay your tax.” You toss him some of the gold you collected from the jail.', 225);
   INSERT INTO actions(id) VALUES (225);
-  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (225, 226, 0);  -- jump to 111
+  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (225, 250, 0);  -- jump to 111
 --
 -- Choice 2
   INSERT INTO choice(id, eventid, text, actionid) VALUES (226, 223, 'You Laugh and whistle to your crew. You and your crew push the guards into the bay and jump onto your ship. “I ain’t giving no Redcoat my money! Give the greedy old King my regards would ye?” ', 227);
   INSERT INTO actions(id) VALUES (227);
-  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (227, 226, 0);  -- jump to 111
+  INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (227, 250, 0);  -- jump to 111
 
-INSERT INTO event(id, text) VALUES (226, '"Let’s sail lads!"');
+INSERT INTO event(id, text) VALUES (250, '"Let’s sail lads!"');
 
-insert into choice(id, eventid, text, actionid) values (227, 226, 'set sail', 1500);
+insert into choice(id, eventid, text, actionid) values (240, 250, 'set sail', 1500);
 
 /*
 
