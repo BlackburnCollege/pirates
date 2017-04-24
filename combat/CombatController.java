@@ -18,6 +18,7 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import sql.EntitySQLLoader;
+import world.World;
 
 /**
  *
@@ -107,12 +108,13 @@ public class CombatController extends ChallengeController
         String nameOfChallenger = this.getChallengeInformation();
         EntitySQLLoader load;
 
-        load = new EntitySQLLoader("Demo Drew");
+        load = new EntitySQLLoader("PLAYER");
         
         
+        String playerName = this.getWorld().getPlayer().getName();
         
-
-        CombatPlayer player = new CombatPlayer(load.getName(), load.getHealth(), load.getMeleeModifier(), load.getRangedModifier(), load.getVerbalModifier(), load.isInsultImmune());
+        
+        CombatPlayer player = new CombatPlayer(playerName, load.getHealth(), load.getMeleeModifier(), load.getRangedModifier(), load.getVerbalModifier(), load.isInsultImmune());
 
         enemyImage.setImage(images.getImage(nameOfChallenger));
         Image enemyBackground = images.getImage(nameOfChallenger + "_background");
