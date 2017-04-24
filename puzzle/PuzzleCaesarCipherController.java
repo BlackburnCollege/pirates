@@ -13,7 +13,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -21,8 +20,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.media.MediaPlayer;
 
 /**
+ * This class defines the Controller that mediates between the Puzzle object model and the Puzzle GUI
  *
  * @author Drew Hans
+ * @author Lucas Burdell
  */
 public class PuzzleCaesarCipherController extends ChallengeController implements Initializable {
 
@@ -47,7 +48,7 @@ public class PuzzleCaesarCipherController extends ChallengeController implements
     private PuzzleCaesarCipher puzzle;  // the PuzzleObject
 
     private final ImageController images = ImageController.get();
-    
+
     private int rotateOffset = 166;
 
     /**
@@ -57,15 +58,9 @@ public class PuzzleCaesarCipherController extends ChallengeController implements
     public void initialize(URL location, ResourceBundle resources) {
         this.puzzle = new PuzzleCaesarCipher(5);
 
-        
-        //this.decoderBackground.fitWidthProperty().bind(gamePane.prefWidthProperty());
-        //this.decoderBackground.fitHeightProperty().bind(gamePane.prefHeightProperty());
         this.decoderBackground.setImage(images.getImage(this.puzzle.getDecoderOuterLocation()));
 
-        //this.decoder.fitWidthProperty().bind(gamePane.prefWidthProperty());
-        //this.decoder.fitHeightProperty().bind(gamePane.prefHeightProperty());
         this.decoder.setImage(images.getImage(this.puzzle.getDecoderInnerLocation()));
-        
 
         this.decoderKey.setText(Integer.toString(this.puzzle.getCurrentKey()));
 
@@ -80,8 +75,7 @@ public class PuzzleCaesarCipherController extends ChallengeController implements
     }
 
     /**
-     * checkSolution method interacts with ChallengeController superclass
-     * through finishChallenge method
+     * checkSolution method interacts with ChallengeController superclass through finishChallenge method
      */
     private void checkSolution() {
         System.out.println(puzzle.getCurrentKey());
@@ -113,7 +107,7 @@ public class PuzzleCaesarCipherController extends ChallengeController implements
         }
 
         // update the GUI - rotate the inner decoder image
-        this.decoderBackground.setRotate((puzzle.getCurrentKey() / 26.0) * - 360.0 + rotateOffset);
+        this.decoderBackground.setRotate((puzzle.getCurrentKey() / 26.0) * -360.0 + rotateOffset);
 
         // play the appropriate sound (determined by the PuzzleObject)
         AudioController.get().playSound(this.puzzle.getSound());
@@ -134,12 +128,10 @@ public class PuzzleCaesarCipherController extends ChallengeController implements
         public void handle(KeyEvent event) {
             onKeyEvent(event);
         }
-
     };
 
     @Override
     public void onChallengeLoaded() {
-
     }
 
     @Override

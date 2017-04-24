@@ -3,14 +3,15 @@ package puzzle;
 import gui.Sound;
 
 /**
+ * This class defines the PuzzleCaesarCipher object subclass of PuzzleModel.
  *
  * @author Drew Hans
  */
 public class PuzzleCaesarCipher extends PuzzleModel {
 
     /**
-     * private modifier restricts other programs, subclasses in this package,
-     * and different packages from accessing these variables directly
+     * private modifier restricts other programs, subclasses in this package, and different packages from accessing
+     * these variables directly
      */
     private int correctKey;
     private int currentKey;
@@ -81,23 +82,21 @@ public class PuzzleCaesarCipher extends PuzzleModel {
     }
 
     /**
-     * private modifier restricts other programs, subclasses in this package,
-     * and different packages from accessing this method directly
+     * private modifier restricts other programs, subclasses in this package, and different packages from accessing this
+     * method directly
      *
-     * onTurn looks at the class variables values and decides which sound to set
-     * for the controller
+     * onTurn looks at the class variables values and decides which sound to set for the controller
      */
     private void onTurn() {
         this.setSound(this.soundClickLocation);
-        
+
         if (this.correctKey == this.currentKey) {
             this.setCompleted(); // set puzzle status to solved
         }
     }
 
     /**
-     * turnClockwise is called by the controller when the player turns the
-     * decoder clockwise
+     * turnClockwise is called by the controller when the player turns the decoder clockwise
      */
     public void turnClockwise() {
         if (this.currentKey == 0) {
@@ -109,8 +108,7 @@ public class PuzzleCaesarCipher extends PuzzleModel {
     }
 
     /**
-     * turnCounterClockwise is called by the controller when the player turns
-     * the decoder counterclockwise
+     * turnCounterClockwise is called by the controller when the player turns the decoder counterclockwise
      */
     public void turnCounterClockwise() {
         if (this.currentKey == 25) {

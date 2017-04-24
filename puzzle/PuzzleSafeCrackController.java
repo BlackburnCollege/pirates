@@ -19,6 +19,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.media.MediaPlayer;
 
 /**
+ * This class defines the Controller that mediates between the Puzzle object model and the Puzzle GUI
  *
  * @author Drew Hans
  * @author Lucas Burdell
@@ -69,14 +70,13 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
                 } else {
                     PuzzleSafeCrackController.this.finishChallenge(ChallengeStatus.LOSS);
                 }
-                
+
             }
         });
     }
 
     /**
-     * checkSolution method interacts with ChallengeController superclass
-     * through finishChallenge method
+     * checkSolution method interacts with ChallengeController superclass through finishChallenge method
      */
     private void checkSolution() {
         System.out.println(puzzle.getCurrentNum());
@@ -121,6 +121,9 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
     private void onMouseEvent(MouseEvent event) {
     }
 
+    /**
+     * EventHandler calls onKeyEvent when it detects a KeyEvent
+     */
     private EventHandler keyListener = new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
@@ -131,7 +134,6 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
 
     @Override
     public void onChallengeLoaded() {
-
     }
 
     @Override

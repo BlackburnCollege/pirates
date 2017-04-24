@@ -24,14 +24,12 @@ import javafx.scene.layout.BackgroundSize;
 import puzzle.PuzzleFish.Fish;
 
 /**
+ * This class defines the Controller that mediates between the Puzzle object model and the Puzzle GUI
+ *
+ * @author Jessica Cramer
  * @author Lucas Burdell
  */
 public class PuzzleFishController extends ChallengeController implements Initializable {
-
-    public static final int TIME_TO_FISH = 10;
-
-    private final ImageController images = ImageController.get();
-    private Image fishImage = images.getImage("fish");
 
     @FXML
     public Pane gamePane;
@@ -39,18 +37,42 @@ public class PuzzleFishController extends ChallengeController implements Initial
     @FXML
     private Label timerLabel;
 
+    public static final int TIME_TO_FISH = 10;
+
+    private final ImageController images = ImageController.get();
+    private Image fishImage = images.getImage("fish");
+
     private FishingTimer timer;
 
     private PuzzleFish fishPuzzle = new PuzzleFish();
 
+    /**
+     * initialize method
+     */
     @Override
-    public void setupListeners(Scene scene) {
+    public void initialize(URL location, ResourceBundle resources) {
 
-    }
+        //backgrounds are a pain to set sometimes
+        //there's probably a much easier way to do this
+        gamePane.setBackground(new Background(
+                new BackgroundImage(
+                        images.getImage("fishing_background"),
+                        BackgroundRepeat.NO_REPEAT,
+                        BackgroundRepeat.NO_REPEAT,
+                        BackgroundPosition.CENTER,
+                        new BackgroundSize(1, 1, true, true, true, true)
+                )
+        ));
 
-    @Override
-    public void teardownListeners(Scene scene) {
+        // make fish
+        for (Fish fish : fishPuzzle.getFishes()) {
+            ImageView fishView = buildFishView(fish);
+            gamePane.getChildren().add(fishView);
+        }
 
+        // make and start timer
+        timer = new FishingTimer(TIME_TO_FISH);
+        timer.start();
     }
 
     // Timer for puzzle timeout
@@ -82,13 +104,6 @@ public class PuzzleFishController extends ChallengeController implements Initial
                 this.stop();
             }
         }
-    }
-
-    @Override
-    public void onChallengeLoaded() {
-        // do nothing, we don't need any info from the challenge
-        // I forced this method to be overriden because the combat team
-        // needed extra info from the Challenge story model object
     }
 
     //check if we caught them all
@@ -143,28 +158,19 @@ public class PuzzleFishController extends ChallengeController implements Initial
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void onChallengeLoaded() {
+        // do nothing, we don't need any info from the challenge
+        // I forced this method to be overriden because the combat team
+        // needed extra info from the Challenge story model object
+    }
 
-        //backgrounds are a pain to set sometimes
-        //there's probably a much easier way to do this
-        gamePane.setBackground(new Background(
-                new BackgroundImage(
-                        images.getImage("fishing_background"),
-                        BackgroundRepeat.NO_REPEAT,
-                        BackgroundRepeat.NO_REPEAT,
-                        BackgroundPosition.CENTER,
-                        new BackgroundSize(1, 1, true, true, true, true)
-                )
-        ));
+    @Override
+    public void setupListeners(Scene scene) {
 
-        // make fish
-        for (Fish fish : fishPuzzle.getFishes()) {
-            ImageView fishView = buildFishView(fish);
-            gamePane.getChildren().add(fishView);
-        }
+    }
 
-        // make and start timer
-        timer = new FishingTimer(TIME_TO_FISH);
-        timer.start();
+    @Override
+    public void teardownListeners(Scene scene) {
+
     }
 }

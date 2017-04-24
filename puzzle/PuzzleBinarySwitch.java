@@ -3,20 +3,22 @@ package puzzle;
 import gui.Sound;
 
 /**
+ * This class defines the PuzzleBinarySwitch object subclass of PuzzleModel.
  *
  * @author Drew Hans
  */
 public class PuzzleBinarySwitch extends PuzzleModel {
 
     /**
-     * private modifier restricts other programs, subclasses in this package,
-     * and different packages from accessing these variables directly
+     * private modifier restricts other programs, subclasses in this package, and different packages from accessing
+     * these variables directly
      */
     private boolean[] correctSwitchPositions;
     private boolean[] currentSwitchPositions;
     private int doorClue;
 
     // PuzzleBinarySwitch resource locations
+    private final String doorBackgroundLocation = "puzzlebinaryswitchDoor";
     private final String leverBackgroundLocation = "lever_base_0";
     private final String leverLocation = "lever_0";
     private final Sound soundLeverPullLocation = Sound.CLICK;
@@ -93,6 +95,13 @@ public class PuzzleBinarySwitch extends PuzzleModel {
     }
 
     /**
+     * @return the String location of the door background
+     */
+    public String getDoorBackgroundLocation() {
+        return this.doorBackgroundLocation;
+    }
+
+    /**
      * @return the String location of the lever background
      */
     public String getLeverBackgroundLocation() {
@@ -107,11 +116,10 @@ public class PuzzleBinarySwitch extends PuzzleModel {
     }
 
     /**
-     * private modifier restricts other programs, subclasses in this package,
-     * and different packages from accessing this method directly
+     * private modifier restricts other programs, subclasses in this package, and different packages from accessing this
+     * method directly
      *
-     * onPull looks at the class variables values and decides which text to set
-     * for the controller
+     * onPull looks at the class variables values and decides which text to set for the controller
      */
     private void onPull() {
         if (this.correctSwitchPositions[0] == this.currentSwitchPositions[0]
@@ -125,8 +133,7 @@ public class PuzzleBinarySwitch extends PuzzleModel {
     }
 
     /**
-     * pullLeftmost is called by the controller when the player chooses to pull
-     * the leftmost lever
+     * pullLeftmost is called by the controller when the player chooses to pull the leftmost lever
      */
     public void pullLeftmost() {
         this.currentSwitchPositions[0] = !this.currentSwitchPositions[0];
@@ -134,8 +141,7 @@ public class PuzzleBinarySwitch extends PuzzleModel {
     }
 
     /**
-     * pullMiddle is called by the controller when the player chooses to pull
-     * the middle lever
+     * pullMiddle is called by the controller when the player chooses to pull the middle lever
      */
     public void pullMiddle() {
         this.currentSwitchPositions[1] = !this.currentSwitchPositions[1];
@@ -143,8 +149,7 @@ public class PuzzleBinarySwitch extends PuzzleModel {
     }
 
     /**
-     * pullRightmost is called by the controller when the player chooses to pull
-     * the rightmost lever
+     * pullRightmost is called by the controller when the player chooses to pull the rightmost lever
      */
     public void pullRightmost() {
         this.currentSwitchPositions[2] = !this.currentSwitchPositions[2];

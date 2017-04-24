@@ -4,12 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * This class was written specifically to test certain GUI elements and ideas
- * for puzzles. do not use for production-quality fishing puzzle
+ * This class defines the PuzzleFish object subclass of PuzzleModel.
  *
- * This puzzle will build a list of Fish, which is an inner class of PuzzleFish
- * and randomly place them on a 10 by 10 grid
- *
+ * @author Jessica Cramer
  * @author lucas.burdell
  */
 public class PuzzleFish extends PuzzleModel {
@@ -24,6 +21,9 @@ public class PuzzleFish extends PuzzleModel {
     private ArrayList<Fish> fishes = new ArrayList<>();
     private int fishLeft;
 
+    /**
+     * Constructor
+     */
     public PuzzleFish() {
         for (int i = 0; i < NUMBER_OF_FISH; i++) {
             Fish fish = new Fish();
@@ -46,12 +46,39 @@ public class PuzzleFish extends PuzzleModel {
         return fishLeft;
     }
 
+    /**
+     * Method for catching a fish
+     *
+     * @param fish the Fish to catch
+     * @return true if fish caught successfully
+     */
+    public boolean catchFish(Fish fish) {
+        if (fish.isCaught()) {
+            return false;
+        }
+        if (!fishes.contains(fish)) {
+            return false;
+        }
+        fish.setCaught(true);
+        fishLeft--;
+        if (getFishLeft() <= 0) {
+            this.setCompleted();
+        }
+        return true;
+    }
+
+    /**
+     * This static inner class defines a Fish object to be used by the PuzzleFish object
+     */
     public static class Fish {
 
         private int xPos = 0;
         private int yPos = 0;
         private boolean caught = false;
 
+        /**
+         * Constructor
+         */
         public Fish() {
             xPos = RANDOM.nextInt(MAP_WIDTH);
             yPos = RANDOM.nextInt(MAP_HEIGHT);
@@ -98,27 +125,5 @@ public class PuzzleFish extends PuzzleModel {
         public void setCaught(boolean caught) {
             this.caught = caught;
         }
-
-    }
-
-    /**
-     * Method for catching a fish
-     *
-     * @param fish the Fish to catch
-     * @return true if fish caught successfully
-     */
-    public boolean catchFish(Fish fish) {
-        if (fish.isCaught()) {
-            return false;
-        }
-        if (!fishes.contains(fish)) {
-            return false;
-        }
-        fish.setCaught(true);
-        fishLeft--;
-        if (getFishLeft() <= 0) {
-            this.setCompleted();
-        }
-        return true;
     }
 }

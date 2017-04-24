@@ -15,6 +15,16 @@
             <children>
                 <StackPane prefHeight="150.0" prefWidth="200.0">
                     <children>
+                        <ImageView fx:id="door" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="doorClue" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="32.0" style="-fx-background-color: #000000;" text="0" textFill="WHITE">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </StackPane>
+                <StackPane prefHeight="150.0" prefWidth="200.0">
+                    <children>
                         <ImageView fx:id="leverLeftBackground" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="leverLeft" onKeyPressed="#onKeyEvent" onMouseClicked="#onClickedLever" pickOnBounds="true" preserveRatio="true" />
                     </children>
@@ -34,8 +44,9 @@
             </children>
         </HBox>
         <Hyperlink fx:id="leaveButton" text="LEAVE">
-         <font>
-            <Font size="48.0" />
-         </font></Hyperlink>
+            <font>
+                <Font size="48.0" />
+            </font>
+        </Hyperlink>
     </children>
 </AnchorPane>

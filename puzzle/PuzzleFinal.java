@@ -3,14 +3,15 @@ package puzzle;
 import gui.Sound;
 
 /**
+ * This class defines the PuzzleFinal object subclass of PuzzleModel.
  *
  * @author Drew Hans
  */
 public class PuzzleFinal extends PuzzleModel {
 
     /**
-     * private modifier restricts other programs, subclasses in this package,
-     * and different packages from accessing these variables directly
+     * private modifier restricts other programs, subclasses in this package, and different packages from accessing
+     * these variables directly
      */
     private char[] correctDialPositions;
     private char[] currentDialPositions;
@@ -49,34 +50,48 @@ public class PuzzleFinal extends PuzzleModel {
         this.setText("");
     }
 
+    /**
+     * @return the correctDialPositions char array
+     */
     public char[] getCorrectDialPositions() {
         return this.correctDialPositions;
     }
 
-    public char[] getCurrectDialPositions() {
+    /**
+     * @return the currentDialPositions char array
+     */
+    public char[] getCurrentDialPositions() {
         return this.currentDialPositions;
     }
 
+    /**
+     * @return the finalBackgroundLocation String
+     */
     public String getFinalBackgroundLocation() {
         return this.finalBackgroundLocation;
     }
 
+    /**
+     * @return the upButtonLocation String
+     */
     public String getUpButtonLocation() {
         return this.upButtonLocation;
     }
 
+    /**
+     * @return the downButtonLocation String
+     */
     public String getDownButtonLocation() {
         return this.downButtonLocation;
     }
 
     /**
-     * private modifier restricts other programs, subclasses in this package,
-     * and different packages from accessing this method directly
+     * private modifier restricts other programs, subclasses in this package, and different packages from accessing this
+     * method directly
      *
-     * onPull looks at the class variables values and decides which text to set
-     * for the controller
+     * onPress looks at the class variables values and decides which text to set for the controller
      */
-    private void onTurn() {
+    private void onPress() {
         if (this.correctDialPositions[0] == this.currentDialPositions[0]
                 && this.correctDialPositions[1] == this.currentDialPositions[1]
                 && this.correctDialPositions[2] == this.currentDialPositions[2]
@@ -92,8 +107,7 @@ public class PuzzleFinal extends PuzzleModel {
     }
 
     /**
-     * turnDialUp is called by the controller when the player chooses to turn
-     * the dial at dialPos up
+     * turnDialUp is called by the controller when the player chooses to turn the dial at dialPos up
      *
      * @param dialPos - the array position of dial to turn
      */
@@ -105,12 +119,11 @@ public class PuzzleFinal extends PuzzleModel {
             int charValue = this.currentDialPositions[dialPos];
             this.currentDialPositions[dialPos] = (char) (charValue + 1);
         }
-        this.onTurn();
+        this.onPress();
     }
 
     /**
-     * turnDialDown is called by the controller when the player chooses to turn
-     * dial at dialPos down
+     * turnDialDown is called by the controller when the player chooses to turn dial at dialPos down
      *
      * @param dialPos - the array position of dial to turn
      */
@@ -122,6 +135,6 @@ public class PuzzleFinal extends PuzzleModel {
             int charValue = this.currentDialPositions[dialPos];
             this.currentDialPositions[dialPos] = (char) (charValue - 1);
         }
-        this.onTurn();
+        this.onPress();
     }
 }

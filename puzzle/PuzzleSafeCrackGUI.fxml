@@ -18,8 +18,9 @@
             </children>
         </StackPane>
         <Hyperlink fx:id="leaveButton" text="LEAVE">
-         <font>
-            <Font size="36.0" />
-         </font></Hyperlink>
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Hyperlink>
     </children>
 </Pane>

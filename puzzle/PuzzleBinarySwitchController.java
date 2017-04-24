@@ -12,7 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -20,6 +20,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.media.MediaPlayer;
 
 /**
+ * This class defines the Controller that mediates between the Puzzle object model and the Puzzle GUI
  *
  * @author Drew Hans
  * @author Lucas Burdell
@@ -28,6 +29,12 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
 
     @FXML
     private Pane gamePane;
+
+    @FXML
+    private ImageView door;
+
+    @FXML
+    private Label doorClue;
 
     @FXML
     private ImageView leverLeftBackground;
@@ -63,12 +70,15 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
     public void initialize(URL location, ResourceBundle resources) {
         this.puzzle = new PuzzleBinarySwitch(false, false, true, 1);
 
+        this.door.setImage(images.getImage(this.puzzle.getDoorBackgroundLocation()));
         this.leverLeftBackground.setImage(images.getImage(this.puzzle.getLeverBackgroundLocation()));
         this.leverMiddleBackground.setImage(images.getImage(this.puzzle.getLeverBackgroundLocation()));
         this.leverRightBackground.setImage(images.getImage(this.puzzle.getLeverBackgroundLocation()));
         this.leverLeft.setImage(images.getImage((this.puzzle.getLeverLocation())));
         this.leverMiddle.setImage(images.getImage((this.puzzle.getLeverLocation())));
         this.leverRight.setImage(images.getImage((this.puzzle.getLeverLocation())));
+
+        this.doorClue.setText(Integer.toString(this.puzzle.getDoorClue()));
 
         this.gamePane.requestFocus();
 
@@ -85,8 +95,7 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
     }
 
     /**
-     * checkSolution method interacts with ChallengeController superclass
-     * through finishChallenge method
+     * checkSolution method interacts with ChallengeController superclass through finishChallenge method
      */
     private void checkSolution() {
         if (puzzle.getCompleted()) {
@@ -145,29 +154,9 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
         checkSolution();
     }
 
-    private EventHandler keyListener = new EventHandler<KeyEvent>() {
-        @Override
-        public void handle(KeyEvent event) {
-            onKeyEvent(event);
-        }
-
-    };
-
-    @Override
-    public void onChallengeLoaded() {
-
-    }
-
-    @Override
-    public void setupListeners(Scene scene) {
-        scene.setOnKeyPressed(keyListener);
-    }
-
-    @Override
-    public void teardownListeners(Scene scene) {
-        scene.onKeyPressedProperty().set(null);
-    }
-
+    /**
+     * onClickedLever method handles mouse clicks on levers
+     */
     @FXML
     private void onClickedLever(MouseEvent event) {
         if (event.getSource().equals(this.leverLeft)) {
@@ -195,4 +184,31 @@ public class PuzzleBinarySwitchController extends ChallengeController implements
         AudioController.get().playSound(this.puzzle.getSound());
         this.checkSolution();
     }
+
+    /**
+     * EventHandler calls onKeyEvent when it detects a KeyEvent
+     */
+    private EventHandler keyListener = new EventHandler<KeyEvent>() {
+        @Override
+        public void handle(KeyEvent event) {
+            onKeyEvent(event);
+        }
+
+    };
+
+    @Override
+    public void onChallengeLoaded() {
+
+    }
+
+    @Override
+    public void setupListeners(Scene scene) {
+        scene.setOnKeyPressed(keyListener);
+    }
+
+    @Override
+    public void teardownListeners(Scene scene) {
+        scene.onKeyPressedProperty().set(null);
+    }
+
 }

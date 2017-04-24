@@ -3,14 +3,15 @@ package puzzle;
 import gui.Sound;
 
 /**
+ * This class defines the PuzzleSafeCrack object subclass of PuzzleModel.
  *
- * @author Drew Hans & Lucas Burdell
+ * @author Drew Hans
  */
 public class PuzzleSafeCrack extends PuzzleModel {
 
     /**
-     * private modifier restricts other programs, subclasses in this package,
-     * and different packages from accessing these variables directly
+     * private modifier restricts other programs, subclasses in this package, and different packages from accessing
+     * these variables directly
      */
     private byte currentNum;
     private boolean[] enteredCorrect;
@@ -108,11 +109,10 @@ public class PuzzleSafeCrack extends PuzzleModel {
     }
 
     /**
-     * private modifier restricts other programs, subclasses in this package,
-     * and different packages from accessing this method directly
+     * private modifier restricts other programs, subclasses in this package, and different packages from accessing this
+     * method directly
      *
-     * onTurn looks at the class variables values and decides which sound to set
-     * for the controller
+     * onTurn looks at the class variables values and decides which sound to set for the controller
      */
     private void onTurn() {
         if (!this.enteredCorrect[0] && this.currentNum != this.safeCombination[0]) {
@@ -143,8 +143,7 @@ public class PuzzleSafeCrack extends PuzzleModel {
     }
 
     /**
-     * turnClockwise is called by the controller when the player turns the dial
-     * clockwise
+     * turnClockwise is called by the controller when the player turns the dial clockwise
      */
     public void turnClockwise() {
         if (this.currentNum == 0) {
@@ -156,8 +155,7 @@ public class PuzzleSafeCrack extends PuzzleModel {
     }
 
     /**
-     * turnCounterClockwise is called by the controller when the player turns
-     * the dial counterclockwise
+     * turnCounterClockwise is called by the controller when the player turns the dial counterclockwise
      */
     public void turnCounterClockwise() {
         if (this.currentNum == 99) {

@@ -3,14 +3,15 @@ package puzzle;
 import gui.Sound;
 
 /**
+ * This class defines the PuzzleModel object superclass.
  *
  * @author Drew Hans
  */
 public abstract class PuzzleModel {
 
     /**
-     * private modifier restricts other programs, subclasses in this package,
-     * and different packages from accessing these variables directly
+     * private modifier restricts other programs, subclasses in this package, and different packages from accessing
+     * these variables directly
      */
     private String background;
     private Sound sound;
@@ -56,8 +57,7 @@ public abstract class PuzzleModel {
     }
 
     /**
-     * no modifier restricts other programs and subclasses in different packages
-     * from accessing this method
+     * no modifier restricts other programs and subclasses in different packages from accessing this method
      *
      * final prevents the method from being overridden in subclasses
      */
@@ -66,8 +66,7 @@ public abstract class PuzzleModel {
     }
 
     /**
-     * no modifier restricts other programs and subclasses in different packages
-     * from accessing this method
+     * no modifier restricts other programs and subclasses in different packages from accessing this method
      *
      * final prevents the method from being overridden in subclasses
      */
@@ -76,8 +75,7 @@ public abstract class PuzzleModel {
     }
 
     /**
-     * no modifier restricts other programs and subclasses in different packages
-     * from accessing this method
+     * no modifier restricts other programs and subclasses in different packages from accessing this method
      *
      * final prevents the method from being overridden in subclasses
      */
@@ -86,8 +84,7 @@ public abstract class PuzzleModel {
     }
 
     /**
-     * no modifier restricts other programs and subclasses in different packages
-     * from accessing this method
+     * no modifier restricts other programs and subclasses in different packages from accessing this method
      *
      * final prevents the method from being overridden in subclasses
      */

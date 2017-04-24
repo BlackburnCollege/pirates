@@ -5,7 +5,6 @@ import gui.ChallengeController;
 import gui.ChallengeStatus;
 import gui.ImageController;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -21,8 +20,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.media.MediaPlayer;
 
 /**
+ * This class defines the Controller that mediates between the Puzzle object model and the Puzzle GUI
  *
  * @author Drew Hans
+ * @author Lucas Burdell
  */
 public class PuzzleFinalController extends ChallengeController implements Initializable {
 
@@ -133,37 +134,37 @@ public class PuzzleFinalController extends ChallengeController implements Initia
         this.dial0Background.setImage(images.getImage(this.puzzle.getFinalBackgroundLocation()));
         this.dial0upButton.setImage(images.getImage(this.puzzle.getUpButtonLocation()));
         this.dial0downButton.setImage(images.getImage(this.puzzle.getDownButtonLocation()));
-        this.dial0Text.setText(Character.toString(this.puzzle.getCurrectDialPositions()[0]));
+        this.dial0Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[0]));
 
         this.dial1Background.setImage(images.getImage(this.puzzle.getFinalBackgroundLocation()));
         this.dial1upButton.setImage(images.getImage(this.puzzle.getUpButtonLocation()));
         this.dial1downButton.setImage(images.getImage(this.puzzle.getDownButtonLocation()));
-        this.dial1Text.setText(Character.toString(this.puzzle.getCurrectDialPositions()[1]));
+        this.dial1Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[1]));
 
         this.dial2Background.setImage(images.getImage(this.puzzle.getFinalBackgroundLocation()));
         this.dial2upButton.setImage(images.getImage(this.puzzle.getUpButtonLocation()));
         this.dial2downButton.setImage(images.getImage(this.puzzle.getDownButtonLocation()));
-        this.dial2Text.setText(Character.toString(this.puzzle.getCurrectDialPositions()[2]));
+        this.dial2Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[2]));
 
         this.dial3Background.setImage(images.getImage(this.puzzle.getFinalBackgroundLocation()));
         this.dial3upButton.setImage(images.getImage(this.puzzle.getUpButtonLocation()));
         this.dial3downButton.setImage(images.getImage(this.puzzle.getDownButtonLocation()));
-        this.dial3Text.setText(Character.toString(this.puzzle.getCurrectDialPositions()[3]));
+        this.dial3Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[3]));
 
         this.dial4Background.setImage(images.getImage(this.puzzle.getFinalBackgroundLocation()));
         this.dial4upButton.setImage(images.getImage(this.puzzle.getUpButtonLocation()));
         this.dial4downButton.setImage(images.getImage(this.puzzle.getDownButtonLocation()));
-        this.dial4Text.setText(Character.toString(this.puzzle.getCurrectDialPositions()[4]));
+        this.dial4Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[4]));
 
         this.dial5Background.setImage(images.getImage(this.puzzle.getFinalBackgroundLocation()));
         this.dial5upButton.setImage(images.getImage(this.puzzle.getUpButtonLocation()));
         this.dial5downButton.setImage(images.getImage(this.puzzle.getDownButtonLocation()));
-        this.dial5Text.setText(Character.toString(this.puzzle.getCurrectDialPositions()[5]));
+        this.dial5Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[5]));
 
         this.dial6Background.setImage(images.getImage(this.puzzle.getFinalBackgroundLocation()));
         this.dial6upButton.setImage(images.getImage(this.puzzle.getUpButtonLocation()));
         this.dial6downButton.setImage(images.getImage(this.puzzle.getDownButtonLocation()));
-        this.dial6Text.setText(Character.toString(this.puzzle.getCurrectDialPositions()[6]));
+        this.dial6Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[6]));
 
         this.gamePane.requestFocus();
 
@@ -176,11 +177,10 @@ public class PuzzleFinalController extends ChallengeController implements Initia
     }
 
     /**
-     * checkSolution method interacts with ChallengeController superclass
-     * through finishChallenge method
+     * checkSolution method interacts with ChallengeController superclass through finishChallenge method
      */
     private void checkSolution() {
-        
+
         //System.out.println(Arrays.toString(puzzle.getCorrectDialPositions()));
         if (puzzle.getCompleted() == true) {
             this.finishChallenge(ChallengeStatus.WIN);
@@ -201,52 +201,55 @@ public class PuzzleFinalController extends ChallengeController implements Initia
     private void onMouseEvent(MouseEvent event) {
         if (event.getSource().equals(this.dial0upButton)) {
             puzzle.turnDialUp(0);
-            this.dial0Text.setText(Character.toString(this.puzzle.getCurrectDialPositions()[0]));
+            this.dial0Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[0]));
         } else if (event.getSource().equals(this.dial0downButton)) {
             puzzle.turnDialDown(0);
-            this.dial0Text.setText(Character.toString(this.puzzle.getCurrectDialPositions()[0]));
+            this.dial0Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[0]));
         } else if (event.getSource().equals(this.dial1upButton)) {
             puzzle.turnDialUp(1);
-            this.dial1Text.setText(Character.toString(this.puzzle.getCurrectDialPositions()[1]));
+            this.dial1Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[1]));
         } else if (event.getSource().equals(this.dial1downButton)) {
             puzzle.turnDialDown(1);
-            this.dial1Text.setText(Character.toString(this.puzzle.getCurrectDialPositions()[1]));
+            this.dial1Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[1]));
         } else if (event.getSource().equals(this.dial2upButton)) {
             puzzle.turnDialUp(2);
-            this.dial2Text.setText(Character.toString(this.puzzle.getCurrectDialPositions()[2]));
+            this.dial2Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[2]));
         } else if (event.getSource().equals(this.dial2downButton)) {
             puzzle.turnDialDown(2);
-            this.dial2Text.setText(Character.toString(this.puzzle.getCurrectDialPositions()[2]));
+            this.dial2Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[2]));
         } else if (event.getSource().equals(this.dial3upButton)) {
             puzzle.turnDialUp(3);
-            this.dial3Text.setText(Character.toString(this.puzzle.getCurrectDialPositions()[3]));
+            this.dial3Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[3]));
         } else if (event.getSource().equals(this.dial3downButton)) {
             puzzle.turnDialDown(3);
-            this.dial3Text.setText(Character.toString(this.puzzle.getCurrectDialPositions()[3]));
+            this.dial3Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[3]));
         } else if (event.getSource().equals(this.dial4upButton)) {
             puzzle.turnDialUp(4);
-            this.dial4Text.setText(Character.toString(this.puzzle.getCurrectDialPositions()[4]));
+            this.dial4Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[4]));
         } else if (event.getSource().equals(this.dial4downButton)) {
             puzzle.turnDialDown(4);
-            this.dial4Text.setText(Character.toString(this.puzzle.getCurrectDialPositions()[4]));
+            this.dial4Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[4]));
         } else if (event.getSource().equals(this.dial5upButton)) {
             puzzle.turnDialUp(5);
-            this.dial5Text.setText(Character.toString(this.puzzle.getCurrectDialPositions()[5]));
+            this.dial5Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[5]));
         } else if (event.getSource().equals(this.dial5downButton)) {
             puzzle.turnDialDown(5);
-            this.dial5Text.setText(Character.toString(this.puzzle.getCurrectDialPositions()[5]));
+            this.dial5Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[5]));
         } else if (event.getSource().equals(this.dial6upButton)) {
             puzzle.turnDialUp(6);
-            this.dial6Text.setText(Character.toString(this.puzzle.getCurrectDialPositions()[6]));
+            this.dial6Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[6]));
         } else if (event.getSource().equals(this.dial6downButton)) {
             puzzle.turnDialDown(6);
-            this.dial6Text.setText(Character.toString(this.puzzle.getCurrectDialPositions()[6]));
+            this.dial6Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[6]));
         }
 
         AudioController.get().playSound(this.puzzle.getSound());
         this.checkSolution();
     }
 
+    /**
+     * EventHandler calls onKeyEvent when it detects a KeyEvent
+     */
     private EventHandler keyListener = new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
@@ -257,7 +260,6 @@ public class PuzzleFinalController extends ChallengeController implements Initia
 
     @Override
     public void onChallengeLoaded() {
-
     }
 
     @Override
