@@ -69,7 +69,7 @@ public class Verbal implements Action {
 
             return "''" + insult + "''" + "\n";
         } else {
-            return "";
+            return "''" + insult + "''" + "\nYour opponent doesn't understand..\n";
         }
     }
 }
