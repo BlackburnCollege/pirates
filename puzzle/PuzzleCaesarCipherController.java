@@ -81,6 +81,7 @@ public class PuzzleCaesarCipherController extends ChallengeController implements
         System.out.println(puzzle.getCurrentKey());
         if (puzzle.getCompleted() == true) {
             this.finishChallenge(ChallengeStatus.WIN);
+            System.out.println("You win!");
         }
     }
 

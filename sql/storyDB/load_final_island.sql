@@ -619,9 +619,9 @@ INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1309, 1310, 
      INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1333, 1334, 0);  -- jump to 1334
 
      INSERT INTO event(id, text) VALUES (1334, 'GAME OVER - You reached the bad end.');
-     INSERT INTO choice(id, eventid, text, actionid) VALUES (1335, 1334, 'next', 1336);
-     INSERT INTO actions(id) VALUES (1336);
-     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1336, 1337, 0);  -- jump to 1337
+--     INSERT INTO choice(id, eventid, text, actionid) VALUES (1335, 1334, 'next', 1336);
+--     INSERT INTO actions(id) VALUES (1336);
+--     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1336, 1337, 0);  -- jump to 1337
 
 ----
 -- Choice 2 - Save your family.
@@ -635,9 +635,9 @@ INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1309, 1310, 
      INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1342, 1343, 0);  -- jump to 1343
 
      INSERT INTO event(id, text) VALUES (1343, 'You take a piece of gold from the room as proof that you found the treasure, shut and scramble the lock, and then prepare to return to your docked ship.');
-     INSERT INTO choice(id, eventid, text, actionid) VALUES (1344, 1343, 'next', 1345);
-     INSERT INTO actions(id) VALUES (1345);
-     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1345, 1346, 0);  -- jump to 1346
+--     INSERT INTO choice(id, eventid, text, actionid) VALUES (1344, 1343, 'next', 1345);
+--     INSERT INTO actions(id) VALUES (1345);
+--     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1345, 1346, 0);  -- jump to 1346
 ----
 ------------------------------------------------------------------------------------------------------------------------
 -- Note:  1337 should lead to GAME OVER screen and then the game should end

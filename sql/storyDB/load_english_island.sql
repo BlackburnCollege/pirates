@@ -158,16 +158,11 @@ INSERT INTO event(id, text) VALUES (196, 'You startle the young guard. “S-Sorr
 
 
 INSERT INTO event(id, text, music) VALUES (199, 'The Guard expresses his sympathy for you and says “Look I can understand your position and I can’t say I wouldn’t do the same for my family if I were in your shoes.” He looks around the jail before he looks you in the eyes and states “But I’m a member of the English Colonial Guard and I’m not allowed to tell you that part of the map you’re looking for is in our safe” he winks at you. He approaches you and unlocks your cell and says “and I certainly didn’t know you had a lockpick hidden on your person. I’m leaving you completely locked up and taking my lunch break.” He leaves the room with your journal on his desk next to the contraband safe.', 'NOTHING');
-
-insert into choice(id, eventid, text, actionid) values (200, 199, 'next' , 201);
-
+insert into choice(id, eventid, text, actionid) values (200, 199, 'Begin puzzle challenge.' , 201);
 insert into actions(id, challengeid) values (201, 202);
-
-insert into actionsevent (actionid, eventid, eventposition) values (201, 208, 1);
-
-insert into actionsevent (actionid, eventid, eventposition) values (201, 207, 0);
-
 insert into challenge(challengeid, challengename, challengetype) values (202, 'safecrack', 'puzzle');
+insert into actionsevent (actionid, eventid, eventposition) values (201, 207, 0);  -- jump to 207 on puzzle fail
+insert into actionsevent (actionid, eventid, eventposition) values (201, 208, 1);  -- jump to 208 on puzzle solve
 
 INSERT INTO event(id, text, music) VALUES (208, 'You successfully open the safe and spot some gold and the map piece you’ve been hearing so much about. You grab the map piece and gold and lock the safe. You leave the jail and head back to the Docks.', 'LIVING_VOYAGE');
   INSERT INTO choice(id, eventid, text, actionid) VALUES (211, 208, 'next', 212);

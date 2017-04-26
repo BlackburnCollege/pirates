@@ -110,6 +110,7 @@ public class PuzzleFishController extends ChallengeController implements Initial
     public void checkIfPuzzleComplete() {
         if (fishPuzzle.getCompleted()) {
             this.finishChallenge(ChallengeStatus.WIN);
+            System.out.println("You win!");
             timer.stop();
         }
     }

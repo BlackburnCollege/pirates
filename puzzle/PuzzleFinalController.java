@@ -5,6 +5,7 @@ import gui.ChallengeController;
 import gui.ChallengeStatus;
 import gui.ImageController;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -180,8 +181,7 @@ public class PuzzleFinalController extends ChallengeController implements Initia
      * checkSolution method interacts with ChallengeController superclass through finishChallenge method
      */
     private void checkSolution() {
-
-        //System.out.println(Arrays.toString(puzzle.getCorrectDialPositions()));
+        System.out.println(Arrays.toString(puzzle.getCorrectDialPositions()));
         if (puzzle.getCompleted() == true) {
             this.finishChallenge(ChallengeStatus.WIN);
             System.out.println("You win!");
