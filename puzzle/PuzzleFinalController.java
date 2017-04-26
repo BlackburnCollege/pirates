@@ -181,7 +181,7 @@ public class PuzzleFinalController extends ChallengeController implements Initia
      * checkSolution method interacts with ChallengeController superclass through finishChallenge method
      */
     private void checkSolution() {
-        System.out.println(Arrays.toString(puzzle.getCorrectDialPositions()));
+        System.out.println(Arrays.toString(puzzle.getCurrentDialPositions()));
         if (puzzle.getCompleted() == true) {
             this.finishChallenge(ChallengeStatus.WIN);
             System.out.println("You win!");
