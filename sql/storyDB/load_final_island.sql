@@ -576,7 +576,7 @@ INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1309, 1310, 
 ------------------------------------------------------------------------------------------------------------------------
 --
 -- MAJOR CHOICE!!! Save your family or abandon them!
-   INSERT INTO event(id, text) VALUES (1310 '“What am I suppose to do now?” you wonder.');
+   INSERT INTO event(id, text) VALUES (1310 '"What am I suppose to do now?" you wonder.');
 --
 -- Choice 1 - Abandon your family.
    INSERT INTO choice(id, eventid, text, actionid) VALUES (1311, 1310, 'Abandon your family.  You can buy a better one with this much gold.', 1312);
