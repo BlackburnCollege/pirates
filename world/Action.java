@@ -10,16 +10,11 @@ import java.util.HashMap;
  */
 public class Action extends ACEObject {
 
-    private ArrayList<Event> events = new ArrayList<>(5);
+    private Event[] events = new Event[15];
 
-    {
-        for (int i = 0; i < 5; i++) {
-            events.add(null);
-        }
-    }
     private String text;
     private Challenge challenge = null;
-    private ArrayList<Conditional> modifiers = new ArrayList<>(5);
+    private Conditional[] modifiers = new Conditional[15];
 
     public Action(int id) {
         super(id);
@@ -44,14 +39,14 @@ public class Action extends ACEObject {
     public Action(Event event, String text) {
         super();
         //this.events = new ArrayList<>();
-        this.events.add(event);
+        this.events[0] = event;
         this.text = text;
     }
 
     public Action(Event event, String text, Challenge challenge) {
         super();
         // this.events = new ArrayList<>();
-        this.events.add(event);
+        this.events[0] = event;
         this.text = text;
         this.challenge = challenge;
     }
@@ -88,7 +83,12 @@ public class Action extends ACEObject {
      * @return
      */
     public Action addEvent(Event event) {
-        this.events.add(event);
+        for (int i = 0; i < events.length; i++) {
+            Event event1 = events[i];
+            if (event1 == null) {
+                events[i] = event;
+            }
+        }
         return this;
     }
 
@@ -136,14 +136,14 @@ public class Action extends ACEObject {
      * @return the events
      */
     public Event[] getEvents() {
-        return events.toArray(new Event[events.size()]);
+        return events;
     }
 
     /**
      * @return the conditions
      */
     public Conditional[] getConditionals() {
-        return modifiers.toArray(new Conditional[modifiers.size()]);
+        return modifiers;
     }
 
     /**
@@ -151,29 +151,31 @@ public class Action extends ACEObject {
      * @return
      */
     public Action setConditionals(Conditional[] modifiers) {
-        this.modifiers = new ArrayList<>(Arrays.asList(modifiers));
+        this.modifiers = modifiers;
         return this;
     }
 
     public Action addConditional(Conditional modifier) {
-        this.modifiers.add(modifier);
+        for (int i = 0; i < modifiers.length; i++) {
+            Conditional modifier1 = modifiers[i];
+            if (modifier1 == null) {
+                modifiers[i] = modifier;
+            }
+        }
         return this;
     }
 
     public void doConditionalModifiers(HashMap<String, Integer> flags) {
-        System.out.println("Doing modifiers for action " + this.getID());
         for (Conditional c : this.modifiers) {
-            System.out.println("Setting condition for condition " + c.getID());
+            if (c == null) {
+                break;
+            }
             c.setCondition(flags);
         }
     }
 
     public void setEvent(Event event, int position) {
-        if (events.size() >= position) {
-            this.events.add(position, event);
-        } else {
-            this.events.set(position, event);
-        }
+        this.events[position] = event;
     }
 
 }

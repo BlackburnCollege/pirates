@@ -635,6 +635,7 @@ public class GameController implements Initializable {
                     } else {
                         musicController.playSound(Sound.CLICK);
                         processGameEvent(action.getEvents()[action.getDefaultEventIndex()]);
+                        
                     }
                 }
 
