@@ -184,6 +184,7 @@ public class PuzzleFinalController extends ChallengeController implements Initia
         //System.out.println(Arrays.toString(puzzle.getCorrectDialPositions()));
         if (puzzle.getCompleted() == true) {
             this.finishChallenge(ChallengeStatus.WIN);
+            System.out.println("You win!");
         }
     }
 
