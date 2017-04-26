@@ -580,69 +580,65 @@ INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1309, 1310, 
 --
 -- Choice 1 - Abandon your family.
    INSERT INTO choice(id, eventid, text, actionid) VALUES (1311, 1310, 'Abandon your family.  You can buy a better one with this much gold.', 1312);
-   INSERT INTO actions(id, text) VALUES (1312, '...');
+   INSERT INTO actions(id, text) VALUES (1312, 'You decide to abandon your worthless family.');
    INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1312, 1313, 0);  -- jump to 1313
 ---- Choice 1 Results - BAD END ROUTE
-     INSERT INTO event(id, text) VALUES (1313, 'You decide to abandon your worthless family.');
+     INSERT INTO event(id, text) VALUES (1313, 'You return to the ship and order most of your crew to follow you into the island.');
      INSERT INTO choice(id, eventid, text, actionid) VALUES (1314, 1313, 'next', 1315);
      INSERT INTO actions(id) VALUES (1315);
      INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1315, 1316, 0);  -- jump to 1316
 
-     INSERT INTO event(id, text) VALUES (1316, 'You return to the ship and order most of your crew to follow you into the island.');
+     INSERT INTO event(id, text) VALUES (1316, 'After arriving at the treasure room you unlock the door and order your crew to load up the ship with the treasure.');
      INSERT INTO choice(id, eventid, text, actionid) VALUES (1317, 1316, 'next', 1318);
      INSERT INTO actions(id) VALUES (1318);
      INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1318, 1319, 0);  -- jump to 1319
      
-     INSERT INTO event(id, text) VALUES (1319, 'After arriving at the treasure room you unlock the door and order your crew to load up the ship with the treasure.');
+     INSERT INTO event(id, text) VALUES (1319, 'It takes many hours but eventually your crew empties the room and stores all the treasure in the hull below the lower deck.');
      INSERT INTO choice(id, eventid, text, actionid) VALUES (1320, 1319, 'next', 1321);
      INSERT INTO actions(id) VALUES (1321);
      INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1321, 1322, 0);  -- jump to 1322
 
-     INSERT INTO event(id, text) VALUES (1322, 'It takes many hours but eventually your crew empties the room and stores all the treasure in the hull below the lower deck.');
+     INSERT INTO event(id, text) VALUES (1322, 'When you’re sure the ship is ready to leave you give the order to set sail for the Pirate Den.');
      INSERT INTO choice(id, eventid, text, actionid) VALUES (1323, 1322, 'next', 1324);
      INSERT INTO actions(id) VALUES (1324);
      INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1324, 1325, 0);  -- jump to 1325
 
-     INSERT INTO event(id, text) VALUES (1325, 'When you’re sure the ship is ready to leave you give the order to set sail for the Pirate Den.');
+     INSERT INTO event(id, text) VALUES (1325, 'Once you’re out at sea the sails catch the wind and the ship approaches top-speed.');
      INSERT INTO choice(id, eventid, text, actionid) VALUES (1326, 1325, 'next', 1327);
      INSERT INTO actions(id) VALUES (1327);
      INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1327, 1328, 0);  -- jump to 1328
 
-     INSERT INTO event(id, text) VALUES (1328, 'Once you’re out at sea the sails catch the wind and the ship approaches top-speed.');
+     INSERT INTO event(id, text) VALUES (1328, 'As the ship sails into the sunset you notice that the upper-deck is closer to the water than normal.');
      INSERT INTO choice(id, eventid, text, actionid) VALUES (1329, 1328, 'next', 1330);
      INSERT INTO actions(id) VALUES (1330);
      INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1330, 1331, 0);  -- jump to 1331
 
-     INSERT INTO event(id, text) VALUES (1331, 'As the ship sails into the sunset you notice that the upper-deck is closer to the water than normal.');
+     INSERT INTO event(id, text) VALUES (1331, 'It’s probably because of the treasure’s weight, you think to yourself.  But still, it appears to get closer and closer until finally the water spills over the deck and the ship begins to sink…');
      INSERT INTO choice(id, eventid, text, actionid) VALUES (1332, 1331, 'next', 1333);
      INSERT INTO actions(id) VALUES (1333);
      INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1333, 1334, 0);  -- jump to 1334
 
-     INSERT INTO event(id, text) VALUES (1334, 'It’s probably because of the treasure’s weight, you think to yourself.  But still, it appears to get closer and closer until finally the water spills over the deck and the ship begins to sink…');
+     INSERT INTO event(id, text) VALUES (1334, 'GAME OVER - You reached the bad end.');
      INSERT INTO choice(id, eventid, text, actionid) VALUES (1335, 1334, 'next', 1336);
      INSERT INTO actions(id) VALUES (1336);
      INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1336, 1337, 0);  -- jump to 1337
 
-     INSERT INTO event(id, text) VALUES (1337, 'GAME OVER - You reached the bad end.');
-     INSERT INTO choice(id, eventid, text, actionid) VALUES (1338, 1337, 'next', 1339);
-     INSERT INTO actions(id) VALUES (1339);
-     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1339, 1340, 0);  -- jump to 1340
 ----
 -- Choice 2 - Save your family.
-   INSERT INTO choice(id, eventid, text, actionid) VALUES (1341, 1310, 'Save your family.  No amount of gold is worth their lives.', 1342);
-   INSERT INTO actions(id, text) VALUES (1342, '...');
-   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1342, 1343, 0);  -- jump to 1343
+   INSERT INTO choice(id, eventid, text, actionid) VALUES (1338, 1310, 'Save your family.  No amount of gold is worth their lives.', 1339);
+   INSERT INTO actions(id, text) VALUES (1339, '...');
+   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1339, 1340, 0);  -- jump to 1340
 ---- Choice 2 Results - Lead to first-mate confrontation.
-     INSERT INTO event(id, text) VALUES (1343, 'You decide to save your family.');
+     INSERT INTO event(id, text) VALUES (1340, 'You decide to save your family.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1341, 1340, 'next', 1342);
+     INSERT INTO actions(id) VALUES (1342);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1342, 1343, 0);  -- jump to 1343
+
+     INSERT INTO event(id, text) VALUES (1343, 'You take a piece of gold from the room as proof that you found the treasure, shut and scramble the lock, and then prepare to return to your docked ship.');
      INSERT INTO choice(id, eventid, text, actionid) VALUES (1344, 1343, 'next', 1345);
      INSERT INTO actions(id) VALUES (1345);
      INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1345, 1346, 0);  -- jump to 1346
-
-     INSERT INTO event(id, text) VALUES (1346, 'You take a piece of gold from the room as proof that you found the treasure, shut and scramble the lock, and then prepare to return to your docked ship.');
-     INSERT INTO choice(id, eventid, text, actionid) VALUES (1347, 1346, 'next', 1348);
-     INSERT INTO actions(id) VALUES (1348);
-     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1348, 1349, 0);  -- jump to 1349
 ----
 ------------------------------------------------------------------------------------------------------------------------
 -- Note:  1337 should lead to GAME OVER screen and then the game should end
--- Note:  1349 shoudl lead to the final confrontation scene
+-- Note:  1346 shoudl lead to the final confrontation scene
