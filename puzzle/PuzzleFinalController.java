@@ -12,7 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -100,25 +100,25 @@ public class PuzzleFinalController extends ChallengeController implements Initia
     private MediaPlayer mediaPlayer; // plays sounds
 
     @FXML
-    private TextField dial0Text; // the text for dial0
+    private Label dial0Text; // the text for dial0
 
     @FXML
-    private TextField dial1Text; // the text for dial1
+    private Label dial1Text; // the text for dial1
 
     @FXML
-    private TextField dial2Text; // the text for dial2
+    private Label dial2Text; // the text for dial2
 
     @FXML
-    private TextField dial3Text; // the text for dial3
+    private Label dial3Text; // the text for dial3
 
     @FXML
-    private TextField dial4Text; // the text for dial4
+    private Label dial4Text; // the text for dial4
 
     @FXML
-    private TextField dial5Text; // the text for dial5
+    private Label dial5Text; // the text for dial5
 
     @FXML
-    private TextField dial6Text; // the text for dial6
+    private Label dial6Text; // the text for dial6
 
     private PuzzleFinal puzzle;  // the PuzzleObject
 
