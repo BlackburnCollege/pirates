@@ -109,13 +109,13 @@ INSERT INTO choice(id, eventid, text, actionid) VALUES (1136, 1135, 'next', 1137
 INSERT INTO actions(id) VALUES (1137);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1137, 1138, 0);  -- jump to 1138
 --
--- The Sign Between The Fork (note: CHAR(13) is a newline)
+-- The Sign Between The Fork (note: CHAR(13) is a newline and || is used for string concatenation)
    INSERT INTO event(id, text) VALUES (1138, 
-   'Between the fork is a sign.' + CHAR(13) + 
-   '+---------+' + CHAR(13) + 
-   '| <- M    |' + CHAR(13) + 
-   '|         |' + CHAR(13) + 
-   '|    Z -> |' + CHAR(13) + 
+   'Between the fork is a sign.' || CHAR(13) || 
+   '+---------+' || CHAR(13) || 
+   '| <- M    |' || CHAR(13) || 
+   '|         |' || CHAR(13) || 
+   '|    Z -> |' || CHAR(13) || 
    '+---------+');
 --
 -- Choice 1
@@ -147,13 +147,13 @@ INSERT INTO choice(id, eventid, text, actionid) VALUES (1150, 1149, 'next', 1151
 INSERT INTO actions(id) VALUES (1151);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1151, 1152, 0);  -- jump to 1152
 --
--- The Sign Between The Fork (note: CHAR(13) is a newline)
-   INSERT INTO event(id, text) VALUES (1152, 
-   'Between the fork is a sign.' + CHAR(13) + 
-   '+---------+' + CHAR(13) + 
-   '| <- Y    |' + CHAR(13) + 
-   '|         |' + CHAR(13) + 
-   '|    A -> |' + CHAR(13) + 
+-- The Sign Between The Fork (note: CHAR(13) is a newline and || is used for string concatenation)
+   INSERT INTO event(id, text) VALUES (1138, 
+   'Between the fork is a sign.' || CHAR(13) || 
+   '+---------+' || CHAR(13) || 
+   '| <- Y    |' || CHAR(13) || 
+   '|         |' || CHAR(13) || 
+   '|    A -> |' || CHAR(13) || 
    '+---------+');
 --
 -- Choice 1
@@ -185,13 +185,13 @@ INSERT INTO choice(id, eventid, text, actionid) VALUES (1164, 1163, 'next', 1165
 INSERT INTO actions(id) VALUES (1165);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1165, 1166, 0);  -- jump to 1166
 --
--- The Sign Between The Fork (note: CHAR(13) is a newline)
-   INSERT INTO event(id, text) VALUES (1166, 
-   'Between the fork is a sign.' + CHAR(13) + 
-   '+---------+' + CHAR(13) + 
-   '| <- R    |' + CHAR(13) + 
-   '|         |' + CHAR(13) + 
-   '|    X -> |' + CHAR(13) + 
+-- The Sign Between The Fork (note: CHAR(13) is a newline and || is used for string concatenation)
+   INSERT INTO event(id, text) VALUES (1138, 
+   'Between the fork is a sign.' || CHAR(13) || 
+   '+---------+' || CHAR(13) || 
+   '| <- R    |' || CHAR(13) || 
+   '|         |' || CHAR(13) || 
+   '|    X -> |' || CHAR(13) || 
    '+---------+');
 --
 -- Choice 1
@@ -223,13 +223,13 @@ INSERT INTO choice(id, eventid, text, actionid) VALUES (1178, 1177, 'next', 1179
 INSERT INTO actions(id) VALUES (1179);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1179, 1180, 0);  -- jump to 1180
 --
--- The Sign Between The Fork (note: CHAR(13) is a newline)
-   INSERT INTO event(id, text) VALUES (1180, 
-   'Between the fork is a sign.' + CHAR(13) + 
-   '+---------+' + CHAR(13) + 
-   '| <- G    |' + CHAR(13) + 
-   '|         |' + CHAR(13) + 
-   '|    W -> |' + CHAR(13) + 
+-- The Sign Between The Fork (note: CHAR(13) is a newline and || is used for string concatenation)
+   INSERT INTO event(id, text) VALUES (1138, 
+   'Between the fork is a sign.' || CHAR(13) || 
+   '+---------+' || CHAR(13) || 
+   '| <- G    |' || CHAR(13) || 
+   '|         |' || CHAR(13) || 
+   '|    W -> |' || CHAR(13) || 
    '+---------+');
 --
 -- Choice 1
@@ -261,13 +261,13 @@ INSERT INTO choice(id, eventid, text, actionid) VALUES (1192, 1191, 'next', 1193
 INSERT INTO actions(id) VALUES (1193);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1193, 1194, 0);  -- jump to 1194
 --
--- The Sign Between The Fork (note: CHAR(13) is a newline)
-   INSERT INTO event(id, text) VALUES (1194, 
-   'Between the fork is a sign.' + CHAR(13) + 
-   '+---------+' + CHAR(13) + 
-   '| <- V    |' + CHAR(13) + 
-   '|         |' + CHAR(13) + 
-   '|    E -> |' + CHAR(13) + 
+-- The Sign Between The Fork (note: CHAR(13) is a newline and || is used for string concatenation)
+   INSERT INTO event(id, text) VALUES (1138, 
+   'Between the fork is a sign.' || CHAR(13) || 
+   '+---------+' || CHAR(13) || 
+   '| <- V    |' || CHAR(13) || 
+   '|         |' || CHAR(13) || 
+   '|    E -> |' || CHAR(13) || 
    '+---------+');
 --
 -- Choice 1
@@ -299,13 +299,13 @@ INSERT INTO choice(id, eventid, text, actionid) VALUES (1206, 1205, 'next', 1207
 INSERT INTO actions(id) VALUES (1207);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1207, 1208, 0);  -- jump to 1208
 --
--- The Sign Between The Fork (note: CHAR(13) is a newline)
-   INSERT INTO event(id, text) VALUES (1208, 
-   'Between the fork is a sign.' + CHAR(13) + 
-   '+---------+' + CHAR(13) + 
-   '| <- R    |' + CHAR(13) + 
-   '|         |' + CHAR(13) + 
-   '|    U -> |' + CHAR(13) + 
+-- The Sign Between The Fork (note: CHAR(13) is a newline and || is used for string concatenation)
+   INSERT INTO event(id, text) VALUES (1138, 
+   'Between the fork is a sign.' || CHAR(13) || 
+   '+---------+' || CHAR(13) || 
+   '| <- R    |' || CHAR(13) || 
+   '|         |' || CHAR(13) || 
+   '|    U -> |' || CHAR(13) || 
    '+---------+');
 --
 -- Choice 1
@@ -337,13 +337,13 @@ INSERT INTO choice(id, eventid, text, actionid) VALUES (1220, 1219, 'next', 1221
 INSERT INTO actions(id) VALUES (1221);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1221, 1222, 0);  -- jump to 1222
 --
--- The Sign Between The Fork (note: CHAR(13) is a newline)
-   INSERT INTO event(id, text) VALUES (1222, 
-   'Between the fork is a sign.' + CHAR(13) + 
-   '+---------+' + CHAR(13) + 
-   '| <- T    |' + CHAR(13) + 
-   '|         |' + CHAR(13) + 
-   '|    Y -> |' + CHAR(13) + 
+-- The Sign Between The Fork (note: CHAR(13) is a newline and || is used for string concatenation)
+   INSERT INTO event(id, text) VALUES (1138, 
+   'Between the fork is a sign.' || CHAR(13) || 
+   '+---------+' || CHAR(13) || 
+   '| <- T    |' || CHAR(13) || 
+   '|         |' || CHAR(13) || 
+   '|    Y -> |' || CHAR(13) || 
    '+---------+');
 --
 -- Choice 1
