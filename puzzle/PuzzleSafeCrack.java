@@ -120,24 +120,28 @@ public class PuzzleSafeCrack extends PuzzleModel {
         } else if (!this.enteredCorrect[0] && this.currentNum == this.safeCombination[0]) {
             this.enteredCorrect[0] = true;
             this.setSound(this.soundDetectLocation);
+            System.out.println("The first combination number has been found!");
         } else if (this.enteredCorrect[0] && this.currentNum == this.safeCombination[0] - 1) {
             this.enteredCorrect[0] = false;
             this.setSound(this.soundResetLocation);
+            System.out.println("The lock was reset!");
         } else if (!this.enteredCorrect[1] && this.currentNum != this.safeCombination[1]) {
             this.setSound(this.soundTurnLocation);
         } else if (!this.enteredCorrect[1] && this.currentNum == this.safeCombination[1]) {
             this.enteredCorrect[1] = true;
             this.setSound(this.soundDetectLocation);
+            System.out.println("The second combination number has been found!");
         } else if (this.enteredCorrect[1] && this.currentNum == this.safeCombination[1] + 1) {
             this.enteredCorrect[1] = false;
             this.setSound(this.soundResetLocation);
+            System.out.println("The lock was reset!");
         } else if (!this.enteredCorrect[2] && this.currentNum != this.safeCombination[2]) {
             this.setSound(this.soundTurnLocation);
         } else if (!this.enteredCorrect[2] && this.currentNum == this.safeCombination[2]) {
             this.enteredCorrect[2] = true;
             this.setSound(this.soundOpenLocation);
-            this.setCompleted(); // set puzzle status to solved
             System.out.println("You entered the correct combination!");
+            this.setCompleted(); // set puzzle status to solved
         } else {
             this.setSound(this.soundTurnLocation);
         }

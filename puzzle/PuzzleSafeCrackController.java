@@ -81,7 +81,8 @@ public class PuzzleSafeCrackController extends ChallengeController implements In
     private void checkSolution() {
         System.out.println(puzzle.getCurrentNum());
         if (puzzle.getCompleted() == true) {
-            this.leaveButton.setText("FINISH");
+            this.finishChallenge(ChallengeStatus.WIN);
+            System.out.println("You win!");
         }
     }
 
