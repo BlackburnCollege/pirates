@@ -137,6 +137,7 @@ public class PuzzleSafeCrack extends PuzzleModel {
             this.enteredCorrect[2] = true;
             this.setSound(this.soundOpenLocation);
             this.setCompleted(); // set puzzle status to solved
+            System.out.println("You entered the correct combination!");
         } else {
             this.setSound(this.soundTurnLocation);
         }
