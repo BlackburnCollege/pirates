@@ -10,7 +10,7 @@ import java.util.HashMap;
  */
 public class Action extends ACEObject {
 
-    private ArrayList<Event> events = new ArrayList<>(5);
+    private ArrayList<Event> events = new ArrayList<>(15);
 
     {
         for (int i = 0; i < 5; i++) {
@@ -19,7 +19,7 @@ public class Action extends ACEObject {
     }
     private String text;
     private Challenge challenge = null;
-    private ArrayList<Conditional> modifiers = new ArrayList<>(5);
+    private ArrayList<Conditional> modifiers = new ArrayList<>(15);
 
     public Action(int id) {
         super(id);
@@ -161,19 +161,13 @@ public class Action extends ACEObject {
     }
 
     public void doConditionalModifiers(HashMap<String, Integer> flags) {
-        System.out.println("Doing modifiers for action " + this.getID());
         for (Conditional c : this.modifiers) {
-            System.out.println("Setting condition for condition " + c.getID());
             c.setCondition(flags);
         }
     }
 
     public void setEvent(Event event, int position) {
-        if (events.size() >= position) {
-            this.events.add(position, event);
-        } else {
-            this.events.set(position, event);
-        }
+        this.events.set(position, event);
     }
 
 }
