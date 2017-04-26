@@ -11,6 +11,7 @@ import java.util.HashMap;
 public class Action extends ACEObject {
 
     private ArrayList<Event> events = new ArrayList<>(5);
+
     {
         for (int i = 0; i < 5; i++) {
             events.add(null);
@@ -20,11 +21,10 @@ public class Action extends ACEObject {
     private Challenge challenge = null;
     private ArrayList<Conditional> modifiers = new ArrayList<>(5);
 
-    
     public Action(int id) {
         super(id);
     }
-    
+
     public Action() {
         super();
         //this.events = null;
@@ -50,7 +50,7 @@ public class Action extends ACEObject {
 
     public Action(Event event, String text, Challenge challenge) {
         super();
-       // this.events = new ArrayList<>();
+        // this.events = new ArrayList<>();
         this.events.add(event);
         this.text = text;
         this.challenge = challenge;
@@ -60,7 +60,7 @@ public class Action extends ACEObject {
         super();
         this.text = text;
     }
-    
+
     public Action(Challenge challenge) {
         super();
         this.challenge = challenge;
@@ -167,9 +167,13 @@ public class Action extends ACEObject {
             c.setCondition(flags);
         }
     }
-    
+
     public void setEvent(Event event, int position) {
-        this.events.set(position, event);
+        if (events.size() >= position) {
+            this.events.add(position, event);
+        } else {
+            this.events.set(position, event);
+        }
     }
 
 }

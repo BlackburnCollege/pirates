@@ -2,7 +2,7 @@
  PIRATE DEN 1 STARTS AT ID 500
 */
 
-INSERT INTO event(id, text) VALUES (501, 'The journal mentioned an old friend of 
+INSERT INTO event(id, text, backgroundname, music) VALUES (500, 'The journal mentioned an old friend of 
 Robin Bones named Robert Knight. The journal also mentioned that Robert Knight 
 runs this pirate den. I’ve never been here before, because it’s infamously 
 dangerous and full of pirates. I’ll need to be careful.”
@@ -10,17 +10,17 @@ dangerous and full of pirates. I’ll need to be careful.”
 Knight. He gives me a nervous look and whispers ‘how long has it been since you 
 been here? Robert Knight was overthrown by David Davies years ago. He’s 
 been in hiding ever since.’ “
-“This is going to be harder than I thought. I’d better get looking for him.');
+“This is going to be harder than I thought. I’d better get looking for him.', 'pirate_den_island_0', 'LORD_OF_THE_LAND');
 --
 --Choice 1
-INSERT INTO choice(id, eventid, text, actionid) VALUES (599, 501, 'Search the black market', 550);
+INSERT INTO choice(id, eventid, text, actionid) VALUES (599, 500, 'Search the black market', 550);
 INSERT INTO actions(id) VALUES (550);
 INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (550, 502, 0);
 --
 --Choice 2
-INSERT INTO choice(id, eventid, text, actionid) VALUES (598, 501, 'Search the wrecked ships', 507);
+INSERT INTO choice(id, eventid, text, actionid) VALUES (598, 500, 'Search the wrecked ships', 551);
 INSERT INTO actions(id) VALUES (551);
-INSERT INTO actionsevent(actionsid, eventid, eventposition) VALUES (551, 502, 0);
+INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (551, 508, 0);
 --
 ------------------------------------------------------------------------------------------------------------------------
 --
@@ -36,20 +36,20 @@ you here?”');
 INSERT INTO choice(id, eventid, text, actionid) VALUES (597, 502, 'I am looking 
 for Robert Knight', 552);
 INSERT INTO actions(id) VALUES (552);
-INSERT INTO actionsevent(actionsid, eventid, eventposition) VALUES (552, 503, 0);
+INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (552, 503, 0);
 --
 --Choice 2
 INSERT INTO choice(id, eventid, text, actionid) VALUES (596, 502, 'I am just 
 trying to find my family and I am looking for a map piece.', 553);
 INSERT INTO actions(id) VALUES (553);
-INSERT INTO actionsevent(actionsid, eventid, eventposition) VALUES (553, 506, 0);
+INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (553, 506, 0);
 --
 ------------------------------------------------------------------------------------------------------------------------
 --
 INSERT INTO event(id, text) VALUES (503, '"Robert Knight was overthrown more 
 than 2 years ago." the pirate growls, “We don’t take very kindly to friends of 
 Robert Knight."');
-PUT COMBAT HERE
+--PUT COMBAT HERE
 
 
 --
