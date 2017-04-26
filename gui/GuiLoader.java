@@ -38,7 +38,7 @@ import world.World;
  */
 public class GuiLoader extends Application {
 
-    private static final String gameTitle = "Treasure and Plunder";
+    private static final String TITLE = "Memoirs of a Dread Pirate";
 
     /**
      * @return the singleton
@@ -127,7 +127,7 @@ public class GuiLoader extends Application {
             }
 
         });
-        stage.setTitle(gameTitle);
+        stage.setTitle(TITLE);
         stage.show();
         setMainStage(stage);
         singleton = this;
