@@ -104,7 +104,7 @@ insert into actionsevent (actionid, eventid, eventposition) values (30, 33, 0);
 
 insert into challenge(challengeid, challengename, challengetype) values (31, 'fish', 'puzzle');
 
-INSERT INTO event(id, text) VALUES (32, 'I caught a great amount of fish today! I might have enough to surprise Marjorie with a gift.');
+INSERT INTO event(id, text) VALUES (32, 'I caught a great amount of fish today! I might have enough to surprise $SPOUSE_NAME$ with a gift.');
 
 insert into choice(id, eventid, text, actionid) values (34, 32, 'Return to shore' , 35);
 
