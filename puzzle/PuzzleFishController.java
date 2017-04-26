@@ -24,7 +24,8 @@ import javafx.scene.layout.BackgroundSize;
 import puzzle.PuzzleFish.Fish;
 
 /**
- * This class defines the Controller that mediates between the Puzzle object model and the Puzzle GUI
+ * This class defines the Controller that mediates between the Puzzle object
+ * model and the Puzzle GUI
  *
  * @author Jessica Cramer
  * @author Lucas Burdell
@@ -40,11 +41,14 @@ public class PuzzleFishController extends ChallengeController implements Initial
     public static final int TIME_TO_FISH = 10;
 
     private final ImageController images = ImageController.get();
-    private Image fishImage = images.getImage("fish");
+    private Image fishImage = images.getImage("fish_0");
 
     private FishingTimer timer;
 
     private PuzzleFish fishPuzzle = new PuzzleFish();
+    
+    private Fish[] fishes;
+    private ImageView[] fishImages;
 
     /**
      * initialize method
@@ -63,11 +67,20 @@ public class PuzzleFishController extends ChallengeController implements Initial
                         new BackgroundSize(1, 1, true, true, true, true)
                 )
         ));
-
+        
+        
+        fishes = new Fish[fishPuzzle.getFishes().size()];
+        fishImages = new ImageView[fishes.length];
+        
+        
+        
         // make fish
+        int i = 0;
         for (Fish fish : fishPuzzle.getFishes()) {
             ImageView fishView = buildFishView(fish);
             gamePane.getChildren().add(fishView);
+            this.fishes[i] = fish;
+            fishImages[i] = fishView;
         }
 
         // make and start timer
@@ -110,7 +123,6 @@ public class PuzzleFishController extends ChallengeController implements Initial
     public void checkIfPuzzleComplete() {
         if (fishPuzzle.getCompleted()) {
             this.finishChallenge(ChallengeStatus.WIN);
-            System.out.println("You win!");
             timer.stop();
         }
     }
@@ -121,19 +133,25 @@ public class PuzzleFishController extends ChallengeController implements Initial
         fishPuzzle.catchFish(fish);
         checkIfPuzzleComplete();
     }
+    
 
     // get us a fish view to show on screen
     // also sets up the mouse click event listener
     public ImageView buildFishView(Fish fish) {
         ImageView fishView = new ImageView(fishImage);
+        int screenWidth = 800;
+        int screenHeight = 600;
 
         //calculate position on screen
         double screenPosX = ((double) fish.getXPos() / (double) PuzzleFish.MAP_WIDTH)
-                * gamePane.getPrefWidth() - fishImage.getHeight();
+                * screenWidth;
         double screenPosY = ((double) fish.getYPos() / (double) PuzzleFish.MAP_HEIGHT)
-                * gamePane.getPrefHeight();
+                * screenHeight;
+        System.out.println("screenPosX = " + screenPosX);
+        System.out.println("screenPosY = " + screenPosY);
 
         // shoddy bounds checking
+        /*
         if (screenPosX < fishImage.getWidth()) {
             screenPosX = fishImage.getWidth();
         } else if (screenPosX > gamePane.getPrefWidth() - fishImage.getWidth()) {
@@ -145,6 +163,9 @@ public class PuzzleFishController extends ChallengeController implements Initial
         } else if (screenPosY > gamePane.getPrefHeight() - fishImage.getHeight()) {
             screenPosY = gamePane.getPrefHeight() - fishImage.getHeight();
         }
+        */
+        System.out.println("new screenPosX = " + screenPosX);
+        System.out.println("new screenPosY = " + screenPosY);
         fishView.setX(screenPosX);
         fishView.setY(screenPosY);
         fishView.setOnMouseClicked(new EventHandler<MouseEvent>() {

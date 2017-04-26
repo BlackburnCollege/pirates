@@ -12,8 +12,8 @@ import java.util.Random;
 public class PuzzleFish extends PuzzleModel {
 
     // configurable constants
-    public static final int MAP_WIDTH = 10;
-    public static final int MAP_HEIGHT = 10;
+    public static final int MAP_WIDTH = 100;
+    public static final int MAP_HEIGHT = 100;
     public static final int NUMBER_OF_FISH = 5;
 
     private static final Random RANDOM = new Random();
