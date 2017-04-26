@@ -1,6 +1,9 @@
 package sql;
 
 import gui.Music;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -665,7 +668,14 @@ public class StorySQLLoader {
 
     public Event loadDB() throws SQLException {
         Event root = null;
-
+        PrintStream console = System.out;
+        File file = new File("storyloader.out");
+        try {
+            System.setOut(new PrintStream(file));
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(StorySQLLoader.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         PreparedStatement getSize = getConnection().prepareStatement(
                 "SELECT MAX(aceobject.id) FROM aceobject",
                 ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -717,6 +727,9 @@ public class StorySQLLoader {
         if (!loadedProperly()) {
             throw new RuntimeException("Detected unfinished map. Look for errors from the output above.");
         }
+        
+        System.setOut(console);
+        System.out.println("Story loading output saved to " + file.getAbsolutePath());
 
         return root;
     }

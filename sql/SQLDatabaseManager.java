@@ -150,14 +150,15 @@ public class SQLDatabaseManager {
             System.setProperty("ij.driver", databaseDriver);
             System.setProperty("ij.database", databaseURL + ";create=true");
             PrintStream console = System.out;
-
-            //System.setOut(new PrintStream(new File("sqloutput")));
+            File file = new File("sqlloader_" + getDatabaseName() + ".out");
+            System.setOut(new PrintStream(file));
             for (String path : extractSQLFiles()) {
                 console.println("running " + path);
                 String[] argArray = new String[]{path};
                 ij.main(argArray);
             }
             System.setOut(console);
+            System.out.println("SQL Loader output saved at " + file.getAbsolutePath());
             System.setProperty("ij.database", databaseURL);
         } catch (IOException | URISyntaxException ex) {
             throw new RuntimeException(ex);

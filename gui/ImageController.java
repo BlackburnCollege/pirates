@@ -63,7 +63,7 @@ public class ImageController {
                 String name = parts[0];
                 String fileType = parts[1];
                 if (isImageType(fileType)) {
-                    System.out.println("image controller: loading " + IMAGE_LOCATION + location);
+                    //System.out.println("image controller: loading " + IMAGE_LOCATION + location);
                     Image media = new Image(GuiLoader.class.getClassLoader().getResource(IMAGE_LOCATION + location).toString());
                     resources.add(media);
                     names.put(name.toLowerCase(), media);

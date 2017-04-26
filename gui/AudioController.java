@@ -86,7 +86,7 @@ public class AudioController {
                 Path path = it.next();
                 String name = path.getFileName().toString();
                 if (name.endsWith(".mp3")) {
-                    System.out.println("audio controller: loading " + AUDIO_LOCATION + name);
+                    //System.out.println("audio controller: loading " + AUDIO_LOCATION + name);
                     Media media = new Media(GuiLoader.class.getClassLoader().getResource(AUDIO_LOCATION + name).toString());
                     getResources().add(media);
                     names.put(name, media);

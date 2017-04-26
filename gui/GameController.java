@@ -665,6 +665,10 @@ public class GameController implements Initializable {
      * @param event The event to process
      */
     private void processGameEvent(Event event) {
+        if (event == null) {
+            throw new RuntimeException("Event was null! Check for insert errors "
+                    + "in your SQL output!");
+        }
         clearDisplay();
         addTextToDisplay(event.getText());
         Image picture;
@@ -685,7 +689,7 @@ public class GameController implements Initializable {
 
         for (Choice c : event.getChoices()) {
             if (c.checkConditions(this.world.getStoryFlags())) {
-                System.out.println("Displaying " + c.getID() + " " + c.getText());
+                //System.out.println("Displaying " + c.getID() + " " + c.getText());
                 addChoiceToDisplay(c);
             }
         }

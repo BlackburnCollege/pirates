@@ -181,7 +181,6 @@ public class PlayerFXMLController
     @FXML
     private void startGame(ActionEvent event) {
         Player player = new Player(playerNameField.getText());
-        System.err.println(playerNameField.getText());
         player.setMale(playerMale.isSelected());
         player.setSpouseMale(spouseMale.isSelected());
         GuiLoader.getSingleton().showLoadingScreen(player);
