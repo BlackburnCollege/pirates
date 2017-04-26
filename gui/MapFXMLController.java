@@ -125,7 +125,7 @@ public class MapFXMLController extends ChallengeController implements Initializa
             caveFragmentLabel.setStrikethrough(true);
             piecesFound++;
         }
-        finalIslandUnlocked = piecesFound >= 4;
+        finalIslandUnlocked = true;//piecesFound >= 4;
         finalIsland.setVisible(finalIslandUnlocked);
         finalIslandLabel.setVisible(finalIslandUnlocked);
         finalIslandLabel2.setVisible(finalIslandUnlocked);
@@ -149,38 +149,7 @@ public class MapFXMLController extends ChallengeController implements Initializa
 
     @Override
     public void onChallengeLoaded() {
-        World world = this.getWorld();
-        for (int i = 0; i < mapPiecesFound.length; i++) {
-            int flag = world.getFlag("mappiece" + (i + 1) + "found");
-            mapPiecesFound[i] = flag == 1;
-        }
 
-        String strikethrough = this.getClass().getResource("strikethrough.css").toExternalForm();
-        int piecesFound = 0;
-        if (!mapPiecesFound[0]) {
-            englishFragmentLabel.getStyleClass().addAll(strikethrough);
-            piecesFound++;
-        }
-        if (!mapPiecesFound[1]) {
-            spanishFragmentLabel.getStyleClass().addAll(strikethrough);
-            piecesFound++;
-        }
-        if (world.getFlag("piratedencompleted") == 1) {
-            pirateFragmentLabel.getStyleClass().addAll(strikethrough);
-            tribalFragmentLabel.setVisible(true);
-        }
-        if (!mapPiecesFound[2]) {
-            tribalFragmentLabel.getStyleClass().addAll(strikethrough);
-            piecesFound++;
-        }
-        if (!mapPiecesFound[3]) {
-            caveFragmentLabel.getStyleClass().addAll(strikethrough);
-            piecesFound++;
-        }
-        finalIslandUnlocked = piecesFound >= 4;
-        finalIsland.setVisible(finalIslandUnlocked);
-        finalIslandLabel.setVisible(finalIslandUnlocked);
-        finalIslandLabel2.setVisible(finalIslandUnlocked);
     }
 
     private ImageView checkIslandClick(Object object) {
