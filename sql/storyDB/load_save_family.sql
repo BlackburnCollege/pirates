@@ -94,7 +94,7 @@ INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1358, 1359, 
      INSERT INTO actions(id, challengeid) VALUES (1389, 1390);
      INSERT INTO challenge(challengeid, challengename, challengetype) VALUES (1390, 'Drunken Sailor', 'combat');
      INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1389, 1391, 0);  -- jump to 1391 on combat lose
-     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1389, 1XXX, 1);  -- jump to 1XXX on combat win
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1389, 1426, 1);  -- jump to 1426 on combat win
 
 ---- Choice 2 Result On Lose
      INSERT INTO event(id, text) VALUES (1391, 'You lose the fight.');
@@ -200,15 +200,11 @@ INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1358, 1359, 
      INSERT INTO actions(id) VALUES (1452);
      INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1452, 1453, 0);  -- jump to 1453
 
-
-
      INSERT INTO event(id, text) VALUES (1453, 'GAME OVER - You reached the good end.');
      INSERT INTO choice(id, eventid, text, actionid) VALUES (1454, 1453, 'See credits screen.', 1455);
      INSERT INTO actions(id, challengeid) VALUES (1455, 1456);
      INSERT INTO challenge(challengeid, challengename, challengetype) VALUES (1456, 'credits', 'other');
      INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1455, 1457, 0);  -- jump to 1457
      INSERT INTO event(id, text) VALUES (1457, 'Blank event - roll credits');
-
-
 ----
 ------------------------------------------------------------------------------------------------------------------------
