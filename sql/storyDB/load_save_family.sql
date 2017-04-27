@@ -155,6 +155,59 @@ INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1358, 1359, 
      INSERT INTO event(id, text) VALUES (1425, 'Blank event - roll credits');
 
 ---- Choice 2 Result On Win
+     INSERT INTO event(id, text) VALUES (1426, 'You win the fight.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1427, 1426, 'next', 1428);
+     INSERT INTO actions(id) VALUES (1428);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1428, 1429, 0);  -- jump to 1429
+
+     INSERT INTO event(id, text) VALUES (1429, '"It''s over Conrad.  You''re not going to be hurting anyone else again.  Now where is my family?", I yell.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1430, 1429, 'next', 1431);
+     INSERT INTO actions(id) VALUES (1431);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1431, 1432, 0);  -- jump to 1432
+
+     INSERT INTO event(id, text) VALUES (1432, '"They are being held my my men.  I will return them to you just please don''t kill me.", Conrad pleads.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1433, 1432, 'next', 1434);
+     INSERT INTO actions(id) VALUES (1434);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1434, 1435, 0);  -- jump to 1435
+
+     INSERT INTO event(id, text) VALUES (1435, 'Conrad gestures at someone over in the distance and then yells, "Let them go then go back to the ship."');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1436, 1435, 'next', 1437);
+     INSERT INTO actions(id) VALUES (1437);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1437, 1438, 0);  -- jump to 1438
+
+     INSERT INTO event(id, text) VALUES (1438, 'You hear footsteps and then see $SPOUSE_NAME$ and Ben.  They run into your arms and you hug them tightly.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1439, 1438, 'next', 1440);
+     INSERT INTO actions(id) VALUES (1440);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1440, 1441, 0);  -- jump to 1441
+
+     INSERT INTO event(id, text) VALUES (1441, '"What are you going to do with me now?", Conrad asks.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1442, 1441, 'next', 1443);
+     INSERT INTO actions(id) VALUES (1443);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1443, 1444, 0);  -- jump to 1444
+
+     INSERT INTO event(id, text) VALUES (1444, '"You''re going to jail", I say.  I tie up Conrad''s hands and we return to $SHIP_NAME$.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1445, 1444, 'next', 1446);
+     INSERT INTO actions(id) VALUES (1446);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1446, 1447, 0);  -- jump to 1447
+
+     INSERT INTO event(id, text) VALUES (1447, 'We set sail for Knightstone.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1448, 1447, 'next', 1449);
+     INSERT INTO actions(id) VALUES (1449);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1449, 1450, 0);  -- jump to 1450
+
+     INSERT INTO event(id, text) VALUES (1450, 'When we arrive at Knighstone I turn Conrad over to the constable.  My family and I then return home and live happily ever after.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1451, 1450, 'next', 1452);
+     INSERT INTO actions(id) VALUES (1452);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1452, 1453, 0);  -- jump to 1453
+
+
+
+     INSERT INTO event(id, text) VALUES (1453, 'GAME OVER - You reached the good end.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1454, 1453, 'See credits screen.', 1455);
+     INSERT INTO actions(id, challengeid) VALUES (1455, 1456);
+     INSERT INTO challenge(challengeid, challengename, challengetype) VALUES (1456, 'credits', 'other');
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1455, 1457, 0);  -- jump to 1457
+     INSERT INTO event(id, text) VALUES (1457, 'Blank event - roll credits');
 
 
 ----
