@@ -115,7 +115,7 @@ INSERT INTO event(id, text) VALUES (163, 'I survey the docks and spot the Lieute
   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (165, 170, 0);  
   ------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------ALLEY-----------------------------------------------
-INSERT INTO event(id, text) VALUES (170, 'As I make my way through town I feel a hard tug on my bag and notice somebody sprint off into an alley.');
+INSERT INTO event(id, text, backgroundname) VALUES (170, 'As I make my way through town I feel a hard tug on my bag and notice somebody sprint off into an alley.', 'alleyway_0');
 
   INSERT INTO choice(id, eventid, text, actionid) VALUES (171, 170, 'Sprint after the thief.', 172);
   INSERT INTO actions(id) VALUES (172);
@@ -205,7 +205,4 @@ INSERT INTO event(id, text) VALUES (250, '"Let’s sail lads!"');
 insert into choice(id, eventid, text, actionid) values (240, 250, 'set sail', 1500);
 
 
-insert into event(id, text) values (229, 'I return to Knightstone, but it doesn’t feel I’m welcome here after that fight.');
-
-insert into choice(id, eventid, text, actionid) values (230, 229, 'set sail', 1500);
 --------------------------------------------------------------------------------------------------------------------------
