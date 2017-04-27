@@ -17,7 +17,7 @@ insert into choice(id, eventid, text, actionid) values (904, 900, 'I already hav
 insert into conditional(id, attachedid, flag, flagstate) VALUES (906, 904, 'mappiece4found', 1);
 
 
-INSERT INTO event (id, text) VALUES (907, 'I take a small ship to the island of the cave that supposedly houses a map fragment.  I land on the beach, and quickly take in the scope of this island. The island is densely forested, but small so the cave will not be too hard to find. If not for the note in the journal and your extreme scrutiny of the sea, I may not have even found this island. The journal entry had one other thing to note, beware of the strange inhabitants of the cave. Unsure of what that is supposed to mean, I quickly make way to find the cave.');
+INSERT INTO event (id, text) VALUES (907, 'I take a small ship to the island of the cave that supposedly houses a map fragment.  I land on the beach, and quickly take in the scope of this island. The island is densely forested, but small so the cave will not be too hard to find. If not for the note in the journal and my extreme scrutiny of the sea, I may not have even found this island. The journal entry had one other thing to note, beware of the strange inhabitants of the cave. Unsure of what that is supposed to mean, I quickly make way to find the cave.');
 
 insert into choice(id, eventid, text, actionid) values (908, 907, 'next' , 909);
 
@@ -33,7 +33,7 @@ insert into actions(id) values (912);
 
 insert into actionsevent (actionid, eventid, eventposition) values (912, 913, 0);
 
-INSERT INTO event (id, text) VALUES (913, 'I pull back around the corner to ready my weapons, but as I do I knock a piece of the wall loose which clatters to the floor. I immediately stop, hoping the beast did not hear. “Who goes there?” I hear heavy footfalls moving in my direction, I guess a bit of luck was too much to hope for. I turn the corner and level my pistol, but freeze at the sight of what I see. This large man was no man at all, but two. Two heads set upon the one body, snarling and drooling at in my direction. I’ve heard of such creatures before, I believe they were called ettins.');
+INSERT INTO event (id, text) VALUES (913, 'I pull back around the corner to ready my weapons, but as I do I knock a piece of the wall loose which clatters to the floor. I immediately stop, hoping the beast did not hear. “Who goes there?” I hear heavy footfalls moving in my direction, I guess a bit of luck was too much to hope for. I turn the corner and level my pistol, but freeze at the sight of what I see. This large man was no man at all, but two. Two heads set upon the one body, snarling and drooling in my direction. I’ve heard of such creatures before, I believe they were called ettins.');
 
 insert into choice(id, eventid, text, actionid) values (914, 913, 'I snap out of my momentary confusion and pull the trigger.' , 915);
 
@@ -149,7 +149,7 @@ insert into actions(id, text) values (953, '"We can move the rock now!," Tim mov
 insert into actionsevent (actionid, eventid, eventposition) values (953, 954, 0);
 
 
-INSERT INTO event (id, text) VALUES (954, 'Inside the room, there are various things lining the wall. Anything from random junk to shiny treasure, but at the center of it all a piece of parchment lies on a table. The map fragment. I quickly retrieve the piece and start to head back out of the cave. I carefully sneak past the ettin still snoring by the fire. Jess and Tim walk with me all the way to the entrance of the cave. I give a courteous nod and continue to the beach, Tim waving vigorously. I reach the ship and return to my quarters to plan my next course of action.');
+INSERT INTO event (id, text) VALUES (954, 'Inside the room, there are various things lining the wall. Anything from random junk to shiny treasure, but at the center of it all a piece of parchment lies on a table. The map fragment. I quickly retrieve the piece and start to head back out of the cave. I carefully sneak past the ettin still snoring by the fire. Jess and Tim walk with me all the way to the entrance of the cave. I give a courteous nod and continue to the beach, Tim waving vigorously. I reach the ship and return to my quarters.');
 
 insert into choice(id, eventid, text, actionid) values (955, 954, 'next', 1500);
 
