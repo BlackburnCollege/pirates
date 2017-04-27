@@ -8,15 +8,40 @@
 -------------------------------------- SQL Insert Statements Below -----------------------------------------------------
 --
 -- Display Text with "Next" Choice only (set background and music)
-INSERT INTO event(id, text, backgroundname, music) VALUES (1347, '"I see you have found the treasure."', 'conrad_template', 'MUS_CORRUPTION');
+INSERT INTO event(id, text, backgroundname, music) VALUES (1347, '"I see you have found the treasure."', 'conrad_template', 'CORRUPTION');
 INSERT INTO choice(id, eventid, text, actionid) VALUES (1348, 1347, 'next', 1349);
 INSERT INTO actions(id) VALUES (1349);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1349, 1350, 0);  -- jump to 1350
 --
 ------------------------------------------------------------------------------------------------------------------------
+--
+-- Display Text with "Next" Choice only (do not change background and music)
+INSERT INTO event(id, text) VALUES (1350, 'You turn and see a person.  You recognize him.');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1351, 1350, 'next', 1352);
+INSERT INTO actions(id) VALUES (1352);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1352, 1353, 0);  -- jump to 1353
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Display Text with "Next" Choice only (do not change background and music)
+INSERT INTO event(id, text) VALUES (1353, '"Conrad. I should have known you were behind all of this.", I say.');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1354, 1353, 'next', 1355);
+INSERT INTO actions(id) VALUES (1355);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1355, 1356, 0);  -- jump to 1356
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+-- Display Text with "Next" Choice only (do not change background and music)
+INSERT INTO event(id, text) VALUES (1356, '"", I say.');
+INSERT INTO choice(id, eventid, text, actionid) VALUES (1357, 1356, 'next', 1358);
+INSERT INTO actions(id) VALUES (1358);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1358, 1359, 0);  -- jump to 1359
+--
+------------------------------------------------------------------------------------------------------------------------
 
 
 
+--
 
 
 
