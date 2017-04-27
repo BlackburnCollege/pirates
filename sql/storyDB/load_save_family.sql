@@ -112,11 +112,47 @@ INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1358, 1359, 
      INSERT INTO actions(id) VALUES (1399);
      INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1399, 1400, 0);  -- jump to 1400
 
-     INSERT INTO event(id, text) VALUES (1400, '');
+     INSERT INTO event(id, text) VALUES (1400, 'The gang of pirates beat the treasure room passphrase out of me and then tie me up.');
      INSERT INTO choice(id, eventid, text, actionid) VALUES (1401, 1400, 'next', 1402);
      INSERT INTO actions(id) VALUES (1402);
      INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1402, 1403, 0);  -- jump to 1403
 
+     INSERT INTO event(id, text) VALUES (1403, 'After plundering the treasure room they drag me back to their ship and tie me to the ship''s figurehead.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1404, 1404, 'next', 1405);
+     INSERT INTO actions(id) VALUES (1405);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1405, 1406, 0);  -- jump to 1406
+
+     INSERT INTO event(id, text) VALUES (1406, 'The ship sails for half a day before coming to a stop.  A small island can be seen starboard.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1407, 1406, 'next', 1408);
+     INSERT INTO actions(id) VALUES (1408);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1408, 1409, 0);  -- jump to 1409
+
+     INSERT INTO event(id, text) VALUES (1409, 'Conrad cuts the rope that binds me and I fall into the water.  When I swim to the surface I hear him yell, "Enjoy spending the rest of your life starving on that God-forsaken rock you traitor."');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1410, 1409, 'next', 1411);
+     INSERT INTO actions(id) VALUES (1411);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1411, 1412, 0);  -- jump to 1412
+
+     INSERT INTO event(id, text) VALUES (1412, 'The ship starts sailing away and I swim after it but quickly realize that I cannot keep up.  I turn towards the island and swim to shore.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1413, 1402, 'next', 1414);
+     INSERT INTO actions(id) VALUES (1414);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1414, 1415, 0);  -- jump to 1415
+
+     INSERT INTO event(id, text) VALUES (1415, 'The island has no food or fresh water.  There doesn''t appear to be another island as far as the eyes can see.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1416, 1415, 'next', 1417);
+     INSERT INTO actions(id) VALUES (1417);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1417, 1418, 0);  -- jump to 1418
+
+     INSERT INTO event(id, text) VALUES (1418, 'As I await certain death I wonder if my family is still alive.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1419, 1418, 'next', 1420);
+     INSERT INTO actions(id) VALUES (1420);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1420, 1421, 0);  -- jump to 1421
+
+     INSERT INTO event(id, text) VALUES (1421, 'GAME OVER - You reached the bad end.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1422, 1421, 'See credits screen.', 1423);
+     INSERT INTO actions(id, challengeid) VALUES (1423, 1424);
+     INSERT INTO challenge(challengeid, challengename, challengetype) VALUES (1424, 'credits', 'other');
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1423, 1425, 0);  -- jump to 1425
+     INSERT INTO event(id, text) VALUES (1425, 'Blank event - roll credits');
 
 ---- Choice 2 Result On Win
 
