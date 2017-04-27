@@ -622,24 +622,26 @@ INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1309, 1310, 
      INSERT INTO choice(id, eventid, text, actionid) VALUES (1335, 1334, 'See credits screen.', 1336);
      INSERT INTO actions(id, challengeid) VALUES (1336, 1337);
      INSERT INTO challenge(challengeid, challengename, challengetype) VALUES (1337, 'credits', 'other');
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1336, 1338, 0);  -- jump to 1338
+     INSERT INTO event(id, text) VALUES (1338, 'Blank event - roll credits');
 ----
 -- Choice 2 - Save your family.
-   INSERT INTO choice(id, eventid, text, actionid) VALUES (1338, 1310, 'Save your family.  No amount of gold is worth their lives.', 1339);
-   INSERT INTO actions(id, text) VALUES (1339, 'You decide to save your family.');
-   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1339, 1340, 0);  -- jump to 1340
+   INSERT INTO choice(id, eventid, text, actionid) VALUES (1339, 1310, 'Save your family.  No amount of gold is worth their lives.', 1340);
+   INSERT INTO actions(id, text) VALUES (1340, 'You decide to save your family.');
+   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1340, 1341, 0);  -- jump to 1341
 ---- Choice 2 Results - Lead to first-mate confrontation.
-     INSERT INTO event(id, text) VALUES (1340, 'You take a piece of gold from the room as proof that you found the treasure, shut and scramble the lock, and then begin making your way out of the cave.');
-     INSERT INTO choice(id, eventid, text, actionid) VALUES (1341, 1340, 'next', 1342);
-     INSERT INTO actions(id) VALUES (1342);
-     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1342, 1343, 0);  -- jump to 1343
+     INSERT INTO event(id, text) VALUES (1341, 'You take a piece of gold from the room as proof that you found the treasure, shut and scramble the lock, and then begin making your way out of the cave.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1342, 1341, 'next', 1343);
+     INSERT INTO actions(id) VALUES (1343);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1343, 1344, 0);  -- jump to 1344
 
-     INSERT INTO event(id, text) VALUES (1343, 'You exit the cave and start heading down the path when you hear someone laugh.');
-     INSERT INTO choice(id, eventid, text, actionid) VALUES (1344, 1343, 'next', 1345);
-     INSERT INTO actions(id) VALUES (1345);
-     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1345, 1346, 0);  -- jump to 1346
+     INSERT INTO event(id, text) VALUES (1344, 'You exit the cave and start heading down the path when you hear someone laugh.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1345, 1344, 'next', 1346);
+     INSERT INTO actions(id) VALUES (1346);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1346, 1347, 0);  -- jump to 1347
 ----
 ------------------------------------------------------------------------------------------------------------------------
--- Note:  1346 should lead to the final confrontation scene
+-- Note:  1347 should lead to the final confrontation scene
 
 -- challenge for credits:
 -- INSERT INTO challenge(challengeid, challengename, challengetype) VALUES (1338, 'credits', 'other');
