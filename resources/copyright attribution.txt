@@ -22,6 +22,28 @@ Pellet Gun Pump Sound Mike Koenig (http://soundbible.com/1098-Pellet-Gun-Pump.ht
 Licensed under Creative Commons: By Attribution 3.0 License
 http://creativecommons.org/licenses/by/3.0/legalcode
 
+Chee Zee Cave Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 3.0 License
+http://creativecommons.org/licenses/by/3.0/
+
+Chee Zee Jungle Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 3.0 License
+http://creativecommons.org/licenses/by/3.0/
+
+
+snd_sword is public domain sound from https://www.freesound.org/people/audione/sounds/52458/
+
+snd_click is public domain sound from https://www.freesound.org/people/RonaldVanWonderen/sounds/110101/
+
+
+soundSafe*.mp3 sounds were cropped in Adobe Audition by Drew Hans from wav files found at http://soundbible.com/tags-click.html
+
+soundLeverPull.mp3 sound was cropped in Adobe Audition by Drew Hans from a wav file found at http://soundbible.com/1699-Lever.html
+
+fish noises will probably come from http://soundbible.com/tags-fish.html
+
+diary page https://www.flickr.com/photos/dougitdesign/5613967601 Doug Aghassi
+
 Open Book, Blank Doug Aghassi (http://dougitdesign.deviantart.com/art/open-book-template-PSD-198829525)
 Licensed under Creative Commons: Attribution-NoDerivs 2.0 License
 https://creativecommons.org/licenses/by-nd/2.0/legalcode

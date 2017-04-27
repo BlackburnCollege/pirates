@@ -7,9 +7,9 @@ TRIBAL ISLAND STARTS AT ID 700
 
 
 -- Display Text with 2 choices
-INSERT INTO event(id, text) VALUES (701, 'Robert Knight said that the Kalinago 
+INSERT INTO event(id, text, music) VALUES (701, 'Robert Knight said that the Kalinago 
 people, who live on this island, were most likely to have the map. I should be 
-careful though, because they are known to be unkind to outsiders.')
+careful though, because they are known to be unkind to outsiders.', chee_zee_jungle);
 --
 -- Choice 1
   INSERT INTO choice(id, eventid, text, actionid) VALUES (799, 701, 'Sneak into 
@@ -167,9 +167,11 @@ INSERT INTO challenge(challengeid, challengename, challengetype) values (730, 'f
 --
 ------------------------------------------------------------------------------------------------------------------------
 --
-INSERT INTO event(id, text) VALUES (712, '');
-INSERT INTO choice(id, eventid, text, actionid) VALUES ()
-FINISH COMBAT!!
+INSERT INTO event(id, text, music) VALUES (712, '', chee_zee_cave);
+INSERT INTO choice(id,eventid,text,actionid) VALUES (, 712, '', );
+INSERT INTO actions(id, challengeid) VALUES (, );
+insert into actionsevent (actionid, eventid, eventposition) values (, , 1);
+INSERT INTO challenge(challengeid, challengename, challengetype) values (, '', combat);
 --
 ------------------------------------------------------------------------------------------------------------------------
 --
