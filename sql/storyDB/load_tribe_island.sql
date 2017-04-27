@@ -9,7 +9,7 @@ TRIBAL ISLAND STARTS AT ID 700
 -- Display Text with 2 choices
 INSERT INTO event(id, text, music) VALUES (700, 'Robert Knight said that the Kalinago 
 people, who live on this island, were most likely to have the map. I should be 
-careful though, because they are known to be unkind to outsiders.', chee_zee_jungle);
+careful though, because they are known to be unkind to outsiders.', CHEE_ZEE_JUNGLE);
 --
 -- Choice 1
   INSERT INTO choice(id, eventid, text, actionid) VALUES (799, 700, 'Sneak into 
@@ -167,7 +167,7 @@ INSERT INTO challenge(challengeid, challengename, challengetype) values (730, 'f
 --
 ------------------------------------------------------------------------------------------------------------------------
 --
-INSERT INTO event(id, text, music) VALUES (712, '', chee_zee_cave);
+INSERT INTO event(id, text, music) VALUES (712, '', CHEE_ZEE_CAVE);
 INSERT INTO choice(id,eventid,text,actionid) VALUES (, 712, '', );
 INSERT INTO actions(id, challengeid) VALUES (, );
 insert into actionsevent (actionid, eventid, eventposition) values (, , 1);
@@ -175,18 +175,18 @@ INSERT INTO challenge(challengeid, challengename, challengetype) values (, '', c
 --
 ------------------------------------------------------------------------------------------------------------------------
 --
-INSERT INTO event(id, text) VALUES (713, 'I manage to fight my way to the map, 
+INSERT INTO event(id, text, music) VALUES (713, 'I manage to fight my way to the map, 
 grab it, and I run back to my boat. I take off, hearing the angry tribesmen 
-yelling behind me.');
+yelling behind me.', CHEE_ZEE_JUNGLE);
 INSERT INTO choice (id, eventid, text, actionid) VALUES (782, 713, 'next', 769);
 INSERT INTO actions(id) VALUES (769);
 INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (769, 715, 0);
 --
 ------------------------------------------------------------------------------------------------------------------------
 --
-INSERT INTO event(id, text) VALUES (714, 'After losing the fight, I manage to 
+INSERT INTO event(id, text, music) VALUES (714, 'After losing the fight, I manage to 
 flee and lose them. I’m going to have to sneak through the woods to find the map 
-piece.');
+piece.', CHEE_ZEE_JUNGLE);
 INSERT INTO choice (id, eventid, text, actionid) VALUES (781, 714, 'next', 770);
 INSERT INTO actions(id) VALUES (770);
 INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (770, 702, 0);
