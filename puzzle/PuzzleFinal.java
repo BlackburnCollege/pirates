@@ -51,6 +51,34 @@ public class PuzzleFinal extends PuzzleModel {
     }
 
     /**
+     * Constructor
+     */
+    public PuzzleFinal(String spouseName) {
+        this.correctDialPositions = new char[7];
+        this.correctDialPositions[0] = spouseName.charAt(0);
+        this.correctDialPositions[1] = spouseName.charAt(1);
+        this.correctDialPositions[2] = spouseName.charAt(2);
+        this.correctDialPositions[3] = spouseName.charAt(3);
+        this.correctDialPositions[4] = spouseName.charAt(4);
+        this.correctDialPositions[5] = spouseName.charAt(5);
+        this.correctDialPositions[6] = spouseName.charAt(6);
+
+        this.currentDialPositions = new char[7];
+        this.currentDialPositions[0] = 'A';
+        this.currentDialPositions[1] = 'A';
+        this.currentDialPositions[2] = 'A';
+        this.currentDialPositions[3] = 'A';
+        this.currentDialPositions[4] = 'A';
+        this.currentDialPositions[5] = 'A';
+        this.currentDialPositions[6] = 'A';
+
+        // update model parameters for controller
+        this.setBackground(this.finalBackgroundLocation);
+        this.setSound(this.soundClickLocation);
+        this.setText("");
+    }
+
+    /**
      * @return the correctDialPositions char array
      */
     public char[] getCorrectDialPositions() {
