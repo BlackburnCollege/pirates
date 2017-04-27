@@ -92,7 +92,7 @@ INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1358, 1359, 
      INSERT INTO event(id, text) VALUES (1387, '"Then you will meet an early death!", Conrad yells.');
      INSERT INTO choice(id, eventid, text, actionid) VALUES (1388, 1387, 'Begin combat challenge', 1389);
      INSERT INTO actions(id, challengeid) VALUES (1389, 1390);
-     INSERT INTO challenge(challengeid, challengename, challengetype) VALUES (1390, 'Drunken Sailor', 'combat');
+     INSERT INTO challenge(challengeid, challengename, challengetype) VALUES (1390, 'Conrad', 'combat');
      INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1389, 1391, 0);  -- jump to 1391 on combat lose
      INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1389, 1426, 1);  -- jump to 1426 on combat win
 
