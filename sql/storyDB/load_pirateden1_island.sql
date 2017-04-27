@@ -49,8 +49,11 @@ INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (553, 506, 0);
 INSERT INTO event(id, text) VALUES (503, '"Robert Knight was overthrown more 
 than 2 years ago." the pirate growls, “We don’t take very kindly to friends of 
 Robert Knight."');
---PUT COMBAT HERE
-
+INSERT INTO choice (id, eventid, text, actionid) VALUES (595, 503, 'Fight him!', 554);
+INSERT INTO actions(id, challengeid) VALUES (554, 512);
+INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (554, 504, 1);
+INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (554, 505, 0);
+INSERT INTO challenge(challengeid, challengename, challengetype) VALUES (512, 'INSERTNAMEHERE', combat);
 
 --
 ------------------------------------------------------------------------------------------------------------------------
