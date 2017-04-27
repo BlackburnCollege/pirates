@@ -456,7 +456,7 @@ INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1260, 1263, 
    INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1265, 1258, 0);  -- jump back to 1258 and try puzzle again
 --
 -- On Puzzle Solve
-   INSERT INTO event(id, text) VALUES (1263, 'The passphrase Margery unlocks the door and it starts to slide open.');
+   INSERT INTO event(id, text) VALUES (1263, 'The passphrase $SPOUSE_NAME$ unlocks the door and it starts to slide open.');
    INSERT INTO choice(id, eventid, text, actionid) VALUES (1266, 1263, 'next', 1267);
    INSERT INTO actions(id) VALUES (1267);
    INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1267, 1268, 0);  -- jump to 1268
@@ -464,7 +464,7 @@ INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1260, 1263, 
 ------------------------------------------------------------------------------------------------------------------------
 --
 -- Display Text with "Next" Choice only (do not change background and music)
-INSERT INTO event(id, text) VALUES (1268, '“Margery… why is the name of my wife the passphrase?  Is it coincidence?  No, it can’t be.  Think…”');
+INSERT INTO event(id, text) VALUES (1268, '“$SPOUSE_NAME$… why is the name of my wife the passphrase?  Is it coincidence?  No, it can’t be.  Think…”');
 INSERT INTO choice(id, eventid, text, actionid) VALUES (1269, 1268, 'next', 1270);
 INSERT INTO actions(id) VALUES (1270);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1270, 1271, 0);  -- jump to 1271
@@ -528,7 +528,7 @@ INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1291, 1292, 
 ------------------------------------------------------------------------------------------------------------------------
 --
 -- Display Text with "Next" Choice only (do not change background and music)
-INSERT INTO event(id, text) VALUES (1292, 'I remember meeting my love, Margery…');
+INSERT INTO event(id, text) VALUES (1292, 'I remember meeting my love, $SPOUSE_NAME$…');
 INSERT INTO choice(id, eventid, text, actionid) VALUES (1293, 1292, 'next', 1294);
 INSERT INTO actions(id) VALUES (1294);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1294, 1295, 0);  -- jump to 1295
