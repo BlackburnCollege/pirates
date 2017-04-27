@@ -59,13 +59,13 @@ INSERT INTO actions (id) VALUES (322);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (322, 328, 0);
 --
 --Choice-2-2
-INSERT INTO choice (id, eventid, text, actionid) VALUES (392, 318, 'Visit alleyway', 393);
-INSERT INTO actions (id) VALUES (393);
-INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (393, 331, 0);
+--INSERT INTO choice (id, eventid, text, actionid) VALUES (392, 318, 'Visit alleyway', 393);
+--INSERT INTO actions (id) VALUES (393);
+--INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (393, 331, 0);
 --
 --Conditionals
-INSERT INTO conditional (id, attachedid, flag, flagstate) VALUES (391, 321, 'alleyarrival', 0);
-INSERT INTO conditional (id, attachedid, flag, flagstate) VALUES (394, 392, 'alleyarrival', 1);
+--INSERT INTO conditional (id, attachedid, flag, flagstate) VALUES (391, 321, 'alleyarrival', 0);
+--INSERT INTO conditional (id, attachedid, flag, flagstate) VALUES (394, 392, 'alleyarrival', 1);
 --
 --Choice-3-1
 INSERT INTO choice (id, eventid, text, actionid) VALUES (404, 318, 'Visit Governor`s house', 405);
