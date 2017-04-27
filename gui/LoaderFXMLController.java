@@ -8,8 +8,6 @@ package gui;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -115,10 +113,6 @@ public class LoaderFXMLController implements Initializable {
                 SQLDatabaseManager story = SQLDatabaseManager.getManager("storyDB");
                 setGUIText(loadingStatus, "Building combat database");
                 SQLDatabaseManager combat = SQLDatabaseManager.getManager("combatDB");
-                setGUIText(loadingStatus, "Extracting images");
-                ImageController.get();
-                setGUIText(loadingStatus, "Extracting audio");
-                AudioController.get();
                 setGUIText(loadingStatus, "Building story tree");
                 /*
                 try {

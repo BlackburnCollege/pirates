@@ -56,6 +56,8 @@ public class MapFXMLController extends ChallengeController implements Initializa
     private Text englishFragmentLabel;
     @FXML
     private Text tribalFragmentLabel;
+    
+    private static final int NUMBER_OF_PIECES = 2;
 
     private boolean[] mapPiecesFound = new boolean[4];
 
@@ -125,7 +127,7 @@ public class MapFXMLController extends ChallengeController implements Initializa
             caveFragmentLabel.setStrikethrough(true);
             piecesFound++;
         }
-        finalIslandUnlocked = true;//piecesFound >= 4;
+        finalIslandUnlocked = piecesFound >= NUMBER_OF_PIECES;
         finalIsland.setVisible(finalIslandUnlocked);
         finalIslandLabel.setVisible(finalIslandUnlocked);
         finalIslandLabel2.setVisible(finalIslandUnlocked);
