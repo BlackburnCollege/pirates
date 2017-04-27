@@ -5,17 +5,35 @@ TRIBAL ISLAND STARTS AT ID 700
 * @created: April 24, 2017 
 */
 
--- Display Text with 2 choices
-INSERT INTO event(id, text, music) VALUES (700, 'Robert Knight said that the Kalinago people, who live on this island, were most likely to have the map. 
-I should be careful though, because they are known to be unkind to outsiders.', 'CHEE_ZEE_JUNGLE');
+-- 
+INSERT INTO event(id, text, music) VALUES (700, 'I arrive at the island of the Kalinago Tribe.', 'CHEE_ZEE_JUNGLE');
+
+-- Choice 1
+  INSERT INTO choice(id, eventid, text, actionid) VALUES (723, 700, 'next', 725);
+--
+-- Choice 2
+  INSERT INTO choice(id, eventid, text, actionid) VALUES (724, 700, 'I have no need to be here, set sail!', 1500);
+
+INSERT INTO conditional(id, attachedid, flag, flagstate) VALUES (726, 723, 'mappiece4found', 0);
+INSERT INTO conditional(id, attachedid, flag, flagstate) VALUES (728, 724, 'mappiece4found', 1);
+
+  INSERT INTO actions(id) VALUES (727);
+  INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (727, 820, 1);
+  INSERT INTO actions(id) VALUES (725);
+  INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (725, 701, 0);
+--
+------------------------------------------------------------------------------------------------------------------------
+--
+INSERT INTO event(id, text) VALUES (701, 'Robert Knight said that the Kalinago people, who live on this island, were most likely to have the map. 
+I should be careful though, because they are known to be unkind to outsiders.');
 --
 -- Choice 1
-  INSERT INTO choice(id, eventid, text, actionid) VALUES (799, 700, 'Sneak into the village', 750);
+  INSERT INTO choice(id, eventid, text, actionid) VALUES (799, 701, 'Sneak into the village', 750);
   INSERT INTO actions(id, text) VALUES (750, 'I decide to sneak into the village through the woods');
   INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (750, 702, 0);
 --
 -- Choice 2
-  INSERT INTO choice(id, eventid, text, actionid) VALUES (798, 700, 'Ask the Kalinago for the map piece', 751); 
+  INSERT INTO choice(id, eventid, text, actionid) VALUES (798, 701, 'Ask the Kalinago for the map piece', 751); 
   INSERT INTO actions(id, text) VALUES (751, 'I decide that the best way to get the map is to talk to the leader of the tribe.');
   INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (751, 709, 0);
 --
@@ -30,7 +48,7 @@ I should be careful though, because they are known to be unkind to outsiders.', 
   INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (752, 703, 0);
 --
 -- Choice 2
-  INSERT INTO choice(id, eventid, text, actionid) VALUES (781, 702, 'Go Right', 753); 
+  INSERT INTO choice(id, eventid, text, actionid) VALUES (807, 702, 'Go Right', 753); 
   INSERT INTO actions(id) VALUES (753);
   INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (753, 708, 0);
 --
@@ -129,9 +147,10 @@ INSERT INTO event(id, text) VALUES (710, 'I can help Mabouya, though!” The men
 --
 INSERT INTO event(id, text) VALUES (711, 'I agree to search for the Pagua Flower and follow the villagers direction to a mountain on the island');
 INSERT INTO choice(id,eventid,text,actionid) VALUES (771, 711, 'Head to the mountain to search', 772);
-INSERT INTO actions(id, challengeid) VALUES (772, 730);
-insert into actionsevent (actionid, eventid, eventposition) values (772, 720, 1);
-INSERT INTO challenge(challengeid, challengename, challengetype) values (730, 'flower', 'puzzle');
+--INSERT INTO actions(id, challengeid) VALUES (772, 730);
+INSERT INTO actions(id) VALUES (772);
+insert into actionsevent (actionid, eventid, eventposition) values (772, 720, 0);
+--INSERT INTO challenge(challengeid, challengename, challengetype) values (730, 'flower', 'puzzle');
 --
 ------------------------------------------------------------------------------------------------------------------------
 --
@@ -144,7 +163,7 @@ INSERT INTO challenge(challengeid, challengename, challengetype) values (731, ''
 --
 ------------------------------------------------------------------------------------------------------------------------
 --
-INSERT INTO event(id, text, music) VALUES (713, 'I manage to fight my way to the map, grab it, and I run back to my boat. I take off, hearing the angry tribesmen yelling behind me.', CHEE_ZEE_JUNGLE);
+INSERT INTO event(id, text, music) VALUES (713, 'I manage to fight my way to the map, grab it, and I run back to my boat. I take off, hearing the angry tribesmen yelling behind me.', 'CHEE_ZEE_JUNGLE');
 INSERT INTO choice (id, eventid, text, actionid) VALUES (782, 713, 'next', 769);
 INSERT INTO actions(id) VALUES (769);
 INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (769, 715, 0);
@@ -152,15 +171,17 @@ INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (769, 715, 0);
 ------------------------------------------------------------------------------------------------------------------------
 --
 INSERT INTO event(id, text, music) VALUES (714, 'After losing the fight, I manage to flee and lose them. I’m going to have to sneak through the woods to find the map piece.', 'CHEE_ZEE_JUNGLE');
-INSERT INTO choice (id, eventid, text, actionid) VALUES (781, 714, 'next', 770);
+INSERT INTO choice (id, eventid, text, actionid) VALUES (806, 714, 'next', 770);
 INSERT INTO actions(id) VALUES (770);
 INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (770, 702, 0);
 --
 ------------------------------------------------------------------------------------------------------------------------
 --
 INSERT INTO event(id, text) VALUES (715, 'I have the map, and I’ll be happy to never visit the Kalinago ever again.');
-INSERT INTO choice (id, eventid, text, actionid) VALUES (780, 715, 'Head to the map', 1500);
-
+INSERT INTO choice (id, eventid, text, actionid) VALUES (808, 715, 'next', 804);
+INSERT INTO actions (id) VALUES (804);
+INSERT INTO conditional(id, attachedid, flag, flagstate) VALUES (721, 804, 'mappiece4found', 1);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (804, 800, 0);
 --
 ------------------------------------------------------------------------------------------------------------------------
 --
@@ -169,5 +190,16 @@ INSERT INTO choice (id, eventid, text, actionid) VALUES (781, 716, 'Go back to t
 --
 ------------------------------------------------------------------------------------------------------------------------
 -- 
-INSERT INTO event(id, text) VALUES (720, 'I find the flower and bring it to the Kalinago.They give me the map piece and I head back to my ship as quickly as I can. I have themap, and I will be happy to never visit the Kalinago ever again.');
-INSERT INTO choice(id, eventid, text, actionid) VALUES (782, 720, 'Head back to the map', 1500);
+INSERT INTO event(id, text) VALUES (720, 'I find the flower and bring it to the Kalinago. They give me the map piece and I head back to my ship as quickly as I can. I have the map, and I will be happy to never visit the Kalinago ever again.');
+INSERT INTO choice (id, eventid, text, actionid) VALUES (805, 720, 'next', 801);
+INSERT INTO actions (id) VALUES (801);
+INSERT INTO conditional(id, attachedid, flag, flagstate) VALUES (802, 801, 'mappiece4found', 1);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (801, 800, 0);
+--
+------------------------------------------------------------------------------------------------------------------------
+-- 
+INSERT INTO event (id, text) VALUES (800, 'Map piece in hand I set sail for the next island');
+INSERT INTO choice (id, eventid, text, actionid) VALUES (803, 800, 'Set sail!', 1500);
+--
+------------------------------------------------------------------------------------------------------------------------
+-- 
