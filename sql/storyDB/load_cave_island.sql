@@ -37,7 +37,7 @@ INSERT INTO event (id, text) VALUES (913, 'I pull back around the corner to read
 
 insert into choice(id, eventid, text, actionid) values (914, 913, 'I snap out of my momentary confusion and pull the trigger.' , 915);
 
-insert into actions(id) values (915);
+insert into actions(id, challengeid) values (915, 918);
 
 insert into actionsevent (actionid, eventid, eventposition) values (915, 916, 0);
 
@@ -47,7 +47,7 @@ insert into challenge(challengeid, challengename, challengetype) values (918, 'J
 
 INSERT INTO event (id, text) VALUES (917, 'The ettin falls with a loud thud that shakes the walls of the cave, followed by faint clapping from the back of the cave. I strain to see what might be back there. All I can see is faint movement from the cage.');
 
-insert into choice(id, eventid, text, actionid) values (918, 917, 'I move in to get a closer look.' , 919);
+insert into choice(id, eventid, text, actionid) values (956, 917, 'I move in to get a closer look.' , 919);
 
 insert into actions(id, text) values (919, 'In the cage there is yet another ettin, but smaller. Other than it''s smaller size there is something different about it...one of the heads is smiling curiously.');
 
