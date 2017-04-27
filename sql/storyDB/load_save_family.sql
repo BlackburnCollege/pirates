@@ -118,7 +118,7 @@ INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1358, 1359, 
      INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1402, 1403, 0);  -- jump to 1403
 
      INSERT INTO event(id, text) VALUES (1403, 'After plundering the treasure room they drag me back to their ship and tie me to the ship''s figurehead.');
-     INSERT INTO choice(id, eventid, text, actionid) VALUES (1404, 1404, 'next', 1405);
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1404, 1403, 'next', 1405);
      INSERT INTO actions(id) VALUES (1405);
      INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1405, 1406, 0);  -- jump to 1406
 
@@ -133,7 +133,7 @@ INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1358, 1359, 
      INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1411, 1412, 0);  -- jump to 1412
 
      INSERT INTO event(id, text) VALUES (1412, 'The ship starts sailing away and I swim after it but quickly realize that I cannot keep up.  I turn towards the island and swim to shore.');
-     INSERT INTO choice(id, eventid, text, actionid) VALUES (1413, 1402, 'next', 1414);
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1413, 1412, 'next', 1414);
      INSERT INTO actions(id) VALUES (1414);
      INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1414, 1415, 0);  -- jump to 1415
 
