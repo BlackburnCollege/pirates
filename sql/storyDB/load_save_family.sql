@@ -80,12 +80,46 @@ INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1358, 1359, 
      INSERT INTO event(id, text) VALUES (1381, 'Blank event - roll credits');
 ----
 -- Choice 2 - Fight first-mate
-   INSERT INTO choice(id, eventid, text, actionid) VALUES (1360, 1359, 'Refuse to give him the treasure and fight him.', 1361);
-   INSERT INTO actions(id, text) VALUES (1361, 'You decide to give him the treasure room passphrase and beg for my family to be returned.');
-   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1361, 1362, 0);  -- jump to 1362
+   INSERT INTO choice(id, eventid, text, actionid) VALUES (1382, 1359, 'Refuse to give him the treasure and fight him for your family.', 1383);
+   INSERT INTO actions(id, text) VALUES (1383, 'I refuse to give him the treasure and decide to take back my family by force!');
+   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1383, 1384, 0);  -- jump to 1384
 
+     INSERT INTO event(id, text) VALUES (1384, '"I can''t trust you Conrad and I won''t let you hurt anymore people."');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1385, 1384, 'next', 1386);
+     INSERT INTO actions(id) VALUES (1386);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1386, 1387, 0);  -- jump to 1387
+     
+     INSERT INTO event(id, text) VALUES (1387, '"Then you will meet an early death!", Conrad yells.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1388, 1387, 'Begin combat challenge', 1389);
+     INSERT INTO actions(id, challengeid) VALUES (1389, 1390);
+     INSERT INTO challenge(challengeid, challengename, challengetype) VALUES (1390, 'Drunken Sailor', 'combat');
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1389, 1391, 0);  -- jump to 1391 on combat lose
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1389, 1XXX, 1);  -- jump to 1XXX on combat win
 
 ---- Choice 2 Result On Lose
+     INSERT INTO event(id, text) VALUES (1391, 'You lose the fight.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1392, 1391, 'next', 1393);
+     INSERT INTO actions(id) VALUES (1393);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1393, 1394, 0);  -- jump to 1394
+
+     INSERT INTO event(id, text) VALUES (1394, '"Did you really think you could beat me in combat?", Conrad smirks.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1395, 1394, 'next', 1396);
+     INSERT INTO actions(id) VALUES (1396);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1396, 1397, 0);  -- jump to 1397
+
+     INSERT INTO event(id, text) VALUES (1397, 'After gloating he turns and waves at someone in the distance.  You look in that direction and see a group of pirates coming your way.');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1398, 1397, 'next', 1399);
+     INSERT INTO actions(id) VALUES (1399);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1399, 1400, 0);  -- jump to 1400
+
+     INSERT INTO event(id, text) VALUES (1400, '');
+     INSERT INTO choice(id, eventid, text, actionid) VALUES (1401, 1400, 'next', 1402);
+     INSERT INTO actions(id) VALUES (1402);
+     INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1402, 1403, 0);  -- jump to 1403
+
+
 ---- Choice 2 Result On Win
+
+
 ----
 ------------------------------------------------------------------------------------------------------------------------
