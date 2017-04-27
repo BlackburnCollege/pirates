@@ -607,7 +607,17 @@ public class GameController implements Initializable {
                 challengePane.setDisable(true);
                 //challengePane.setStyle("-fx-background-color: #00000000");
                 fadeOutAnimation.play();
-                processGameEvent(action.getEvents()[status]);
+                try {
+                    processGameEvent(action.getEvents()[status]);
+                } catch (RuntimeException re) {
+                    System.err.println("Error thrown after Action "
+                            + "" + action.getID() + "'s Challenge " +
+                            action.getChallenge().getID() + "tried to load event"
+                            + " at position " + status);
+                    throw re;
+                    
+                }
+                
                 finalController.teardownListeners(sceneRef);
             }
 
