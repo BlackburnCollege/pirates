@@ -135,11 +135,8 @@ INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (562, 511, 0);
 --
 INSERT INTO event(id, text) VALUES (510, 'It seems like I will have to go to the 
 Kalinago Island to find the map piece.');
-INSERT INTO choice (id, eventid, text, actionid) VALUES(586, 510, 'Go to the map', 1500);
-/*
-INSERT INTO actions (id) VALUES (563);
-INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (563, 1500, 0);
-*/
+INSERT INTO choice (id, eventid, text, actionid) VALUES(586, 510, 'Go to the map', 1500);\
+
 /*
     todo: add conditional to set "piratedencompleted" to true (1) so that map works
 */
