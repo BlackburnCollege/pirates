@@ -2,7 +2,7 @@
  SPANISH STORY STARTS AT ID 300
 */
 -----------------------------------------Arrival-------------------------------------
-INSERT INTO event (id, text, backgroundname) VALUES (300, 'I set sail towards the Spain controlled island, El Puerto Espadaña.', 'spanish_island_0');
+INSERT INTO event (id, text, backgroundname, music) VALUES (300, 'I set sail towards the Spain controlled island, El Puerto Espadaña.', 'spanish_island_0', 'LORD_OF_THE_LAND');
 INSERT INTO choice (id, eventid, text, actionid) VALUES (301, 300, 'next', 302);
 INSERT INTO actions (id) VALUES (302);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (302, 304, 0);
@@ -178,7 +178,7 @@ INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (373, 374, 0)
 INSERT INTO event (id, text) VALUES (374, 'I went looking for the back room and found a suspicious looking door. There are a series of switches next to the door and some number on the door itself. Perhaps the map piece is stored here');
 INSERT INTO choice (id, eventid, text, actionid) VALUES (375, 374, 'Solve this puzzle', 376);
 INSERT INTO actions (id, challengeid) VALUES (376, 377);
-INSERT INTO challenge (challengeid, challengename, challengetype) VALUES (377, 'switch', 'puzzle');
+INSERT INTO challenge (challengeid, challengename, challengetype) VALUES (377, 'binaryswitch', 'puzzle');
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (376, 391, 0);--fail
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (376, 378, 1);--success
 --fail

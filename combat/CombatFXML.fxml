@@ -21,7 +21,7 @@
                   <Button mnemonicParsing="false" onAction="#shoot" prefHeight="56.0" prefWidth="158.0" text="Shoot" />
                </children>
             </VBox>
-            <BorderPane prefHeight="165.0" prefWidth="413.0" style="-fx-border-color: deeppink; -fx-background-color: white;">
+            <BorderPane opacity="0.66" prefHeight="165.0" prefWidth="413.0" style="-fx-border-color: gray; -fx-background-color: white;">
                <center>
                   <Label fx:id="output" BorderPane.alignment="CENTER" />
                </center>
