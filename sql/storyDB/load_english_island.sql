@@ -4,7 +4,7 @@
 --------------------------------------------------------------INTRO----------------------------------------------------
 INSERT INTO event (id, text, backgroundname, music) VALUES (100, 'After a few days at sea you can finally see Knightstone in the distance. 
 You sail past warships bearing an english crest as they eye your ship. As you sail into the port of the island you can see it’s full of merchants, 
-fisherman, and soldiers. As you dock $SHIP_NAME$ a Lieutenant flanked by two guards approaches you.','english_island_0', 'CRUSADE');
+fisherman, and soldiers.','english_island_0', 'CRUSADE');
 INSERT INTO choice(id, eventid, text, actionid) VALUES (101, 100, 'next', 102);
 INSERT INTO choice(id, eventid, text, actionid) VALUES (295, 100, 'next', 1500);
 INSERT INTO conditional(id, attachedid, flag, flagstate) VALUES (293, 101, 'mappiece1found', 0);
@@ -13,7 +13,7 @@ INSERT INTO conditional(id, attachedid, flag, flagstate) VALUES (294, 295, 'mapp
 INSERT INTO actions(id) VALUES (102);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (102, 103, 0);
 
-INSERT INTO event(id, text, backgroundname) VALUES (103, 'The Lieutenant asks "Who is in charge of this vessel?"', 'new-pirate-ship');
+INSERT INTO event(id, text, backgroundname) VALUES (103, ' As I dock $SHIP_NAME$ a Lieutenant flanked by two guards approaches me. The Lieutenant asks "Who is in charge of this vessel?"', 'new-pirate-ship');
 
   INSERT INTO choice(id, eventid, text, actionid) VALUES (104, 103, 'That would be me.', 105);
   INSERT INTO actions(id) VALUES (105);
@@ -143,7 +143,7 @@ INSERT INTO event(id, text, music) VALUES (178, 'The Thief hits my head hard wit
   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (183, 190, 0);  -- jump to 190
 --------------------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------JAIL-------------------------------------------------
-INSERT INTO event(id, text) VALUES (190, 'I wake up in a dusty old cell and sigh and chuckle to myself as I came realize where I am. “So much for keeping a low profile” I think to myself. I look around my new surroundings and I see a young guard reading the journal from my bag with enthusiasm. I also notice a decrepit old man in the corner of my cell.');
+INSERT INTO event(id, text, backgroundname) VALUES (190, 'I wake up in a dusty old cell and sigh and chuckle to myself as I came realize where I am. “So much for keeping a low profile” I think to myself. I look around my new surroundings and I see a young guard reading the journal from my bag with enthusiasm. I also notice a decrepit old man in the corner of my cell.', 'Jail');
 
   INSERT INTO choice(id, eventid, text, actionid) VALUES (191, 190, 'I ask the old man if he’s the old pirate I heard about in the Tavern.', 192);
   INSERT INTO actions(id) VALUES (192);
