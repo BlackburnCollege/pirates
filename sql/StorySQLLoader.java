@@ -102,11 +102,17 @@ public class StorySQLLoader {
                 if (object.getText() == null) {
                     throw new RuntimeException("Event with id " + id + " has no text!");
                 }
+                String music = events.getString("music");
                 try {
-                    object.setMusic(Music.valueOf(events.getString("music")));
+                    if (music != null && !music.equals("null")) {
+                        object.setMusic(Music.valueOf(music));
+                    } else {
+                        object.setMusic(null);
+                    }
                 } catch (Exception npe) {
                     object.setMusic(null);
-                    System.err.println(object.getID() + " music " + events.getString("music") + " doesn't exist");
+                    System.err.println(object.getID() + " music " + 
+                            music + " doesn't exist");
                 }
                 object.setPicture(events.getString("backgroundname"));
             } else {
