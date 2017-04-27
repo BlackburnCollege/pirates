@@ -8,7 +8,7 @@ TUTORIAL STARTS AT ID 1
 */
 # INSERT INTO aceobject(id, acetype) VALUES (1, 'event');
 INSERT INTO event(id, text, backgroundname, music) VALUES (1, 
-'My name is $PLAYER_NAME$. I awake from a deep slumber. I had the nightmare again. The one where I was kidnapped by $RED{pirates.}$ I am a humble fisherman, living with my wife and child living on the quiet island of Summer Shore. Summer Shore has been my home since the incident where I lost all my memory. I get out of bed and head downstairs...', 'summershore_0', 'LIVING_VOYAGE');
+'My name is $PLAYER_NAME$. I awake from a deep slumber. I had the nightmare again. The one where I was kidnapped by pirates. I am a humble fisherman, living with my wife and child living on the quiet island of Summer Shore. Summer Shore has been my home since the incident where I lost all my memory. I get out of bed and head downstairs...', 'summershore_0', 'LIVING_VOYAGE');
 
 INSERT INTO choice(id, eventid, text, actionid) VALUES (2, 1, 'next', 3);
 
@@ -233,7 +233,7 @@ insert into choice(id, eventid, text, actionid) values (77, 75, 'set sail', 81);
 
 insert into actions(id) values (81);
 
-insert into actionsevent (actionid, eventid, eventposition) values (81, 100, 0);
+insert into actionsevent (actionid, eventid, eventposition) values (81, 1500, 0);
 
 /*
 

@@ -637,3 +637,6 @@ INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1309, 1310, 
 ------------------------------------------------------------------------------------------------------------------------
 -- Note:  1337 should lead to GAME OVER screen and then the game should end
 -- Note:  1343 shoudl lead to the final confrontation scene
+
+-- challenge for credits:
+-- INSERT INTO challenge(challengeid, challengename, challengetype) VALUES (1338, 'credits', 'other');
