@@ -197,8 +197,7 @@ INSERT INTO event(id, text) VALUES (715, 'I have the map, and I’ll be happy to
 never visit the Kalinago ever again.');
 INSERT INTO choice (id, eventid, text, actionid) VALUES (780, 715, 'Head to the map', 771);
 INSERT INTO actions(id) VALUES (771);
-INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (771, 717, 0);
-/* NOTE: 717 should lead to the map*/
+INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (771, 1500, 0);
 
 --
 ------------------------------------------------------------------------------------------------------------------------
