@@ -154,13 +154,13 @@ public class MapFXMLController extends ChallengeController implements Initializa
 
     private ImageView checkIslandClick(Object object) {
         
-        System.out.println("Check clicked");
-        System.out.println("object: " + object + " of class " + object.getClass());
+        //System.out.println("Check clicked");
+        //System.out.println("object: " + object + " of class " + object.getClass());
         
         for (int i = 0; i < islandViews.length; i++) {
             ImageView islandView = islandViews[i];
             if (object.equals(islandView)) {
-                System.out.println("clicked is island " + i);
+                //System.out.println("clicked is island " + i);
                 if (i == 6 && !finalIslandUnlocked) {
                     return null;
                 } else {
@@ -176,7 +176,7 @@ public class MapFXMLController extends ChallengeController implements Initializa
         ImageView islandView = checkIslandClick(event.getSource());
         if (islandView != null) {
             islandView.setEffect(null);
-            System.out.println(islandView.getImage() + " mouse left");
+           //System.out.println(islandView.getImage() + " mouse left");
         }
     }
 
@@ -184,7 +184,7 @@ public class MapFXMLController extends ChallengeController implements Initializa
     private void onMouseEnter(MouseEvent event) {
         ImageView islandView = checkIslandClick(event.getSource());
         if (islandView != null) {
-            System.out.println("Applying effect to " + islandView.getImage());
+            //System.out.println("Applying effect to " + islandView.getImage());
             islandView.setEffect(new DropShadow(10, Color.GOLD));
         }
     }
@@ -198,7 +198,7 @@ public class MapFXMLController extends ChallengeController implements Initializa
                 if (i == 6 && !finalIslandUnlocked) {
                     return;
                 } else {
-                    System.out.println(islandView.getImage() + " was clicked");
+                    //System.out.println(islandView.getImage() + " was clicked");
                     this.finishChallenge(i);
                     return;
                 }
