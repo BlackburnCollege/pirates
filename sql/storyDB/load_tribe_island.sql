@@ -5,7 +5,6 @@ TRIBAL ISLAND STARTS AT ID 700
 * @created: April 24, 2017 
 */
 
-
 -- Display Text with 2 choices
 INSERT INTO event(id, text, music) VALUES (700, 'Robert Knight said that the Kalinago 
 people, who live on this island, were most likely to have the map. I should be 
@@ -162,16 +161,17 @@ and follow the villagers direction to a mountain on the island');
 INSERT INTO choice(id,eventid,text,actionid) VALUES (771, 711, 'Head to the 
 mountain to search', 772);
 INSERT INTO actions(id, challengeid) VALUES (772, 730);
-insert into actionsevent (actionid, eventid, eventposition) values (772, , 1);
+insert into actionsevent (actionid, eventid, eventposition) values (772, 720, 1);
 INSERT INTO challenge(challengeid, challengename, challengetype) values (730, 'flower', 'puzzle');
 --
 ------------------------------------------------------------------------------------------------------------------------
 --
-INSERT INTO event(id, text, music) VALUES (712, '', CHEE_ZEE_CAVE);
-INSERT INTO choice(id,eventid,text,actionid) VALUES (, 712, '', );
-INSERT INTO actions(id, challengeid) VALUES (, );
-insert into actionsevent (actionid, eventid, eventposition) values (, , 1);
-INSERT INTO challenge(challengeid, challengename, challengetype) values (, '', combat);
+INSERT INTO event(id, text, music) VALUES (712, 'If you aren’t going to give me the map, I’m going to have to take it!', CHEE_ZEE_CAVE);
+INSERT INTO choice(id,eventid,text,actionid) VALUES (784, 712, '', 767);
+INSERT INTO actions(id, challengeid) VALUES (767, 731);
+insert into actionsevent (actionid, eventid, eventposition) values (767, 713, 1);
+INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (767, 714, 0);
+INSERT INTO challenge(challengeid, challengename, challengetype) values (731, '', 'combat');
 --
 ------------------------------------------------------------------------------------------------------------------------
 --
@@ -204,3 +204,10 @@ INSERT INTO event(id, text) VALUES (716, 'This is infamously the island of the
 unfriendly Kalinago tribe. The journal doesn’t mention anything about a map 
 piece here. I don’t want to waste time.');
 INSERT INTO choice (id, eventid, text, actionid) VALUES (781, 716, 'Go back to the map', 1500);
+--
+------------------------------------------------------------------------------------------------------------------------
+-- 
+INSERT INTO event(id, text) VALUES (720, 'I find the flower and bring it to the Kalinago.
+They give me the map piece and I head back to my ship as quickly as I can. I have the
+map, and I will be happy to never visit the Kalinago ever again.');
+INSERT INTO choice(id, eventid, texdt, actionid) VALUES (782, 720, 'Head back to the map', 1500);
