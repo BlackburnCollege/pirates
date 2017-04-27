@@ -39,6 +39,7 @@ import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
@@ -531,7 +532,7 @@ public class GameController implements Initializable {
     private void loadChallenge(Action action) {
 
         FXMLLoader loader = null;
-        Pane root = null;
+        Parent root = null;
         ChallengeController controller = null;
         //load controller
         if (action.getChallenge().getType().equals("combat")) {
@@ -550,7 +551,7 @@ public class GameController implements Initializable {
                 loader = new FXMLLoader(getClass().getResource(
                         puzzleControllers.get(action.getChallenge()
                                 .getChallengeName())));
-                root = (Pane) loader.load();
+                root = (Parent) loader.load();
                 controller = loader.getController();
             } catch (IOException ioe) {
                 ioe.printStackTrace();
@@ -567,6 +568,11 @@ public class GameController implements Initializable {
                             "/gui/MapFXML.fxml"));
                     root = (Pane) loader.load();
                     controller = loader.getController();
+                } else if (action.getChallenge().getChallengeName().equals("credits")) {
+                    loader = new FXMLLoader(getClass().getResource(
+                            "/gui/CreditsFXML.fxml"));
+                    root = (Pane) loader.load();
+                    controller = loader.getController();
                 }
             } catch (IOException ioe) {
                 ioe.printStackTrace();
@@ -577,11 +583,11 @@ public class GameController implements Initializable {
         //challengePane.setStyle("-fx-background-color: #000000FF");
         fadeInAnimation.play();
 
-        final Pane challengeRoot = root;
+        final Parent challengeRoot = root;
         final Scene sceneRef = this.mainPane.getScene();
 
         final ChallengeController finalController = controller;
-        final Pane finalRoot = root;
+        final Parent finalRoot = root;
         // wait for animation to finish before loading new screen in
         fadeInAnimation.setOnFinished(new EventHandler<ActionEvent>() {
             @Override

@@ -1,26 +1,26 @@
 Living Voyage Kevin MacLeod (incompetech.com)
 Licensed under Creative Commons: By Attribution 3.0 License
-http://creativecommons.org/licenses/by/3.0/
+http://creativecommons.org/licenses/by/3.0/legalcode
 
 The Builder Kevin MacLeod (incompetech.com)
 Licensed under Creative Commons: By Attribution 3.0 License
-http://creativecommons.org/licenses/by/3.0/
+http://creativecommons.org/licenses/by/3.0/legalcode
 
 Corruption Kevin MacLeod (incompetech.com)
 Licensed under Creative Commons: By Attribution 3.0 License
-http://creativecommons.org/licenses/by/3.0/
+http://creativecommons.org/licenses/by/3.0/legalcode
 
 Crusade Kevin MacLeod (incompetech.com)
 Licensed under Creative Commons: By Attribution 3.0 License
-http://creativecommons.org/licenses/by/3.0/
+http://creativecommons.org/licenses/by/3.0/legalcode
 
 Lord of the Land Kevin MacLeod (incompetech.com)
 Licensed under Creative Commons: By Attribution 3.0 License
-http://creativecommons.org/licenses/by/3.0/
+http://creativecommons.org/licenses/by/3.0/legalcode
 
-Nothing Drew Hans (drewhans555.github.io)
-Licensed under Logic: By Arthur
-https://github.com/DrewHans555
+Pellet Gun Pump Sound Mike Koenig (http://soundbible.com/1098-Pellet-Gun-Pump.html)
+Licensed under Creative Commons: By Attribution 3.0 License
+http://creativecommons.org/licenses/by/3.0/legalcode
 
 Chee Zee Cave Kevin MacLeod (incompetech.com)
 Licensed under Creative Commons: By Attribution 3.0 License
@@ -44,3 +44,6 @@ fish noises will probably come from http://soundbible.com/tags-fish.html
 
 diary page https://www.flickr.com/photos/dougitdesign/5613967601 Doug Aghassi
 
+Open Book, Blank Doug Aghassi (http://dougitdesign.deviantart.com/art/open-book-template-PSD-198829525)
+Licensed under Creative Commons: Attribution-NoDerivs 2.0 License
+https://creativecommons.org/licenses/by-nd/2.0/legalcode

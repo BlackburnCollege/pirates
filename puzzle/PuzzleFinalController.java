@@ -130,10 +130,9 @@ public class PuzzleFinalController extends ChallengeController implements Initia
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
         String spouseName = this.getWorld().getPlayer().getSpouseName();
-        
-        this.puzzle = new PuzzleFinal();
+
+        this.puzzle = new PuzzleFinal(spouseName);
 
         this.dial0Background.setImage(images.getImage(this.puzzle.getFinalBackgroundLocation()));
         this.dial0upButton.setImage(images.getImage(this.puzzle.getUpButtonLocation()));

@@ -14,6 +14,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 import javafx.scene.Scene;
 import javafx.scene.layout.Background;
@@ -38,7 +39,7 @@ public class PuzzleFishController extends ChallengeController implements Initial
     @FXML
     private Label timerLabel;
 
-    public static final int TIME_TO_FISH = 10;
+    public static final int TIME_TO_FISH = 20;
 
     private final ImageController images = ImageController.get();
     private Image fishImage = images.getImage("fish_0");
@@ -46,7 +47,7 @@ public class PuzzleFishController extends ChallengeController implements Initial
     private FishingTimer timer;
 
     private PuzzleFish fishPuzzle = new PuzzleFish();
-    
+
     private Fish[] fishes;
     private ImageView[] fishImages;
 
@@ -67,13 +68,10 @@ public class PuzzleFishController extends ChallengeController implements Initial
                         new BackgroundSize(1, 1, true, true, true, true)
                 )
         ));
-        
-        
+
         fishes = new Fish[fishPuzzle.getFishes().size()];
         fishImages = new ImageView[fishes.length];
-        
-        
-        
+
         // make fish
         int i = 0;
         for (Fish fish : fishPuzzle.getFishes()) {
@@ -81,6 +79,7 @@ public class PuzzleFishController extends ChallengeController implements Initial
             gamePane.getChildren().add(fishView);
             this.fishes[i] = fish;
             fishImages[i] = fishView;
+            i++;
         }
 
         // make and start timer
@@ -110,8 +109,18 @@ public class PuzzleFishController extends ChallengeController implements Initial
             currentTime += now - currentTime;
             double timeRemaining = (maxTime - currentTime) / 1000000000.0;
             // massive hack
+            String formatted = new DecimalFormat("##.##").format(timeRemaining);
             PuzzleFishController.this.timerLabel.setText(
-                    "Click the fish before time runs out! " + timeRemaining + " seconds left");
+                    "Click the fish before time runs out! " + formatted + " seconds left");
+            for (int i = 0; i < fishes.length; i++) {
+                Fish fishe = fishes[i];
+                ImageView fishView = fishImages[i];
+                if (fishe != null && fishView != null && !fishe.isCaught()) {
+                    fishe.think(now);
+                    updateFishView(fishe, fishView);
+                    System.out.println("Fish " + i + " thinking");
+                }
+            }
             if (currentTime >= maxTime && !fishPuzzle.getCompleted()) {
                 PuzzleFishController.this.finishChallenge(ChallengeStatus.LOSS);
                 this.stop();
@@ -133,7 +142,24 @@ public class PuzzleFishController extends ChallengeController implements Initial
         fishPuzzle.catchFish(fish);
         checkIfPuzzleComplete();
     }
-    
+
+    public void updateFishView(Fish fish, ImageView view) {
+        double screenWidth = (gamePane.getWidth() - view.getImage().getWidth() / 2);
+        double screenHeight = (gamePane.getHeight() - view.getImage().getHeight() / 2);;
+
+        
+        //calculate position on screen
+        double screenPosX = ((double) fish.getXPos() / (double) PuzzleFish.MAP_WIDTH)
+                * screenWidth;
+        double screenPosY = ((double) fish.getYPos() / (double) PuzzleFish.MAP_HEIGHT)
+                * screenHeight;
+
+        view.setLayoutX(screenPosX);
+        view.setLayoutY(screenPosY);
+        //view.setScaleX(PuzzleFish.MAP_WIDTH / screenWidth);
+        //view.setScaleY(PuzzleFish.MAP_HEIGHT / screenHeight);
+        view.setRotate(fish.getRotation());
+    }
 
     // get us a fish view to show on screen
     // also sets up the mouse click event listener
@@ -163,11 +189,11 @@ public class PuzzleFishController extends ChallengeController implements Initial
         } else if (screenPosY > gamePane.getPrefHeight() - fishImage.getHeight()) {
             screenPosY = gamePane.getPrefHeight() - fishImage.getHeight();
         }
-        */
-        System.out.println("new screenPosX = " + screenPosX);
-        System.out.println("new screenPosY = " + screenPosY);
-        fishView.setX(screenPosX);
-        fishView.setY(screenPosY);
+         */
+        fishView.setLayoutX(screenPosX);
+        fishView.setLayoutY(screenPosY);
+        //fishView.setScaleX(PuzzleFish.MAP_WIDTH / screenWidth);
+        //fishView.setScaleY(PuzzleFish.MAP_HEIGHT / screenHeight);
         fishView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
