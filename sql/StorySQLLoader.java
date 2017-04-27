@@ -104,8 +104,9 @@ public class StorySQLLoader {
                 }
                 try {
                     object.setMusic(Music.valueOf(events.getString("music")));
-                } catch (NullPointerException npe) {
+                } catch (Exception npe) {
                     object.setMusic(null);
+                    System.err.println(object.getID() + " music " + events.getString("music") + " doesn't exist");
                 }
                 object.setPicture(events.getString("backgroundname"));
             } else {
