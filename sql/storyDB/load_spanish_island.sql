@@ -46,7 +46,7 @@ INSERT INTO actions (id, text) VALUES (317, 'Guard: "Fine, continue on. But keep
 $PLAYER_NAME$: *I liked it better when I didn`t understand them*');
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (317, 318, 0);
 --------------------------------------Plaza------------------------------------------
-INSERT INTO event (id, text) VALUES (318, 'This is the plaza of El Puerto Espadaña');
+INSERT INTO event (id, text, backgroundname) VALUES (318, 'This is the plaza of El Puerto Espadaña', 'puerto_espadana_0');
 --
 --Choice-1
 INSERT INTO choice (id, eventid, text, actionid) VALUES (319, 318, 'Visit Bell Tower Rock', 320);
