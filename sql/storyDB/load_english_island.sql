@@ -13,7 +13,7 @@ INSERT INTO conditional(id, attachedid, flag, flagstate) VALUES (294, 295, 'mapp
 INSERT INTO actions(id) VALUES (102);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (102, 103, 0);
 
-INSERT INTO event(id, text, backgroundname) VALUES (103, ' As I dock $SHIP_NAME$ a Lieutenant flanked by two guards approaches me. The Lieutenant asks "Who is in charge of this vessel?"', 'new-pirate-ship');
+INSERT INTO event(id, text, backgroundname) VALUES (103, 'As I dock $SHIP_NAME$ a Lieutenant flanked by two guards approaches me. The Lieutenant asks "Who is in charge of this vessel?"', 'new-pirate-ship');
 
   INSERT INTO choice(id, eventid, text, actionid) VALUES (104, 103, 'That would be me.', 105);
   INSERT INTO actions(id) VALUES (105);
@@ -130,7 +130,7 @@ insert into actionsevent (actionid, eventid, eventposition) values (175, 178, 0)
 
 insert into actionsevent (actionid, eventid, eventposition) values (175, 177, 1);
 
-insert into challenge(challengeid, challengename, challengetype) values (176, 'Drunken Sailor', 'combat');
+insert into challenge(challengeid, challengename, challengetype) values (176, 'Thief', 'combat');
 
 INSERT INTO event(id, text, music) VALUES (177, 'As the thief falls to the ground he shouts out “Help I’m being robbed!” The Town guard surrounds me and demands that I “Get away from the Governor’s son!” A smug look appears on the thief’s face as they clasp me in irons and drag me off to jail while I protested loudly.', 'LIVING_VOYAGE');
   INSERT INTO choice(id, eventid, text, actionid) VALUES (181, 178, 'next', 182);
@@ -182,7 +182,7 @@ INSERT INTO event(id, text, music) VALUES (207, 'I fail to crack the safe. Frust
   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (213, 220, 0);  
 --------------------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------DEPARTURE--------------------------------------------
-INSERT INTO event(id, text) VALUES (220, 'As I walk back towards $SHIP_NAME$ I spot my crew finishing loading up some supplies. My first mate meets me “We acquired those supplies ye asked us to get Cap’n, are we ready to weigh anchor?” I nod at him as the Dockmaster approaches you.');
+INSERT INTO event(id, text, backgroundname) VALUES (220, 'As I walk back towards $SHIP_NAME$ I spot my crew finishing loading up some supplies. My first mate meets me “We acquired those supplies ye asked us to get Cap’n, are we ready to weigh anchor?” I nod at him as the Dockmaster approaches you.', 'new-pirate-ship');
 
   INSERT INTO choice(id, eventid, text, actionid) VALUES (221, 220, 'next', 222);
   INSERT INTO actions(id) VALUES (222);
