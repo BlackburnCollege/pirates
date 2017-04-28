@@ -9,133 +9,124 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane fx:id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="puzzle.PuzzleFinalController">
-    <children>
-        <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <children>
-                
-                <VBox>
-                    <children>
-                        <ImageView fx:id="dial0upButton" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
-                        <StackPane prefHeight="150.0" prefWidth="200.0">
-                            <children>
-                                <ImageView fx:id="dial0Background" pickOnBounds="true" preserveRatio="true" />
-                                <Label fx:id="dial0Text" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="32.0" style="-fx-background-color: #000000;" text="0" textFill="WHITE">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </StackPane>
-                        <ImageView fx:id="dial0downButton" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
-                    </children>
-                </VBox>
-                
-                <VBox>
-                    <children>
-                        <ImageView fx:id="dial1upButton" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
-                        <StackPane prefHeight="150.0" prefWidth="200.0">
-                            <children>
-                                <ImageView fx:id="dial1Background" pickOnBounds="true" preserveRatio="true" />
-                                <Label fx:id="dial1Text" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="32.0" style="-fx-background-color: #000000;" text="0" textFill="WHITE">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </StackPane>
-                        <ImageView fx:id="dial1downButton" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
-                    </children>
-                </VBox>
-                
-                
-                <VBox>
-                    <children>
-                        <ImageView fx:id="dial2upButton" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
-                        <StackPane prefHeight="150.0" prefWidth="200.0">
-                            <children>
-                                <ImageView fx:id="dial2Background" pickOnBounds="true" preserveRatio="true" />
-                                <Label fx:id="dial2Text" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="32.0" style="-fx-background-color: #000000;" text="0" textFill="WHITE">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </StackPane>
-                        <ImageView fx:id="dial2downButton" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
-                    </children>
-                </VBox>
-                
-                <VBox>
-                    <children>
-                        <ImageView fx:id="dial3upButton" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
-                        <StackPane prefHeight="150.0" prefWidth="200.0">
-                            <children>
-                                <ImageView fx:id="dial3Background" pickOnBounds="true" preserveRatio="true" />
-                                <Label fx:id="dial3Text" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="32.0" style="-fx-background-color: #000000;" text="0" textFill="WHITE">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </StackPane>
-                        <ImageView fx:id="dial3downButton" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
-                    </children>
-                </VBox>
-                
-                <VBox>
-                    <children>
-                        <ImageView fx:id="dial4upButton" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
-                        <StackPane prefHeight="150.0" prefWidth="200.0">
-                            <children>
-                                <ImageView fx:id="dial4Background" pickOnBounds="true" preserveRatio="true" />
-                                <Label fx:id="dial4Text" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="32.0" style="-fx-background-color: #000000;" text="0" textFill="WHITE">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </StackPane>
-                        <ImageView fx:id="dial4downButton" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
-                    </children>
-                </VBox>
-                
-                <VBox>
-                    <children>
-                        <ImageView fx:id="dial5upButton" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
-                        <StackPane prefHeight="150.0" prefWidth="200.0">
-                            <children>
-                                <ImageView fx:id="dial5Background" pickOnBounds="true" preserveRatio="true" />
-                                <Label fx:id="dial5Text" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="32.0" style="-fx-background-color: #000000;" text="0" textFill="WHITE">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </StackPane>
-                        <ImageView fx:id="dial5downButton" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
-                    </children>
-                </VBox>
-                
-                <VBox>
-                    <children>
-                        <ImageView fx:id="dial6upButton" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
-                        <StackPane prefHeight="150.0" prefWidth="200.0">
-                            <children>
-                                <ImageView fx:id="dial6Background" pickOnBounds="true" preserveRatio="true" />
-                                <Label fx:id="dial6Text" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="32.0" style="-fx-background-color: #000000;" text="0" textFill="WHITE">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </StackPane>
-                        <ImageView fx:id="dial6downButton" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
-                    </children>
-                </VBox>
-                
-            </children>
-        </HBox>
-        <Hyperlink fx:id="leaveButton" text="LEAVE" />
-    </children>
-</AnchorPane>
+<StackPane fx:id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="puzzle.PuzzleFinalController">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox maxHeight="400.0" maxWidth="150.0">
+               <children>
+                  <ImageView fx:id="dial0upButton" fitHeight="150.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="dial0Background" fitHeight="150.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="dial0Text" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="32.0" style="-fx-background-color: #000000;" text="0" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </StackPane>
+                  <ImageView fx:id="dial0downButton" fitHeight="150.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </VBox>
+            <VBox maxHeight="400.0" maxWidth="150.0">
+               <children>
+                  <ImageView fx:id="dial1upButton" fitHeight="150.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="dial1Background" fitHeight="150.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="dial1Text" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="32.0" style="-fx-background-color: #000000;" text="0" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </StackPane>
+                  <ImageView fx:id="dial1downButton" fitHeight="150.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </VBox>
+            <VBox maxHeight="400.0" maxWidth="150.0">
+               <children>
+                  <ImageView fx:id="dial2upButton" fitHeight="150.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="dial2Background" fitHeight="150.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="dial2Text" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="32.0" style="-fx-background-color: #000000;" text="0" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </StackPane>
+                  <ImageView fx:id="dial2downButton" fitHeight="150.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </VBox>
+            <VBox maxHeight="400.0" maxWidth="150.0">
+               <children>
+                  <ImageView fx:id="dial3upButton" fitHeight="150.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="dial3Background" fitHeight="150.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="dial3Text" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="32.0" style="-fx-background-color: #000000;" text="0" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </StackPane>
+                  <ImageView fx:id="dial3downButton" fitHeight="150.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </VBox>
+            <VBox maxHeight="400.0" maxWidth="150.0">
+               <children>
+                  <ImageView fx:id="dial4upButton" fitHeight="150.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="dial4Background" fitHeight="150.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="dial4Text" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="32.0" style="-fx-background-color: #000000;" text="0" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </StackPane>
+                  <ImageView fx:id="dial4downButton" fitHeight="150.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </VBox>
+            <VBox maxHeight="400.0" maxWidth="150.0">
+               <children>
+                  <ImageView fx:id="dial5upButton" fitHeight="150.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="dial5Background" fitHeight="150.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="dial5Text" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="32.0" style="-fx-background-color: #000000;" text="0" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </StackPane>
+                  <ImageView fx:id="dial5downButton" fitHeight="150.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </VBox>
+            <VBox maxHeight="400.0" maxWidth="150.0">
+               <children>
+                  <ImageView fx:id="dial6upButton" fitHeight="150.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="dial6Background" fitHeight="150.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="dial6Text" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="32.0" style="-fx-background-color: #000000;" text="0" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </StackPane>
+                  <ImageView fx:id="dial6downButton" fitHeight="150.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <Hyperlink fx:id="leaveButton" text="LEAVE" translateY="150.0" />
+   </children>
+</StackPane>

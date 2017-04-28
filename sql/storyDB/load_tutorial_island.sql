@@ -108,7 +108,7 @@ INSERT INTO event(id, text) VALUES (32, 'I caught a great amount of fish today! 
 
 insert into choice(id, eventid, text, actionid) values (34, 32, 'Return to shore' , 35);
 
-insert into actions(id, text) values (35, 'I sell your catch for the day, and even manage to barter for an adorable sea-shell necklace while still buying food for the week.');
+insert into actions(id, text) values (35, 'I sell my catch for the day, and even manage to barter for an adorable sea-shell necklace while still buying food for the week.');
 
 insert into actionsevent (actionid, eventid, eventposition) values (35, 38, 0);
 
@@ -205,7 +205,7 @@ insert into actions(id) values (68);
 
 insert into actionsevent (actionid, eventid, eventposition) values (68, 69, 0);
 
-INSERT INTO event(id, text) VALUES (69, ' I manage to find the shipwright; he’s a little disgruntled that I’ve caught him while he’s about to close shop, but this is important. 
+INSERT INTO event(id, text) VALUES (69, 'I manage to find the shipwright; he’s a little disgruntled that I’ve caught him while he’s about to close shop, but this is important. 
 “Do you have anything I can have today?” I ask, hoping for a yes.
 “Well, I have this old fishing schooner…”');
 
