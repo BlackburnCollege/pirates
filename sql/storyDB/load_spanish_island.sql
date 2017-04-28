@@ -2,7 +2,7 @@
  SPANISH STORY STARTS AT ID 300
 */
 -----------------------------------------Arrival-------------------------------------
-INSERT INTO event (id, text, backgroundname, music) VALUES (300, 'I set sail towards the Spain controlled island, El Puerto Espadaña.', 'spanish_island_0', 'LORD_OF_THE_LAND');
+INSERT INTO event (id, text, backgroundname, music) VALUES (300, 'I set sail towards the Spain controlled island, El Puerto Espadaña.', 'puerto_espadana_0', 'LORD_OF_THE_LAND');
 --
 --Choice-1-1
 INSERT INTO choice (id, eventid, text, actionid) VALUES (301, 300, 'next', 302);

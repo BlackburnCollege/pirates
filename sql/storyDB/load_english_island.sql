@@ -4,7 +4,7 @@
 --------------------------------------------------------------INTRO----------------------------------------------------
 INSERT INTO event (id, text, backgroundname, music) VALUES (100, 'After a few days at sea you can finally see Knightstone in the distance. 
 You sail past warships bearing an english crest as they eye your ship. As you sail into the port of the island you can see it’s full of merchants, 
-fisherman, and soldiers.','english_island_0', 'CRUSADE');
+fisherman, and soldiers.','knightstone', 'CRUSADE');
 INSERT INTO choice(id, eventid, text, actionid) VALUES (101, 100, 'next', 102);
 INSERT INTO choice(id, eventid, text, actionid) VALUES (295, 100, 'next', 1500);
 INSERT INTO conditional(id, attachedid, flag, flagstate) VALUES (293, 101, 'mappiece1found', 0);
@@ -115,7 +115,7 @@ INSERT INTO event(id, text) VALUES (163, 'I survey the docks and spot the Lieute
   INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (165, 170, 0);  
   ------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------ALLEY-----------------------------------------------
-INSERT INTO event(id, text, backgroundname) VALUES (170, 'As I make my way through town I feel a hard tug on my bag and notice somebody sprint off into an alley.', 'alleyway_0');
+INSERT INTO event(id, text, backgroundname) VALUES (170, 'As I make my way through town I feel a hard tug on my bag and notice somebody sprint off into an alley.', 'alleyway');
 
   INSERT INTO choice(id, eventid, text, actionid) VALUES (171, 170, 'Sprint after the thief.', 172);
   INSERT INTO actions(id) VALUES (172);

@@ -6,7 +6,7 @@ TRIBAL ISLAND STARTS AT ID 700
 */
 
 -- 
-INSERT INTO event(id, text, music) VALUES (700, 'I arrive at the island of the Kalinago Tribe.', 'CHEE_ZEE_JUNGLE');
+INSERT INTO event(id, text, backgroundname, music) VALUES (700, 'I arrive at the island of the Kalinago Tribe.','triballia_0','CHEE_ZEE_JUNGLE');
 
 -- Choice 1
   INSERT INTO choice(id, eventid, text, actionid) VALUES (723, 700, 'next', 725);
@@ -155,7 +155,7 @@ insert into actionsevent (actionid, eventid, eventposition) values (772, 720, 0)
 ------------------------------------------------------------------------------------------------------------------------
 --
 INSERT INTO event(id, text, music) VALUES (712, 'If you aren’t going to give me the map, I’m going to have to take it!', 'CHEE_ZEE_CAVE');
-INSERT INTO choice(id,eventid,text,actionid) VALUES (784, 712, '', 767);
+INSERT INTO choice(id,eventid,text,actionid) VALUES (784, 712, 'fight!', 767);
 INSERT INTO actions(id, challengeid) VALUES (767, 731);
 insert into actionsevent (actionid, eventid, eventposition) values (767, 713, 1);
 INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (767, 714, 0);

@@ -118,7 +118,7 @@ public class CombatController extends ChallengeController
 
         enemyImage.setImage(images.getImage(nameOfChallenger));
         Image enemyBackground = images.getImage(nameOfChallenger + "_background");
-        battleImage.setImage(enemyBackground);
+        //battleImage.setImage(enemyBackground);
         load = new EntitySQLLoader(nameOfChallenger);
 
         Enemy enemy = new Enemy(load.getName(), load.getHealth(), load.getMeleeModifier(), load.getRangedModifier(), load.getVerbalModifier(), load.isInsultImmune());
