@@ -39,7 +39,7 @@ INSERT INTO choice (id, eventid, text, actionid) VALUES (595, 503, 'Fight him!',
 INSERT INTO actions(id, challengeid) VALUES (554, 512);
 INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (554, 504, 1);
 INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (554, 505, 0);
-INSERT INTO challenge(challengeid, challengename, challengetype) VALUES (512, 'INSERTNAMEHERE', 'combat');
+INSERT INTO challenge(challengeid, challengename, challengetype) VALUES (512, 'Thief', 'combat');
 
 --
 ------------------------------------------------------------------------------------------------------------------------

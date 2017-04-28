@@ -159,7 +159,7 @@ INSERT INTO choice(id,eventid,text,actionid) VALUES (784, 712, '', 767);
 INSERT INTO actions(id, challengeid) VALUES (767, 731);
 insert into actionsevent (actionid, eventid, eventposition) values (767, 713, 1);
 INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (767, 714, 0);
-INSERT INTO challenge(challengeid, challengename, challengetype) values (731, '', 'combat');
+INSERT INTO challenge(challengeid, challengename, challengetype) values (731, 'Thief', 'combat');
 --
 ------------------------------------------------------------------------------------------------------------------------
 --

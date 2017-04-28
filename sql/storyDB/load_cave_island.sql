@@ -43,7 +43,7 @@ insert into actionsevent (actionid, eventid, eventposition) values (915, 916, 0)
 
 insert into actionsevent (actionid, eventid, eventposition) values (915, 917, 1);
 
-insert into challenge(challengeid, challengename, challengetype) values (918, 'Josh-Kevin', 'combat');
+insert into challenge(challengeid, challengename, challengetype) values (918, 'Kevin-Josh the Ettin', 'combat');
 
 INSERT INTO event (id, text) VALUES (917, 'The ettin falls with a loud thud that shakes the walls of the cave, followed by faint clapping from the back of the cave. I strain to see what might be back there. All I can see is faint movement from the cage.');
 
