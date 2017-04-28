@@ -21,7 +21,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.media.MediaPlayer;
 
 /**
- * This class defines the Controller that mediates between the Puzzle object model and the Puzzle GUI
+ * This class defines the Controller that mediates between the Puzzle object
+ * model and the Puzzle GUI
  *
  * @author Drew Hans
  * @author Lucas Burdell
@@ -130,57 +131,12 @@ public class PuzzleFinalController extends ChallengeController implements Initia
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        String spouseName = this.getWorld().getPlayer().getSpouseName();
 
-        this.puzzle = new PuzzleFinal(spouseName);
-
-        this.dial0Background.setImage(images.getImage(this.puzzle.getFinalBackgroundLocation()));
-        this.dial0upButton.setImage(images.getImage(this.puzzle.getUpButtonLocation()));
-        this.dial0downButton.setImage(images.getImage(this.puzzle.getDownButtonLocation()));
-        this.dial0Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[0]));
-
-        this.dial1Background.setImage(images.getImage(this.puzzle.getFinalBackgroundLocation()));
-        this.dial1upButton.setImage(images.getImage(this.puzzle.getUpButtonLocation()));
-        this.dial1downButton.setImage(images.getImage(this.puzzle.getDownButtonLocation()));
-        this.dial1Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[1]));
-
-        this.dial2Background.setImage(images.getImage(this.puzzle.getFinalBackgroundLocation()));
-        this.dial2upButton.setImage(images.getImage(this.puzzle.getUpButtonLocation()));
-        this.dial2downButton.setImage(images.getImage(this.puzzle.getDownButtonLocation()));
-        this.dial2Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[2]));
-
-        this.dial3Background.setImage(images.getImage(this.puzzle.getFinalBackgroundLocation()));
-        this.dial3upButton.setImage(images.getImage(this.puzzle.getUpButtonLocation()));
-        this.dial3downButton.setImage(images.getImage(this.puzzle.getDownButtonLocation()));
-        this.dial3Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[3]));
-
-        this.dial4Background.setImage(images.getImage(this.puzzle.getFinalBackgroundLocation()));
-        this.dial4upButton.setImage(images.getImage(this.puzzle.getUpButtonLocation()));
-        this.dial4downButton.setImage(images.getImage(this.puzzle.getDownButtonLocation()));
-        this.dial4Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[4]));
-
-        this.dial5Background.setImage(images.getImage(this.puzzle.getFinalBackgroundLocation()));
-        this.dial5upButton.setImage(images.getImage(this.puzzle.getUpButtonLocation()));
-        this.dial5downButton.setImage(images.getImage(this.puzzle.getDownButtonLocation()));
-        this.dial5Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[5]));
-
-        this.dial6Background.setImage(images.getImage(this.puzzle.getFinalBackgroundLocation()));
-        this.dial6upButton.setImage(images.getImage(this.puzzle.getUpButtonLocation()));
-        this.dial6downButton.setImage(images.getImage(this.puzzle.getDownButtonLocation()));
-        this.dial6Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[6]));
-
-        this.gamePane.requestFocus();
-
-        this.leaveButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                PuzzleFinalController.this.finishChallenge(ChallengeStatus.LOSS);
-            }
-        });
     }
 
     /**
-     * checkSolution method interacts with ChallengeController superclass through finishChallenge method
+     * checkSolution method interacts with ChallengeController superclass
+     * through finishChallenge method
      */
     private void checkSolution() {
         System.out.println(Arrays.toString(puzzle.getCurrentDialPositions()));
@@ -263,6 +219,53 @@ public class PuzzleFinalController extends ChallengeController implements Initia
 
     @Override
     public void onChallengeLoaded() {
+        String spouseName = this.getWorld().getPlayer().getSpouseName();
+
+        this.puzzle = new PuzzleFinal(spouseName);
+
+        this.dial0Background.setImage(images.getImage(this.puzzle.getFinalBackgroundLocation()));
+        this.dial0upButton.setImage(images.getImage(this.puzzle.getUpButtonLocation()));
+        this.dial0downButton.setImage(images.getImage(this.puzzle.getDownButtonLocation()));
+        this.dial0Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[0]));
+
+        this.dial1Background.setImage(images.getImage(this.puzzle.getFinalBackgroundLocation()));
+        this.dial1upButton.setImage(images.getImage(this.puzzle.getUpButtonLocation()));
+        this.dial1downButton.setImage(images.getImage(this.puzzle.getDownButtonLocation()));
+        this.dial1Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[1]));
+
+        this.dial2Background.setImage(images.getImage(this.puzzle.getFinalBackgroundLocation()));
+        this.dial2upButton.setImage(images.getImage(this.puzzle.getUpButtonLocation()));
+        this.dial2downButton.setImage(images.getImage(this.puzzle.getDownButtonLocation()));
+        this.dial2Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[2]));
+
+        this.dial3Background.setImage(images.getImage(this.puzzle.getFinalBackgroundLocation()));
+        this.dial3upButton.setImage(images.getImage(this.puzzle.getUpButtonLocation()));
+        this.dial3downButton.setImage(images.getImage(this.puzzle.getDownButtonLocation()));
+        this.dial3Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[3]));
+
+        this.dial4Background.setImage(images.getImage(this.puzzle.getFinalBackgroundLocation()));
+        this.dial4upButton.setImage(images.getImage(this.puzzle.getUpButtonLocation()));
+        this.dial4downButton.setImage(images.getImage(this.puzzle.getDownButtonLocation()));
+        this.dial4Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[4]));
+
+        this.dial5Background.setImage(images.getImage(this.puzzle.getFinalBackgroundLocation()));
+        this.dial5upButton.setImage(images.getImage(this.puzzle.getUpButtonLocation()));
+        this.dial5downButton.setImage(images.getImage(this.puzzle.getDownButtonLocation()));
+        this.dial5Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[5]));
+
+        this.dial6Background.setImage(images.getImage(this.puzzle.getFinalBackgroundLocation()));
+        this.dial6upButton.setImage(images.getImage(this.puzzle.getUpButtonLocation()));
+        this.dial6downButton.setImage(images.getImage(this.puzzle.getDownButtonLocation()));
+        this.dial6Text.setText(Character.toString(this.puzzle.getCurrentDialPositions()[6]));
+
+        this.gamePane.requestFocus();
+
+        this.leaveButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                PuzzleFinalController.this.finishChallenge(ChallengeStatus.LOSS);
+            }
+        });
     }
 
     @Override
