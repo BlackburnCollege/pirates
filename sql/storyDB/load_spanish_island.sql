@@ -71,7 +71,7 @@ INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (322, 328, 0)
 INSERT INTO choice (id, eventid, text, actionid) VALUES (404, 318, 'Visit Governor`s house', 405);
 --INSERT INTO conditional (id, attachedid, flag, flagstate) VALUES (406, 404, 'outfit', 0);
 INSERT INTO actions (id) VALUES (405);
-INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (405, 352, 0);
+INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (405, 355, 0);
 --
 --Choice-3-2
 --INSERT INTO choice (id, eventid, text, actionid) VALUES (323, 318, 'Visit Governor`s house', 324);
