@@ -18,7 +18,7 @@
                   <ImageView fx:id="dial0upButton" fitHeight="150.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
-                        <ImageView fx:id="dial0Background" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="dial0Background" fitHeight="150.0" pickOnBounds="true" preserveRatio="true" />
                         <Label fx:id="dial0Text" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="32.0" style="-fx-background-color: #000000;" text="0" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
@@ -34,7 +34,7 @@
                   <ImageView fx:id="dial1upButton" fitHeight="150.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
-                        <ImageView fx:id="dial1Background" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="dial1Background" fitHeight="150.0" pickOnBounds="true" preserveRatio="true" />
                         <Label fx:id="dial1Text" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="32.0" style="-fx-background-color: #000000;" text="0" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
@@ -50,7 +50,7 @@
                   <ImageView fx:id="dial2upButton" fitHeight="150.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
-                        <ImageView fx:id="dial2Background" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="dial2Background" fitHeight="150.0" pickOnBounds="true" preserveRatio="true" />
                         <Label fx:id="dial2Text" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="32.0" style="-fx-background-color: #000000;" text="0" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
@@ -66,7 +66,7 @@
                   <ImageView fx:id="dial3upButton" fitHeight="150.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
-                        <ImageView fx:id="dial3Background" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="dial3Background" fitHeight="150.0" pickOnBounds="true" preserveRatio="true" />
                         <Label fx:id="dial3Text" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="32.0" style="-fx-background-color: #000000;" text="0" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
@@ -82,7 +82,7 @@
                   <ImageView fx:id="dial4upButton" fitHeight="150.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
-                        <ImageView fx:id="dial4Background" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="dial4Background" fitHeight="150.0" pickOnBounds="true" preserveRatio="true" />
                         <Label fx:id="dial4Text" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="32.0" style="-fx-background-color: #000000;" text="0" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
@@ -98,7 +98,7 @@
                   <ImageView fx:id="dial5upButton" fitHeight="150.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
-                        <ImageView fx:id="dial5Background" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="dial5Background" fitHeight="150.0" pickOnBounds="true" preserveRatio="true" />
                         <Label fx:id="dial5Text" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="32.0" style="-fx-background-color: #000000;" text="0" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
@@ -114,7 +114,7 @@
                   <ImageView fx:id="dial6upButton" fitHeight="150.0" onKeyPressed="#onKeyEvent" onMouseClicked="#onMouseEvent" pickOnBounds="true" preserveRatio="true" />
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
-                        <ImageView fx:id="dial6Background" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="dial6Background" fitHeight="150.0" pickOnBounds="true" preserveRatio="true" />
                         <Label fx:id="dial6Text" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="32.0" style="-fx-background-color: #000000;" text="0" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
