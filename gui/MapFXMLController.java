@@ -56,7 +56,7 @@ public class MapFXMLController extends ChallengeController implements Initializa
     private Text englishFragmentLabel;
     @FXML
     private Text tribalFragmentLabel;
-    
+
     private static final int NUMBER_OF_PIECES = 2;
 
     private boolean[] mapPiecesFound = new boolean[4];
@@ -112,10 +112,12 @@ public class MapFXMLController extends ChallengeController implements Initializa
             spanishFragmentLabel.setStrikethrough(true);
             piecesFound++;
         }
+        tribalFragmentLabel.setVisible(true);
+        pirateFragmentLabel.setVisible(false);
         if (world.getFlag("piratedencompleted") == 1) {
             //pirateFragmentLabel.getStyleClass().add(strikethrough);
             pirateFragmentLabel.setStrikethrough(true);
-            tribalFragmentLabel.setVisible(true);
+
         }
         if (mapPiecesFound[2]) {
             //tribalFragmentLabel.getStyleClass().add(strikethrough);
@@ -131,16 +133,16 @@ public class MapFXMLController extends ChallengeController implements Initializa
         finalIsland.setVisible(finalIslandUnlocked);
         finalIslandLabel.setVisible(finalIslandUnlocked);
         finalIslandLabel2.setVisible(finalIslandUnlocked);
-        
+
         islandViews = new ImageView[]{
-        tutorialIsland,
-        englishIsland,
-        spanishIsland,
-        pirateIsland,
-        tribalIsland,
-        caveIsland,
-        finalIsland
-    };
+            tutorialIsland,
+            englishIsland,
+            spanishIsland,
+            pirateIsland,
+            tribalIsland,
+            caveIsland,
+            finalIsland
+        };
 
     }
 
@@ -155,10 +157,9 @@ public class MapFXMLController extends ChallengeController implements Initializa
     }
 
     private ImageView checkIslandClick(Object object) {
-        
+
         //System.out.println("Check clicked");
         //System.out.println("object: " + object + " of class " + object.getClass());
-        
         for (int i = 0; i < islandViews.length; i++) {
             ImageView islandView = islandViews[i];
             if (object.equals(islandView)) {
@@ -178,7 +179,7 @@ public class MapFXMLController extends ChallengeController implements Initializa
         ImageView islandView = checkIslandClick(event.getSource());
         if (islandView != null) {
             islandView.setEffect(null);
-           //System.out.println(islandView.getImage() + " mouse left");
+            //System.out.println(islandView.getImage() + " mouse left");
         }
     }
 

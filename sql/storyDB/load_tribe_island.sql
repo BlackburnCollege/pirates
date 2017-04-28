@@ -14,8 +14,8 @@ INSERT INTO event(id, text, music) VALUES (700, 'I arrive at the island of the K
 -- Choice 2
   INSERT INTO choice(id, eventid, text, actionid) VALUES (724, 700, 'I have no need to be here, set sail!', 1500);
 
-INSERT INTO conditional(id, attachedid, flag, flagstate) VALUES (726, 723, 'mappiece4found', 0);
-INSERT INTO conditional(id, attachedid, flag, flagstate) VALUES (728, 724, 'mappiece4found', 1);
+INSERT INTO conditional(id, attachedid, flag, flagstate) VALUES (726, 723, 'mappiece3found', 0);
+INSERT INTO conditional(id, attachedid, flag, flagstate) VALUES (728, 724, 'mappiece3found', 1);
 
   INSERT INTO actions(id) VALUES (727);
   INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (727, 820, 1);
@@ -180,7 +180,7 @@ INSERT INTO actionsevent(actionid, eventid, eventposition) VALUES (770, 702, 0);
 INSERT INTO event(id, text) VALUES (715, 'I have the map, and I’ll be happy to never visit the Kalinago ever again.');
 INSERT INTO choice (id, eventid, text, actionid) VALUES (808, 715, 'next', 804);
 INSERT INTO actions (id) VALUES (804);
-INSERT INTO conditional(id, attachedid, flag, flagstate) VALUES (721, 804, 'mappiece4found', 1);
+INSERT INTO conditional(id, attachedid, flag, flagstate) VALUES (721, 804, 'mappiece3found', 1);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (804, 800, 0);
 --
 ------------------------------------------------------------------------------------------------------------------------
@@ -193,7 +193,7 @@ INSERT INTO choice (id, eventid, text, actionid) VALUES (781, 716, 'Go back to t
 INSERT INTO event(id, text) VALUES (720, 'I find the flower and bring it to the Kalinago. They give me the map piece and I head back to my ship as quickly as I can. I have the map, and I will be happy to never visit the Kalinago ever again.');
 INSERT INTO choice (id, eventid, text, actionid) VALUES (805, 720, 'next', 801);
 INSERT INTO actions (id) VALUES (801);
-INSERT INTO conditional(id, attachedid, flag, flagstate) VALUES (802, 801, 'mappiece4found', 1);
+INSERT INTO conditional(id, attachedid, flag, flagstate) VALUES (802, 801, 'mappiece3found', 1);
 INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (801, 800, 0);
 --
 ------------------------------------------------------------------------------------------------------------------------
