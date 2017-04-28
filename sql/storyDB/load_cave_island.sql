@@ -2,7 +2,7 @@
  CAVE STARTS AT ID 900
 */
 
-INSERT INTO event (id, text) VALUES (900, 'On the horizon I see a forested island.');
+INSERT INTO event (id, text, backgroundname) VALUES (900, 'On the horizon I see a forested island.', 'ettin_cave_0');
 
 insert into choice(id, eventid, text, actionid) values (901, 900, 'Proceed to island' , 902);
 
