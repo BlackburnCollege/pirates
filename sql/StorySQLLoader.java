@@ -711,7 +711,7 @@ public class StorySQLLoader {
                     if (root == null) {
                         root = (Event) scaffold.getObject();
                     } 
-                    System.err.println("ROOT " + root.getID() + " WAS CHOSEN");
+                    //System.err.println("ROOT " + root.getID() + " WAS CHOSEN");
                     break;
                 case "action":
                     scaffold = loadAction(id);
