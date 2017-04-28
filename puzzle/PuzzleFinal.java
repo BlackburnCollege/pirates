@@ -17,9 +17,9 @@ public class PuzzleFinal extends PuzzleModel {
     private char[] currentDialPositions;
 
     // PuzzleFinal resource locations
-    private final String finalBackgroundLocation = "puzzleFinalBackground";
-    private final String upButtonLocation = "puzzleFinalArrowUp";
-    private final String downButtonLocation = "puzzleFinalArrowDown";
+    private final String finalBackgroundLocation = "final_puzzle_frame_0";
+    private final String upButtonLocation = "final_puzzle_arrow_up_0";
+    private final String downButtonLocation = "final_puzzle_arrow_down_0";
     private final Sound soundClickLocation = Sound.CLICK;
 
     /**

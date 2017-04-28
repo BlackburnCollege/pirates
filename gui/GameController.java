@@ -134,7 +134,7 @@ public class GameController implements Initializable {
         this.puzzleControllers.put("binary", "/puzzle/PuzzleBinarySwitchGUI.fxml");
         this.puzzleControllers.put("caesar", "/puzzle/PuzzleCaesarCipherGUI.fxml");
         this.puzzleControllers.put("final", "/puzzle/PuzzleFinalGUI.fxml");
-        this.puzzleControllers.put("flower", "/puzzle/PuzzleFinalGUI.fxml");
+        this.puzzleControllers.put("flower", "/puzzle/PuzzleFlowerGUI.fxml");
     }
 
     // TEXT PATTERNS
