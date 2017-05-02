@@ -627,10 +627,10 @@ INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1309, 1310, 
 ----
 -- Choice 2 - Save Your family.
    INSERT INTO choice(id, eventid, text, actionid) VALUES (1339, 1310, 'Save my family.  No amount of gold is worth their lives.', 1340);
-   INSERT INTO actions(id, text) VALUES (1340, 'I decide to save Ir family.');
+   INSERT INTO actions(id, text) VALUES (1340, 'I decide to save my family.');
    INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1340, 1341, 0);  -- jump to 1341
 ---- Choice 2 Results - Lead to first-mate confrontation.
-     INSERT INTO event(id, text) VALUES (1341, 'I take a piece of gold from the room as proof that I found the treasure, shut and scramble the lock, and then begin making Ir way out of the cave.');
+     INSERT INTO event(id, text) VALUES (1341, 'I take a piece of gold from the room as proof that I found the treasure, shut and scramble the lock, and then begin making my way out of the cave.');
      INSERT INTO choice(id, eventid, text, actionid) VALUES (1342, 1341, 'next', 1343);
      INSERT INTO actions(id) VALUES (1343);
      INSERT INTO actionsevent (actionid, eventid, eventposition) VALUES (1343, 1344, 0);  -- jump to 1344

@@ -120,7 +120,6 @@ public class PuzzleFinal extends PuzzleModel {
      * onPress looks at the class variables values and decides which text to set for the controller
      */
     private void onPress() {
-        
         String correctName = new String(this.correctDialPositions);
         String dialName = new String(this.currentDialPositions);
         if (correctName.equalsIgnoreCase(dialName)) {

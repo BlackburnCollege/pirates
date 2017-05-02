@@ -21,8 +21,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.media.MediaPlayer;
 
 /**
- * This class defines the Controller that mediates between the Puzzle object
- * model and the Puzzle GUI
+ * This class defines the Controller that mediates between the Puzzle object model and the Puzzle GUI
  *
  * @author Drew Hans
  * @author Lucas Burdell
@@ -135,8 +134,7 @@ public class PuzzleFinalController extends ChallengeController implements Initia
     }
 
     /**
-     * checkSolution method interacts with ChallengeController superclass
-     * through finishChallenge method
+     * checkSolution method interacts with ChallengeController superclass through finishChallenge method
      */
     private void checkSolution() {
         System.out.println(Arrays.toString(puzzle.getCurrentDialPositions()));
@@ -214,7 +212,6 @@ public class PuzzleFinalController extends ChallengeController implements Initia
         public void handle(KeyEvent event) {
             onKeyEvent(event);
         }
-
     };
 
     @Override
