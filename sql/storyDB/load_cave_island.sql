@@ -12,7 +12,7 @@ insert into actions(id) values (902);
 
 insert into actionsevent (actionid, eventid, eventposition) values (902, 907, 0);
 
-insert into choice(id, eventid, text, actionid) values (904, 900, 'I already have the map piece I came for, there is nothing left in that strange place for me.', 1500)
+insert into choice(id, eventid, text, actionid) values (904, 900, 'I already have the map piece I came for, there is nothing left in that strange place for me.', 1500);
 
 insert into conditional(id, attachedid, flag, flagstate) VALUES (906, 904, 'mappiece4found', 1);
 
@@ -144,7 +144,9 @@ insert into actions(id, text) values (952, '"Just answer this last one right and
 
 insert into actionsevent (actionid, eventid, eventposition) values (952, 947, 0);
 
-insert into actions(id, text) values (953, '"We can move the rock now!," Tim moves jovially towards the boulder. Jess adds, "but queitly"');
+insert into actions(id, text) values (953, '"We can move the rock now!," Tim moves jovially towards the boulder. Jess adds, "but quietly"');
+
+insert into conditional(id, attachedid, flag, flagstate) VALUES (999, 953, 'mappiece4found', 1);
 
 insert into actionsevent (actionid, eventid, eventposition) values (953, 954, 0);
 

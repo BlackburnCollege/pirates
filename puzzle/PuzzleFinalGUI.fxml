@@ -9,7 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<StackPane fx:id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="puzzle.PuzzleFinalController">
+<StackPane fx:id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="puzzle.PuzzleFinalController">
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
@@ -127,6 +127,6 @@
             </VBox>
          </children>
       </HBox>
-      <Hyperlink fx:id="leaveButton" text="LEAVE" translateY="150.0" />
+      <Hyperlink fx:id="leaveButton" text="LEAVE" translateY="250.0" />
    </children>
 </StackPane>

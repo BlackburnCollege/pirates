@@ -120,17 +120,11 @@ public class PuzzleFinal extends PuzzleModel {
      * onPress looks at the class variables values and decides which text to set for the controller
      */
     private void onPress() {
-        if (this.correctDialPositions[0] == this.currentDialPositions[0]
-                && this.correctDialPositions[1] == this.currentDialPositions[1]
-                && this.correctDialPositions[2] == this.currentDialPositions[2]
-                && this.correctDialPositions[3] == this.currentDialPositions[3]
-                && this.correctDialPositions[4] == this.currentDialPositions[4]
-                && this.correctDialPositions[5] == this.currentDialPositions[5]
-                && this.correctDialPositions[6] == this.currentDialPositions[6]) {
-            this.setText("The door opens!");
-            this.setCompleted(); // set puzzle status to solved
-        } else {
-            this.setText("The door doesn't budge");
+        
+        String correctName = new String(this.correctDialPositions);
+        String dialName = new String(this.currentDialPositions);
+        if (correctName.equalsIgnoreCase(dialName)) {
+            this.setCompleted();
         }
     }
 
