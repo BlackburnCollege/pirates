@@ -57,7 +57,7 @@ public class MapFXMLController extends ChallengeController implements Initializa
     @FXML
     private Text tribalFragmentLabel;
 
-    private static final int NUMBER_OF_PIECES = 2;
+    private static final int NUMBER_OF_PIECES = 4;
 
     private boolean[] mapPiecesFound = new boolean[4];
 
